@@ -1,0 +1,10 @@
+# network node template
+---
+id: "nodeId"
+dataPointId: "dataPointId"
+attr:
+  OriginalLabel: "Node Label"
+  OriginalColor: "c8c8c8"
+  OriginalSize: 20
+  OriginalX: 0
+  OriginalY: 0

@@ -1,0 +1,11 @@
+# network link template
+---
+id: "linkId"
+isDirectional: false
+source: "sourceNodeId"
+target: "targetNodeId"
+attr:
+  OriginalLabel: "linkId"
+  OriginalColor: "#c8c8c8"
+  OriginalSize: 20
+  weight: 1

@@ -1,0 +1,57 @@
+---
+dataset:
+  ref: "id=woot_reqd_for_search"
+
+settings:
+  theme: "light"
+  backgroundColor: "#ffffff"
+  labelColor: "#000000"
+  labelOutlineColor: "#ffffff"
+  selectionData:
+    genCount: 0
+    selections: []
+  lastViewedSnap: "reqd-snap-id"
+  layouts: {}
+
+player:
+  settings:
+    fontClass: "Roboto"
+    showModal: true
+    simpleSplash: true
+    showHeader: true
+    headerType: "simple"
+    shareTitle: "Check out this map"
+    shareTitleCompare: "Check out my node"
+    shareTitleSelect: "Check out these nodes"
+    shareEnableSelect: false
+    showExportBtn: true
+    facebookShare: false
+    twitterShare: false
+    colorTheme: "light"
+    showPanels: true
+    showSearch: true
+    showTimeline: true
+    showSnapDescrs: true
+    infoClickToParent: false
+    showSnapTooltips: false
+    panelLayoutType: "interactive"
+    autoPlay: false
+    snapTransition: "tween"
+    snapDuration: 10
+    timelineType: "bottom"
+    totalDuration: 1000
+    headerTitle: "map title"
+    headerImageUrl: ""
+    headerHtml: "<h1>map header</h1>"
+    highlightColor: "#e21186"
+    modalDescription: "<p>map description</p>"
+    modalBackground: ""
+    modalLogo: ""
+    modalSubtitle: "<p>map subtitle</p>"
+    searchAlg: "matchSorter"
+    modalTitle: "document network"
+    modalIntroHtml: "<h1>document_network_test</h1><div>Each of the 1000 nodes in this mapp represents ...</div><div>They are linked with each other if they are similar across the following attributes</div><div>a) Attribute 1</div><div>b) Attribute 2</div><h1></h1>"
+    allowJoin: false
+
+snapshots:
+  -

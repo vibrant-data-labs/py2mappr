@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="hcApp" style="background: #fff">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="https://s3-us-west-1.amazonaws.com/mappr-misc/icons/vdat-blue-dot-logo.png">
+    <meta name="viewport" content="initial-scale=.7, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta property="fb:app_id" content="1389717224632761">
+    <meta property="og:image" content="/img/openmappr_socialmedia.png">
+    <meta property="og:title" content="openmappr | network exploration tool">
+    <meta property="og:description" content="network visualization">
+    <meta name="robots" content="noindex">
+    <title>openmappr | network visualization</title>
+    <meta name="description" content="openmappr">
+    <link rel="stylesheet"
+        href="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/css/mappr-icons/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/css/vendor.css">
+    <script>window.MP_APP = {};
+        window.DATA_PATH = '/data/';
+    </script>
+    <link rel="stylesheet"
+        href="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/css/player.debug.css">
+</head>
+
+<body id="app" data-custom-background data-off-canvas-nav style="background: #fff"
+    class="nav-min light-theme side-menu-compressed">
+    <div>
+        <div ng-init="playerInfo = {&quot;isPublicPlayer&quot;:true,&quot;playerBuildVer&quot;:&quot;v8.10.0&quot;,&quot;directAccess&quot;:true,&quot;isFinal&quot;:false}"
+            class="view-container">
+            <div id="content" style="background: #fff" data-ng-view="ng-view" data-close-min-nav="data-close-min-nav">
+            </div>
+        </div>
+    </div>
+    <div id="svg-renderarea" class="hidden"></div>
+    <div
+        ng-include=" 'http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/partials/components/project/distributions/renderers/renderTemplates.html' ">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.1.0/es5-shim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular-cookies.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular-sanitize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-scroll/1.0.2/angular-scroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular-touch.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-simple-logger/0.1.2/angular-simple-logger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/angular-vs-repeat@1.1.7/src/angular-vs-repeat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.2.6/json3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-leaflet-directive/0.10.0/angular-leaflet-directive.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.13/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngInfiniteScroll/1.1.2/ng-infinite-scroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/re-tree/0.0.2/re-tree.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-slider/0.1.2/slider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-device-detector/1.1.1/ng-device-detector.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.1/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twix.js/0.7.2/twix.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-audio/1.7.4/angular.audio.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-analytics/1.1.9/angular-google-analytics.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/angular-intro.js@3.4.0/src/deprecated.angular-intro.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/player/vendor.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/app/app.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/cameramods.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/canvas.edges.def.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/canvas.hovers.def.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/canvas.labels.def.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/canvas.nodes.aggr.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/canvas.nodes.def.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/captors.mouse.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/graphmods.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/mappr.utils.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/middlewares.resize.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/misc.bindLeafletEvents.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/misc.drawHovers.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/renderers.canvas.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/renderers.common.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/renderers.webgl.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/sigma.plugins.animate.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/sigma.renderers.snapshot.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/sigmamods.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/webgl.edges.curved.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/webgl.edges.def.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/lib/sigmamods/webgl.nodes.def.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/directives/dirInfiniteScroll.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/directives/dirProgressiveRendering.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/directives/dirSelectAll.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/directives/dirTextTruncate.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/filters/filters.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/AttrInfoService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/AttrSanitizeService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/BreadCrumbService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/PartitionService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/SelectionSetService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/SelectorService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/aggregatorService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/attrUIService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/browserDetectService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/dataService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/datagraph.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/embedlyService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/eventBridgeFactory.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/extAPIService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/graphHoverService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/graphSelectionService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/hoverService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/inputMgmtService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/labelRenderer.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/labelService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/layoutService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/linkService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/localStorageFactory.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/networkService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/nodeRenderer.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/nodeSelectionService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/orgFactory.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/playerFactory.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/projectFactory.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/rendergraphfactory.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/repositionService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/searchService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/selectService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/snapshotService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/subsetService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/tagService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/uiHelper.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/uiService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/urlShortenService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/services/zoomService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/stats/distrCommon.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/stats/rankDistr.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/stats/sigtest.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/stats/statUtils.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/stats/tagDistr.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/stats/valDistr.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/core/utils/eventSystem.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/ctrlLayout.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/ctrlRenderGraph.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/layouts/geo/dirGeoLayout.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/layouts/grid/dirGridCard.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/layouts/grid/dirGridLayout.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/layouts/list/dirColResizer.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/layouts/list/dirListLayout.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/layouts/list/dirListRow.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/layouts/scatterplot/dirAxes_new.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/layouts/sigma/dirSigma.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/filters/dirCheckboxFilter.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/filters/dirRangeFilter.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/filters/dirTagListSort.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/filters/neighborsFilter.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirAttrDistribution.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirAttrRenderer.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirAttrTooltip.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirCategoryList.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirDateTime.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirEmail.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirHistogram.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirInstagramFeed.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirLinkThumb.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirLongText.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirMapEmbed.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirMediaEmbed.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirMediaList.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirNeighbors.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirNeighborsDetail.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirPicture.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirPieChart.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirRankBar.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirRowTagCloud.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirTagCloud.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirTagList.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirTagListSimple.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirTextList.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirTwitterFeed.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirValueBar.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/distributions/renderers/dirWideTagCloud.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/overlays/dirFocusNode.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/overlays/dirScrollOverlayAnchors.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/overlays/ext_user_overlay/dirExtUserOverlay.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/overlays/node_overlay/MetaAttrFactory.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/overlays/node_overlay/ctrlNodeOverlay.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/overlays/node_overlay/dirElemReady.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/overlays/node_overlay/utils.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/overlays/node_pop/ctrlNodePop.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/sort_menu/dirSortMenu.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/search/ctrlSearchPanel.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/ctrlRightPanel.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/def_data_groups/ctrlDataPresentation.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/distribution_panel/FilterPanelService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/distribution_panel/Steps.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/distribution_panel/ctrlFilterPanel.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/distribution_panel/ctrlFilterPanelParent.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/distribution_panel/dirKillTooltipOnScroll.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/distribution_panel/dirVirtualScroll.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/info_panel/ctrlInfoPanel.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/info_panel/dirClusterBrowser.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/info_panel/dirNeighborClusters.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/info_panel/dirNeighborNodes.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/info_panel/dirNetworkInfo.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/info_panel/dirNodeBrowser.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/info_panel/dirNodeInfoAttrs.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/info_panel/dirNodesList.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/info_panel/dirSelectionInfo.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/components/project/panels/right_panel/info_panel/infoPanelService.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/ctrlApp.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/ctrlBottomTimeline.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/ctrlContextPanel.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/ctrlLayoutDropdown.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/ctrlRightPanelTabsPlayer.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/ctrlSlidePanel.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/ctrlSnapshotSidePanel.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/ctrlTopMenu.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/dirActivateSnapOnScroll.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/dirImageOnLoad.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/dirSocialShare.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/auth/ctrlPlayerAuth.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/auth/ctrlSurveyEmailAuth.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/analytics/analytics.config.js"></script>
+    <script
+        src="http://mappr-player-version-2020-11-14.s3.us-east-1.amazonaws.com/js/products/player/analytics/analyticsService.js"></script>
+</body>
+
+</html>

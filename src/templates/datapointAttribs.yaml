@@ -1,0 +1,13 @@
+---
+# node attr descriptor
+id: "attrib id" # used for reference
+title: "attrib title" # used for display
+visible: true
+visibleInProfile: true
+searchable: true
+attrType: "string"
+renderType: "text"
+metadata:
+  descr: ""
+  maxLabel: ""
+  minLabel: ""

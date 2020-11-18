@@ -1,0 +1,13 @@
+# network template
+---
+id: ""
+networkInfo: {}
+clusterInfo: {}
+linkAttrDescriptors:
+  -
+nodeAttrDescriptors:
+  -
+nodes:
+  -
+links:
+  -

@@ -1,0 +1,190 @@
+---
+dataset:
+  attrDescriptors:
+    - id: "var1"
+      title: "var1"
+      visible: true
+      searchable: true
+      attrType: "string"
+      renderType: "text"
+      metadata:
+        overlayAnchor: ""
+        descr: ""
+        maxLabel: ""
+        minLabel: ""
+    - id: "var2"
+      title: "var2"
+      visible: true
+      searchable: true
+      attrType: "string"
+      renderType: "text"
+      metadata:
+        overlayAnchor: ""
+        descr: ""
+        maxLabel: ""
+        minLabel: ""
+    - id: "var10"
+      title: "var10"
+      visible: true
+      searchable: true
+      attrType: "string"
+      renderType: "text"
+      metadata:
+        overlayAnchor: ""
+        descr: ""
+        maxLabel: ""
+        minLabel: ""
+  datapoints:
+    - id: 0
+      attr: a:""
+        b:""
+        c:""
+    - id: 1
+      attr: a:""
+        b:""
+        c:""
+    - id: 99
+      attr: a:""
+        b:""
+        c:""
+---
+network:
+  id: "" # removal breaks code
+  networkInfo: ""
+  clusterInfo: ""
+  nodeAttrDescriptors:
+    - id: "node-network-var-1-causal cluster_X"
+      visible: true
+      searchable: true
+      attrType: "float"
+      renderType: "histogram"
+    - id: "node-network-var-2-causal cluster_Y"
+      visible: true
+      searchable: true
+      attrType: "float"
+      renderType: "histogram"
+    - id: "node-network-var-N-OriginalColor"
+      visible: true
+      searchable: true
+      attrType: "color"
+      renderType: "categorybar"
+  linkAttrDescriptors:
+    - id: "linkvar1"
+      visible: true
+      searchable: true
+      attrType: "color"
+      renderType: "categorybar"
+    - id: "linkvar2"
+      visible: true
+      searchable: true
+      attrType: "integer"
+      renderType: "histogram"
+    - id: "linkvarN"
+      visible: true
+      searchable: true
+      attrType: "string"
+      renderType: "categorylist"
+  nodes:
+    - dataPointId: "1"
+      id: "1"
+      attr:
+        causal cluster_X": -3359.661858406639
+        causal cluster_Y": 1785.7353152892008
+        Themes_Y": -694.7613642816742
+        Themes_X": 2255.454723158935
+        OriginalX": -46391.16142242804
+        OriginalY": 18272.467380686987
+        OriginalLabel": "the perception that all people have the ambition and confidence to be leaders"
+        ClusterBridging": 1.062818611642241
+        OriginalColor": "#c8c8c8"
+        OriginalSize": 20
+    - dataPointId: "2"
+      id: "2"
+      attr:
+        causal cluster_X": -3359.661858406639
+        causal cluster_Y": 1785.7353152892008
+        Themes_Y": -694.7613642816742
+        Themes_X": 2255.454723158935
+        OriginalX": -46391.16142242804
+        OriginalY": 18272.467380686987
+        OriginalLabel": "the perception that all people have the ambition and confidence to be leaders"
+        ClusterBridging": 1.062818611642241
+        OriginalColor": "#c8c8c8"
+        OriginalSize": 20
+    - dataPointId: "N"
+      id: "N"
+      attr:
+        causal cluster_X": -3359.661858406639
+        causal cluster_Y": 1785.7353152892008
+        Themes_Y": -694.7613642816742
+        Themes_X": 2255.454723158935
+        OriginalX": -46391.16142242804
+        OriginalY": 18272.467380686987
+        OriginalLabel": "the perception that all people have the ambition and confidence to be leaders"
+        ClusterBridging": 1.062818611642241
+        OriginalColor": "#c8c8c8"
+        OriginalSize": 20
+  links:
+    - id: "1"
+      source: "30"
+      target: "26"
+      isDirectional: false
+      attr:
+        flat: 0
+        fromName: "the number of those in power who are willing to decrease their power"
+        skip: 0
+        OriginalColor: "#c8c8c8"
+        fracNeg: 0
+        negative: 0
+        OriginalLabel: "61"
+        isPos: 1
+        isNeg: 0
+        sign: "positive"
+        OriginalSize: 20
+        toName: "the number of people who are comfortable reporting sexual harassment in Jewish nonprofits"
+        votes: 4
+        fracPos: 1
+        fracFlat: 0
+        positive: 4
+    - id: "2"
+      source: "30"
+      target: "26"
+      isDirectional: false
+      attr:
+        flat: 0
+        fromName: "the number of those in power who are willing to decrease their power"
+        skip: 0
+        OriginalColor: "#c8c8c8"
+        fracNeg: 0
+        negative: 0
+        OriginalLabel: "61"
+        isPos: 1
+        isNeg: 0
+        sign: "positive"
+        OriginalSize: 20
+        toName: "the number of people who are comfortable reporting sexual harassment in Jewish nonprofits"
+        votes: 4
+        fracPos: 1
+        fracFlat: 0
+        positive: 4
+    - id: "N"
+      source: "30"
+      target: "26"
+      isDirectional: false
+      attr:
+        flat: 0
+        fromName: "the number of those in power who are willing to decrease their power"
+        skip: 0
+        OriginalColor: "#c8c8c8"
+        fracNeg: 0
+        negative: 0
+        OriginalLabel: "61"
+        isPos: 1
+        isNeg: 0
+        sign: "positive"
+        OriginalSize: 20
+        toName: "the number of people who are comfortable reporting sexual harassment in Jewish nonprofits"
+        votes: 4
+        fracPos: 1
+        fracFlat: 0
+        positive: 4

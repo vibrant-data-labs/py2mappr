@@ -1,0 +1,7 @@
+﻿id,visible,searchable,attrType,renderType,title
+Source,FALSE,FALSE,string,text,
+Target,FALSE,FALSE,string,text,
+weight,TRUE,FALSE,float,histogram,
+OriginalColor,FALSE,FALSE,color,categorybar,
+OriginalSize,FALSE,FALSE,float,histogram,
+OriginalLabel,FALSE,FALSE,string,categorylist,
