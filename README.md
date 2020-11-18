@@ -20,7 +20,26 @@ or, you can simply run a python server at a desired port:
 
     python -m http.server <PORT_NUM>
 
-## 3. The main method - `create_map`
+## 3. The `data_in` folder
+
+We need the following csv files in this folder to generate the map:
+
+    nodes.csv - each row is a node in your network. The only required attributes per node - label, x, y
+    link.csv - each row is a link. The required attributes per link - source, target, isDirectional
+    datapointAttr.csv - each row is describes how mappr should treat a node attribute during render, search etc.
+    
+## 4. The `data_out` folder
+
+This is the output of a py2mappr run. The following contents are generated:
+    
+    index.html              # entry point. has references to the openmappr player resources (js/css/images etc)
+    data/
+        nodes.json          # previously called datapoints.json
+        links.json          # previously called networks.json
+        settings.json       # previously called playerSetttings.json
+    run_local.sh            # simple utility to run a local server
+        
+## 5. The main method - `create_map(..)`
     Args:
         datapointsPath (str): filepath for the datapoints
         linksPath (str): filepath for the edges
@@ -35,7 +54,7 @@ or, you can simply run a python server at a desired port:
     SideEffect:
         Writes the outFolder
         
-## 4. Helper method to create snapshots - `create_snapshot`
+## 6. Helper method to create snapshots - `create_snapshot(..)`
     
     Args:
         name (str): snapshot title
