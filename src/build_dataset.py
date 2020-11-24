@@ -46,14 +46,19 @@ def build_datapoints(dpPath: str, dpAttribTypes) -> List[Dict[str, Any]]:
         # structure the datapoint (each row) as a dict
         attrs: Dict[str, Any] = dict(dp)
 
-        # convert any liststring attr into a list
+        # validate the attr vals based on type.
         for key, val in attrs.items():
             if dpAttribTypes[key] == "liststring":
                 # check if value is NaN or not string type
                 if isinstance(val, str):
+                    # convert any liststring attr into a list
                     attrs[key] = val.split("|") if "|" in val else [val]
                 else:
                     attrs[key] = ""
+            elif dpAttribTypes[key] == "float" or dpAttribTypes[key] == "integer" or dpAttribTypes[key] == "year":
+                attrs[key] = val if not pd.isna(attrs[key]) else 0
+            else:
+                attrs[key] = val if not pd.isna(attrs[key]) else ""
 
         # merge attrs with template
         dp = {**datapointTpl, **{"id": f'{dp["id"]}', "attr": attrs}}
