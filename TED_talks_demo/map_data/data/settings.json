@@ -45,10 +45,10 @@
             "headerImageUrl": "",
             "headerHtml": "<h1>map header</h1>",
             "highlightColor": "#e21186",
-            "modalDescription": "<p>map description</p>",
+            "modalDescription": "<h6>This is a map of every talk on TED.com published from 2007 to 2017.                              Keyword tags for each talk were enhanced by searching through the full transcript of each talk                             for the presence of any keyword from the TED's tag list, and adding it as a tag if was not already present.                             </h6><h6>Talks are linked if they have high overlap in their tags,  and they self-cluster into groups that                             tend to share similar *combinations* of tags. These Keyword Themes are auto-labeled by the 3 most commonly shared tags in the group.                             </h6>&#10;&#10;<h6>Data are from a public dataset on <a href=\"https://www.kaggle.com/rounakbanik/ted-talks/data \" target=\"_blank\">Kaggle</a>.                             <span>The network was generated using the open source python </span><a href=\"https://github.com/foodwebster/Tag2Network\" target=\"_blank\">'tag2network'</a><span>                             package, and visualized using <a href=\"http://openmappr.org\" target=\"_blank\">'openmappr'</a> - an open source network exploration tool.                             <br/></span></h6><h6><p><br/></p><p><i>This visualization is not optimized for mobile viewing and works best in Chrome browsers.   </i><br/></p></h6>",
             "modalBackground": "",
             "modalLogo": "",
-            "modalSubtitle": "<p>map subtitle</p>",
+            "modalSubtitle": "<h5><span>How to Navigate this Network:</span><br/></h5><ul><li>Click on any node to see more details about that talk and watch the video.                             </li><li>Click the '<b>reset</b>' button to clear any selection.</li><li>Use the <b>Snapshots</b> panel to navigate between views.</li>                            <li>Use the <b>Filters</b> panel to select talks by any combination of traits (tags, views, event, talk duration, year published, etc).</li>                            <li>Click the '<b>Subset</b>' button to restrict the data to the selected nodes. The <b>Filters</b> panel will then summarize that <b>subset</b>. </li>                            <li>Use the <b>List</b> panel to see selected or subsetted talks as a sortable list - and to explore their details one by one by clicking on them.  </li></ul>",
             "searchAlg": "matchSorter",
             "modalTitle": "10 years of TED talks",
             "modalIntroHtml": "<h1>document_network_test</h1><div>Each of the 1000 nodes in this mapp represents ...</div><div>They are linked with each other if they are similar across the following attributes</div><div>a) Attribute 1</div><div>b) Attribute 2</div><h1></h1>",
@@ -182,7 +182,7 @@
                     "nodeOnClick": "select",
                     "nodeOnDblClick": "select",
                     "nodeSizeStrat": "attr",
-                    "nodeSizeAttr": "popularity index",
+                    "nodeSizeAttr": "popularity_index",
                     "nodeSizeScaleStrategy": "log",
                     "nodeSizeScaleInvert": false,
                     "nodeSizeScaleExponent": 2.5,
@@ -197,7 +197,7 @@
                     "nodeSizePartitionEnabled": false,
                     "nodeSizePartitionAttr": "Cluster",
                     "nodeColorStrat": "attr",
-                    "nodeColorAttr": "keyword theme",
+                    "nodeColorAttr": "keyword_theme",
                     "nodeColorScaleStrategy": "linear",
                     "nodeColorScaleInvert": false,
                     "nodeColorScaleExponent": 2.5,
@@ -363,7 +363,7 @@
             "summaryImg": "https://www.dl.dropboxusercontent.com/s/d9vdgqouelb2oq7/Screen%20Shot%202020-11-23%20at%202.45.08%20PM.png?dl=0",
             "snapName": "Keyword Themes",
             "subtitle": "Clusters of talks linked by shared keywords.",
-            "id": "442d2449-6f55-4b0f-b7f3-98aa21e1ea8f"
+            "id": "30ef5890-a10c-4144-ab8d-05a333c4002d"
         },
         {
             "layout": {
@@ -380,8 +380,8 @@
                 "y_scaler_type": "linear",
                 "y_scaler_base": 10,
                 "y_scaler_exponent": 2,
-                "xaxis": "year published",
-                "yaxis": "popularity index",
+                "xaxis": "year_published",
+                "yaxis": "popularity_index",
                 "settings": {
                     "drawNodes": true,
                     "drawSelectedInHover": true,
@@ -491,7 +491,7 @@
                     "nodeOnClick": "select",
                     "nodeOnDblClick": "select",
                     "nodeSizeStrat": "attr",
-                    "nodeSizeAttr": "popularity index",
+                    "nodeSizeAttr": "popularity_index",
                     "nodeSizeScaleStrategy": "log",
                     "nodeSizeScaleInvert": false,
                     "nodeSizeScaleExponent": 2.5,
@@ -506,7 +506,7 @@
                     "nodeSizePartitionEnabled": false,
                     "nodeSizePartitionAttr": "Cluster",
                     "nodeColorStrat": "attr",
-                    "nodeColorAttr": "year published",
+                    "nodeColorAttr": "year_published",
                     "nodeColorScaleStrategy": "linear",
                     "nodeColorScaleInvert": false,
                     "nodeColorScaleExponent": 2.5,
@@ -672,7 +672,7 @@
             "summaryImg": "https://www.dl.dropboxusercontent.com/s/uepgmm7mwi5mxtj/Screen%20Shot%202020-11-23%20at%202.49.03%20PM.png?dl=0",
             "snapName": "popularity by year",
             "subtitle": "See which talks were most popular in a given year.",
-            "id": "51531597-6581-4970-91a9-7159c808d0c5"
+            "id": "778bb832-29f7-4fb6-be52-76d9e3f76774"
         },
         {
             "layout": {
@@ -981,7 +981,7 @@
             "summaryImg": "https://placekitten.com/220/100",
             "snapName": "default settings",
             "subtitle": "network",
-            "id": "4d7ed443-eec8-4206-b0f3-e0d128759ce2"
+            "id": "e4e8c5a7-f19b-48d2-8e21-41dd93f9cea9"
         }
     ]
 }

@@ -43,8 +43,8 @@ sn1 = create_snapshot(
         "xaxis": "OriginalX",
         "yaxis": "OriginalY",
         "settings": {
-            "nodeSizeAttr": "popularity index",
-            "nodeColorAttr": "keyword theme",
+            "nodeSizeAttr": "popularity_index",
+            "nodeColorAttr": "keyword_theme",
             "nodeImageShow": True,
             "nodeImageAttr": "photo",
             "xAxShow": False,
@@ -68,9 +68,12 @@ sn2 = create_snapshot(
                 <p><i>Colored by:  </i>Keyword Theme</p><p><i>Sized by: </i>Total Views</p>",
     layout_params={
         "plotType": "scatterplot",
-        "xaxis": "year published",
-        "yaxis": "popularity index",
-        "settings": {"nodeSizeAttr": "popularity index", "nodeColorAttr": "year published"},
+        "xaxis": "year_published",
+        "yaxis": "popularity_index",
+        "settings": {
+            "nodeSizeAttr": "popularity_index", 
+            "nodeColorAttr": "year_published"
+        },
     },
 )
 
