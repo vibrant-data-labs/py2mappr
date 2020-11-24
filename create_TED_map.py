@@ -24,6 +24,7 @@ link_attr_map = {"source": "Source", "target": "Target", "isDirectional": "isDir
 
 # create some snapshots
 # snapshot - scatterplot
+'''
 sn1 = create_snapshot(
     name="Keyword Themes",
     subtitle="Clusters of talks linked by shared keywords.",
@@ -52,7 +53,7 @@ sn1 = create_snapshot(
         },
     },
 )
-
+'''
 # snapshot - scatterplot
 sn2 = create_snapshot(
     name="popularity by year",
@@ -77,14 +78,14 @@ sn2 = create_snapshot(
     },
 )
 
-
+'''
 # snapshot - network with default layout settings (see layout templates/snapshot.yaml)
 sn3 = create_snapshot(
     name="default settings",
     subtitle="network",
     summaryImg="https://placekitten.com/220/100",
 )
-
+'''
 
 # create map
 create_map(
@@ -93,7 +94,7 @@ create_map(
     nodeAttrsFile,
     node_attr_map,
     link_attr_map,
-    snapshots=[sn1, sn2, sn3],
+    snapshots=[sn2],# sn2, sn3],
     playerSettings={
         "modalTitle": "10 years of TED talks",
         "modalDescription": '<h6>This is a map of every talk on TED.com published from 2007 to 2017.  \
