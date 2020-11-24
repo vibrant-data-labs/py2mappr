@@ -9,7 +9,7 @@ import pandas as pd
 #import numpy as np
 import pathlib as pl #path library
 
-sys.path.append("../Tag2Network/tag2network/")  # add Tag2Network directory
+sys.path.append("../../Tag2Network/tag2network/")  # add Tag2Network directory
 from Network import BuildNetwork as bn
 #from Network.BuildNetwork import addLouvainClusters
 #from Network.ClusteringProperties import basicClusteringProperties
@@ -33,7 +33,7 @@ def force_directed(ndf, ldf, iterations=100, plot = True):
     ## add force-directed layout coordinates and draw
     bn.add_force_directed_layout(ndf, linksdf=ldf, nw=None, iterations=iterations)
     if plot:
-        bn.draw_network_categorical(nw, ndf, node_attr = "keyword theme", x='x_force_directed', y= 'y_force_directed', plotfile="network_fd.pdf")
+        bn.draw_network_categorical(nw, ndf, node_attr = "keyword_theme", x='x_force_directed', y= 'y_force_directed', plotfile="network_fd.pdf")
     return ndf
 
 def tsne_layout(ndf, ldf, plot=True):   
@@ -41,7 +41,7 @@ def tsne_layout(ndf, ldf, plot=True):
     bn.add_layout(ndf, linksdf=ldf, nw=None)
     ndf.rename(columns={"x": "x_tsne", "y": "y_tsne"}, inplace=True)
     if plot:
-        bn.draw_network_categorical(nw, ndf, node_attr = "keyword theme", x='x_tsne', y= 'y_tsne', plotfile="network_tsne.pdf")
+        bn.draw_network_categorical(nw, ndf, node_attr = "keyword_theme", x='x_tsne', y= 'y_tsne', plotfile="network_tsne.pdf")
     return ndf
 
 
