@@ -89,7 +89,8 @@ def create_map(
         datapointAttrPath (str): filespath for the datapoint attributes
         node_attr_map (Dict[str, str]): map of {required params: column-names} for the nodes
         link_attr_map (Dict[str, str]): map of {required params: column-names} for the links
-        snapshots (List[Dict], optional): list of snapshots. Defaults to [].
+        snapshots (List[Dict], optional): list of snapshots. Defaults to []
+        playerSettings (Dict[str, str], optional): settings to customize the player (info, theme etc). Defaults to {}
         outFolder (str, optional): name of the output folder. Defaults to "data_out".
     """
 
