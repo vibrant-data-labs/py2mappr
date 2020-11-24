@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Mon Nov 23 12:00:45 2020
@@ -6,16 +5,16 @@ Created on Mon Nov 23 12:00:45 2020
 @author: ericberlow
 """
 
-import pathlib as pl #path library
+import pathlib as pl  # path library
 from src.map_utils import create_map, create_snapshot
 
 
 # configure the files and folders
 wd = pl.Path.cwd()
-nodesFile = wd/"TED_talks_demo"/"processed_data"/"nodes.csv"
-linksFile = wd/"TED_talks_demo"/"processed_data"/"links.csv"
-nodeAttrsFile = wd/"TED_talks_demo"/"processed_data"/"node_attrs.csv"
-outFolder =  wd/"TED_talks_demo"/"map_data"
+nodesFile = wd / "TED_talks_demo" / "processed_data" / "nodes.csv"
+linksFile = wd / "TED_talks_demo" / "processed_data" / "links.csv"
+nodeAttrsFile = wd / "TED_talks_demo" / "processed_data" / "node_attrs.csv"
+outFolder = wd / "TED_talks_demo" / "map_data"
 
 # configure the mapping for the read parameters
 # maps are in the form of {"required param name": "name of column in datasheet"}
@@ -43,13 +42,14 @@ sn1 = create_snapshot(
         "plotType": "scatterplot",
         "xaxis": "OriginalX",
         "yaxis": "OriginalY",
-        "settings": {"nodeSizeAttr": "popularity index", 
-                     "nodeColorAttr": "keyword theme",
-                     "nodeImageShow": True,
-                     "nodeImageAttr": "photo",
-                     "xAxShow": False,
-                     "yAxShow": False,
-                     },
+        "settings": {
+            "nodeSizeAttr": "popularity index",
+            "nodeColorAttr": "keyword theme",
+            "nodeImageShow": True,
+            "nodeImageAttr": "photo",
+            "xAxShow": False,
+            "yAxShow": False,
+        },
     },
 )
 
@@ -58,7 +58,7 @@ sn2 = create_snapshot(
     name="popularity by year",
     subtitle="See which talks were most popular in a given year.",
     summaryImg="https://www.dl.dropboxusercontent.com/s/uepgmm7mwi5mxtj/Screen%20Shot%202020-11-23%20at%202.49.03%20PM.png?dl=0",
-    description= "<p>Talks are sorted horizontally by date published and vertically by &#34;popularity&#34;. \
+    description="<p>Talks are sorted horizontally by date published and vertically by &#34;popularity&#34;. \
                 Since some topics (e.g. pop psychology or business leadership) are more inherently more popular than others (e.g. physics), \
                 the views of each talk are indexed relative to the median views of its keyword theme. \
                 Talks above the zero line had more views than expected relative to the typical talk of its keyword theme. \
@@ -93,16 +93,15 @@ create_map(
     snapshots=[sn1, sn2, sn3],
     playerSettings={
         "modalTitle": "10 years of TED talks",
-        "modalDescription": "<h6>This is a map of every talk on TED.com published from 2007 to 2017.  \
+        "modalDescription": '<h6>This is a map of every talk on TED.com published from 2007 to 2017.  \
                             Keyword tags for each talk were enhanced by searching through the full transcript of each talk \
-                            for the presence of any keyword from the TED's tag list, and adding it as a tag if was not already present. \
+                            for the presence of any keyword from the TED\'s tag list, and adding it as a tag if was not already present. \
                             </h6><h6>Talks are linked if they have high overlap in their tags,  and they self-cluster into groups that \
                             tend to share similar *combinations* of tags. These Keyword Themes are auto-labeled by the 3 most commonly shared tags in the group. \
-                            </h6>&#10;&#10;<h6>Data are from a public dataset on <a href=\"https://www.kaggle.com/rounakbanik/ted-talks/data \" target=\"_blank\">Kaggle</a>. \
-                            <span>The network was generated using the open source python </span><a href=\"https://github.com/foodwebster/Tag2Network\" target=\"_blank\">'tag2network'</a><span> \
-                            package, and visualized using <a href=\"http://openmappr.org\" target=\"_blank\">'openmappr'</a> - an open source network exploration tool. \
-                            <br/></span></h6><h6><p><br/></p><p><i>This visualization is not optimized for mobile viewing and works best in Chrome browsers.   </i><br/></p></h6>",
-                            
+                            </h6>&#10;&#10;<h6>Data are from a public dataset on <a href="https://www.kaggle.com/rounakbanik/ted-talks/data " target="_blank">Kaggle</a>. \
+                            <span>The network was generated using the open source python </span><a href="https://github.com/foodwebster/Tag2Network" target="_blank">\'tag2network\'</a><span> \
+                            package, and visualized using <a href="http://openmappr.org" target="_blank">\'openmappr\'</a> - an open source network exploration tool. \
+                            <br/></span></h6><h6><p><br/></p><p><i>This visualization is not optimized for mobile viewing and works best in Chrome browsers.   </i><br/></p></h6>',
         "modalSubtitle": "<h5><span>How to Navigate this Network:</span><br/></h5><ul><li>Click on any node to see more details about that talk and watch the video. \
                             </li><li>Click the '<b>reset</b>' button to clear any selection.</li><li>Use the <b>Snapshots</b> panel to navigate between views.</li>\
                             <li>Use the <b>Filters</b> panel to select talks by any combination of traits (tags, views, event, talk duration, year published, etc).</li>\

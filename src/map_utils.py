@@ -1,4 +1,4 @@
-from typing import Any, List, Dict
+from typing import Any, List, Dict, Union
 from pathlib import Path
 import shutil
 import json
@@ -9,14 +9,14 @@ from src.build_settings import build_settings
 from src.utils import load_templates, merge
 
 
-def __write_dataset_file(datapointsPath: str, datapointAttrPath: str, out_data_dir: Path):
+def __write_dataset_file(datapointsPath: Union[Path, str], datapointAttrPath: Union[Path, str], out_data_dir: Path):
     # collect datapoint attributes
-    datapointAttribs = build_attrDescriptors(datapointAttrPath)
+    datapointAttribs = build_attrDescriptors(str(datapointAttrPath))
     datapointAttrTypes = {row["id"]: row["attrType"] for row in datapointAttribs}
     # print(f"\t- processed {len(datapointAttribs)} datapoint attributes {[at['id'] for at in datapointAttribs]}")
 
     # collect datapoints
-    datapoints = build_datapoints(datapointsPath, datapointAttrTypes)
+    datapoints = build_datapoints(str(datapointsPath), datapointAttrTypes)
     print(
         f"\t- processed {len(datapoints)} datapoints with {datapoints[0].keys()} where attr={list(datapoints[0]['attr'].keys())}"
     )
@@ -29,8 +29,8 @@ def __write_dataset_file(datapointsPath: str, datapointAttrPath: str, out_data_d
 
 
 def __write_network_file(
-    datapointsPath: str,
-    linksPath: str,
+    datapointsPath: Union[Path, str],
+    linksPath: Union[Path, str],
     node_attr_map: Dict[str, str],
     link_attr_map: Dict[str, str],
     out_data_dir: Path,
@@ -71,14 +71,14 @@ def __write_settings_file(snapshots: List[Dict], playerSettings: Dict[str, Any],
 
 
 def create_map(
-    datapointsPath: str,
-    linksPath: str,
-    datapointAttrPath: str,
+    datapointsPath: Union[Path, str],
+    linksPath: Union[Path, str],
+    datapointAttrPath: Union[Path, str],
     node_attr_map: Dict[str, str],
     link_attr_map: Dict[str, str],
     snapshots: List[Dict] = [],
     playerSettings: Dict[str, Any] = {},
-    outFolder: str = "data_out",
+    outFolder: Union[Path, str] = "data_out",
 ):
     """Creates a map renderable in a browser.
        Outputs a folder with formatted data folder, index.html and run utility

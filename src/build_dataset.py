@@ -1,11 +1,12 @@
+from pathlib import Path
 import pandas as pd
-from typing import Any, List, Dict, Tuple
+from typing import Any, List, Dict, Union
 from src.utils import load_templates
 
 
-def build_attrDescriptors(datapointAttrPath: str) -> List[Dict[str, Any]]:
+def build_attrDescriptors(datapointAttrPath: Union[Path, str]) -> List[Dict[str, Any]]:
 
-    df_attrs: pd.DataFrame = pd.read_csv(datapointAttrPath)
+    df_attrs: pd.DataFrame = pd.read_csv(str(datapointAttrPath))
     attrDescriptorTpl = load_templates("datapointAttribs")
 
     df_attrs.fillna(value="", inplace=True)
@@ -25,7 +26,6 @@ def build_attrDescriptors(datapointAttrPath: str) -> List[Dict[str, Any]]:
 
         # if title doesnt exist. copy from id.
         attrs["title"] = attrs["id"] if attrs["title"] == "" else attrs["title"]
-
         # merge with template to form the full descriptor
         at = {**attrDescriptorTpl, **attrs}
 
@@ -49,7 +49,11 @@ def build_datapoints(dpPath: str, dpAttribTypes) -> List[Dict[str, Any]]:
         # convert any liststring attr into a list
         for key, val in attrs.items():
             if dpAttribTypes[key] == "liststring":
-                attrs[key] = val.split("|") if "|" in val else [val]
+                # check if value is NaN or not string type
+                if isinstance(val, str):
+                    attrs[key] = val.split("|") if "|" in val else [val]
+                else:
+                    attrs[key] = ""
 
         # merge attrs with template
         dp = {**datapointTpl, **{"id": f'{dp["id"]}', "attr": attrs}}

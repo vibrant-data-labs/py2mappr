@@ -1,10 +1,11 @@
+from pathlib import Path
 import pandas as pd
-from typing import Any, List, Dict
+from typing import Any, List, Dict, Union
 from src.utils import load_templates, merge
 
 
-def build_nodes(dpPath: str, attr_map: Dict[str, str]) -> List[Dict[str, Any]]:
-    df_datapoints: pd.DataFrame = pd.read_csv(dpPath)
+def build_nodes(dpPath: Union[Path, str], attr_map: Dict[str, str]) -> List[Dict[str, Any]]:
+    df_datapoints: pd.DataFrame = pd.read_csv(str(dpPath))
 
     # load the template - node.yaml
     nodeTpl = load_templates("node")
@@ -30,7 +31,7 @@ def build_nodes(dpPath: str, attr_map: Dict[str, str]) -> List[Dict[str, Any]]:
     return nodes
 
 
-def build_links(linksPath: str, attr_map: Dict[str, str]) -> List[Dict[str, Any]]:
+def build_links(linksPath: Union[Path, str], attr_map: Dict[str, str]) -> List[Dict[str, Any]]:
     df_links: pd.DataFrame = pd.read_csv(linksPath)
 
     # load the template - link.yaml
