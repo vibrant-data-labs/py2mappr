@@ -56,7 +56,7 @@ def build_datapoints(dpPath: str, dpAttribTypes) -> List[Dict[str, Any]]:
                 else:
                     attrs[key] = ""
             elif dpAttribTypes[key] == "float" or dpAttribTypes[key] == "integer" or dpAttribTypes[key] == "year":
-                attrs[key] = val if not pd.isna(attrs[key]) else 0
+                attrs[key] = val if not pd.isna(attrs[key]) else ""
             else:
                 attrs[key] = val if not pd.isna(attrs[key]) else ""
 
