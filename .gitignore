@@ -1,4 +1,5 @@
 *.pyc
+*.spyproject
 .spyproject/*.*
 .vscode
 .mypy_cache
