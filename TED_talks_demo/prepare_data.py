@@ -46,9 +46,9 @@ def tsne_layout(ndf, ldf, plot=True):
 
 
 ## add tsne coordinates
-ndf = tsne_layout(ndf, ldf, plot=False)
+ndf = tsne_layout(ndf, ldf, plot=True)
 # add force directed coordinates
-ndf = force_directed(ndf, ldf, iterations = 1000, plot=False)
+ndf = force_directed(ndf, ldf, iterations = 100, plot=False)
 
 ## generate csv's for py2mappr
 ndf.to_csv(resultspath/"nodes.csv", index=False)
