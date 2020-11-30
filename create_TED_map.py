@@ -171,11 +171,11 @@ def launch_map_in_browser(project_directory, PORT=5000):
     project_directory : string, the directory with the project data (index.html and 'data' folder)
     '''
     web_dir = os.path.join(os.getcwd(), project_directory)
-    os.chdir(web_dir) # change to directory where data and index.html are
+    os.chdir(web_dir) # change to project directory where index.html and data folder are
         
-    Handler = http.server.SimpleHTTPRequestHandler 
     webbrowser.open_new_tab('http://localhost:'+str(PORT)) # open new tab in browswer
     
+    Handler = http.server.SimpleHTTPRequestHandler 
     with socketserver.TCPServer(("", PORT), Handler) as httpd:
         print("serving at port", PORT, "go to http://localhost:%s \nCTL_C to quit\n"%str(PORT))
         httpd.serve_forever()  
