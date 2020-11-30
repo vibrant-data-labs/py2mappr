@@ -7,6 +7,9 @@ Created on Mon Nov 23 12:00:45 2020
 
 import pathlib as pl  # path library
 from src.map_utils import create_map, create_snapshot
+import os
+import http.server
+import socketserver
 
 
 # configure the files and folders
@@ -154,3 +157,19 @@ create_map(
     },
     outFolder=outFolder,
 )
+
+    
+# launch local server
+web_dir = os.path.join(os.getcwd(), 'TED_talks_demo', 'map_data')
+os.chdir(web_dir) # change to directory where data and index.html are
+
+
+PORT = 8000
+Handler = http.server.SimpleHTTPRequestHandler
+
+with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    print("serving at port", PORT, "\ngo to http://localhost:8000")
+    httpd.serve_forever()  
+    
+
+    
