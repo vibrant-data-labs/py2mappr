@@ -10,14 +10,19 @@ from src.map_utils import create_map, create_snapshot
 import os
 import http.server
 import socketserver
+import webbrowser
 
 
 # configure the files and folders
 wd = pl.Path.cwd()
-nodesFile = wd / "TED_talks_demo" / "processed_data" / "nodes.csv"
-linksFile = wd / "TED_talks_demo" / "processed_data" / "links.csv"
-nodeAttrsFile = wd / "TED_talks_demo" / "processed_data" / "node_attrs.csv"
-outFolder = wd / "TED_talks_demo" / "map_data"
+projectPath = wd / "TED_talks_demo"
+inDataPath = projectPath/"processed_data"
+
+nodesFile = inDataPath /"nodes.csv"
+linksFile = inDataPath /"links.csv"
+nodeAttrsFile = inDataPath/"node_attrs.csv"
+projectFolder = "10-yrs-of-TED"
+outFolder = projectPath/projectFolder
 
 # configure the mapping for the read parameters
 # maps are in the form of {"required param name": "name of column in datasheet"}
@@ -159,17 +164,23 @@ create_map(
 )
 
     
-# launch local server
-web_dir = os.path.join(os.getcwd(), 'TED_talks_demo', 'map_data')
-os.chdir(web_dir) # change to directory where data and index.html are
-
-
-PORT = 8000
-Handler = http.server.SimpleHTTPRequestHandler
-
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print("serving at port", PORT, "\ngo to http://localhost:8000")
-    httpd.serve_forever()  
+# launch local server and open browser to display map
+def launch_map_in_browser(project_directory, PORT=5000): 
+    '''
+    launches a new tab in active browswer with the map
+    project_directory : string, the directory with the project data (index.html and 'data' folder)
+    '''
+    web_dir = os.path.join(os.getcwd(), project_directory)
+    os.chdir(web_dir) # change to directory where data and index.html are
+        
+    Handler = http.server.SimpleHTTPRequestHandler 
+    webbrowser.open_new_tab('http://localhost:'+str(PORT)) # open new tab in browswer
     
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print("serving at port", PORT, "go to http://localhost:%s \nCTL_C to quit\n"%str(PORT))
+        httpd.serve_forever()  
+    
+    
+launch_map_in_browser(str(outFolder), PORT=5000)
 
     
