@@ -1,21 +1,7 @@
-"id": "reqd-snap-id"
-descr: "<p><b>Snapshot Description</b></p><p>accepts html</p>" # html description for the snapshot 
-summaryImg: "https://img.icons8.com/dotty/240/000000/picture.png" 
-snapName: "Default Snapshot Title" # display title of the snapshot
-subtitle: "Default Snapshot Subtitle" # display subtitle of snapshot
 layout:
-  plotType: "scatterplot"  # options: 'original' | 'scatterplot' | 'grid' | 'geo'
-  ### SCATTERPLOT LAYOUT SETTINGS 
-  xaxis: "OriginalX"
-  yaxis: "OriginalY"
-  x_scaler_type: "linear"
-  x_scaler_base: 10
-  x_scaler_exponent: 2
-  y_scaler_type: "linear"
-  y_scaler_base: 10
-  y_scaler_exponent: 2
+  plotType: "network"  # options: 'original' | 'scatterplot' | 'grid' | 'geo'
 
-  ### LEGACY LIST VIEW SETTINGS? 
+  ### LEGACY? 
   listAttrs: [] 
   listSortReverse: false 
   listSortAttrAr: [] 
@@ -24,7 +10,68 @@ layout:
   listCompareIds: [] 
   ###
 
+  x_scaler_type: "linear"
+  x_scaler_base: 10
+  x_scaler_exponent: 2
+  y_scaler_type: "linear"
+  y_scaler_base: 10
+  y_scaler_exponent: 2
+  xaxis: "OriginalX"
+  yaxis: "OriginalY"
+
   settings:
+
+    #### LEGACY?
+    drawSelectedInHover: true  
+    invalidNodeColor: "rgb(250,250,250)"
+    nodeOpacity: 1 # LEGACY?
+    nodeOpacityAttr: "OriginalSize" 
+    nodeOpacityStrategy: "fixed"
+    nodeColorDensityStrategy: "fixed"
+    nodeColorDensityAttr: "OriginalSize"
+    nodeColorDensity: 1
+    nodeColorDensityOrder: true
+    nodeHighlightColorStrategy: "node-color-light" 
+    nodeHighlightColor: "rgb(200,0,0)"
+    nodeSelectionColorStrategy: "node-color-light"
+    nodeSelectionColor: "rgb(200,0,0)"
+    nodeFocusShow: true
+    nodeFocusContext: "click"
+    nodeFocusRenderTemplate: "node-right-panel"
+    nodeFocusShowNeighbors: true
+    nodeFocusNeighborsButton: true
+    nodeFocusNeighborsBefore: null
+    nodeFocusTextLength: 100
+    showNodeDetailOnLoad: false
+    testSignificance: false
+    edgePath: true # ??  
+    drawEdgeLabels: false
+    labelDisplayStrat: "topXSizeCollision" # hide labels to avoid collisions
+    theme: "light"
+    backgroundColor: "#ffffff"
+    backgroundImage: ""
+    showBackgroundImage: false
+    backgroundSize: "cover"
+    backgroundPosition: "50%"
+    pinRightPanel: true
+    legendAutoOpen: true
+    hideLegend: false
+    globalLegendOn: true
+    entityLegendOn: true
+    legendTitle: ""
+    legendTitleTooltip: ""
+    showGlobalNodesLegend: true
+    showGlobalEdgesLegend: true
+    showEntityNodesLegend: true
+    showEntityEdgesLegend: true
+    enableLinkMapping: true
+    legendSortOption: "frequency"
+    legendSortIsReverse: true
+    nodeOnHover: "expand"
+    nodeOnClick: "select"
+    nodeOnDblClick: "select"
+
+    ####
 
     ### NODE STYLING
     drawNodes: true  # boolean - whether to draw or not nodes
@@ -82,7 +129,16 @@ layout:
     labelOpacity: 1 # number (0-1) label opacity
     labelUnselectedOpacity: 0  # number (0-1) label unselected opacity
 
-    ### SCATTERPLOT STYLINGS
+    ### PAN/ZOOM SETTINGS
+    zoomLock: false
+    panLock: false
+    maxZoomLevel: 10
+    minZoomLevel: -10
+    savedZoomLevel: 10 # valid for geo layout only
+    zoomingRatio: 1.7 # configuration for zooming using +- buttons on screen
+    mouseZoomDuration: 30000 
+
+    ### SCATTERPLOT SETTINGS
     xAxShow: true # boolean - show / hide axis
     yAxShow: true  # boolean - show / hide axis
     xAxTickShow: true # boolean - show / hide axis tick marks
@@ -95,20 +151,10 @@ layout:
     invertY: true
     scatterAspect: 0.5 # number (0-1) - higher number is wider than tall. 0.5 is square.
 
-    ### PAN/ZOOM SETTINGS
-    zoomLock: false
-    panLock: false
-    maxZoomLevel: 10
-    minZoomLevel: -10
-    savedZoomLevel: 10 # valid for geo layout only
-    zoomingRatio: 1.7 # configuration for zooming using +- buttons on screen
-    mouseZoomDuration: 30000 
-
     ### GEO LAYOUT SETTINGS
-    isGeo: false
     mapboxMapID: "mapbox/light-v10"  # mapbox map id for geo layout
 
-    ### NODE SIZE STRATEGY
+    ### NODE SIZE
     nodeSizeStrat: "attr"
     nodeSizeAttr: "OriginalY"
     nodeSizeScaleStrategy: "log"
@@ -125,10 +171,10 @@ layout:
     nodeSizePartitionEnabled: false
     nodeSizePartitionAttr: "Cluster"
 
-    ### NODE COLOR STRATEGY
-    nodeColorStrat: "attr" #'attr' | 'select' | 'fixed' 
-    nodeColorAttr: "OriginalX" # color by attr name (if nodeColorStrat = 'attr')
-    nodeColorScaleStrategy: "linear" # 'linear' / 'log'
+
+    nodeColorStrat: "attr"
+    nodeColorAttr: "OriginalX"
+    nodeColorScaleStrategy: "linear"
     nodeColorScaleInvert: false
     nodeColorScaleExponent: 2.5
     nodeColorScaleBase: 10
@@ -136,7 +182,7 @@ layout:
     nodeColorNumericDomainMin: 0
     nodeColorNumericDomainMax: 100
     nodeColorDefaultValue: "rgb(200,200,200)"
-    nodeColorCycleCategoryColors: true # cycle palette if more than the colors in ordinal palette
+    nodeColorCycleCategoryColors: true
     nodeColorPaletteNumeric:
       - col: "#ee4444"
       - col: "#3399ff"
@@ -157,7 +203,8 @@ layout:
       - col: "#732673"
     nodeColorNumericScalerType: "HCL Long"
 
-    ### EDGE SIZE STRATEGY
+
+
     edgeSizeStrat: "fixed"
     edgeSizeAttr: "OriginalSize"
     edgeSizeScaleStrategy: "linear"
@@ -173,10 +220,8 @@ layout:
     edgeSizeMultiplier: 1
     edgeSizePartitionEnabled: false
     edgeSizePartitionAttr: "Cluster"
-
-    ### EDGE COLOR STRATEGY
-    edgeColorStrat: "gradient" # 'attr' | 'gradient'  (gradient uses node colors as endpoints)
-    edgeColorAttr: "OriginalColor" # color by attribute name (if edgeColorStrat = 'attr')
+    edgeColorStrat: "gradient"
+    edgeColorAttr: "OriginalColor"
     edgeColorScaleStrategy: "linear"
     edgeColorScaleInvert: false
     edgeColorScaleExponent: 2.5
@@ -205,74 +250,25 @@ layout:
       - col: "#739900"
       - col: "#732673"
     edgeColorNumericScalerType: "HCL Long"
-
-    #### LEGACY SETTINGS?
-    drawSelectedInHover: true  
-    invalidNodeColor: "rgb(250,250,250)"
-    nodeOpacity: 1 # LEGACY?
-    nodeOpacityAttr: "OriginalSize" 
-    nodeOpacityStrategy: "fixed"
-    nodeColorDensityStrategy: "fixed"
-    nodeColorDensityAttr: "OriginalSize"
-    nodeColorDensity: 1
-    nodeColorDensityOrder: true
-    nodeHighlightColorStrategy: "node-color-light" 
-    nodeHighlightColor: "rgb(200,0,0)"
-    nodeSelectionColorStrategy: "node-color-light"
-    nodeSelectionColor: "rgb(200,0,0)"
-    nodeFocusShow: true
-    nodeFocusContext: "click"
-    nodeFocusRenderTemplate: "node-right-panel"
-    nodeFocusShowNeighbors: true
-    nodeFocusNeighborsButton: true
-    nodeFocusNeighborsBefore: null
-    nodeFocusTextLength: 100
-    showNodeDetailOnLoad: false
-    testSignificance: false
-    edgePath: true # ??  
-    drawEdgeLabels: false
-    labelDisplayStrat: "topXSizeCollision" # hide labels to avoid collisions
-    theme: "light"
-    backgroundColor: "#ffffff"
-    backgroundImage: ""
-    showBackgroundImage: false
-    backgroundSize: "cover"
-    backgroundPosition: "50%"
-    pinRightPanel: true
-    legendAutoOpen: true
-    hideLegend: false
-    globalLegendOn: true
-    entityLegendOn: true
-    legendTitle: ""
-    legendTitleTooltip: ""
-    showGlobalNodesLegend: true
-    showGlobalEdgesLegend: true
-    showEntityNodesLegend: true
-    showEntityEdgesLegend: true
-    enableLinkMapping: true
-    legendSortOption: "frequency"
-    legendSortIsReverse: true
-    nodeOnHover: "expand"
-    nodeOnClick: "select"
-    nodeOnDblClick: "select"
-    ####
-
-### CAMERA SETTINGS
+    xaxis: "OriginalX"
+    yaxis: "OriginalY"
+    isGeo: false
 camera:
   normalizeCoords: true
   r: 1.3347904373327948
   x: 0
   y: 0
-
-
-### LEGACY HIGHER LEVEL SETTINGS? 
 isDeleted: false
 isEnabled: true
 processSelection: false
 ndSelState: []
 edSelState: []
-embed: "" 
-text: "" 
-picture: "" 
-audio: ""  
-####
+embed: "" # legacy?
+text: "" # legacy?
+picture: "" # legacy?
+audio: ""  # legacy?
+descr: "<p><b>Snapshot Description</b></p><p>accepts html</p>"
+summaryImg: "https://img.icons8.com/dotty/240/000000/picture.png"
+snapName: "Default Snapshot"
+subtitle: "Default Subtitle"
+"id": "reqd-snap-id"
