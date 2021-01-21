@@ -14,7 +14,6 @@ layout:
   y_scaler_type: "linear"
   y_scaler_base: 10
   y_scaler_exponent: 2
-
   ### LEGACY LIST VIEW SETTINGS? 
   listAttrs: [] 
   listSortReverse: false 
@@ -23,34 +22,27 @@ layout:
   listColSizes: [] 
   listCompareIds: [] 
   ###
-
   settings:
-
     ### NODE STYLING
     drawNodes: true  # boolean - whether to draw or not nodes
     borderRatio: 0.15 # number - fraction of node which would be taken as a border
     bigOnTop: false  # boolean - whether to place bigger nodes on top
     nodeImageShow: false  # boolean - whether to show images on nodes 
     nodeImageAttr: "Photo" # string (url) - name of attribute to render photo data for node
-
     nodeUnselectedOpacity: 0.25  #number - opacity of unselected nodes (range 0-1)
     nodeHighlightRatio: 1.2 # number - size of highlighted node (relative to unselected state)
     nodeHighlightBorderOffset: 6 # number - offset of highlight border (number of pixels)
     nodeHighlightBorderWidth: 1  # number - width of highlight border (number of pixesl)
-
     nodeSelectionRatio: 1.2 # number - size of selected node (relative to unselected state)
     nodeSelectionBorderOffset: 0 # number - offset of selected border (number of pixels)
     nodeSelectionBorderWidth: 3 # number - width of selected  border (number of pixesl)
-
     nodePopSize: 10, # number - size of larger node to show on long hover
     nodePopImageShow: true, # boolean - show image in larger popped node
     nodePopImageAttr: "Photo", # string - attribute name with image url
     nodePopShow: false, # boolean - node pops larger on long hover
     nodePopDelay: 1500, # time delay of long hover to trigger pop
     nodePopRepositionNeighbors: true, # boolean - reposition neighborgs node or not
-
     nodeSelectionDegree: 1 #? Not sure if this works
-
     ### EDGES (LINKS) STYLING
     drawEdges: true # boolean - whether to draw edges between nodes or not  (edges will be drawn on hover or select if nodeSelectionDegree>0)
     edgeCurvature: 0.6 # number - curvature of the ediges - 0 = straight
@@ -60,7 +52,6 @@ layout:
     edgeSaturation: 1 # number (0-1) - color saturation of edge
     edgeUnselectedOpacity: 0.2 # number (0-1) - opacity of unselected edges
     edgeDirectionalRender: "outgoing" # incoming | outgoing | all  - which neighbors to show on hover/select
-
     ### LABELS
     drawLabels: true # boolean - show node labels
     drawGroupLabels: false # boolean - show labels of colored groups (hides node labels unless zoomed in)
@@ -81,7 +72,6 @@ layout:
     labelDegree: 0 # ? I'm not sure what this does ? 
     labelOpacity: 1 # number (0-1) label opacity
     labelUnselectedOpacity: 0  # number (0-1) label unselected opacity
-
     ### SCATTERPLOT STYLINGS
     xAxShow: true # boolean - show / hide axis
     yAxShow: true  # boolean - show / hide axis
@@ -94,7 +84,6 @@ layout:
     invertX: false
     invertY: true
     scatterAspect: 0.5 # number (0-1) - higher number is wider than tall. 0.5 is square.
-
     ### PAN/ZOOM SETTINGS
     zoomLock: false
     panLock: false
@@ -103,11 +92,9 @@ layout:
     savedZoomLevel: 10 # valid for geo layout only
     zoomingRatio: 1.7 # configuration for zooming using +- buttons on screen
     mouseZoomDuration: 30000 
-
     ### GEO LAYOUT SETTINGS
     isGeo: false
     mapboxMapID: "mapbox/light-v10"  # mapbox map id for geo layout
-
     ### NODE SIZE STRATEGY
     nodeSizeStrat: "attr"
     nodeSizeAttr: "OriginalY"
@@ -124,7 +111,6 @@ layout:
     nodeSizeMultiplier: 1.7
     nodeSizePartitionEnabled: false
     nodeSizePartitionAttr: "Cluster"
-
     ### NODE COLOR STRATEGY
     nodeColorStrat: "attr" #'attr' | 'select' | 'fixed' 
     nodeColorAttr: "OriginalX" # color by attr name (if nodeColorStrat = 'attr')
@@ -156,7 +142,6 @@ layout:
       - col: "#739900"
       - col: "#732673"
     nodeColorNumericScalerType: "HCL Long"
-
     ### EDGE SIZE STRATEGY
     edgeSizeStrat: "fixed"
     edgeSizeAttr: "OriginalSize"
@@ -173,7 +158,6 @@ layout:
     edgeSizeMultiplier: 1
     edgeSizePartitionEnabled: false
     edgeSizePartitionAttr: "Cluster"
-
     ### EDGE COLOR STRATEGY
     edgeColorStrat: "gradient" # 'attr' | 'gradient'  (gradient uses node colors as endpoints)
     edgeColorAttr: "OriginalColor" # color by attribute name (if edgeColorStrat = 'attr')
@@ -205,7 +189,6 @@ layout:
       - col: "#739900"
       - col: "#732673"
     edgeColorNumericScalerType: "HCL Long"
-
     #### LEGACY SETTINGS?
     drawSelectedInHover: true  
     invalidNodeColor: "rgb(250,250,250)"
@@ -256,15 +239,12 @@ layout:
     nodeOnClick: "select"
     nodeOnDblClick: "select"
     ####
-
 ### CAMERA SETTINGS
 camera:
   normalizeCoords: true
   r: 1.3347904373327948
   x: 0
   y: 0
-
-
 ### LEGACY HIGHER LEVEL SETTINGS? 
 isDeleted: false
 isEnabled: true
