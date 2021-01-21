@@ -1,6 +1,7 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Nov 23 12:00:45 2020
+Created on Thu Jan 14 19:33:18 2021
 
 @author: ericberlow
 """
@@ -15,14 +16,16 @@ import webbrowser
 
 # configure the files and folders
 wd = pl.Path.cwd()
-projectPath = wd / "TED_talks_demo"
-inDataPath = projectPath/"processed_data"
+projectPath = wd /"projects"/"dd_demo"
+inDataPath = projectPath/"digitaldelta_data"
 
 nodesFile = inDataPath /"nodes.csv"
 linksFile = inDataPath /"links.csv"
 nodeAttrsFile = inDataPath/"node_attrs.csv"
-projectFolder = "10-yrs-of-TED"
+projectFolder = "DigitalDelta_player"
 outFolder = projectPath/projectFolder
+
+
 
 # configure the mapping for the read parameters
 # maps are in the form of {"required param name": "name of column in datasheet"}
@@ -34,8 +37,8 @@ link_attr_map = {"source": "Source", "target": "Target", "isDirectional": "isDir
 # snapshot - scatterplot
 
 sn1 = create_snapshot(
-    name="Keyword Themes",
-    subtitle="Clusters of talks linked by shared keywords.",
+    name="Causal Clusters",
+    subtitle="blah blah",
     summaryImg="https://www.dl.dropboxusercontent.com/s/oocyibrvojcmieg/Screen%20Shot%202020-11-25%20at%207.20.12%20AM.png?dl=0",
     description="<p>Talks are linked if they have high overlap in their keywords. Similar talks self-cluster into <b>&#34;Keyword Themes&#34;</b>\
                 - or groups of talks that tend to co-share similar tags. These clusters are auto-labeled by the 3 most commonly shared tags in the group.  \
@@ -53,25 +56,25 @@ sn1 = create_snapshot(
         "yaxis": "y_tsne",
         "settings": {
             # node size
-            "nodeSizeAttr": "views",
-            "nodeSizeScaleStrategy": "log", # "linear" or "log"
+            "nodeSizeAttr": "ClusterCentrality",
+            "nodeSizeScaleStrategy": "linear", # "linear" or "log"
             "nodeSizeMin": 1,
             "nodeSizeMax": 20,
             "nodeSizeMultiplier": .5,
             "bigOnTop": True,
             # node color and images
-            "nodeColorAttr": "keyword_theme",
-            "nodeImageShow": True,
-            "nodeImageAttr": "photo",
+            "nodeColorAttr": "Cluster",
+            "nodeImageShow": False,
+            "nodeImageAttr": "",
             # link rendering
-            "drawEdges": False,
+            "drawEdges": True,
             "edgeCurvature": 0.6,
             "edgeDirectionalRender": "outgoing",
-            "edgeSizeStrat": "attr", # or "fixed"
+            "edgeSizeStrat": "fixed", # or "fixed"
             "edgeSizeAttr": "weight", # size by similarity
             "edgeSizeMultiplier": .7,
             # labels
-            "drawGroupLabels": True,
+            "drawGroupLabels": False,
             # layout rendering
             "xAxShow": False,
             "yAxShow": False,
@@ -82,8 +85,8 @@ sn1 = create_snapshot(
 
 # snapshot - scatterplot
 sn2 = create_snapshot(
-    name="popularity by year",
-    subtitle="See which talks were most popular in a given year.",
+    name="reach vs leverage",
+    subtitle=".",
     summaryImg="https://www.dl.dropboxusercontent.com/s/4v0kkfjkjmjn5zz/Screen%20Shot%202020-11-25%20at%207.19.54%20AM.png?dl=0",
     description="<p>Talks are sorted horizontally by date published and vertically by &#34;popularity&#34;. \
                 Since some topics (e.g. pop psychology or business leadership) are more inherently more popular than others (e.g. physics), \
@@ -95,24 +98,24 @@ sn2 = create_snapshot(
                 <p><i>Colored by:  </i>Keyword Theme</p><p><i>Sized by: </i>Total Views</p>",
     layout_params={
         "plotType": "scatterplot",
-        "xaxis": "date_published",
-        "yaxis": "popularity_index",
+        "xaxis": "leverage_pctl_mean",
+        "yaxis": "reach_mean",
         "settings": {
             # node sizing
-            "nodeSizeAttr": "views", 
+            "nodeSizeAttr": "keystone_mean", 
             "nodeSizeScaleStrategy": "linear", # "linear" or "log"
-            "nodeSizeMin": 5,
+            "nodeSizeMin": 2,
             "nodeSizeMax": 10,
             "nodeSizeMultiplier": 1,
             # node color and images
-            "nodeColorAttr": "year_published",
-            "nodeImageShow": True,
-            "nodeImageAttr": "photo",
+            "nodeColorAttr": "Keystone",
+            "nodeImageShow": False,
+            "nodeImageAttr": "",
             # link rendering
             "drawEdges": False,
             "edgeCurvature": 0.6,
             "edgeDirectionalRender": "outgoing",
-            "edgeSizeStrat": "attr", # or "fixed"
+            "edgeSizeStrat": "fixed", # or "fixed"
             "edgeSizeAttr": "weight", # size by similarity
             "edgeSizeMultiplier": .7,
             # labels
