@@ -1,6 +1,7 @@
 ---
 dataset:
   ref: "id=woot_reqd_for_search"
+
 settings:
   theme: "light"
   backgroundColor: "#ffffff"
@@ -11,6 +12,7 @@ settings:
     selections: []
   lastViewedSnap: "reqd-snap-id"
   layouts: {}
+
 player:
   settings:
     fontClass: "Roboto"
@@ -52,5 +54,6 @@ player:
     totalDuration: 1000
     allowJoin: false
     #####
+
 snapshots:
   -
