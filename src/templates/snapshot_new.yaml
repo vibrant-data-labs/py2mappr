@@ -1,0 +1,258 @@
+"id": "reqd-snap-id"
+descr: "<p><b>Snapshot Description</b></p><p>accepts html</p>" # html description for the snapshot 
+summaryImg: "https://img.icons8.com/dotty/240/000000/picture.png" 
+snapName: "Default Snapshot Title" # display title of the snapshot
+subtitle: "Default Snapshot Subtitle" # display subtitle of snapshot
+layout:
+  plotType: "scatterplot"  # options: 'original' | 'scatterplot' | 'grid' | 'geo'
+  ### SCATTERPLOT LAYOUT SETTINGS 
+  xaxis: "OriginalX"
+  yaxis: "OriginalY"
+  x_scaler_type: "linear"
+  x_scaler_base: 10
+  x_scaler_exponent: 2
+  y_scaler_type: "linear"
+  y_scaler_base: 10
+  y_scaler_exponent: 2
+  ### LEGACY LIST VIEW SETTINGS? 
+  listAttrs: [] 
+  listSortReverse: false 
+  listSortAttrAr: [] 
+  listSortReverseAr: [] 
+  listColSizes: [] 
+  listCompareIds: [] 
+  ###
+  settings:
+    ### NODE STYLING
+    drawNodes: true  # boolean - whether to draw or not nodes
+    borderRatio: 0.15 # number - fraction of node which would be taken as a border
+    bigOnTop: false  # boolean - whether to place bigger nodes on top
+    nodeImageShow: false  # boolean - whether to show images on nodes 
+    nodeImageAttr: "Photo" # string (url) - name of attribute to render photo data for node
+    nodeUnselectedOpacity: 0.25  #number - opacity of unselected nodes (range 0-1)
+    nodeHighlightRatio: 1.2 # number - size of highlighted node (relative to unselected state)
+    nodeHighlightBorderOffset: 6 # number - offset of highlight border (number of pixels)
+    nodeHighlightBorderWidth: 1  # number - width of highlight border (number of pixesl)
+    nodeSelectionRatio: 1.2 # number - size of selected node (relative to unselected state)
+    nodeSelectionBorderOffset: 0 # number - offset of selected border (number of pixels)
+    nodeSelectionBorderWidth: 3 # number - width of selected  border (number of pixesl)
+    nodePopSize: 10, # number - size of larger node to show on long hover
+    nodePopImageShow: true, # boolean - show image in larger popped node
+    nodePopImageAttr: "Photo", # string - attribute name with image url
+    nodePopShow: false, # boolean - node pops larger on long hover
+    nodePopDelay: 1500, # time delay of long hover to trigger pop
+    nodePopRepositionNeighbors: true, # boolean - reposition neighborgs node or not
+    nodeSelectionDegree: 1 #? Not sure if this works
+    ### EDGES (LINKS) STYLING
+    drawEdges: true # boolean - whether to draw edges between nodes or not  (edges will be drawn on hover or select if nodeSelectionDegree>0)
+    edgeCurvature: 0.6 # number - curvature of the ediges - 0 = straight
+    edgeDirectional: false # boolean - is edge directional. if true, it will render as tapered
+    edgeTaper: false # boolean - draw taper for directed edges
+    edgeTaperScale: 0.5 # number - thickness of tapered edge 
+    edgeSaturation: 1 # number (0-1) - color saturation of edge
+    edgeUnselectedOpacity: 0.2 # number (0-1) - opacity of unselected edges
+    edgeDirectionalRender: "outgoing" # incoming | outgoing | all  - which neighbors to show on hover/select
+    ### LABELS
+    drawLabels: true # boolean - show node labels
+    drawGroupLabels: false # boolean - show labels of colored groups (hides node labels unless zoomed in)
+    labelColor: "#000000" # label color (default black)
+    labelOutlineColor: "#ffffff" # label outline (default white)
+    labelSize: "proportional" # label size proportional to node size
+    labelScale: 1 #  number - greater than 1 means the larger nodes have larger labels
+    labelSizeRatio: 0.5 # number - max vs min label size when scaled
+    defaultLabelSize: 12 # number - label size
+    minLabelSize: 12 # number - minumum label size
+    maxLabelSize: 16 # number - maxumum label size
+    labelThreshold: 1 # ? I'm not sure what this does ? 
+    labelMaxCount: 300 # number - max labels to display
+    labelDefaultShow: true # ? I'm not sure what this does ? 
+    labelAttr: "OriginalLabel"
+    labelHoverAttr: "OriginalLabel"
+    labelClickAttr: "OriginalLabel"
+    labelDegree: 0 # ? I'm not sure what this does ? 
+    labelOpacity: 1 # number (0-1) label opacity
+    labelUnselectedOpacity: 0  # number (0-1) label unselected opacity
+    ### SCATTERPLOT STYLINGS
+    xAxShow: true # boolean - show / hide axis
+    yAxShow: true  # boolean - show / hide axis
+    xAxTickShow: true # boolean - show / hide axis tick marks
+    yAxTickShow: true #  boolean - show / hide axis tick marks
+    xAxLabel: "" # over-ride attribute name as axis label
+    yAxLabel: "" # over-ride attribute name as axis label
+    xAxTooltip: "" 
+    yAxTooltip: ""
+    invertX: false
+    invertY: true
+    scatterAspect: 0.5 # number (0-1) - higher number is wider than tall. 0.5 is square.
+    ### PAN/ZOOM SETTINGS
+    zoomLock: false
+    panLock: false
+    maxZoomLevel: 10
+    minZoomLevel: -10
+    savedZoomLevel: 10 # valid for geo layout only
+    zoomingRatio: 1.7 # configuration for zooming using +- buttons on screen
+    mouseZoomDuration: 30000 
+    ### GEO LAYOUT SETTINGS
+    isGeo: false
+    mapboxMapID: "mapbox/light-v10"  # mapbox map id for geo layout
+    ### NODE SIZE STRATEGY
+    nodeSizeStrat: "attr"
+    nodeSizeAttr: "OriginalY"
+    nodeSizeScaleStrategy: "log"
+    nodeSizeScaleInvert: false
+    nodeSizeScaleExponent: 2.5
+    nodeSizeScaleBase: 10
+    nodeSizeNumericDomain: "from_data"
+    nodeSizeNumericDomainMin: 0
+    nodeSizeNumericDomainMax: 100
+    nodeSizeDefaultValue: 15
+    nodeSizeMin: 4
+    nodeSizeMax: 15
+    nodeSizeMultiplier: 1.7
+    nodeSizePartitionEnabled: false
+    nodeSizePartitionAttr: "Cluster"
+    ### NODE COLOR STRATEGY
+    nodeColorStrat: "attr" #'attr' | 'select' | 'fixed' 
+    nodeColorAttr: "OriginalX" # color by attr name (if nodeColorStrat = 'attr')
+    nodeColorScaleStrategy: "linear" # 'linear' / 'log'
+    nodeColorScaleInvert: false
+    nodeColorScaleExponent: 2.5
+    nodeColorScaleBase: 10
+    nodeColorNumericDomain: "from_data"
+    nodeColorNumericDomainMin: 0
+    nodeColorNumericDomainMax: 100
+    nodeColorDefaultValue: "rgb(200,200,200)"
+    nodeColorCycleCategoryColors: true # cycle palette if more than the colors in ordinal palette
+    nodeColorPaletteNumeric:
+      - col: "#ee4444"
+      - col: "#3399ff"
+    nodeColorPaletteOrdinal:
+      - col: "#bd0f0f" #"#ee4444"
+      - col: "#5b41a3" #"#cc6600"
+      - col: "#0099ff"
+      - col: "#ffcc00"
+      - col: "#66cccc"
+      - col: "#99cc00"
+      - col: "#993399"
+      - col: "#b23333"
+      - col: "#077861" ##994c00"
+      - col: "#0073bf"
+      - col: "#bf9900"
+      - col: "#4c9999"
+      - col: "#739900"
+      - col: "#732673"
+    nodeColorNumericScalerType: "HCL Long"
+    ### EDGE SIZE STRATEGY
+    edgeSizeStrat: "fixed"
+    edgeSizeAttr: "OriginalSize"
+    edgeSizeScaleStrategy: "linear"
+    edgeSizeScaleInvert: false
+    edgeSizeScaleExponent: 2.5
+    edgeSizeScaleBase: 10
+    edgeSizeNumericDomain: "from_data"
+    edgeSizeNumericDomainMin: 0
+    edgeSizeNumericDomainMax: 100
+    edgeSizeDefaultValue: 1.5
+    edgeSizeMin: 0.1
+    edgeSizeMax: 10
+    edgeSizeMultiplier: 1
+    edgeSizePartitionEnabled: false
+    edgeSizePartitionAttr: "Cluster"
+    ### EDGE COLOR STRATEGY
+    edgeColorStrat: "gradient" # 'attr' | 'gradient'  (gradient uses node colors as endpoints)
+    edgeColorAttr: "OriginalColor" # color by attribute name (if edgeColorStrat = 'attr')
+    edgeColorScaleStrategy: "linear"
+    edgeColorScaleInvert: false
+    edgeColorScaleExponent: 2.5
+    edgeColorScaleBase: 10
+    edgeColorNumericDomain: "from_data"
+    edgeColorNumericDomainMin: 0
+    edgeColorNumericDomainMax: 100
+    edgeColorDefaultValue: "rgb(200,200,200)"
+    edgeColorCycleCategoryColors: true
+    edgeColorPaletteNumeric:
+      - col: "#ee4444"
+      - col: "#3399ff"
+    edgeColorPaletteOrdinal:
+      - col: "#ee4444"
+      - col: "#cc6600"
+      - col: "#0099ff"
+      - col: "#ffcc00"
+      - col: "#66cccc"
+      - col: "#99cc00"
+      - col: "#993399"
+      - col: "#b23333"
+      - col: "#994c00"
+      - col: "#0073bf"
+      - col: "#bf9900"
+      - col: "#4c9999"
+      - col: "#739900"
+      - col: "#732673"
+    edgeColorNumericScalerType: "HCL Long"
+    #### LEGACY SETTINGS?
+    drawSelectedInHover: true  
+    invalidNodeColor: "rgb(250,250,250)"
+    nodeOpacity: 1 # LEGACY?
+    nodeOpacityAttr: "OriginalSize" 
+    nodeOpacityStrategy: "fixed"
+    nodeColorDensityStrategy: "fixed"
+    nodeColorDensityAttr: "OriginalSize"
+    nodeColorDensity: 1
+    nodeColorDensityOrder: true
+    nodeHighlightColorStrategy: "node-color-light" 
+    nodeHighlightColor: "rgb(200,0,0)"
+    nodeSelectionColorStrategy: "node-color-light"
+    nodeSelectionColor: "rgb(200,0,0)"
+    nodeFocusShow: true
+    nodeFocusContext: "click"
+    nodeFocusRenderTemplate: "node-right-panel"
+    nodeFocusShowNeighbors: true
+    nodeFocusNeighborsButton: true
+    nodeFocusNeighborsBefore: null
+    nodeFocusTextLength: 100
+    showNodeDetailOnLoad: false
+    testSignificance: false
+    edgePath: true # ??  
+    drawEdgeLabels: false
+    labelDisplayStrat: "topXSizeCollision" # hide labels to avoid collisions
+    theme: "light"
+    backgroundColor: "#ffffff"
+    backgroundImage: ""
+    showBackgroundImage: false
+    backgroundSize: "cover"
+    backgroundPosition: "50%"
+    pinRightPanel: true
+    legendAutoOpen: true
+    hideLegend: false
+    globalLegendOn: true
+    entityLegendOn: true
+    legendTitle: ""
+    legendTitleTooltip: ""
+    showGlobalNodesLegend: true
+    showGlobalEdgesLegend: true
+    showEntityNodesLegend: true
+    showEntityEdgesLegend: true
+    enableLinkMapping: true
+    legendSortOption: "frequency"
+    legendSortIsReverse: true
+    nodeOnHover: "expand"
+    nodeOnClick: "select"
+    nodeOnDblClick: "select"
+    ####
+### CAMERA SETTINGS
+camera:
+  normalizeCoords: true
+  r: 1.3347904373327948
+  x: 0
+  y: 0
+### LEGACY HIGHER LEVEL SETTINGS? 
+isDeleted: false
+isEnabled: true
+processSelection: false
+ndSelState: []
+edSelState: []
+embed: "" 
+text: "" 
+picture: "" 
+audio: ""  
+####

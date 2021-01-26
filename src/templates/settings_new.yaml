@@ -1,0 +1,56 @@
+---
+dataset:
+  ref: "id=woot_reqd_for_search"
+settings:
+  theme: "light"
+  backgroundColor: "#ffffff"
+  labelColor: "#000000"
+  labelOutlineColor: "#ffffff"
+  selectionData:
+    genCount: 0
+    selections: []
+  lastViewedSnap: "reqd-snap-id"
+  layouts: {}
+player:
+  settings:
+    fontClass: "Roboto"
+    headerTitle: "map title"
+    headerImageUrl: ""
+    headerHtml: "<h1>map header</h1>"
+    highlightColor: "#e21186"
+    modalBackground: ""
+    modalLogo: ""
+    modalSubtitle: "<p>map subtitle</p>"
+    searchAlg: "matchSorter" # 'matchSorter' | 'subString' search algorithm
+    modalTitle: "Project Title"
+    modalIntroHtml: "<h1>Project description</h1><div>Add project background here...</div><h1></h1>"
+    modalDescription: "<h5>How to Navigate this Network:</h5><ul><li>Click on any node to to see more details about it. </li><li>Click the whitespace or '<b>Reset</b>' button to clear any selection.</li><li>Use the <b>Filters</b> panel to select nodes by any  combination of attributes. </li><li>Click the <b>'Apply'</b> button to subset the data to the selected nodes - The <b>Filters</b> panel will then show a summary of that subset.<br/></li><li>Use the <b>List</b> panel to see a sortable list of any nodes selected or subset. You can also browse their details one by one by clicking on them in the list.</li><li>Use the Snapshots panel to navigate between views.</li></ul><p><br/></p><p>This visualization is not optimized for mobile devices and is best viewed in Chrome or Safari browsers on the laptop/desktop. </p>&#10"
+    showModal: true 
+    simpleSplash: true  #?? not sure what this is
+    #### LEGACY?? 
+    showHeader: true
+    headerType: "simple"
+    shareTitle: "Check out this map"
+    shareTitleCompare: "Check out my node"
+    shareTitleSelect: "Check out these nodes"
+    shareEnableSelect: false
+    showExportBtn: true
+    facebookShare: false
+    twitterShare: false
+    colorTheme: "light"
+    showPanels: true
+    showSearch: true
+    showTimeline: true
+    showSnapDescrs: true
+    infoClickToParent: false
+    showSnapTooltips: false
+    panelLayoutType: "interactive"
+    autoPlay: false
+    snapTransition: "tween"
+    snapDuration: 10
+    timelineType: "bottom"
+    totalDuration: 1000
+    allowJoin: false
+    #####
+snapshots:
+  -
