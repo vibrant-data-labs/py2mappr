@@ -2,7 +2,7 @@
     "_id": "id=woot_reqd_for_search",
     "attrDescriptors": [
         {
-            "id": "Label",
+            "id": "label",
             "title": "Label",
             "visible": false,
             "visibleInProfile": true,
@@ -14,6 +14,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "label",
             "overlayAnchor": ""
         },
         {
@@ -29,6 +30,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "id",
             "overlayAnchor": ""
         },
         {
@@ -44,6 +46,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Degree",
             "overlayAnchor": ""
         },
         {
@@ -59,6 +62,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Direct Incoming",
             "overlayAnchor": ""
         },
         {
@@ -74,6 +78,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Direct Outgoing",
             "overlayAnchor": ""
         },
         {
@@ -89,6 +94,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "2_Degree_Leverage",
             "overlayAnchor": ""
         },
         {
@@ -104,6 +110,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "2_Degree_Asymmetry",
             "overlayAnchor": ""
         },
         {
@@ -119,6 +126,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "1_Degree_Asymmetry",
             "overlayAnchor": ""
         },
         {
@@ -134,6 +142,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "2_Degree_Reach",
             "overlayAnchor": ""
         },
         {
@@ -149,6 +158,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Keystone_Index",
             "overlayAnchor": ""
         },
         {
@@ -164,6 +174,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Keystone_Pctl",
             "overlayAnchor": ""
         },
         {
@@ -179,6 +190,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Trophic_Level",
             "overlayAnchor": ""
         },
         {
@@ -194,6 +206,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Frac Neg Out",
             "overlayAnchor": ""
         },
         {
@@ -209,6 +222,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Frac Neg In",
             "overlayAnchor": ""
         },
         {
@@ -224,13 +238,14 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Avg Votes per Link",
             "overlayAnchor": ""
         },
         {
             "id": "Causal Cluster",
             "title": "Causal Cluster",
             "visible": true,
-            "visibleInProfile": false,
+            "visibleInProfile": true,
             "searchable": false,
             "attrType": "string",
             "renderType": "tag-cloud",
@@ -239,6 +254,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Causal Cluster",
             "overlayAnchor": ""
         },
         {
@@ -254,6 +270,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "ClusterBridging",
             "overlayAnchor": ""
         },
         {
@@ -269,6 +286,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "ClusterCentrality",
             "overlayAnchor": ""
         },
         {
@@ -284,6 +302,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "x_tsne",
             "overlayAnchor": ""
         },
         {
@@ -299,6 +318,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "y_tsne",
             "overlayAnchor": ""
         },
         {
@@ -314,6 +334,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "x_force_directed",
             "overlayAnchor": ""
         },
         {
@@ -329,6 +350,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "y_force_directed",
             "overlayAnchor": ""
         },
         {
@@ -337,13 +359,14 @@
             "visible": true,
             "visibleInProfile": false,
             "searchable": false,
-            "attrType": "string",
-            "renderType": "tag-cloud",
+            "attrType": "integer",
+            "renderType": "histogram",
             "metadata": {
                 "descr": "",
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Trials in Top 15% Leverage (48% Deletion)",
             "overlayAnchor": ""
         },
         {
@@ -352,13 +375,14 @@
             "visible": true,
             "visibleInProfile": false,
             "searchable": false,
-            "attrType": "string",
-            "renderType": "tag-cloud",
+            "attrType": "integer",
+            "renderType": "histogram",
             "metadata": {
                 "descr": "",
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Trials w Reach 85% of Network (48% Deletion)",
             "overlayAnchor": ""
         },
         {
@@ -367,13 +391,14 @@
             "visible": true,
             "visibleInProfile": false,
             "searchable": false,
-            "attrType": "string",
-            "renderType": "tag-cloud",
+            "attrType": "integer",
+            "renderType": "histogram",
             "metadata": {
                 "descr": "",
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Trials in Top 20% Leverage (48% Deletion)",
             "overlayAnchor": ""
         },
         {
@@ -382,13 +407,14 @@
             "visible": true,
             "visibleInProfile": false,
             "searchable": false,
-            "attrType": "string",
-            "renderType": "tag-cloud",
+            "attrType": "integer",
+            "renderType": "histogram",
             "metadata": {
                 "descr": "",
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Trials w Reach 80% of Network (48% Deletion)",
             "overlayAnchor": ""
         },
         {
@@ -404,6 +430,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "leverage_mean",
             "overlayAnchor": ""
         },
         {
@@ -419,6 +446,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "reach_mean",
             "overlayAnchor": ""
         },
         {
@@ -434,6 +462,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "keystone_mean",
             "overlayAnchor": ""
         },
         {
@@ -449,6 +478,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "trophic_level_mean",
             "overlayAnchor": ""
         },
         {
@@ -464,6 +494,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "leverage_pctl_mean",
             "overlayAnchor": ""
         },
         {
@@ -479,6 +510,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "reach_pctl_mean",
             "overlayAnchor": ""
         },
         {
@@ -494,6 +526,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "keystone_pctl_mean",
             "overlayAnchor": ""
         },
         {
@@ -509,6 +542,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "target_C",
             "overlayAnchor": ""
         },
         {
@@ -524,6 +558,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "frac_deleted",
             "overlayAnchor": ""
         },
         {
@@ -539,13 +574,14 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "n_trials",
             "overlayAnchor": ""
         },
         {
             "id": "Keystone",
             "title": "Keystone",
-            "visible": false,
-            "visibleInProfile": false,
+            "visible": true,
+            "visibleInProfile": true,
             "searchable": false,
             "attrType": "string",
             "renderType": "tag-cloud",
@@ -554,6 +590,7 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Keystone",
             "overlayAnchor": ""
         },
         {
@@ -569,12 +606,13 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Size_keystones",
             "overlayAnchor": ""
         },
         {
             "id": "Name",
             "title": "Label",
-            "visible": true,
+            "visible": false,
             "visibleInProfile": false,
             "searchable": true,
             "attrType": "string",
@@ -584,6 +622,23 @@
                 "maxLabel": "",
                 "minLabel": ""
             },
+            "Unnamed: 0": "Name",
+            "overlayAnchor": ""
+        },
+        {
+            "id": "OriginalLabel",
+            "title": "OriginalLabel",
+            "visible": false,
+            "visibleInProfile": false,
+            "searchable": false,
+            "attrType": "string",
+            "renderType": "text",
+            "metadata": {
+                "descr": "",
+                "maxLabel": "",
+                "minLabel": ""
+            },
+            "Unnamed: 0": "",
             "overlayAnchor": ""
         }
     ],
@@ -591,7 +646,7 @@
         {
             "id": "26",
             "attr": {
-                "Label": "their exposure to positive parenting (consistent, respectful, supportive)",
+                "label": "their exposure to positive parenting (consistent, respectful, supportive)",
                 "id": 26,
                 "Degree": 47,
                 "Direct Incoming": 7,
@@ -635,7 +690,7 @@
         {
             "id": "2",
             "attr": {
-                "Label": "their access to mental health resources",
+                "label": "their access to mental health resources",
                 "id": 2,
                 "Degree": 49,
                 "Direct Incoming": 10,
@@ -679,7 +734,7 @@
         {
             "id": "1",
             "attr": {
-                "Label": "their access to trusted information about mental health",
+                "label": "their access to trusted information about mental health",
                 "id": 1,
                 "Degree": 48,
                 "Direct Incoming": 11,
@@ -723,7 +778,7 @@
         {
             "id": "31",
             "attr": {
-                "Label": "the ability of \"the internet\" to remember or keep positive moments of their life forever accessible",
+                "label": "the ability of \"the internet\" to remember or keep positive moments of their life forever accessible",
                 "id": 31,
                 "Degree": 25,
                 "Direct Incoming": 4,
@@ -767,7 +822,7 @@
         {
             "id": "5",
             "attr": {
-                "Label": "their access to resources of daily life (food, shelter, safe environment, money)",
+                "label": "their access to resources of daily life (food, shelter, safe environment, money)",
                 "id": 5,
                 "Degree": 44,
                 "Direct Incoming": 15,
@@ -811,7 +866,7 @@
         {
             "id": "11",
             "attr": {
-                "Label": "the time they spend with friends online",
+                "label": "the time they spend with friends online",
                 "id": 11,
                 "Degree": 36,
                 "Direct Incoming": 11,
@@ -855,7 +910,7 @@
         {
             "id": "0",
             "attr": {
-                "Label": "their access to trusted information about mental, physical and sexual health & development",
+                "label": "their access to trusted information about mental, physical and sexual health & development",
                 "id": 0,
                 "Degree": 37,
                 "Direct Incoming": 12,
@@ -899,7 +954,7 @@
         {
             "id": "25",
             "attr": {
-                "Label": "their exposure to hurtful/hateful personal content (like mocking and bullying)",
+                "label": "their exposure to hurtful/hateful personal content (like mocking and bullying)",
                 "id": 25,
                 "Degree": 53,
                 "Direct Incoming": 20,
@@ -943,7 +998,7 @@
         {
             "id": "29",
             "attr": {
-                "Label": "the frequency of negative feedback to their online activities (e.g., dislikes, thumbs down, negative comments)",
+                "label": "the frequency of negative feedback to their online activities (e.g., dislikes, thumbs down, negative comments)",
                 "id": 29,
                 "Degree": 39,
                 "Direct Incoming": 12,
@@ -987,7 +1042,7 @@
         {
             "id": "39",
             "attr": {
-                "Label": "their ability to control and moderate the content they process online",
+                "label": "their ability to control and moderate the content they process online",
                 "id": 39,
                 "Degree": 56,
                 "Direct Incoming": 22,
@@ -1031,7 +1086,7 @@
         {
             "id": "55",
             "attr": {
-                "Label": "their ability to know the benefit of sharing information online",
+                "label": "their ability to know the benefit of sharing information online",
                 "id": 55,
                 "Degree": 39,
                 "Direct Incoming": 17,
@@ -1075,7 +1130,7 @@
         {
             "id": "28",
             "attr": {
-                "Label": "the frequency of positive feedback to their online activities (e.g., likes, applauses, positive comments)",
+                "label": "the frequency of positive feedback to their online activities (e.g., likes, applauses, positive comments)",
                 "id": 28,
                 "Degree": 34,
                 "Direct Incoming": 12,
@@ -1119,7 +1174,7 @@
         {
             "id": "15",
             "attr": {
-                "Label": "the time they spend with social groups (religious, volunteer, government, tribe, hobby, etc.)",
+                "label": "the time they spend with social groups (religious, volunteer, government, tribe, hobby, etc.)",
                 "id": 15,
                 "Degree": 64,
                 "Direct Incoming": 25,
@@ -1163,7 +1218,7 @@
         {
             "id": "19",
             "attr": {
-                "Label": "the time they spend learning about their heritage and culture",
+                "label": "the time they spend learning about their heritage and culture",
                 "id": 19,
                 "Degree": 34,
                 "Direct Incoming": 15,
@@ -1207,7 +1262,7 @@
         {
             "id": "52",
             "attr": {
-                "Label": "the amount of external recognition or validation they receive for something good they did",
+                "label": "the amount of external recognition or validation they receive for something good they did",
                 "id": 52,
                 "Degree": 40,
                 "Direct Incoming": 17,
@@ -1251,7 +1306,7 @@
         {
             "id": "68",
             "attr": {
-                "Label": "their ability to manage boredom",
+                "label": "their ability to manage boredom",
                 "id": 68,
                 "Degree": 43,
                 "Direct Incoming": 18,
@@ -1295,7 +1350,7 @@
         {
             "id": "3",
             "attr": {
-                "Label": "their willingness to use mental health resources",
+                "label": "their willingness to use mental health resources",
                 "id": 3,
                 "Degree": 65,
                 "Direct Incoming": 26,
@@ -1339,7 +1394,7 @@
         {
             "id": "62",
             "attr": {
-                "Label": "their desire for popularity (likes, followers, shares)",
+                "label": "their desire for popularity (likes, followers, shares)",
                 "id": 62,
                 "Degree": 54,
                 "Direct Incoming": 23,
@@ -1383,7 +1438,7 @@
         {
             "id": "45",
             "attr": {
-                "Label": "their ability to disconnect from electronic devices",
+                "label": "their ability to disconnect from electronic devices",
                 "id": 45,
                 "Degree": 44,
                 "Direct Incoming": 18,
@@ -1427,7 +1482,7 @@
         {
             "id": "6",
             "attr": {
-                "Label": "the time they spend reading a book, creating art, making music, doing schoolwork, etc.",
+                "label": "the time they spend reading a book, creating art, making music, doing schoolwork, etc.",
                 "id": 6,
                 "Degree": 46,
                 "Direct Incoming": 21,
@@ -1471,7 +1526,7 @@
         {
             "id": "17",
             "attr": {
-                "Label": "their having at least one positive adult relationship (with a parent, relative, teacher, coach, etc.)",
+                "label": "their having at least one positive adult relationship (with a parent, relative, teacher, coach, etc.)",
                 "id": 17,
                 "Degree": 70,
                 "Direct Incoming": 29,
@@ -1515,7 +1570,7 @@
         {
             "id": "63",
             "attr": {
-                "Label": "their ability to trust that adults in their life have their best interests at heart",
+                "label": "their ability to trust that adults in their life have their best interests at heart",
                 "id": 63,
                 "Degree": 58,
                 "Direct Incoming": 26,
@@ -1559,7 +1614,7 @@
         {
             "id": "73",
             "attr": {
-                "Label": "their ability to get enough sleep",
+                "label": "their ability to get enough sleep",
                 "id": 73,
                 "Degree": 41,
                 "Direct Incoming": 18,
@@ -1603,7 +1658,7 @@
         {
             "id": "8",
             "attr": {
-                "Label": "their having close friends",
+                "label": "their having close friends",
                 "id": 8,
                 "Degree": 65,
                 "Direct Incoming": 29,
@@ -1647,7 +1702,7 @@
         {
             "id": "53",
             "attr": {
-                "Label": "their ability to recognize mental health challenges they should seek support for",
+                "label": "their ability to recognize mental health challenges they should seek support for",
                 "id": 53,
                 "Degree": 56,
                 "Direct Incoming": 27,
@@ -1691,7 +1746,7 @@
         {
             "id": "58",
             "attr": {
-                "Label": "their belief that everyone is better off than they are",
+                "label": "their belief that everyone is better off than they are",
                 "id": 58,
                 "Degree": 58,
                 "Direct Incoming": 26,
@@ -1735,7 +1790,7 @@
         {
             "id": "18",
             "attr": {
-                "Label": "the number of places and groups of people where they are welcome and appreciated",
+                "label": "the number of places and groups of people where they are welcome and appreciated",
                 "id": 18,
                 "Degree": 79,
                 "Direct Incoming": 33,
@@ -1779,7 +1834,7 @@
         {
             "id": "54",
             "attr": {
-                "Label": "their ability to know who their real, trusted friends are",
+                "label": "their ability to know who their real, trusted friends are",
                 "id": 54,
                 "Degree": 68,
                 "Direct Incoming": 32,
@@ -1823,7 +1878,7 @@
         {
             "id": "10",
             "attr": {
-                "Label": "the time they spend with others online",
+                "label": "the time they spend with others online",
                 "id": 10,
                 "Degree": 36,
                 "Direct Incoming": 17,
@@ -1867,7 +1922,7 @@
         {
             "id": "41",
             "attr": {
-                "Label": "their ability to manage their reputation online (including what others post about them)",
+                "label": "their ability to manage their reputation online (including what others post about them)",
                 "id": 41,
                 "Degree": 38,
                 "Direct Incoming": 20,
@@ -1911,7 +1966,7 @@
         {
             "id": "9",
             "attr": {
-                "Label": "their ability to stay in touch with people (nearby or far away; friends and intergenerational members of community)",
+                "label": "their ability to stay in touch with people (nearby or far away; friends and intergenerational members of community)",
                 "id": 9,
                 "Degree": 57,
                 "Direct Incoming": 29,
@@ -1955,7 +2010,7 @@
         {
             "id": "16",
             "attr": {
-                "Label": "the presence and experience of love in their life",
+                "label": "the presence and experience of love in their life",
                 "id": 16,
                 "Degree": 64,
                 "Direct Incoming": 31,
@@ -1999,7 +2054,7 @@
         {
             "id": "12",
             "attr": {
-                "Label": "the time they spend with friends in person",
+                "label": "the time they spend with friends in person",
                 "id": 12,
                 "Degree": 63,
                 "Direct Incoming": 32,
@@ -2043,7 +2098,7 @@
         {
             "id": "7",
             "attr": {
-                "Label": "the time they spend doing something physical (working, sports, volunteering, being outdoors, etc)",
+                "label": "the time they spend doing something physical (working, sports, volunteering, being outdoors, etc)",
                 "id": 7,
                 "Degree": 51,
                 "Direct Incoming": 28,
@@ -2087,7 +2142,7 @@
         {
             "id": "27",
             "attr": {
-                "Label": "their exposure to high quality news and current events",
+                "label": "their exposure to high quality news and current events",
                 "id": 27,
                 "Degree": 18,
                 "Direct Incoming": 4,
@@ -2131,7 +2186,7 @@
         {
             "id": "69",
             "attr": {
-                "Label": "their ability to develop proficiency at a hobby, instrument, game, business or other personal interest",
+                "label": "their ability to develop proficiency at a hobby, instrument, game, business or other personal interest",
                 "id": 69,
                 "Degree": 57,
                 "Direct Incoming": 30,
@@ -2175,7 +2230,7 @@
         {
             "id": "51",
             "attr": {
-                "Label": "their ability to take a long term perspective during challenging times",
+                "label": "their ability to take a long term perspective during challenging times",
                 "id": 51,
                 "Degree": 62,
                 "Direct Incoming": 30,
@@ -2219,7 +2274,7 @@
         {
             "id": "20",
             "attr": {
-                "Label": "the time they spend being a part of their heritage and culture",
+                "label": "the time they spend being a part of their heritage and culture",
                 "id": 20,
                 "Degree": 35,
                 "Direct Incoming": 18,
@@ -2263,7 +2318,7 @@
         {
             "id": "43",
             "attr": {
-                "Label": "their ability to find others like them",
+                "label": "their ability to find others like them",
                 "id": 43,
                 "Degree": 68,
                 "Direct Incoming": 34,
@@ -2307,7 +2362,7 @@
         {
             "id": "33",
             "attr": {
-                "Label": "their ability to engage with systems and institutions designed to support them",
+                "label": "their ability to engage with systems and institutions designed to support them",
                 "id": 33,
                 "Degree": 76,
                 "Direct Incoming": 36,
@@ -2351,7 +2406,7 @@
         {
             "id": "22",
             "attr": {
-                "Label": "time they spend connecting with others toward a shared goal, mission, faith, culture, interest",
+                "label": "time they spend connecting with others toward a shared goal, mission, faith, culture, interest",
                 "id": 22,
                 "Degree": 81,
                 "Direct Incoming": 37,
@@ -2395,7 +2450,7 @@
         {
             "id": "64",
             "attr": {
-                "Label": "their ability to recover and learn from their mistakes",
+                "label": "their ability to recover and learn from their mistakes",
                 "id": 64,
                 "Degree": 67,
                 "Direct Incoming": 36,
@@ -2439,7 +2494,7 @@
         {
             "id": "32",
             "attr": {
-                "Label": "the ability of \"the internet\"  to forget or remove negative moments of their life so it's not forever accessible",
+                "label": "the ability of \"the internet\"  to forget or remove negative moments of their life so it's not forever accessible",
                 "id": 32,
                 "Degree": 18,
                 "Direct Incoming": 5,
@@ -2483,7 +2538,7 @@
         {
             "id": "4",
             "attr": {
-                "Label": "their access to help from trusted others to do something, learn something, or get through a hard time emotionally or financially",
+                "label": "their access to help from trusted others to do something, learn something, or get through a hard time emotionally or financially",
                 "id": 4,
                 "Degree": 75,
                 "Direct Incoming": 37,
@@ -2527,7 +2582,7 @@
         {
             "id": "38",
             "attr": {
-                "Label": "their ability to control and moderate their time online",
+                "label": "their ability to control and moderate their time online",
                 "id": 38,
                 "Degree": 51,
                 "Direct Incoming": 28,
@@ -2571,7 +2626,7 @@
         {
             "id": "57",
             "attr": {
-                "Label": "their belief that they are part of a community",
+                "label": "their belief that they are part of a community",
                 "id": 57,
                 "Degree": 77,
                 "Direct Incoming": 38,
@@ -2615,7 +2670,7 @@
         {
             "id": "44",
             "attr": {
-                "Label": "their ability to control or manage personal information they disclose online",
+                "label": "their ability to control or manage personal information they disclose online",
                 "id": 44,
                 "Degree": 26,
                 "Direct Incoming": 13,
@@ -2659,7 +2714,7 @@
         {
             "id": "50",
             "attr": {
-                "Label": "their ability to evaluate the emotional risk before an action they want to take",
+                "label": "their ability to evaluate the emotional risk before an action they want to take",
                 "id": 50,
                 "Degree": 68,
                 "Direct Incoming": 37,
@@ -2703,7 +2758,7 @@
         {
             "id": "36",
             "attr": {
-                "Label": "the influence of online content and personalities on them and their identity (influencers, celebrities)",
+                "label": "the influence of online content and personalities on them and their identity (influencers, celebrities)",
                 "id": 36,
                 "Degree": 32,
                 "Direct Incoming": 18,
@@ -2747,7 +2802,7 @@
         {
             "id": "13",
             "attr": {
-                "Label": "their awareness of what's happening among their friends",
+                "label": "their awareness of what's happening among their friends",
                 "id": 13,
                 "Degree": 55,
                 "Direct Incoming": 33,
@@ -2791,7 +2846,7 @@
         {
             "id": "61",
             "attr": {
-                "Label": "their belief that they will be found if they get lost",
+                "label": "their belief that they will be found if they get lost",
                 "id": 61,
                 "Degree": 45,
                 "Direct Incoming": 27,
@@ -2835,7 +2890,7 @@
         {
             "id": "56",
             "attr": {
-                "Label": "their certainty that they matter to themself and to others",
+                "label": "their certainty that they matter to themself and to others",
                 "id": 56,
                 "Degree": 85,
                 "Direct Incoming": 43,
@@ -2879,7 +2934,7 @@
         {
             "id": "24",
             "attr": {
-                "Label": "their awareness of other people's lives and experiences",
+                "label": "their awareness of other people's lives and experiences",
                 "id": 24,
                 "Degree": 58,
                 "Direct Incoming": 34,
@@ -2923,7 +2978,7 @@
         {
             "id": "34",
             "attr": {
-                "Label": "their time to appreciate new quality experiences (nature, culture, sports, learnings, personal insights)",
+                "label": "their time to appreciate new quality experiences (nature, culture, sports, learnings, personal insights)",
                 "id": 34,
                 "Degree": 69,
                 "Direct Incoming": 40,
@@ -2967,7 +3022,7 @@
         {
             "id": "67",
             "attr": {
-                "Label": "their ability to concentrate without interruption",
+                "label": "their ability to concentrate without interruption",
                 "id": 67,
                 "Degree": 34,
                 "Direct Incoming": 20,
@@ -3011,7 +3066,7 @@
         {
             "id": "30",
             "attr": {
-                "Label": "their ability to compare their life to other people's lives",
+                "label": "their ability to compare their life to other people's lives",
                 "id": 30,
                 "Degree": 32,
                 "Direct Incoming": 18,
@@ -3055,7 +3110,7 @@
         {
             "id": "46",
             "attr": {
-                "Label": "their ability to face and overcome challenges",
+                "label": "their ability to face and overcome challenges",
                 "id": 46,
                 "Degree": 76,
                 "Direct Incoming": 41,
@@ -3099,7 +3154,7 @@
         {
             "id": "49",
             "attr": {
-                "Label": "their assurance that they are not not alone and have others to depend on",
+                "label": "their assurance that they are not not alone and have others to depend on",
                 "id": 49,
                 "Degree": 92,
                 "Direct Incoming": 46,
@@ -3143,7 +3198,7 @@
         {
             "id": "37",
             "attr": {
-                "Label": "their ability to cope with anxious feelings",
+                "label": "their ability to cope with anxious feelings",
                 "id": 37,
                 "Degree": 75,
                 "Direct Incoming": 43,
@@ -3187,7 +3242,7 @@
         {
             "id": "47",
             "attr": {
-                "Label": "their certainty that others \"have their back\" (will support them in the event of mistakes or hardships)",
+                "label": "their certainty that others \"have their back\" (will support them in the event of mistakes or hardships)",
                 "id": 47,
                 "Degree": 86,
                 "Direct Incoming": 45,
@@ -3231,7 +3286,7 @@
         {
             "id": "66",
             "attr": {
-                "Label": "their level of resilience (being flexible and agile in response to events and knowing they can get up if they fall down)",
+                "label": "their level of resilience (being flexible and agile in response to events and knowing they can get up if they fall down)",
                 "id": 66,
                 "Degree": 72,
                 "Direct Incoming": 41,
@@ -3275,7 +3330,7 @@
         {
             "id": "35",
             "attr": {
-                "Label": "their ability to recover from negative or adverse events that happen to them (online or in person)",
+                "label": "their ability to recover from negative or adverse events that happen to them (online or in person)",
                 "id": 35,
                 "Degree": 83,
                 "Direct Incoming": 45,
@@ -3319,7 +3374,7 @@
         {
             "id": "14",
             "attr": {
-                "Label": "their ability to tell their friends about their life and experiences",
+                "label": "their ability to tell their friends about their life and experiences",
                 "id": 14,
                 "Degree": 74,
                 "Direct Incoming": 45,
@@ -3363,7 +3418,7 @@
         {
             "id": "74",
             "attr": {
-                "Label": "their ability to consider the purpose and meaning of a good life",
+                "label": "their ability to consider the purpose and meaning of a good life",
                 "id": 74,
                 "Degree": 85,
                 "Direct Incoming": 47,
@@ -3407,7 +3462,7 @@
         {
             "id": "65",
             "attr": {
-                "Label": "their ability to empathize with and understand other perspectives",
+                "label": "their ability to empathize with and understand other perspectives",
                 "id": 65,
                 "Degree": 81,
                 "Direct Incoming": 44,
@@ -3451,7 +3506,7 @@
         {
             "id": "48",
             "attr": {
-                "Label": "their ability to recognize exploitative relationships (gaslighting, manipulation, controlling)",
+                "label": "their ability to recognize exploitative relationships (gaslighting, manipulation, controlling)",
                 "id": 48,
                 "Degree": 63,
                 "Direct Incoming": 40,
@@ -3495,7 +3550,7 @@
         {
             "id": "72",
             "attr": {
-                "Label": "their ability to relax when they're stressed",
+                "label": "their ability to relax when they're stressed",
                 "id": 72,
                 "Degree": 62,
                 "Direct Incoming": 39,
@@ -3539,7 +3594,7 @@
         {
             "id": "59",
             "attr": {
-                "Label": "their level of self confidence",
+                "label": "their level of self confidence",
                 "id": 59,
                 "Degree": 84,
                 "Direct Incoming": 47,
@@ -3583,7 +3638,7 @@
         {
             "id": "71",
             "attr": {
-                "Label": "their ability to pursue personal interests that people around them might not share (an instrument, a hobby)",
+                "label": "their ability to pursue personal interests that people around them might not share (an instrument, a hobby)",
                 "id": 71,
                 "Degree": 52,
                 "Direct Incoming": 34,
@@ -3627,7 +3682,7 @@
         {
             "id": "76",
             "attr": {
-                "Label": "their ability to recognize when they're going gown down a trap of negative content or comments",
+                "label": "their ability to recognize when they're going gown down a trap of negative content or comments",
                 "id": 76,
                 "Degree": 51,
                 "Direct Incoming": 35,
@@ -3671,7 +3726,7 @@
         {
             "id": "75",
             "attr": {
-                "Label": "their ability to set goals and take actions towards those goals",
+                "label": "their ability to set goals and take actions towards those goals",
                 "id": 75,
                 "Degree": 69,
                 "Direct Incoming": 43,
@@ -3715,7 +3770,7 @@
         {
             "id": "70",
             "attr": {
-                "Label": "their ability to explore their identity safely",
+                "label": "their ability to explore their identity safely",
                 "id": 70,
                 "Degree": 78,
                 "Direct Incoming": 48,
@@ -3759,7 +3814,7 @@
         {
             "id": "40",
             "attr": {
-                "Label": "their ability to cope with and overcome hardship or challenges in their life",
+                "label": "their ability to cope with and overcome hardship or challenges in their life",
                 "id": 40,
                 "Degree": 80,
                 "Direct Incoming": 49,
@@ -3803,7 +3858,7 @@
         {
             "id": "42",
             "attr": {
-                "Label": "their ability to cope with feelings of being lonely",
+                "label": "their ability to cope with feelings of being lonely",
                 "id": 42,
                 "Degree": 73,
                 "Direct Incoming": 48,
@@ -3847,7 +3902,7 @@
         {
             "id": "21",
             "attr": {
-                "Label": "their ability to help others and/or contribute to something bigger than themselves",
+                "label": "their ability to help others and/or contribute to something bigger than themselves",
                 "id": 21,
                 "Degree": 86,
                 "Direct Incoming": 51,
@@ -3891,7 +3946,7 @@
         {
             "id": "23",
             "attr": {
-                "Label": "their participation in positive events that are fun, joyous, and exciting",
+                "label": "their participation in positive events that are fun, joyous, and exciting",
                 "id": 23,
                 "Degree": 79,
                 "Direct Incoming": 52,
@@ -3935,7 +3990,7 @@
         {
             "id": "60",
             "attr": {
-                "Label": "their level of self-esteem",
+                "label": "their level of self-esteem",
                 "id": 60,
                 "Degree": 105,
                 "Direct Incoming": 56,

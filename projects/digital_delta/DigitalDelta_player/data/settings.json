@@ -117,10 +117,10 @@
                     "edgeTaperScale": 0.5,
                     "edgeSaturation": 1,
                     "edgeUnselectedOpacity": 0.2,
-                    "edgeDirectionalRender": "outgoing",
+                    "edgeDirectionalRender": "all",
                     "drawLabels": true,
                     "drawEdgeLabels": false,
-                    "drawGroupLabels": false,
+                    "drawGroupLabels": true,
                     "labelColor": "#000000",
                     "labelOutlineColor": "#ffffff",
                     "labelSize": "proportional",
@@ -182,7 +182,7 @@
                     "nodeOnClick": "select",
                     "nodeOnDblClick": "select",
                     "nodeSizeStrat": "attr",
-                    "nodeSizeAttr": "ClusterCentrality",
+                    "nodeSizeAttr": "DEGREE",
                     "nodeSizeScaleStrategy": "linear",
                     "nodeSizeScaleInvert": false,
                     "nodeSizeScaleExponent": 2.5,
@@ -197,7 +197,7 @@
                     "nodeSizePartitionEnabled": false,
                     "nodeSizePartitionAttr": "Cluster",
                     "nodeColorStrat": "attr",
-                    "nodeColorAttr": "Cluster",
+                    "nodeColorAttr": "Causal Cluster",
                     "nodeColorScaleStrategy": "linear",
                     "nodeColorScaleInvert": false,
                     "nodeColorScaleExponent": 2.5,
@@ -261,7 +261,7 @@
                     ],
                     "nodeColorNumericScalerType": "HCL Long",
                     "edgeSizeStrat": "fixed",
-                    "edgeSizeAttr": "weight",
+                    "edgeSizeAttr": "votes",
                     "edgeSizeScaleStrategy": "linear",
                     "edgeSizeScaleInvert": false,
                     "edgeSizeScaleExponent": 2.5,
@@ -363,7 +363,7 @@
             "summaryImg": "https://www.dl.dropboxusercontent.com/s/oocyibrvojcmieg/Screen%20Shot%202020-11-25%20at%207.20.12%20AM.png?dl=0",
             "snapName": "Causal Clusters",
             "subtitle": "blah blah",
-            "id": "e80d3fc2-17b8-43d3-b9c7-e26d5a303404"
+            "id": "e44ce936-2032-4158-baac-8ae00cc75872"
         },
         {
             "layout": {
@@ -426,7 +426,7 @@
                     "edgeTaperScale": 0.5,
                     "edgeSaturation": 1,
                     "edgeUnselectedOpacity": 0.2,
-                    "edgeDirectionalRender": "outgoing",
+                    "edgeDirectionalRender": "all",
                     "drawLabels": true,
                     "drawEdgeLabels": false,
                     "drawGroupLabels": false,
@@ -570,7 +570,7 @@
                     ],
                     "nodeColorNumericScalerType": "HCL Long",
                     "edgeSizeStrat": "fixed",
-                    "edgeSizeAttr": "weight",
+                    "edgeSizeAttr": "votes",
                     "edgeSizeScaleStrategy": "linear",
                     "edgeSizeScaleInvert": false,
                     "edgeSizeScaleExponent": 2.5,
@@ -672,7 +672,7 @@
             "summaryImg": "https://www.dl.dropboxusercontent.com/s/4v0kkfjkjmjn5zz/Screen%20Shot%202020-11-25%20at%207.19.54%20AM.png?dl=0",
             "snapName": "reach vs leverage",
             "subtitle": ".",
-            "id": "7e9df918-8da8-4b0f-9d22-9deedc5f6fa2"
+            "id": "afd8275d-faab-4ce1-92ee-a39f3cbefffd"
         }
     ]
 }

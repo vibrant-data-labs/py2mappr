@@ -16,8 +16,8 @@ import webbrowser
 
 # configure the files and folders
 wd = pl.Path.cwd()
-projectPath = wd /"projects"/"dd_demo"
-inDataPath = projectPath/"digitaldelta_data"
+projectPath = wd /"projects"/"digital_delta"
+inDataPath = projectPath/"DigitalDelta_data_in"
 
 nodesFile = inDataPath /"nodes.csv"
 linksFile = inDataPath /"links.csv"
@@ -56,25 +56,25 @@ sn1 = create_snapshot(
         "yaxis": "y_tsne",
         "settings": {
             # node size
-            "nodeSizeAttr": "ClusterCentrality",
+            "nodeSizeAttr": "DEGREE",
             "nodeSizeScaleStrategy": "linear", # "linear" or "log"
             "nodeSizeMin": 1,
             "nodeSizeMax": 20,
             "nodeSizeMultiplier": .5,
             "bigOnTop": True,
             # node color and images
-            "nodeColorAttr": "Cluster",
+            "nodeColorAttr": "Causal Cluster",
             "nodeImageShow": False,
             "nodeImageAttr": "",
             # link rendering
             "drawEdges": True,
             "edgeCurvature": 0.6,
-            "edgeDirectionalRender": "outgoing",
-            "edgeSizeStrat": "fixed", # or "fixed"
-            "edgeSizeAttr": "weight", # size by similarity
+            "edgeDirectionalRender": "all",
+            "edgeSizeStrat": "fixed", # or "attr"
+            "edgeSizeAttr": "votes", # size by similarity
             "edgeSizeMultiplier": .7,
             # labels
-            "drawGroupLabels": False,
+            "drawGroupLabels": True,
             # layout rendering
             "xAxShow": False,
             "yAxShow": False,
@@ -114,9 +114,9 @@ sn2 = create_snapshot(
             # link rendering
             "drawEdges": False,
             "edgeCurvature": 0.6,
-            "edgeDirectionalRender": "outgoing",
-            "edgeSizeStrat": "fixed", # or "fixed"
-            "edgeSizeAttr": "weight", # size by similarity
+            "edgeDirectionalRender": "all",
+            "edgeSizeStrat": "fixed", # or "attr"
+            "edgeSizeAttr": "votes", # size by similarity
             "edgeSizeMultiplier": .7,
             # labels
             "drawGroupLabels": False, # don't show color-by labels
