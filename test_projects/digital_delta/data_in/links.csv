@@ -1,0 +1,553 @@
+Source,Target,fromName,toName,confidence,flat,negative,positive,skip,votes,fracPos,fracNeg,fracFlat,sign,isPos,isNeg,isDirectional
+0,1,Willingness of informal sector actors to become formalised,Perceived benefits for formal registration of plastic waste collection organizations,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+7,2,Digital literacy of informal waste workers,Divergence of traceability requirements of large plastic feedstock buyers,2.0,1,3,0,0,4,0.0,0.75,0.25,negative,0,1,True
+8,9,Traceability/transparency of informal sector operations,Level of value-added knowledge & skills among informal waste workers,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+15,0,Favorability of existing public regulations towards informal actors,Willingness of informal sector actors to become formalised,2.0,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+10,8,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Traceability/transparency of informal sector operations,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+17,18,Availabilty of waste-related data,Demand for fully traceable plastic feedstock from ethical sources,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+9,3,Level of value-added knowledge & skills among informal waste workers,Access of waste pickers to waste pricing information,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+22,23,Amount of funding committed to waste management solutions,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+29,27,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+30,13,Available data about informal waste collection activities,Amount of public regulation of plastic supply chain requirements,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+31,32,Amount of dedicated public policies focusing on informal sector integration,Perceived negative effects of formal registration of plastic waste collection organizations,1.8,0,3,0,2,3,0.0,1.0,0.0,negative,0,1,True
+17,33,Availabilty of waste-related data,Regulatory enforcement of public waste management policies at waste management entities,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+34,10,Public access to waste pricing information,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+36,9,Resistance to change from established actors in plastic value chains,Level of value-added knowledge & skills among informal waste workers,2.5,0,4,0,0,4,0.0,1.0,0.0,negative,0,1,True
+26,37,Awareness of the importance of waste workers in society,Price for fully traceable plastic feedstock,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+22,38,Amount of funding committed to waste management solutions,Number of actors involved in plastic supply chains,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+9,7,Level of value-added knowledge & skills among informal waste workers,Digital literacy of informal waste workers,2.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+38,39,Number of actors involved in plastic supply chains,Amount of regulatory requirements for public sector procurement,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+15,16,Favorability of existing public regulations towards informal actors,Level of collaboration between formal & informal entities in plastic value chains,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+17,6,Availabilty of waste-related data,Amount of funding committed to traceable plastic feedstock solutions,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+29,17,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Availabilty of waste-related data,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+39,41,Amount of regulatory requirements for public sector procurement,Competition among formal and informal collectors,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+17,34,Availabilty of waste-related data,Public access to waste pricing information,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+7,0,Digital literacy of informal waste workers,Willingness of informal sector actors to become formalised,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+22,6,Amount of funding committed to waste management solutions,Amount of funding committed to traceable plastic feedstock solutions,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+13,43,Amount of public regulation of plastic supply chain requirements,Inclusion of informal actors in public waste-related regulations,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+29,16,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Level of collaboration between formal & informal entities in plastic value chains,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+16,22,Level of collaboration between formal & informal entities in plastic value chains,Amount of funding committed to waste management solutions,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+43,12,Inclusion of informal actors in public waste-related regulations,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+8,20,Traceability/transparency of informal sector operations,Level of reliance of waste-related business models on informal labor,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+21,41,Market segmentation by type of waste,Competition among formal and informal collectors,2.0,1,0,3,1,4,0.75,0.0,0.25,positive,1,0,True
+18,36,Demand for fully traceable plastic feedstock from ethical sources,Resistance to change from established actors in plastic value chains,2.333333333333333,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+30,34,Available data about informal waste collection activities,Public access to waste pricing information,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+31,13,Amount of dedicated public policies focusing on informal sector integration,Amount of public regulation of plastic supply chain requirements,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+40,31,Level of existing regulations allowing the participation of informal actors in public collection systems,Amount of dedicated public policies focusing on informal sector integration,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+35,16,Availability of legal identity documents of informal waste workers (KTP),Level of collaboration between formal & informal entities in plastic value chains,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+11,8,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,Traceability/transparency of informal sector operations,2.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+11,18,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,Demand for fully traceable plastic feedstock from ethical sources,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+22,7,Amount of funding committed to waste management solutions,Digital literacy of informal waste workers,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+17,9,Availabilty of waste-related data,Level of value-added knowledge & skills among informal waste workers,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+27,6,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Amount of funding committed to traceable plastic feedstock solutions,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+24,2,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Divergence of traceability requirements of large plastic feedstock buyers,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+12,20,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",Level of reliance of waste-related business models on informal labor,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+10,2,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Divergence of traceability requirements of large plastic feedstock buyers,2.5,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+33,25,Regulatory enforcement of public waste management policies at waste management entities,Ability for seperation of waste streams at source,2.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+30,24,Available data about informal waste collection activities,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+26,1,Awareness of the importance of waste workers in society,Perceived benefits for formal registration of plastic waste collection organizations,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+16,20,Level of collaboration between formal & informal entities in plastic value chains,Level of reliance of waste-related business models on informal labor,2.75,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+22,16,Amount of funding committed to waste management solutions,Level of collaboration between formal & informal entities in plastic value chains,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+26,23,Awareness of the importance of waste workers in society,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+34,21,Public access to waste pricing information,Market segmentation by type of waste,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+36,23,Resistance to change from established actors in plastic value chains,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.75,0,4,0,0,4,0.0,1.0,0.0,negative,0,1,True
+20,11,Level of reliance of waste-related business models on informal labor,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+34,24,Public access to waste pricing information,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.25,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+19,31,Amount of financing committed to waste management solutions,Amount of dedicated public policies focusing on informal sector integration,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+14,18,Recognition of waste workers and their importance in society,Demand for fully traceable plastic feedstock from ethical sources,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+7,30,Digital literacy of informal waste workers,Available data about informal waste collection activities,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+40,20,Level of existing regulations allowing the participation of informal actors in public collection systems,Level of reliance of waste-related business models on informal labor,2.5,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+6,34,Amount of funding committed to traceable plastic feedstock solutions,Public access to waste pricing information,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+26,41,Awareness of the importance of waste workers in society,Competition among formal and informal collectors,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+30,28,Available data about informal waste collection activities,Amount of financing committed to traceable plastic feedstock solutions,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+10,14,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Recognition of waste workers and their importance in society,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+33,32,Regulatory enforcement of public waste management policies at waste management entities,Perceived negative effects of formal registration of plastic waste collection organizations,2.75,0,3,1,0,4,0.25,0.75,0.0,negative,0,1,True
+3,34,Access of waste pickers to waste pricing information,Public access to waste pricing information,2.5,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,32,Inclusion of informal actors in public waste-related regulations,Perceived negative effects of formal registration of plastic waste collection organizations,2.5,1,3,0,0,4,0.0,0.75,0.25,negative,0,1,True
+40,12,Level of existing regulations allowing the participation of informal actors in public collection systems,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+40,41,Level of existing regulations allowing the participation of informal actors in public collection systems,Competition among formal and informal collectors,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,10,Regulatory enforcement of public waste management policies at waste management entities,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+16,24,Level of collaboration between formal & informal entities in plastic value chains,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+31,17,Amount of dedicated public policies focusing on informal sector integration,Availabilty of waste-related data,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+40,21,Level of existing regulations allowing the participation of informal actors in public collection systems,Market segmentation by type of waste,2.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+20,18,Level of reliance of waste-related business models on informal labor,Demand for fully traceable plastic feedstock from ethical sources,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+21,2,Market segmentation by type of waste,Divergence of traceability requirements of large plastic feedstock buyers,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+1,26,Perceived benefits for formal registration of plastic waste collection organizations,Awareness of the importance of waste workers in society,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+24,0,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Willingness of informal sector actors to become formalised,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+21,17,Market segmentation by type of waste,Availabilty of waste-related data,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+7,42,Digital literacy of informal waste workers,Optimisation of waste collection travel routes for informal waste collectors,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+5,24,Flexiblity of relationships between informal workers & collection entities,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+27,40,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Level of existing regulations allowing the participation of informal actors in public collection systems,2.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+21,38,Market segmentation by type of waste,Number of actors involved in plastic supply chains,2.75,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+16,1,Level of collaboration between formal & informal entities in plastic value chains,Perceived benefits for formal registration of plastic waste collection organizations,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+37,6,Price for fully traceable plastic feedstock,Amount of funding committed to traceable plastic feedstock solutions,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+9,14,Level of value-added knowledge & skills among informal waste workers,Recognition of waste workers and their importance in society,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+0,38,Willingness of informal sector actors to become formalised,Number of actors involved in plastic supply chains,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+19,9,Amount of financing committed to waste management solutions,Level of value-added knowledge & skills among informal waste workers,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+15,18,Favorability of existing public regulations towards informal actors,Demand for fully traceable plastic feedstock from ethical sources,2.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+14,43,Recognition of waste workers and their importance in society,Inclusion of informal actors in public waste-related regulations,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+23,15,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Favorability of existing public regulations towards informal actors,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+30,33,Available data about informal waste collection activities,Regulatory enforcement of public waste management policies at waste management entities,2.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+27,30,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Available data about informal waste collection activities,2.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+1,30,Perceived benefits for formal registration of plastic waste collection organizations,Available data about informal waste collection activities,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+16,43,Level of collaboration between formal & informal entities in plastic value chains,Inclusion of informal actors in public waste-related regulations,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+39,42,Amount of regulatory requirements for public sector procurement,Optimisation of waste collection travel routes for informal waste collectors,2.5,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+14,25,Recognition of waste workers and their importance in society,Ability for seperation of waste streams at source,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+12,36,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",Resistance to change from established actors in plastic value chains,2.5,1,3,0,0,4,0.0,0.75,0.25,negative,0,1,True
+15,42,Favorability of existing public regulations towards informal actors,Optimisation of waste collection travel routes for informal waste collectors,2.4,0,0,3,2,3,1.0,0.0,0.0,positive,1,0,True
+26,8,Awareness of the importance of waste workers in society,Traceability/transparency of informal sector operations,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+30,16,Available data about informal waste collection activities,Level of collaboration between formal & informal entities in plastic value chains,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+3,24,Access of waste pickers to waste pricing information,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.4,0,0,3,2,3,1.0,0.0,0.0,positive,1,0,True
+15,40,Favorability of existing public regulations towards informal actors,Level of existing regulations allowing the participation of informal actors in public collection systems,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+11,28,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,Amount of financing committed to traceable plastic feedstock solutions,2.5,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+9,27,Level of value-added knowledge & skills among informal waste workers,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,43,Traceability/transparency of informal sector operations,Inclusion of informal actors in public waste-related regulations,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,18,Regulatory enforcement of public waste management policies at waste management entities,Demand for fully traceable plastic feedstock from ethical sources,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+13,27,Amount of public regulation of plastic supply chain requirements,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+20,15,Level of reliance of waste-related business models on informal labor,Favorability of existing public regulations towards informal actors,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+13,2,Amount of public regulation of plastic supply chain requirements,Divergence of traceability requirements of large plastic feedstock buyers,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+28,1,Amount of financing committed to traceable plastic feedstock solutions,Perceived benefits for formal registration of plastic waste collection organizations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+22,27,Amount of funding committed to waste management solutions,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,36,Regulatory enforcement of public waste management policies at waste management entities,Resistance to change from established actors in plastic value chains,2.0,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+8,14,Traceability/transparency of informal sector operations,Recognition of waste workers and their importance in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+9,1,Level of value-added knowledge & skills among informal waste workers,Perceived benefits for formal registration of plastic waste collection organizations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+1,12,Perceived benefits for formal registration of plastic waste collection organizations,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",1.75,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+26,22,Awareness of the importance of waste workers in society,Amount of funding committed to waste management solutions,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+37,10,Price for fully traceable plastic feedstock,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.0,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+14,31,Recognition of waste workers and their importance in society,Amount of dedicated public policies focusing on informal sector integration,2.0,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+21,27,Market segmentation by type of waste,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.0,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+0,32,Willingness of informal sector actors to become formalised,Perceived negative effects of formal registration of plastic waste collection organizations,2.25,1,3,0,0,4,0.0,0.75,0.25,negative,0,1,True
+9,42,Level of value-added knowledge & skills among informal waste workers,Optimisation of waste collection travel routes for informal waste collectors,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+14,16,Recognition of waste workers and their importance in society,Level of collaboration between formal & informal entities in plastic value chains,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+1,38,Perceived benefits for formal registration of plastic waste collection organizations,Number of actors involved in plastic supply chains,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+20,38,Level of reliance of waste-related business models on informal labor,Number of actors involved in plastic supply chains,2.1666666666666665,0,0,3,3,3,1.0,0.0,0.0,positive,1,0,True
+20,31,Level of reliance of waste-related business models on informal labor,Amount of dedicated public policies focusing on informal sector integration,2.4,0,0,3,2,3,1.0,0.0,0.0,positive,1,0,True
+14,15,Recognition of waste workers and their importance in society,Favorability of existing public regulations towards informal actors,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+42,20,Optimisation of waste collection travel routes for informal waste collectors,Level of reliance of waste-related business models on informal labor,2.333333333333333,0,0,3,2,3,1.0,0.0,0.0,positive,1,0,True
+8,13,Traceability/transparency of informal sector operations,Amount of public regulation of plastic supply chain requirements,2.0,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+34,25,Public access to waste pricing information,Ability for seperation of waste streams at source,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,20,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Level of reliance of waste-related business models on informal labor,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+36,28,Resistance to change from established actors in plastic value chains,Amount of financing committed to traceable plastic feedstock solutions,2.25,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+20,22,Level of reliance of waste-related business models on informal labor,Amount of funding committed to waste management solutions,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,10,Traceability/transparency of informal sector operations,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+24,37,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Price for fully traceable plastic feedstock,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+39,18,Amount of regulatory requirements for public sector procurement,Demand for fully traceable plastic feedstock from ethical sources,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+21,34,Market segmentation by type of waste,Public access to waste pricing information,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+18,8,Demand for fully traceable plastic feedstock from ethical sources,Traceability/transparency of informal sector operations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+20,10,Level of reliance of waste-related business models on informal labor,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+35,43,Availability of legal identity documents of informal waste workers (KTP),Inclusion of informal actors in public waste-related regulations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+1,34,Perceived benefits for formal registration of plastic waste collection organizations,Public access to waste pricing information,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+29,22,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Amount of funding committed to waste management solutions,2.25,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+28,26,Amount of financing committed to traceable plastic feedstock solutions,Awareness of the importance of waste workers in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+17,10,Availabilty of waste-related data,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,34,Traceability/transparency of informal sector operations,Public access to waste pricing information,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+30,3,Available data about informal waste collection activities,Access of waste pickers to waste pricing information,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+41,38,Competition among formal and informal collectors,Number of actors involved in plastic supply chains,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+0,12,Willingness of informal sector actors to become formalised,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+31,14,Amount of dedicated public policies focusing on informal sector integration,Recognition of waste workers and their importance in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,1,Regulatory enforcement of public waste management policies at waste management entities,Perceived benefits for formal registration of plastic waste collection organizations,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+8,19,Traceability/transparency of informal sector operations,Amount of financing committed to waste management solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+12,1,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",Perceived benefits for formal registration of plastic waste collection organizations,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+29,42,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Optimisation of waste collection travel routes for informal waste collectors,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+21,26,Market segmentation by type of waste,Awareness of the importance of waste workers in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+28,42,Amount of financing committed to traceable plastic feedstock solutions,Optimisation of waste collection travel routes for informal waste collectors,2.5,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+28,24,Amount of financing committed to traceable plastic feedstock solutions,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+7,12,Digital literacy of informal waste workers,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+36,42,Resistance to change from established actors in plastic value chains,Optimisation of waste collection travel routes for informal waste collectors,2.0,1,3,0,1,4,0.0,0.75,0.25,negative,0,1,True
+14,29,Recognition of waste workers and their importance in society,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",2.5,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+2,37,Divergence of traceability requirements of large plastic feedstock buyers,Price for fully traceable plastic feedstock,1.75,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+6,10,Amount of funding committed to traceable plastic feedstock solutions,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+19,38,Amount of financing committed to waste management solutions,Number of actors involved in plastic supply chains,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+23,31,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Amount of dedicated public policies focusing on informal sector integration,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,14,Inclusion of informal actors in public waste-related regulations,Recognition of waste workers and their importance in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+24,9,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Level of value-added knowledge & skills among informal waste workers,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+36,6,Resistance to change from established actors in plastic value chains,Amount of funding committed to traceable plastic feedstock solutions,2.25,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+1,43,Perceived benefits for formal registration of plastic waste collection organizations,Inclusion of informal actors in public waste-related regulations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,6,Traceability/transparency of informal sector operations,Amount of funding committed to traceable plastic feedstock solutions,2.75,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+6,14,Amount of funding committed to traceable plastic feedstock solutions,Recognition of waste workers and their importance in society,2.25,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+22,11,Amount of funding committed to waste management solutions,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+15,11,Favorability of existing public regulations towards informal actors,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+41,9,Competition among formal and informal collectors,Level of value-added knowledge & skills among informal waste workers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+37,8,Price for fully traceable plastic feedstock,Traceability/transparency of informal sector operations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,7,Traceability/transparency of informal sector operations,Digital literacy of informal waste workers,2.2,1,0,3,1,4,0.75,0.0,0.25,positive,1,0,True
+2,13,Divergence of traceability requirements of large plastic feedstock buyers,Amount of public regulation of plastic supply chain requirements,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+18,25,Demand for fully traceable plastic feedstock from ethical sources,Ability for seperation of waste streams at source,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+11,43,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,Inclusion of informal actors in public waste-related regulations,2.0,1,0,3,2,4,0.75,0.0,0.25,positive,1,0,True
+26,43,Awareness of the importance of waste workers in society,Inclusion of informal actors in public waste-related regulations,1.6666666666666667,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,28,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Amount of financing committed to traceable plastic feedstock solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+19,24,Amount of financing committed to waste management solutions,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+40,35,Level of existing regulations allowing the participation of informal actors in public collection systems,Availability of legal identity documents of informal waste workers (KTP),2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+15,20,Favorability of existing public regulations towards informal actors,Level of reliance of waste-related business models on informal labor,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+27,16,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Level of collaboration between formal & informal entities in plastic value chains,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+25,28,Ability for seperation of waste streams at source,Amount of financing committed to traceable plastic feedstock solutions,2.0,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+40,34,Level of existing regulations allowing the participation of informal actors in public collection systems,Public access to waste pricing information,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+38,16,Number of actors involved in plastic supply chains,Level of collaboration between formal & informal entities in plastic value chains,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+31,9,Amount of dedicated public policies focusing on informal sector integration,Level of value-added knowledge & skills among informal waste workers,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+16,5,Level of collaboration between formal & informal entities in plastic value chains,Flexiblity of relationships between informal workers & collection entities,2.5,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+38,29,Number of actors involved in plastic supply chains,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+23,32,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Perceived negative effects of formal registration of plastic waste collection organizations,2.0,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+10,17,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Availabilty of waste-related data,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,14,Level of collaboration between formal & informal entities in plastic value chains,Recognition of waste workers and their importance in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+3,9,Access of waste pickers to waste pricing information,Level of value-added knowledge & skills among informal waste workers,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+3,25,Access of waste pickers to waste pricing information,Ability for seperation of waste streams at source,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,42,Inclusion of informal actors in public waste-related regulations,Optimisation of waste collection travel routes for informal waste collectors,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+17,40,Availabilty of waste-related data,Level of existing regulations allowing the participation of informal actors in public collection systems,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+12,8,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",Traceability/transparency of informal sector operations,2.0,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+15,38,Favorability of existing public regulations towards informal actors,Number of actors involved in plastic supply chains,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+24,26,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Awareness of the importance of waste workers in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+7,18,Digital literacy of informal waste workers,Demand for fully traceable plastic feedstock from ethical sources,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+14,0,Recognition of waste workers and their importance in society,Willingness of informal sector actors to become formalised,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+6,43,Amount of funding committed to traceable plastic feedstock solutions,Inclusion of informal actors in public waste-related regulations,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+17,24,Availabilty of waste-related data,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+27,15,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Favorability of existing public regulations towards informal actors,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+34,17,Public access to waste pricing information,Availabilty of waste-related data,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+2,22,Divergence of traceability requirements of large plastic feedstock buyers,Amount of funding committed to waste management solutions,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+37,29,Price for fully traceable plastic feedstock,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+7,41,Digital literacy of informal waste workers,Competition among formal and informal collectors,2.0,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+7,8,Digital literacy of informal waste workers,Traceability/transparency of informal sector operations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,15,Inclusion of informal actors in public waste-related regulations,Favorability of existing public regulations towards informal actors,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+32,8,Perceived negative effects of formal registration of plastic waste collection organizations,Traceability/transparency of informal sector operations,2.333333333333333,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+36,22,Resistance to change from established actors in plastic value chains,Amount of funding committed to waste management solutions,2.0,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+31,40,Amount of dedicated public policies focusing on informal sector integration,Level of existing regulations allowing the participation of informal actors in public collection systems,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,34,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Public access to waste pricing information,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+23,14,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Recognition of waste workers and their importance in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+41,43,Competition among formal and informal collectors,Inclusion of informal actors in public waste-related regulations,1.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+13,16,Amount of public regulation of plastic supply chain requirements,Level of collaboration between formal & informal entities in plastic value chains,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+22,8,Amount of funding committed to waste management solutions,Traceability/transparency of informal sector operations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+26,10,Awareness of the importance of waste workers in society,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+23,40,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Level of existing regulations allowing the participation of informal actors in public collection systems,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+39,5,Amount of regulatory requirements for public sector procurement,Flexiblity of relationships between informal workers & collection entities,2.333333333333333,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+18,30,Demand for fully traceable plastic feedstock from ethical sources,Available data about informal waste collection activities,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,0,Regulatory enforcement of public waste management policies at waste management entities,Willingness of informal sector actors to become formalised,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,40,Inclusion of informal actors in public waste-related regulations,Level of existing regulations allowing the participation of informal actors in public collection systems,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+37,24,Price for fully traceable plastic feedstock,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+21,18,Market segmentation by type of waste,Demand for fully traceable plastic feedstock from ethical sources,2.5,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+28,0,Amount of financing committed to traceable plastic feedstock solutions,Willingness of informal sector actors to become formalised,2.0,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+8,15,Traceability/transparency of informal sector operations,Favorability of existing public regulations towards informal actors,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+37,41,Price for fully traceable plastic feedstock,Competition among formal and informal collectors,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+3,42,Access of waste pickers to waste pricing information,Optimisation of waste collection travel routes for informal waste collectors,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+24,17,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Availabilty of waste-related data,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+1,25,Perceived benefits for formal registration of plastic waste collection organizations,Ability for seperation of waste streams at source,2.0,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+4,13,Similarity (defined as coherence & integration) of traceability requirements of large buyers,Amount of public regulation of plastic supply chain requirements,2.0,1,0,3,1,4,0.75,0.0,0.25,positive,1,0,True
+34,27,Public access to waste pricing information,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.0,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+9,17,Level of value-added knowledge & skills among informal waste workers,Availabilty of waste-related data,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+25,6,Ability for seperation of waste streams at source,Amount of funding committed to traceable plastic feedstock solutions,2.25,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+18,24,Demand for fully traceable plastic feedstock from ethical sources,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+39,8,Amount of regulatory requirements for public sector procurement,Traceability/transparency of informal sector operations,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+12,28,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",Amount of financing committed to traceable plastic feedstock solutions,2.0,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+19,10,Amount of financing committed to waste management solutions,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+1,16,Perceived benefits for formal registration of plastic waste collection organizations,Level of collaboration between formal & informal entities in plastic value chains,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+12,29,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)","Number of events, conferences and gatherings promoting collaboration in waste management value chains",2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+22,17,Amount of funding committed to waste management solutions,Availabilty of waste-related data,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+8,35,Traceability/transparency of informal sector operations,Availability of legal identity documents of informal waste workers (KTP),2.5,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+17,22,Availabilty of waste-related data,Amount of funding committed to waste management solutions,2.4,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+37,14,Price for fully traceable plastic feedstock,Recognition of waste workers and their importance in society,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+18,13,Demand for fully traceable plastic feedstock from ethical sources,Amount of public regulation of plastic supply chain requirements,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+9,25,Level of value-added knowledge & skills among informal waste workers,Ability for seperation of waste streams at source,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+18,28,Demand for fully traceable plastic feedstock from ethical sources,Amount of financing committed to traceable plastic feedstock solutions,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+40,2,Level of existing regulations allowing the participation of informal actors in public collection systems,Divergence of traceability requirements of large plastic feedstock buyers,2.2,1,0,3,1,4,0.75,0.0,0.25,positive,1,0,True
+16,18,Level of collaboration between formal & informal entities in plastic value chains,Demand for fully traceable plastic feedstock from ethical sources,2.0,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+13,39,Amount of public regulation of plastic supply chain requirements,Amount of regulatory requirements for public sector procurement,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+29,32,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Perceived negative effects of formal registration of plastic waste collection organizations,2.333333333333333,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+22,28,Amount of funding committed to waste management solutions,Amount of financing committed to traceable plastic feedstock solutions,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+14,26,Recognition of waste workers and their importance in society,Awareness of the importance of waste workers in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+38,1,Number of actors involved in plastic supply chains,Perceived benefits for formal registration of plastic waste collection organizations,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+41,42,Competition among formal and informal collectors,Optimisation of waste collection travel routes for informal waste collectors,3.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+0,13,Willingness of informal sector actors to become formalised,Amount of public regulation of plastic supply chain requirements,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+41,26,Competition among formal and informal collectors,Awareness of the importance of waste workers in society,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+26,31,Awareness of the importance of waste workers in society,Amount of dedicated public policies focusing on informal sector integration,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+26,30,Awareness of the importance of waste workers in society,Available data about informal waste collection activities,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+31,24,Amount of dedicated public policies focusing on informal sector integration,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+21,8,Market segmentation by type of waste,Traceability/transparency of informal sector operations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,31,Inclusion of informal actors in public waste-related regulations,Amount of dedicated public policies focusing on informal sector integration,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+26,16,Awareness of the importance of waste workers in society,Level of collaboration between formal & informal entities in plastic value chains,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+18,33,Demand for fully traceable plastic feedstock from ethical sources,Regulatory enforcement of public waste management policies at waste management entities,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+8,17,Traceability/transparency of informal sector operations,Availabilty of waste-related data,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,6,Level of collaboration between formal & informal entities in plastic value chains,Amount of funding committed to traceable plastic feedstock solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+23,30,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Available data about informal waste collection activities,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+6,9,Amount of funding committed to traceable plastic feedstock solutions,Level of value-added knowledge & skills among informal waste workers,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+12,23,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)","Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+6,28,Amount of funding committed to traceable plastic feedstock solutions,Amount of financing committed to traceable plastic feedstock solutions,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+13,4,Amount of public regulation of plastic supply chain requirements,Similarity (defined as coherence & integration) of traceability requirements of large buyers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,26,Traceability/transparency of informal sector operations,Awareness of the importance of waste workers in society,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+26,24,Awareness of the importance of waste workers in society,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+26,18,Awareness of the importance of waste workers in society,Demand for fully traceable plastic feedstock from ethical sources,2.25,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+4,32,Similarity (defined as coherence & integration) of traceability requirements of large buyers,Perceived negative effects of formal registration of plastic waste collection organizations,2.25,0,3,0,1,3,0.0,1.0,0.0,negative,0,1,True
+1,24,Perceived benefits for formal registration of plastic waste collection organizations,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.0,1,0,3,1,4,0.75,0.0,0.25,positive,1,0,True
+5,16,Flexiblity of relationships between informal workers & collection entities,Level of collaboration between formal & informal entities in plastic value chains,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,36,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Resistance to change from established actors in plastic value chains,2.0,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+6,8,Amount of funding committed to traceable plastic feedstock solutions,Traceability/transparency of informal sector operations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+18,34,Demand for fully traceable plastic feedstock from ethical sources,Public access to waste pricing information,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,39,Regulatory enforcement of public waste management policies at waste management entities,Amount of regulatory requirements for public sector procurement,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+40,22,Level of existing regulations allowing the participation of informal actors in public collection systems,Amount of funding committed to waste management solutions,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,29,Level of collaboration between formal & informal entities in plastic value chains,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+32,23,Perceived negative effects of formal registration of plastic waste collection organizations,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.0,0,3,1,0,4,0.25,0.75,0.0,negative,0,1,True
+29,10,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,20,Inclusion of informal actors in public waste-related regulations,Level of reliance of waste-related business models on informal labor,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+20,12,Level of reliance of waste-related business models on informal labor,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+31,7,Amount of dedicated public policies focusing on informal sector integration,Digital literacy of informal waste workers,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+18,27,Demand for fully traceable plastic feedstock from ethical sources,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+33,22,Regulatory enforcement of public waste management policies at waste management entities,Amount of funding committed to waste management solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+17,15,Availabilty of waste-related data,Favorability of existing public regulations towards informal actors,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+24,40,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Level of existing regulations allowing the participation of informal actors in public collection systems,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+26,19,Awareness of the importance of waste workers in society,Amount of financing committed to waste management solutions,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+30,42,Available data about informal waste collection activities,Optimisation of waste collection travel routes for informal waste collectors,1.6666666666666667,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,9,Level of collaboration between formal & informal entities in plastic value chains,Level of value-added knowledge & skills among informal waste workers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,17,Inclusion of informal actors in public waste-related regulations,Availabilty of waste-related data,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+16,28,Level of collaboration between formal & informal entities in plastic value chains,Amount of financing committed to traceable plastic feedstock solutions,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+16,35,Level of collaboration between formal & informal entities in plastic value chains,Availability of legal identity documents of informal waste workers (KTP),2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+9,12,Level of value-added knowledge & skills among informal waste workers,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.0,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+29,8,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Traceability/transparency of informal sector operations,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+8,22,Traceability/transparency of informal sector operations,Amount of funding committed to waste management solutions,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+28,16,Amount of financing committed to traceable plastic feedstock solutions,Level of collaboration between formal & informal entities in plastic value chains,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,26,Inclusion of informal actors in public waste-related regulations,Awareness of the importance of waste workers in society,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+14,12,Recognition of waste workers and their importance in society,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+7,36,Digital literacy of informal waste workers,Resistance to change from established actors in plastic value chains,2.25,1,3,0,0,4,0.0,0.75,0.25,negative,0,1,True
+18,10,Demand for fully traceable plastic feedstock from ethical sources,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+30,18,Available data about informal waste collection activities,Demand for fully traceable plastic feedstock from ethical sources,1.6666666666666667,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+7,24,Digital literacy of informal waste workers,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+19,16,Amount of financing committed to waste management solutions,Level of collaboration between formal & informal entities in plastic value chains,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+15,12,Favorability of existing public regulations towards informal actors,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+39,12,Amount of regulatory requirements for public sector procurement,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+8,30,Traceability/transparency of informal sector operations,Available data about informal waste collection activities,1.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+1,27,Perceived benefits for formal registration of plastic waste collection organizations,Level of knowledge about waste-related innovation opportunities among entrepreneurs,1.75,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+14,22,Recognition of waste workers and their importance in society,Amount of funding committed to waste management solutions,2.25,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+9,24,Level of value-added knowledge & skills among informal waste workers,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+9,0,Level of value-added knowledge & skills among informal waste workers,Willingness of informal sector actors to become formalised,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+27,31,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Amount of dedicated public policies focusing on informal sector integration,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+17,28,Availabilty of waste-related data,Amount of financing committed to traceable plastic feedstock solutions,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+4,17,Similarity (defined as coherence & integration) of traceability requirements of large buyers,Availabilty of waste-related data,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+31,23,Amount of dedicated public policies focusing on informal sector integration,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,3,Level of collaboration between formal & informal entities in plastic value chains,Access of waste pickers to waste pricing information,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,13,Regulatory enforcement of public waste management policies at waste management entities,Amount of public regulation of plastic supply chain requirements,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+35,28,Availability of legal identity documents of informal waste workers (KTP),Amount of financing committed to traceable plastic feedstock solutions,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+38,25,Number of actors involved in plastic supply chains,Ability for seperation of waste streams at source,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+15,32,Favorability of existing public regulations towards informal actors,Perceived negative effects of formal registration of plastic waste collection organizations,2.0,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+7,14,Digital literacy of informal waste workers,Recognition of waste workers and their importance in society,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+8,2,Traceability/transparency of informal sector operations,Divergence of traceability requirements of large plastic feedstock buyers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+6,39,Amount of funding committed to traceable plastic feedstock solutions,Amount of regulatory requirements for public sector procurement,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+42,28,Optimisation of waste collection travel routes for informal waste collectors,Amount of financing committed to traceable plastic feedstock solutions,2.25,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+9,16,Level of value-added knowledge & skills among informal waste workers,Level of collaboration between formal & informal entities in plastic value chains,1.6666666666666667,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+6,16,Amount of funding committed to traceable plastic feedstock solutions,Level of collaboration between formal & informal entities in plastic value chains,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+27,29,Level of knowledge about waste-related innovation opportunities among entrepreneurs,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+12,0,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",Willingness of informal sector actors to become formalised,2.5,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+22,25,Amount of funding committed to waste management solutions,Ability for seperation of waste streams at source,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+29,30,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Available data about informal waste collection activities,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+26,40,Awareness of the importance of waste workers in society,Level of existing regulations allowing the participation of informal actors in public collection systems,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+5,3,Flexiblity of relationships between informal workers & collection entities,Access of waste pickers to waste pricing information,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+11,22,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,Amount of funding committed to waste management solutions,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+10,19,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Amount of financing committed to waste management solutions,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+13,8,Amount of public regulation of plastic supply chain requirements,Traceability/transparency of informal sector operations,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+39,15,Amount of regulatory requirements for public sector procurement,Favorability of existing public regulations towards informal actors,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+22,13,Amount of funding committed to waste management solutions,Amount of public regulation of plastic supply chain requirements,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+7,9,Digital literacy of informal waste workers,Level of value-added knowledge & skills among informal waste workers,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,0,Traceability/transparency of informal sector operations,Willingness of informal sector actors to become formalised,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+6,27,Amount of funding committed to traceable plastic feedstock solutions,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,12,Level of collaboration between formal & informal entities in plastic value chains,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+6,40,Amount of funding committed to traceable plastic feedstock solutions,Level of existing regulations allowing the participation of informal actors in public collection systems,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+16,41,Level of collaboration between formal & informal entities in plastic value chains,Competition among formal and informal collectors,2.0,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+0,35,Willingness of informal sector actors to become formalised,Availability of legal identity documents of informal waste workers (KTP),2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+14,23,Recognition of waste workers and their importance in society,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+30,41,Available data about informal waste collection activities,Competition among formal and informal collectors,2.333333333333333,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+19,29,Amount of financing committed to waste management solutions,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+1,0,Perceived benefits for formal registration of plastic waste collection organizations,Willingness of informal sector actors to become formalised,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+34,19,Public access to waste pricing information,Amount of financing committed to waste management solutions,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+19,6,Amount of financing committed to waste management solutions,Amount of funding committed to traceable plastic feedstock solutions,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+27,38,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Number of actors involved in plastic supply chains,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,31,Level of collaboration between formal & informal entities in plastic value chains,Amount of dedicated public policies focusing on informal sector integration,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,35,Inclusion of informal actors in public waste-related regulations,Availability of legal identity documents of informal waste workers (KTP),2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+18,4,Demand for fully traceable plastic feedstock from ethical sources,Similarity (defined as coherence & integration) of traceability requirements of large buyers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+7,3,Digital literacy of informal waste workers,Access of waste pickers to waste pricing information,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+0,8,Willingness of informal sector actors to become formalised,Traceability/transparency of informal sector operations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+42,15,Optimisation of waste collection travel routes for informal waste collectors,Favorability of existing public regulations towards informal actors,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+9,32,Level of value-added knowledge & skills among informal waste workers,Perceived negative effects of formal registration of plastic waste collection organizations,2.25,1,3,0,0,4,0.0,0.75,0.25,negative,0,1,True
+13,26,Amount of public regulation of plastic supply chain requirements,Awareness of the importance of waste workers in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,23,Inclusion of informal actors in public waste-related regulations,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+30,17,Available data about informal waste collection activities,Availabilty of waste-related data,2.25,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,6,Inclusion of informal actors in public waste-related regulations,Amount of funding committed to traceable plastic feedstock solutions,2.25,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+41,16,Competition among formal and informal collectors,Level of collaboration between formal & informal entities in plastic value chains,2.333333333333333,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+31,42,Amount of dedicated public policies focusing on informal sector integration,Optimisation of waste collection travel routes for informal waste collectors,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,17,Level of collaboration between formal & informal entities in plastic value chains,Availabilty of waste-related data,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+13,22,Amount of public regulation of plastic supply chain requirements,Amount of funding committed to waste management solutions,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+22,29,Amount of funding committed to waste management solutions,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+19,42,Amount of financing committed to waste management solutions,Optimisation of waste collection travel routes for informal waste collectors,2.5,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+7,34,Digital literacy of informal waste workers,Public access to waste pricing information,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+28,10,Amount of financing committed to traceable plastic feedstock solutions,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+27,22,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Amount of funding committed to waste management solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+27,28,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Amount of financing committed to traceable plastic feedstock solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+11,26,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,Awareness of the importance of waste workers in society,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+29,12,"Number of events, conferences and gatherings promoting collaboration in waste management value chains","Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,24,Inclusion of informal actors in public waste-related regulations,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.75,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+13,21,Amount of public regulation of plastic supply chain requirements,Market segmentation by type of waste,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+31,4,Amount of dedicated public policies focusing on informal sector integration,Similarity (defined as coherence & integration) of traceability requirements of large buyers,2.2,1,0,3,1,4,0.75,0.0,0.25,positive,1,0,True
+10,22,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Amount of funding committed to waste management solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+35,26,Availability of legal identity documents of informal waste workers (KTP),Awareness of the importance of waste workers in society,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+23,26,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Awareness of the importance of waste workers in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+26,35,Awareness of the importance of waste workers in society,Availability of legal identity documents of informal waste workers (KTP),2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+0,19,Willingness of informal sector actors to become formalised,Amount of financing committed to waste management solutions,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+34,38,Public access to waste pricing information,Number of actors involved in plastic supply chains,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+12,26,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",Awareness of the importance of waste workers in society,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+20,40,Level of reliance of waste-related business models on informal labor,Level of existing regulations allowing the participation of informal actors in public collection systems,2.2,1,0,3,1,4,0.75,0.0,0.25,positive,1,0,True
+19,22,Amount of financing committed to waste management solutions,Amount of funding committed to waste management solutions,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+28,6,Amount of financing committed to traceable plastic feedstock solutions,Amount of funding committed to traceable plastic feedstock solutions,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+4,2,Similarity (defined as coherence & integration) of traceability requirements of large buyers,Divergence of traceability requirements of large plastic feedstock buyers,2.2,0,3,0,1,3,0.0,1.0,0.0,negative,0,1,True
+33,24,Regulatory enforcement of public waste management policies at waste management entities,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,43,Regulatory enforcement of public waste management policies at waste management entities,Inclusion of informal actors in public waste-related regulations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,16,Inclusion of informal actors in public waste-related regulations,Level of collaboration between formal & informal entities in plastic value chains,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+19,12,Amount of financing committed to waste management solutions,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+7,6,Digital literacy of informal waste workers,Amount of funding committed to traceable plastic feedstock solutions,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+8,39,Traceability/transparency of informal sector operations,Amount of regulatory requirements for public sector procurement,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+31,10,Amount of dedicated public policies focusing on informal sector integration,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,11,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,21,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Market segmentation by type of waste,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+6,1,Amount of funding committed to traceable plastic feedstock solutions,Perceived benefits for formal registration of plastic waste collection organizations,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+23,22,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Amount of funding committed to waste management solutions,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+22,36,Amount of funding committed to waste management solutions,Resistance to change from established actors in plastic value chains,2.25,0,3,0,1,3,0.0,1.0,0.0,negative,0,1,True
+11,19,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,Amount of financing committed to waste management solutions,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+24,36,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Resistance to change from established actors in plastic value chains,2.333333333333333,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+22,19,Amount of funding committed to waste management solutions,Amount of financing committed to waste management solutions,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+0,2,Willingness of informal sector actors to become formalised,Divergence of traceability requirements of large plastic feedstock buyers,2.25,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+28,12,Amount of financing committed to traceable plastic feedstock solutions,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+31,8,Amount of dedicated public policies focusing on informal sector integration,Traceability/transparency of informal sector operations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+25,10,Ability for seperation of waste streams at source,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+42,19,Optimisation of waste collection travel routes for informal waste collectors,Amount of financing committed to waste management solutions,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+21,43,Market segmentation by type of waste,Inclusion of informal actors in public waste-related regulations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+31,15,Amount of dedicated public policies focusing on informal sector integration,Favorability of existing public regulations towards informal actors,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+8,16,Traceability/transparency of informal sector operations,Level of collaboration between formal & informal entities in plastic value chains,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+42,9,Optimisation of waste collection travel routes for informal waste collectors,Level of value-added knowledge & skills among informal waste workers,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+15,43,Favorability of existing public regulations towards informal actors,Inclusion of informal actors in public waste-related regulations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+14,6,Recognition of waste workers and their importance in society,Amount of funding committed to traceable plastic feedstock solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+14,1,Recognition of waste workers and their importance in society,Perceived benefits for formal registration of plastic waste collection organizations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+42,11,Optimisation of waste collection travel routes for informal waste collectors,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+43,5,Inclusion of informal actors in public waste-related regulations,Flexiblity of relationships between informal workers & collection entities,2.0,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+23,24,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+25,17,Ability for seperation of waste streams at source,Availabilty of waste-related data,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+5,26,Flexiblity of relationships between informal workers & collection entities,Awareness of the importance of waste workers in society,2.0,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+23,0,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Willingness of informal sector actors to become formalised,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+36,24,Resistance to change from established actors in plastic value chains,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.0,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+6,22,Amount of funding committed to traceable plastic feedstock solutions,Amount of funding committed to waste management solutions,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+0,23,Willingness of informal sector actors to become formalised,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+12,35,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",Availability of legal identity documents of informal waste workers (KTP),2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+30,26,Available data about informal waste collection activities,Awareness of the importance of waste workers in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+38,41,Number of actors involved in plastic supply chains,Competition among formal and informal collectors,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+7,40,Digital literacy of informal waste workers,Level of existing regulations allowing the participation of informal actors in public collection systems,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+43,19,Inclusion of informal actors in public waste-related regulations,Amount of financing committed to waste management solutions,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+38,2,Number of actors involved in plastic supply chains,Divergence of traceability requirements of large plastic feedstock buyers,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+26,12,Awareness of the importance of waste workers in society,"Awareness about social services among informal waste workers (BPJS, education opportunities, etc.)",2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+36,1,Resistance to change from established actors in plastic value chains,Perceived benefits for formal registration of plastic waste collection organizations,2.333333333333333,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+1,15,Perceived benefits for formal registration of plastic waste collection organizations,Favorability of existing public regulations towards informal actors,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+15,26,Favorability of existing public regulations towards informal actors,Awareness of the importance of waste workers in society,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+21,11,Market segmentation by type of waste,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,37,Traceability/transparency of informal sector operations,Price for fully traceable plastic feedstock,2.25,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+30,40,Available data about informal waste collection activities,Level of existing regulations allowing the participation of informal actors in public collection systems,2.5,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+23,16,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Level of collaboration between formal & informal entities in plastic value chains,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+25,27,Ability for seperation of waste streams at source,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+17,26,Availabilty of waste-related data,Awareness of the importance of waste workers in society,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+9,37,Level of value-added knowledge & skills among informal waste workers,Price for fully traceable plastic feedstock,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+15,23,Favorability of existing public regulations towards informal actors,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,24,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.0,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+17,27,Availabilty of waste-related data,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+11,16,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,Level of collaboration between formal & informal entities in plastic value chains,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+15,9,Favorability of existing public regulations towards informal actors,Level of value-added knowledge & skills among informal waste workers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,26,Regulatory enforcement of public waste management policies at waste management entities,Awareness of the importance of waste workers in society,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+1,3,Perceived benefits for formal registration of plastic waste collection organizations,Access of waste pickers to waste pricing information,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+24,1,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Perceived benefits for formal registration of plastic waste collection organizations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+38,17,Number of actors involved in plastic supply chains,Availabilty of waste-related data,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,14,Regulatory enforcement of public waste management policies at waste management entities,Recognition of waste workers and their importance in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+34,14,Public access to waste pricing information,Recognition of waste workers and their importance in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+38,42,Number of actors involved in plastic supply chains,Optimisation of waste collection travel routes for informal waste collectors,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+30,27,Available data about informal waste collection activities,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+42,38,Optimisation of waste collection travel routes for informal waste collectors,Number of actors involved in plastic supply chains,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+6,0,Amount of funding committed to traceable plastic feedstock solutions,Willingness of informal sector actors to become formalised,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+18,6,Demand for fully traceable plastic feedstock from ethical sources,Amount of funding committed to traceable plastic feedstock solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+7,17,Digital literacy of informal waste workers,Availabilty of waste-related data,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+0,30,Willingness of informal sector actors to become formalised,Available data about informal waste collection activities,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+9,31,Level of value-added knowledge & skills among informal waste workers,Amount of dedicated public policies focusing on informal sector integration,2.4,0,0,4,1,4,1.0,0.0,0.0,positive,1,0,True
+16,0,Level of collaboration between formal & informal entities in plastic value chains,Willingness of informal sector actors to become formalised,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+31,33,Amount of dedicated public policies focusing on informal sector integration,Regulatory enforcement of public waste management policies at waste management entities,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+40,8,Level of existing regulations allowing the participation of informal actors in public collection systems,Traceability/transparency of informal sector operations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,23,Traceability/transparency of informal sector operations,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+26,14,Awareness of the importance of waste workers in society,Recognition of waste workers and their importance in society,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,42,Traceability/transparency of informal sector operations,Optimisation of waste collection travel routes for informal waste collectors,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+5,36,Flexiblity of relationships between informal workers & collection entities,Resistance to change from established actors in plastic value chains,2.25,0,3,0,1,3,0.0,1.0,0.0,negative,0,1,True
+22,0,Amount of funding committed to waste management solutions,Willingness of informal sector actors to become formalised,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+6,24,Amount of funding committed to traceable plastic feedstock solutions,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+23,7,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Digital literacy of informal waste workers,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+1,13,Perceived benefits for formal registration of plastic waste collection organizations,Amount of public regulation of plastic supply chain requirements,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,9,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Level of value-added knowledge & skills among informal waste workers,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+20,43,Level of reliance of waste-related business models on informal labor,Inclusion of informal actors in public waste-related regulations,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+40,14,Level of existing regulations allowing the participation of informal actors in public collection systems,Recognition of waste workers and their importance in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+30,19,Available data about informal waste collection activities,Amount of financing committed to waste management solutions,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+23,35,"Access to social services of informal waste workers (BPJS, education opportunities, etc.)",Availability of legal identity documents of informal waste workers (KTP),2.0,1,0,3,2,4,0.75,0.0,0.25,positive,1,0,True
+8,28,Traceability/transparency of informal sector operations,Amount of financing committed to traceable plastic feedstock solutions,2.5,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+14,33,Recognition of waste workers and their importance in society,Regulatory enforcement of public waste management policies at waste management entities,2.0,0,0,4,1,4,1.0,0.0,0.0,positive,1,0,True
+18,29,Demand for fully traceable plastic feedstock from ethical sources,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",2.25,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+30,32,Available data about informal waste collection activities,Perceived negative effects of formal registration of plastic waste collection organizations,2.2,1,3,0,1,4,0.0,0.75,0.25,negative,0,1,True
+17,3,Availabilty of waste-related data,Access of waste pickers to waste pricing information,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+19,33,Amount of financing committed to waste management solutions,Regulatory enforcement of public waste management policies at waste management entities,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+1,17,Perceived benefits for formal registration of plastic waste collection organizations,Availabilty of waste-related data,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+34,18,Public access to waste pricing information,Demand for fully traceable plastic feedstock from ethical sources,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+15,34,Favorability of existing public regulations towards informal actors,Public access to waste pricing information,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+28,11,Amount of financing committed to traceable plastic feedstock solutions,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+38,10,Number of actors involved in plastic supply chains,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+0,14,Willingness of informal sector actors to become formalised,Recognition of waste workers and their importance in society,2.0,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+31,43,Amount of dedicated public policies focusing on informal sector integration,Inclusion of informal actors in public waste-related regulations,2.0,0,0,4,1,4,1.0,0.0,0.0,positive,1,0,True
+16,8,Level of collaboration between formal & informal entities in plastic value chains,Traceability/transparency of informal sector operations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,10,Level of collaboration between formal & informal entities in plastic value chains,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+17,31,Availabilty of waste-related data,Amount of dedicated public policies focusing on informal sector integration,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+0,34,Willingness of informal sector actors to become formalised,Public access to waste pricing information,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,42,Level of collaboration between formal & informal entities in plastic value chains,Optimisation of waste collection travel routes for informal waste collectors,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+29,26,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Awareness of the importance of waste workers in society,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+0,20,Willingness of informal sector actors to become formalised,Level of reliance of waste-related business models on informal labor,2.0,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+22,41,Amount of funding committed to waste management solutions,Competition among formal and informal collectors,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,6,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Amount of funding committed to traceable plastic feedstock solutions,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+40,28,Level of existing regulations allowing the participation of informal actors in public collection systems,Amount of financing committed to traceable plastic feedstock solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,30,Level of collaboration between formal & informal entities in plastic value chains,Available data about informal waste collection activities,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+36,32,Resistance to change from established actors in plastic value chains,Perceived negative effects of formal registration of plastic waste collection organizations,2.5,0,0,4,0,4,1.0,0.0,0.0,positive,1,0,True
+36,33,Resistance to change from established actors in plastic value chains,Regulatory enforcement of public waste management policies at waste management entities,2.0,0,3,0,1,3,0.0,1.0,0.0,negative,0,1,True
+31,0,Amount of dedicated public policies focusing on informal sector integration,Willingness of informal sector actors to become formalised,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+18,15,Demand for fully traceable plastic feedstock from ethical sources,Favorability of existing public regulations towards informal actors,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,38,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Number of actors involved in plastic supply chains,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+25,41,Ability for seperation of waste streams at source,Competition among formal and informal collectors,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+14,24,Recognition of waste workers and their importance in society,Willingness of waste supply chain actors to provide fair payment to informal waste workers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+24,31,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Amount of dedicated public policies focusing on informal sector integration,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+39,20,Amount of regulatory requirements for public sector procurement,Level of reliance of waste-related business models on informal labor,2.0,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+27,19,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Amount of financing committed to waste management solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+18,22,Demand for fully traceable plastic feedstock from ethical sources,Amount of funding committed to waste management solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+31,6,Amount of dedicated public policies focusing on informal sector integration,Amount of funding committed to traceable plastic feedstock solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,20,Regulatory enforcement of public waste management policies at waste management entities,Level of reliance of waste-related business models on informal labor,2.5,1,3,0,0,4,0.0,0.75,0.25,negative,0,1,True
+17,8,Availabilty of waste-related data,Traceability/transparency of informal sector operations,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+11,4,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,Similarity (defined as coherence & integration) of traceability requirements of large buyers,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+30,4,Available data about informal waste collection activities,Similarity (defined as coherence & integration) of traceability requirements of large buyers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+40,43,Level of existing regulations allowing the participation of informal actors in public collection systems,Inclusion of informal actors in public waste-related regulations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+21,25,Market segmentation by type of waste,Ability for seperation of waste streams at source,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+6,19,Amount of funding committed to traceable plastic feedstock solutions,Amount of financing committed to waste management solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+10,27,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Level of knowledge about waste-related innovation opportunities among entrepreneurs,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+25,21,Ability for seperation of waste streams at source,Market segmentation by type of waste,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+3,21,Access of waste pickers to waste pricing information,Market segmentation by type of waste,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+33,42,Regulatory enforcement of public waste management policies at waste management entities,Optimisation of waste collection travel routes for informal waste collectors,1.75,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+7,28,Digital literacy of informal waste workers,Amount of financing committed to traceable plastic feedstock solutions,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+24,16,Willingness of waste supply chain actors to provide fair payment to informal waste workers,Level of collaboration between formal & informal entities in plastic value chains,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+37,0,Price for fully traceable plastic feedstock,Willingness of informal sector actors to become formalised,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+0,41,Willingness of informal sector actors to become formalised,Competition among formal and informal collectors,2.5,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+31,26,Amount of dedicated public policies focusing on informal sector integration,Awareness of the importance of waste workers in society,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+6,31,Amount of funding committed to traceable plastic feedstock solutions,Amount of dedicated public policies focusing on informal sector integration,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+15,31,Favorability of existing public regulations towards informal actors,Amount of dedicated public policies focusing on informal sector integration,1.8,1,0,3,1,4,0.75,0.0,0.25,positive,1,0,True
+22,10,Amount of funding committed to waste management solutions,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+27,32,Level of knowledge about waste-related innovation opportunities among entrepreneurs,Perceived negative effects of formal registration of plastic waste collection organizations,2.333333333333333,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+0,40,Willingness of informal sector actors to become formalised,Level of existing regulations allowing the participation of informal actors in public collection systems,2.25,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+11,41,Amount of long-term plastic off-take agreements between large buyers of plastic feedstock and waste collection entities,Competition among formal and informal collectors,2.0,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+15,22,Favorability of existing public regulations towards informal actors,Amount of funding committed to waste management solutions,1.5,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+29,36,"Number of events, conferences and gatherings promoting collaboration in waste management value chains",Resistance to change from established actors in plastic value chains,2.0,0,3,0,0,3,0.0,1.0,0.0,negative,0,1,True
+10,26,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,Awareness of the importance of waste workers in society,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+36,5,Resistance to change from established actors in plastic value chains,Flexiblity of relationships between informal workers & collection entities,2.25,0,3,0,1,3,0.0,1.0,0.0,negative,0,1,True
+13,17,Amount of public regulation of plastic supply chain requirements,Availabilty of waste-related data,2.25,1,0,3,0,4,0.75,0.0,0.25,positive,1,0,True
+3,5,Access of waste pickers to waste pricing information,Flexiblity of relationships between informal workers & collection entities,2.25,0,1,3,0,4,0.75,0.25,0.0,positive,1,0,True
+18,1,Demand for fully traceable plastic feedstock from ethical sources,Perceived benefits for formal registration of plastic waste collection organizations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+1,10,Perceived benefits for formal registration of plastic waste collection organizations,Level of interest/enthusiasm among entrepreneurs for the development of waste-related innovations,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+43,39,Inclusion of informal actors in public waste-related regulations,Amount of regulatory requirements for public sector procurement,2.0,0,0,3,1,3,1.0,0.0,0.0,positive,1,0,True
+8,4,Traceability/transparency of informal sector operations,Similarity (defined as coherence & integration) of traceability requirements of large buyers,2.333333333333333,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+16,26,Level of collaboration between formal & informal entities in plastic value chains,Awareness of the importance of waste workers in society,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+8,31,Traceability/transparency of informal sector operations,Amount of dedicated public policies focusing on informal sector integration,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+21,42,Market segmentation by type of waste,Optimisation of waste collection travel routes for informal waste collectors,2.25,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
+30,8,Available data about informal waste collection activities,Traceability/transparency of informal sector operations,2.6666666666666665,0,0,3,0,3,1.0,0.0,0.0,positive,1,0,True
