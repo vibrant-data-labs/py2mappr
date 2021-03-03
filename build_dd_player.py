@@ -114,7 +114,7 @@ sn1 = create_snapshot(
             "edgeSizeStrat": "fixed", #  "attr" // "fixed"
             "edgeSizeAttr": "votes", # size by 
             "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
-            "edgeColorAttr": "target",
+            "edgeColorAttr": "OriginalColor",
             "edgeSizeMultiplier": 0.6,
             # neighbor rendering
             "nodeSelectionDegree": 1,
@@ -225,7 +225,7 @@ sn2 = create_snapshot(
             "edgeSizeAttr": "votes", # size by similarity
             "edgeSizeMultiplier": .7,
             "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
-            "edgeColorAttr": "target",
+            "edgeColorAttr": "OriginalColor",
             
             # neighbor rendering
             "nodeSelectionDegree": 0,
