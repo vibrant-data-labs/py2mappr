@@ -49,9 +49,8 @@ sn1 = create_snapshot(
                 <p><b>Link direction </b><span>is</span><i> <b>clockwise influence from source to the target. </b></i></p>",
     layout_params={
         "plotType": "scatterplot",
-        "xaxis": "x_tsne",
-        "yaxis": "y_tsne",
-        
+        "xaxis": "category_cluster_X",
+        "yaxis": "category_cluster_Y",
         "settings": {
             # node size
             "nodeSizeAttr": "Degree",
@@ -115,8 +114,8 @@ sn1 = create_snapshot(
             "edgeSizeStrat": "fixed", #  "attr" // "fixed"
             "edgeSizeAttr": "votes", # size by 
             "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
-            "edgeColorAttr": "OriginalColor",
-            "edgeSizeMultiplier": 1,
+            "edgeColorAttr": "target",
+            "edgeSizeMultiplier": 0.6,
             # neighbor rendering
             "nodeSelectionDegree": 1,
             # labels
@@ -124,8 +123,10 @@ sn1 = create_snapshot(
             # layout rendering
             "xAxShow": False,
             "yAxShow": False,
-            "scatterAspect": 0.5, # shigher than 0.5 spreads out the scatterplot horizontally
-            "savedZoomLevel": -1,
+            "invertX": False,
+            "invertY": False,
+            "scatterAspect": 0.3, # shigher than 0.5 spreads out the scatterplot horizontally
+            "savedZoomLevel": 1,
         },
     },
 )
@@ -154,7 +155,7 @@ sn2 = create_snapshot(
     layout_params={
         "plotType": "scatterplot",
         "xaxis": "Upstream <<-->> Downstream (Pctl)",
-        "yaxis": "Average Keystone Score",
+        "yaxis": "Avg Keystone Score",
         "camera": {
                 "normalizeCoords": True,
                 "x": 0,
@@ -163,7 +164,7 @@ sn2 = create_snapshot(
             },
         "settings": {
             # node sizing
-            "nodeSizeAttr": "Average Keystone Score", 
+            "nodeSizeAttr": "Avg Keystone Score", 
             "nodeSizeScaleStrategy": "linear", # "linear" or "log"
             "nodeSizeMin": 3,
             "nodeSizeMax": 20,
@@ -223,16 +224,9 @@ sn2 = create_snapshot(
             "edgeSizeStrat": "fixed", # or "attr"
             "edgeSizeAttr": "votes", # size by similarity
             "edgeSizeMultiplier": .7,
-            "edgeColorStrat": "attr",  # source / target / gradient / attr / select
-            "edgeColorAttr": "isNeg",
-            "edgeColorPaletteNumeric": [
-                        {
-                            "col": "#828282"
-                        },
-                        {
-                            "col": "#d34545"
-                        }
-                    ],
+            "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
+            "edgeColorAttr": "target",
+            
             # neighbor rendering
             "nodeSelectionDegree": 0,
             # labels
@@ -240,6 +234,8 @@ sn2 = create_snapshot(
             # layout rendering
             "xAxShow": True,
             "yAxShow": True,
+            "invertX": False,
+            "invertY": True,
             "scatterAspect": 0.5, # shigher than 0.5 spreads out the scatterplot horizontally
             # node right panel
             "nodeFocusShow": False,

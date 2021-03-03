@@ -72,8 +72,8 @@
                 "y_scaler_type": "linear",
                 "y_scaler_base": 10,
                 "y_scaler_exponent": 2,
-                "xaxis": "x_tsne",
-                "yaxis": "y_tsne",
+                "xaxis": "category_cluster_X",
+                "yaxis": "category_cluster_Y",
                 "settings": {
                     "drawNodes": true,
                     "drawSelectedInHover": true,
@@ -151,7 +151,7 @@
                     "pinRightPanel": true,
                     "maxZoomLevel": 10,
                     "minZoomLevel": -10,
-                    "savedZoomLevel": -1,
+                    "savedZoomLevel": 1,
                     "zoomingRatio": 1.7,
                     "mouseZoomDuration": 500,
                     "legendAutoOpen": true,
@@ -176,8 +176,8 @@
                     "xAxTooltip": "",
                     "yAxTooltip": "",
                     "invertX": false,
-                    "invertY": true,
-                    "scatterAspect": 0.5,
+                    "invertY": false,
+                    "scatterAspect": 0.3,
                     "mapboxMapID": "vibrantdata.ioeefmpb",
                     "nodeOnHover": "expand",
                     "nodeOnClick": "select",
@@ -273,11 +273,11 @@
                     "edgeSizeDefaultValue": 1.5,
                     "edgeSizeMin": 0.1,
                     "edgeSizeMax": 10,
-                    "edgeSizeMultiplier": 1,
+                    "edgeSizeMultiplier": 0.6,
                     "edgeSizePartitionEnabled": false,
                     "edgeSizePartitionAttr": "Cluster",
                     "edgeColorStrat": "gradient",
-                    "edgeColorAttr": "OriginalColor",
+                    "edgeColorAttr": "target",
                     "edgeColorScaleStrategy": "linear",
                     "edgeColorScaleInvert": false,
                     "edgeColorScaleExponent": 2.5,
@@ -364,7 +364,7 @@
             "summaryImg": "https://www.dl.dropboxusercontent.com/s/t1idhxri5j0lihj/Screen%20Shot%202021-03-01%20at%209.16.13%20AM.png?dl=0",
             "snapName": "Consensus Network",
             "subtitle": "Root causes linked by what affects what",
-            "id": "862743e5-f43f-4f08-b37d-d28e965d48eb"
+            "id": "ecdc506a-52f9-452e-8a3e-5542e6c532ac"
         },
         {
             "layout": {
@@ -382,7 +382,7 @@
                 "y_scaler_base": 10,
                 "y_scaler_exponent": 2,
                 "xaxis": "Upstream <<-->> Downstream (Pctl)",
-                "yaxis": "Average Keystone Score",
+                "yaxis": "Avg Keystone Score",
                 "settings": {
                     "drawNodes": true,
                     "drawSelectedInHover": true,
@@ -492,7 +492,7 @@
                     "nodeOnClick": "select",
                     "nodeOnDblClick": "select",
                     "nodeSizeStrat": "attr",
-                    "nodeSizeAttr": "Average Keystone Score",
+                    "nodeSizeAttr": "Avg Keystone Score",
                     "nodeSizeScaleStrategy": "linear",
                     "nodeSizeScaleInvert": false,
                     "nodeSizeScaleExponent": 2.5,
@@ -585,8 +585,8 @@
                     "edgeSizeMultiplier": 0.7,
                     "edgeSizePartitionEnabled": false,
                     "edgeSizePartitionAttr": "Cluster",
-                    "edgeColorStrat": "attr",
-                    "edgeColorAttr": "isNeg",
+                    "edgeColorStrat": "gradient",
+                    "edgeColorAttr": "target",
                     "edgeColorScaleStrategy": "linear",
                     "edgeColorScaleInvert": false,
                     "edgeColorScaleExponent": 2.5,
@@ -598,10 +598,10 @@
                     "edgeColorCycleCategoryColors": true,
                     "edgeColorPaletteNumeric": [
                         {
-                            "col": "#828282"
+                            "col": "#ee4444"
                         },
                         {
-                            "col": "#d34545"
+                            "col": "#3399ff"
                         }
                     ],
                     "edgeColorPaletteOrdinal": [
@@ -679,7 +679,7 @@
             "summaryImg": "https://www.dl.dropboxusercontent.com/s/ps973fk5pbsfhs9/Screen%20Shot%202021-03-01%20at%206.58.06%20PM.png?dl=0",
             "snapName": "Catalysts",
             "subtitle": "Catalyst factors and their relative position in the problem hierarchy",
-            "id": "acb06d3a-d2a7-43fc-b690-e4e433195d86"
+            "id": "cce34e88-6ca2-4396-961d-1ed6ded96cbd"
         }
     ]
 }
