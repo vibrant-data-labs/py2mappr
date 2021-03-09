@@ -14,3 +14,4 @@ projects # elb projects
 /dist/
 /*.egg-info
 .DS_Store
+projects/private

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+##!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jan 14 19:33:18 2021
@@ -16,15 +16,14 @@ import webbrowser
 
 # configure the files and folders
 wd = pl.Path.cwd()
-projectPath = wd /("projects/TOG_20Q3")
-inDataPath = projectPath/"data_in"
+projectPath = wd / ("projects/private/TOG_20Q3")
+inDataPath = projectPath / "data_in"
 
-nodesFile = inDataPath /"nodes.csv"
-linksFile = inDataPath /"links.csv"
-nodeAttrsFile = inDataPath/"node_attrs.csv"
-outFolder = projectPath/"data_out"
-# TODO: ?? linkAttrsFile = inDataPath/"link_attrs.csv"  ??? 
-
+nodesFile = inDataPath / "nodes.csv"
+linksFile = inDataPath / "links.csv"
+nodeAttrsFile = inDataPath / "node_attrs.csv"
+outFolder = projectPath / "data_out"
+# TODO: ?? linkAttrsFile = inDataPath/"link_attrs.csv"  ???
 
 
 # configure the mapping for the read parameters
@@ -38,8 +37,7 @@ link_attr_map = {"source": "Source", "target": "Target", "isDirectional": "isDir
 
 sn1 = create_snapshot(
     name="Grantee/Investee Keyword Themes",
-    
-    subtitle="Investments and Projects clustered into themes",  
+    subtitle="Investments and Projects clustered into themes",
     summaryImg="https://www.dl.dropboxusercontent.com/s/zoyuukkrvx1d8mw/Screen%20Shot%202021-03-08%20at%201.56.19%20PM.png?dl=0",
     description="<p><span>This is an 'adjacency network' all active funding recipients from 8 companies - \
             Omidyar Network, Democracy Fund, Humanity United, Flourish, Luminate, Ulupono, Omidyar Network India, \
@@ -60,71 +58,43 @@ sn1 = create_snapshot(
             <b>Node Size:</b>  Relative Funding Amount</p><p>\
             <b>Link Thickness:</b> Tag similarity</p>",
     layout_params={
-        "plotType": "scatterplot",
-        "xaxis": "x_tsne",
-        "yaxis": "y_tnse",
+        "plotType": "original",  # "scatterplot",
+        # "xaxis": "Year(s) Funded",  # "x_tsne",
+        # "yaxis": "# Investments",  # "y_tnse",
         "settings": {
             # node size
             "nodeSizeAttr": "Relative Amount",
-            "nodeSizeScaleStrategy": "linear", # "linear" or "log"
+            "nodeSizeScaleStrategy": "linear",  # "linear" or "log"
             "nodeSizeMin": 5,
             "nodeSizeMax": 15,
             "nodeSizeMultiplier": 0.9,
             "bigOnTop": False,
             # node color and images
-            "nodeColorAttr": "Category",
+            "nodeColorAttr": "Funder(s)",  # "Category",
             "nodeColorPaletteOrdinal": [
-                       {
-                            "col": "#ee4444"
-                        },
-                        {
-                            "col": "#4d82c4"
-                        },
-                        {
-                            "col": "#0099ff"
-                        },
-                        {
-                            "col": "#ffcc00"
-                        },
-                        {
-                            "col": "#66cccc"
-                        },
-                        {
-                            "col": "#99cc00"
-                        },
-                        {
-                            "col": "#993399"
-                        },
-                        {
-                            "col": "#b23333"
-                        },
-                        {
-                            "col": "#994c00"
-                        },
-                        {
-                            "col": "#0073bf"
-                        },
-                        {
-                            "col": "#bf9900"
-                        },
-                        {
-                            "col": "#4c9999"
-                        },
-                        {
-                            "col": "#739900"
-                        },
-                        {
-                            "col": "#732673"
-                        }
-                    ],
+                {"col": "#ee4444"},
+                {"col": "#4d82c4"},
+                {"col": "#0099ff"},
+                {"col": "#ffcc00"},
+                {"col": "#66cccc"},
+                {"col": "#99cc00"},
+                {"col": "#993399"},
+                {"col": "#b23333"},
+                {"col": "#994c00"},
+                {"col": "#0073bf"},
+                {"col": "#bf9900"},
+                {"col": "#4c9999"},
+                {"col": "#739900"},
+                {"col": "#732673"},
+            ],
             "nodeImageShow": True,
             "nodeImageAttr": "Picture",
             # link rendering
             "drawEdges": True,
             "edgeCurvature": 0,
-            "edgeDirectionalRender": "outgoing", # "outgoing", "incoming", "all"
-            "edgeSizeStrat": "fixed", #  "attr" // "fixed"
-            "edgeSizeAttr": "weight", # size by 
+            "edgeDirectionalRender": "outgoing",  # "outgoing", "incoming", "all"
+            "edgeSizeStrat": "fixed",  #  "attr" // "fixed"
+            "edgeSizeAttr": "weight",  # size by
             "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
             "edgeColorAttr": "OriginalColor",
             "edgeSizeMultiplier": 0.6,
@@ -133,11 +103,11 @@ sn1 = create_snapshot(
             # labels
             "drawGroupLabels": True,
             # layout rendering
-            "xAxShow": False,
-            "yAxShow": False,
-            "invertX": False,
-            "invertY": False,
-            "scatterAspect": 0.3, # shigher than 0.5 spreads out the scatterplot horizontally
+            # "xAxShow": False,
+            # "yAxShow": False,
+            # "invertX": False,
+            # "invertY": False,
+            # "scatterAspect": 0.3,  # shigher than 0.5 spreads out the scatterplot horizontally
             "savedZoomLevel": 1,
         },
     },
@@ -161,103 +131,68 @@ sn2 = create_snapshot(
         "plotType": "geo",
         "xaxis": "Latitude",
         "yaxis": "Longitude",
-        "camera": {
-                "normalizeCoords": True,
-                "x": 0,
-                "y": 43.9873417721519,
-                "r": 1.5
-            },
+        "camera": {"normalizeCoords": True, "x": 0, "y": 43.9873417721519, "r": 1.5},
         "settings": {
             # node sizing
-            "nodeSizeAttr": "Relative Amount", 
-            "nodeSizeScaleStrategy": "linear", # "linear" or "log"
+            "nodeSizeAttr": "Relative Amount",
+            "nodeSizeScaleStrategy": "linear",  # "linear" or "log"
             "nodeSizeMin": 3,
             "nodeSizeMax": 20,
             "nodeSizeMultiplier": 1.3,
             # node color and images
             "nodeColorAttr": "Funder(s)",
             "nodeColorPaletteOrdinal": [
-                        {
-                            "col": "#ee4444"
-                        },
-                        {
-                            "col": "#4d82c4"
-                        },
-                        {
-                            "col": "#0099ff"
-                        },
-                        {
-                            "col": "#ffcc00"
-                        },
-                        {
-                            "col": "#66cccc"
-                        },
-                        {
-                            "col": "#99cc00"
-                        },
-                        {
-                            "col": "#993399"
-                        },
-                        {
-                            "col": "#b23333"
-                        },
-                        {
-                            "col": "#994c00"
-                        },
-                        {
-                            "col": "#0073bf"
-                        },
-                        {
-                            "col": "#bf9900"
-                        },
-                        {
-                            "col": "#4c9999"
-                        },
-                        {
-                            "col": "#739900"
-                        },
-                        {
-                            "col": "#732673"
-                        }
-                    ],
+                {"col": "#ee4444"},
+                {"col": "#4d82c4"},
+                {"col": "#0099ff"},
+                {"col": "#ffcc00"},
+                {"col": "#66cccc"},
+                {"col": "#99cc00"},
+                {"col": "#993399"},
+                {"col": "#b23333"},
+                {"col": "#994c00"},
+                {"col": "#0073bf"},
+                {"col": "#bf9900"},
+                {"col": "#4c9999"},
+                {"col": "#739900"},
+                {"col": "#732673"},
+            ],
             "nodeImageShow": True,
             "nodeImageAttr": "Picture",
             # link rendering
             "drawEdges": False,
             "edgeCurvature": 0.6,
             "edgeDirectionalRender": "outgoing",
-            "edgeSizeStrat": "fixed", # or "attr"
-            "edgeSizeAttr": "weight", # size by similarity
-            "edgeSizeMultiplier": .4,
+            "edgeSizeStrat": "fixed",  # or "attr"
+            "edgeSizeAttr": "weight",  # size by similarity
+            "edgeSizeMultiplier": 0.4,
             "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
             "edgeColorAttr": "OriginalColor",
-            
             # neighbor rendering
             "nodeSelectionDegree": 1,
             # labels
-            "drawGroupLabels": False, # cluster labels
+            "drawGroupLabels": False,  # cluster labels
             # layout rendering
             "xAxShow": False,
             "yAxShow": False,
             "invertX": False,
             "invertY": True,
-            "scatterAspect": 0.5, # shigher than 0.5 spreads out the scatterplot horizontally
+            "scatterAspect": 0.5,  # shigher than 0.5 spreads out the scatterplot horizontally
             "isGeo": True,  # geographic layout
             # node right panel
             "nodeFocusShow": False,
-            
         },
     },
 )
 
-'''
+"""
 # snapshot - network with default layout settings (see layout templates/snapshot.yaml)
 sn3 = create_snapshot(
     name="default settings",
     subtitle="network",
     summaryImg="https://placekitten.com/220/100",
 )
-'''
+"""
 
 # create map
 create_map(
@@ -266,9 +201,9 @@ create_map(
     nodeAttrsFile,
     node_attr_map,
     link_attr_map,
-    snapshots=[sn1,sn2], #,sn3],
+    snapshots=[sn1, sn2],  # ,sn3],
     playerSettings={
-        "startPage": "filter", #filter // snapshots // list // legend // splash?
+        "startPage": "filter",  # filter // snapshots // list // legend // splash?
         "headerTitle": "Investment Landscape",
         "modalTitle": "Investment Landscape",
         "headerImageUrl": "",
@@ -292,24 +227,22 @@ create_map(
     outFolder=outFolder,
 )
 
-    
+
 # launch local server and open browser to display map
-def launch_map_in_browser(project_directory, PORT=5000): 
-    '''
+def launch_map_in_browser(project_directory, PORT=5000):
+    """
     launches a new tab in active browswer with the map
     project_directory : string, the directory with the project data (index.html and 'data' folder)
-    '''
+    """
     web_dir = os.path.join(os.getcwd(), project_directory)
-    os.chdir(web_dir) # change to project directory where index.html and data folder are
-        
-    webbrowser.open_new_tab('http://localhost:'+str(PORT)) # open new tab in browswer
-    
-    Handler = http.server.SimpleHTTPRequestHandler 
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
-        print("serving at port", PORT, "go to http://localhost:%s \nCTL_C to quit\n"%str(PORT))
-        httpd.serve_forever()  
-    
-    
-launch_map_in_browser(str(outFolder), PORT=5000)
+    os.chdir(web_dir)  # change to project directory where index.html and data folder are
 
-    
+    webbrowser.open_new_tab("http://localhost:" + str(PORT))  # open new tab in browswer
+
+    Handler = http.server.SimpleHTTPRequestHandler
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print("serving at port", PORT, "go to http://localhost:%s \nCTL_C to quit\n" % str(PORT))
+        httpd.serve_forever()
+
+
+launch_map_in_browser(str(outFolder), PORT=5000)
