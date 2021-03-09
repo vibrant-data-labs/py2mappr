@@ -10,7 +10,7 @@ archive
 network
 
 #projects # elb projects
-projects/private # keep all private projects in the private folder
+projects/private
 
 /dist/
 /*.egg-info
