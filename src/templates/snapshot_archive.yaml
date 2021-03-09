@@ -1,0 +1,236 @@
+layout:
+  plotType: "network"
+  listAttrs: []
+  listSortReverse: false
+  listSortAttrAr: []
+  listSortReverseAr: []
+  listColSizes: []
+  listCompareIds: []
+  x_scaler_type: "linear"
+  x_scaler_base: 10
+  x_scaler_exponent: 2
+  y_scaler_type: "linear"
+  y_scaler_base: 10
+  y_scaler_exponent: 2
+  xaxis: "OriginalX"
+  yaxis: "OriginalY"
+  settings:
+    drawNodes: true
+    drawSelectedInHover: true
+    borderRatio: 0.15
+    bigOnTop: false
+    nodeImageShow: false
+    nodeImageAttr: "Picture"
+    invalidNodeColor: "rgb(250,250,250)"
+    nodeOpacity: 1
+    nodeOpacityAttr: "OriginalSize"
+    nodeOpacityStrategy: "fixed"
+    nodeUnselectedOpacity: 0.25
+    nodeColorDensityStrategy: "fixed"
+    nodeColorDensityAttr: "OriginalSize"
+    nodeColorDensity: 1
+    nodeColorDensityOrder: true
+    nodeHighlightRatio: 1.2
+    nodeHighlightBorderOffset: 6
+    nodeHighlightBorderWidth: 1
+    nodeHighlightColorStrategy: "node-color-light"
+    nodeHighlightColor: "rgb(200,0,0)"
+    nodeSelectionRatio: 1.2
+    nodeSelectionBorderOffset: 0
+    nodeSelectionBorderWidth: 3
+    nodeSelectionColorStrategy: "node-color-light"
+    nodeSelectionColor: "rgb(200,0,0)"
+    nodeSelectionDegree: 1
+    nodeFocusShow: true
+    nodeFocusContext: "click"
+    nodeFocusRenderTemplate: "node-right-panel"
+    nodeFocusShowNeighbors: true
+    nodeFocusNeighborsButton: true
+    nodeFocusNeighborsBefore: null
+    nodeFocusTextLength: 100
+    showNodeDetailOnLoad: false
+    testSignificance: false
+    drawEdges: true
+    edgeCurvature: 0.6
+    edgePath: true
+    edgeDirectional: false
+    edgeTaper: false
+    edgeTaperScale: 0.5
+    edgeSaturation: 1
+    edgeUnselectedOpacity: 0.2
+    edgeDirectionalRender: "outgoing"
+    drawLabels: true
+    drawEdgeLabels: false
+    drawGroupLabels: false
+    labelColor: "#000000"
+    labelOutlineColor: "#ffffff"
+    labelSize: "proportional"
+    labelScale: 1
+    labelSizeRatio: 0.5
+    defaultLabelSize: 12
+    minLabelSize: 12
+    maxLabelSize: 16
+    labelDisplayStrat: "topXSizeCollision"
+    labelThreshold: 1
+    labelMaxCount: 300
+    labelDefaultShow: true
+    labelAttr: "OriginalLabel"
+    labelHoverAttr: "OriginalLabel"
+    labelClickAttr: "OriginalLabel"
+    labelDegree: 0
+    labelOpacity: 1
+    labelUnselectedOpacity: 0
+    theme: "light"
+    backgroundColor: "#ffffff"
+    backgroundImage: ""
+    showBackgroundImage: false
+    backgroundSize: "cover"
+    backgroundPosition: "50%"
+    zoomLock: false
+    panLock: false
+    pinRightPanel: true
+    maxZoomLevel: 10
+    minZoomLevel: -10
+    savedZoomLevel: -2
+    zoomingRatio: 1.7
+    mouseZoomDuration: 500
+    legendAutoOpen: true
+    hideLegend: false
+    globalLegendOn: true
+    entityLegendOn: true
+    legendTitle: ""
+    legendTitleTooltip: ""
+    showGlobalNodesLegend: true
+    showGlobalEdgesLegend: true
+    showEntityNodesLegend: true
+    showEntityEdgesLegend: true
+    enableLinkMapping: true
+    legendSortOption: "frequency"
+    legendSortIsReverse: true
+    xAxShow: true
+    yAxShow: true
+    xAxTickShow: true
+    yAxTickShow: true
+    xAxLabel: ""
+    yAxLabel: ""
+    xAxTooltip: ""
+    yAxTooltip: ""
+    invertX: false
+    invertY: true
+    scatterAspect: 0.5
+    mapboxMapID: "vibrantdata.ioeefmpb"
+    nodeOnHover: "expand"
+    nodeOnClick: "select"
+    nodeOnDblClick: "select"
+    nodeSizeStrat: "attr"
+    nodeSizeAttr: "OriginalY"
+    nodeSizeScaleStrategy: "log"
+    nodeSizeScaleInvert: false
+    nodeSizeScaleExponent: 2.5
+    nodeSizeScaleBase: 10
+    nodeSizeNumericDomain: "from_data"
+    nodeSizeNumericDomainMin: 0
+    nodeSizeNumericDomainMax: 100
+    nodeSizeDefaultValue: 15
+    nodeSizeMin: 4
+    nodeSizeMax: 15
+    nodeSizeMultiplier: 1.7
+    nodeSizePartitionEnabled: false
+    nodeSizePartitionAttr: "Cluster"
+    nodeColorStrat: "attr"
+    nodeColorAttr: "OriginalX"
+    nodeColorScaleStrategy: "linear"
+    nodeColorScaleInvert: false
+    nodeColorScaleExponent: 2.5
+    nodeColorScaleBase: 10
+    nodeColorNumericDomain: "from_data"
+    nodeColorNumericDomainMin: 0
+    nodeColorNumericDomainMax: 100
+    nodeColorDefaultValue: "rgb(200,200,200)"
+    nodeColorCycleCategoryColors: true
+    nodeColorPaletteNumeric:
+      - col: "#ee4444"
+      - col: "#3399ff"
+    nodeColorPaletteOrdinal:
+      - col: "#bd0f0f" #"#ee4444"
+      - col: "#5b41a3" #"#cc6600"
+      - col: "#0099ff"
+      - col: "#ffcc00"
+      - col: "#66cccc"
+      - col: "#99cc00"
+      - col: "#993399"
+      - col: "#b23333"
+      - col: "#077861" ##994c00"
+      - col: "#0073bf"
+      - col: "#bf9900"
+      - col: "#4c9999"
+      - col: "#739900"
+      - col: "#732673"
+    nodeColorNumericScalerType: "HCL Long"
+    edgeSizeStrat: "fixed"
+    edgeSizeAttr: "OriginalSize"
+    edgeSizeScaleStrategy: "linear"
+    edgeSizeScaleInvert: false
+    edgeSizeScaleExponent: 2.5
+    edgeSizeScaleBase: 10
+    edgeSizeNumericDomain: "from_data"
+    edgeSizeNumericDomainMin: 0
+    edgeSizeNumericDomainMax: 100
+    edgeSizeDefaultValue: 1.5
+    edgeSizeMin: 0.1
+    edgeSizeMax: 10
+    edgeSizeMultiplier: 1
+    edgeSizePartitionEnabled: false
+    edgeSizePartitionAttr: "Cluster"
+    edgeColorStrat: "gradient"
+    edgeColorAttr: "OriginalColor"
+    edgeColorScaleStrategy: "linear"
+    edgeColorScaleInvert: false
+    edgeColorScaleExponent: 2.5
+    edgeColorScaleBase: 10
+    edgeColorNumericDomain: "from_data"
+    edgeColorNumericDomainMin: 0
+    edgeColorNumericDomainMax: 100
+    edgeColorDefaultValue: "rgb(200,200,200)"
+    edgeColorCycleCategoryColors: true
+    edgeColorPaletteNumeric:
+      - col: "#ee4444"
+      - col: "#3399ff"
+    edgeColorPaletteOrdinal:
+      - col: "#ee4444"
+      - col: "#cc6600"
+      - col: "#0099ff"
+      - col: "#ffcc00"
+      - col: "#66cccc"
+      - col: "#99cc00"
+      - col: "#993399"
+      - col: "#b23333"
+      - col: "#994c00"
+      - col: "#0073bf"
+      - col: "#bf9900"
+      - col: "#4c9999"
+      - col: "#739900"
+      - col: "#732673"
+    edgeColorNumericScalerType: "HCL Long"
+    xaxis: "OriginalX"
+    yaxis: "OriginalY"
+    isGeo: false
+camera:
+  normalizeCoords: true
+  r: 1.3347904373327948
+  x: 0
+  y: 0
+isDeleted: false
+isEnabled: true
+processSelection: false
+ndSelState: []
+edSelState: []
+embed: ""
+text: ""
+picture: ""
+audio: ""
+descr: "<p><b>Snapshot Description</b></p><p>accepts html</p>"
+summaryImg: "https://img.icons8.com/dotty/240/000000/picture.png"
+snapName: "Default Snapshot"
+subtitle: ""
+"id": "reqd-snap-id"

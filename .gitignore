@@ -9,9 +9,9 @@
 archive
 network
 
-projects # elb projects
+#projects # elb projects
+projects/private # keep all private projects in the private folder
 
 /dist/
 /*.egg-info
 .DS_Store
-projects/private
