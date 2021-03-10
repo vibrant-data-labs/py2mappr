@@ -23,7 +23,6 @@ nodesFile = inDataPath / "nodes.csv"
 linksFile = inDataPath / "links.csv"
 nodeAttrsFile = inDataPath / "node_attrs.csv"
 outFolder = projectPath / "data_out"
-# TODO: ?? linkAttrsFile = inDataPath/"link_attrs.csv"  ???
 
 
 # configure the mapping for the read parameters
@@ -60,7 +59,7 @@ sn1 = create_snapshot(
     layout_params={
         "plotType": "original",  # "scatterplot",
         # "xaxis": "Year(s) Funded",  # "x_tsne",
-        # "yaxis": "# Investments",  # "y_tnse",
+        # "yaxis": "# Investments",  # "y_tsne",
         "settings": {
             # node size
             "nodeSizeAttr": "Relative Amount",
@@ -70,7 +69,7 @@ sn1 = create_snapshot(
             "nodeSizeMultiplier": 0.9,
             "bigOnTop": False,
             # node color and images
-            "nodeColorAttr": "Funder(s)",  # "Category",
+            "nodeColorAttr": "Keyword Theme", 
             "nodeColorPaletteOrdinal": [
                 {"col": "#ee4444"},
                 {"col": "#4d82c4"},
@@ -93,7 +92,7 @@ sn1 = create_snapshot(
             "drawEdges": True,
             "edgeCurvature": 0,
             "edgeDirectionalRender": "outgoing",  # "outgoing", "incoming", "all"
-            "edgeSizeStrat": "fixed",  #  "attr" // "fixed"
+            "edgeSizeStrat": "attr",  #  "attr" // "fixed"
             "edgeSizeAttr": "weight",  # size by
             "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
             "edgeColorAttr": "OriginalColor",
@@ -136,8 +135,8 @@ sn2 = create_snapshot(
             # node sizing
             "nodeSizeAttr": "Relative Amount",
             "nodeSizeScaleStrategy": "linear",  # "linear" or "log"
-            "nodeSizeMin": 3,
-            "nodeSizeMax": 20,
+            "nodeSizeMin": 2,
+            "nodeSizeMax": 10,
             "nodeSizeMultiplier": 1.3,
             # node color and images
             "nodeColorAttr": "Funder(s)",
