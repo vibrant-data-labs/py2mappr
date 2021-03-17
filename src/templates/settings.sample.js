@@ -73,7 +73,7 @@ module.exports = {
           savedZoomLevel: 10, // valid for geo layout only
 
           zoomingRatio: 1.7, // configuration for zooming using +- buttons on screen
-          mouseZoomDuration: 30000,
+          mouseZoomDuration: 500,
 
           xAxShow: false, // valid for scatterplot
           yAxShow: false, 
