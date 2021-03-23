@@ -25,6 +25,15 @@ import pathlib as pl  # path library
 #from pandas.api.types import is_numeric_dtype
 
 
+def buildNetworkX(linksdf, id1='Source', id2='Target', directed=False):
+    # build networkX graph object from links dataframe with 'Source' and 'Target' ids
+    # generate list of links from dataframe
+    linkdata = [(getattr(link, id1), getattr(link, id2)) for link in linksdf.itertuples()]
+    g = nx.DiGraph() if directed else nx.Graph()
+    g.add_edges_from(linkdata)
+    return g
+
+
 def tsne_layout(ndf, ldf):   
     ## add tsne-layout coordinates and draw
     bn.add_layout(ndf, linksdf=ldf, nw=None)
@@ -69,18 +78,19 @@ def write_network_to_excel (ndf, ldf, outname):
     ldf.to_excel(writer,'Links', index=False)
     writer.save()  
 
-def get_column_types_openmappr(ndf):
+def get_default_column_types_openmappr(ndf):
     typeDict = {} # dictionary of column name: (attrType, renderType, searchable) 
+    countThresh = 0.02*len(ndf) # number of records to evaluate type (e.g. 2% of total)
     for col in ndf.columns.tolist():
         if is_string_dtype(ndf[col]):
             typeDict[col] = ("string", "wide-tag-cloud", "TRUE")  # fill all strings, then below modify specific ones
-        if sum(ndf[col].apply(lambda x: len(str(x)) > 100)) > 3: # long text
+        if sum(ndf[col].apply(lambda x: len(str(x)) > 100)) > countThresh: # long text
             typeDict[col] = ("string", "text", "TRUE")
-        if sum(ndf[col].apply(lambda x:"http" in str(x))) > 3: # urls
+        if sum(ndf[col].apply(lambda x:"http" in str(x))) > countThresh: # urls
             typeDict[col] = ("url", "default", "FALSE")
-        if sum(ndf[col].apply(lambda x:"|" in str(x))) > 3:  # tags
+        if sum(ndf[col].apply(lambda x:"|" in str(x))) > countThresh:  # tags
             typeDict[col] = ("liststring", "tag-cloud", "TRUE")
-        if sum(ndf[col].apply(lambda x:"png" in str(x))) > 2: # images
+        if sum(ndf[col].apply(lambda x:"png" in str(x))) > countThresh: # images
             typeDict[col] = ("picture", "default", "FALSE")                
         if ndf[col].dtype == 'float64':           # float
             typeDict[col] = ("float", "histogram", "FALSE")
@@ -96,54 +106,79 @@ def get_column_types_openmappr(ndf):
 def write_openmappr_files(ndf, ldf, datapath, labelCol='Name', 
                     hide_add = [],  # list custom attributes to hide from filters
                     hideProfile_add =[], # list custom attributes to hide from right profile
-                    hideSearch_add = []):  # list custom attributes to hide from search
+                    hideSearch_add = [], # list custom attributes to hide from search
+                    liststring_add = [], # list attributes to treat as liststring 
+                    tags_add = [],  # list of custom attrubtes to render as tag-cloud
+                    wide_tags_add = [], # list of custom attribs to render wide tag-cloud
+                    text_str_add = []  # list of custom attribs to render as long text in profile
+                    ):  
     '''
     Write files for py2mappr: 
-        datapath = place to write 'data_in' files for py2mappr
         nodes.csv
         links.csv
         node_attrs_template.csv (template for specifying attribute rendering settings in openmappr)
-        link_att
+        line_att
     '''
     print('\nWriting openMappr files')
     ## generate csv's for py2mappr
+
+    # prepare and write nodes.csv
     ndf['label'] = ndf[labelCol] 
     ndf['OriginalLabel'] = ndf['label']
     ndf['OriginalX'] = ndf['x_tsne']
     ndf['OriginalY'] = ndf['y_tsne']
     ndf['OriginalSize'] = 10
-    ndf.fillna("empty", inplace=True)
+
     ndf.to_csv(datapath/"nodes.csv", index=False)
+
+    # prepare and write links.csv
     ldf['isDirectional'] = True
     ldf.to_csv(datapath/"links.csv", index=False)
 
-    # get default mapping of column type to attrType, renderType, searchable
-    typeDict =  get_column_types_openmappr(ndf)  
+    # prepare and write note attribute settings template (node_attrs_template.csv)
         
-    # create node attribute metadata template:
+       # create node attribute metadata template:
     node_attr_df = ndf.dtypes.reset_index()
     node_attr_df.columns = ['id', 'dtype']
-   
-    node_attr_df['title'] = node_attr_df['id']
-    node_attr_df[['descr', 'maxLabel', 'minLabel', 'overlayAnchor']] = ''
+
+
+        # map automatic default attrType, renderType, searchable based on column types
+        # get dictionary of default mapping of column to to attrType, renderType, searchable
+    typeDict =  get_default_column_types_openmappr(ndf)  
     node_attr_df['attrType'] = node_attr_df['id'].apply(lambda x: typeDict[x][0])
     node_attr_df['renderType'] = node_attr_df['id'].apply(lambda x: typeDict[x][1])
     node_attr_df['searchable'] = node_attr_df['id'].apply(lambda x: typeDict[x][2])
 
-    # attributes to hide/show in filters
-    hide = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id', 'x_tsne', 'y_tsne'] + hide_add))
-    node_attr_df['visible'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hide else 'TRUE')
-    # attributes to hide/show in profile
-    hideProfile = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id', 'x_tsne', 'y_tsne'] + hideProfile_add))
-    node_attr_df['visibleInProfile'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hideProfile else 'TRUE')
-    # additional non-bumeric attributes to hide from search
-    node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'FALSE' if str(x['id']) in hideSearch_add else x['searchable'], axis=1)
+        # custom string renderType settings for string attributes
+    node_attr_df['attrType'] = node_attr_df.apply(lambda x: 'liststring' if str(x['id']) in liststring_add
+                                                               else x['attrType'], axis=1)
 
+    node_attr_df['renderType'] = node_attr_df.apply(lambda x: 'wide-tag-cloud' if str(x['id']) in wide_tags_add 
+                                                               else 'tag-cloud' if str(x['id']) in tags_add
+                                                               else 'text' if str(x['id']) in text_str_add
+                                                               else x['renderType'], axis=1)
+       # additional attributes to hide from filters
+    hide = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id'] + hide_add))
+    node_attr_df['visible'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hide else 'TRUE')
+ 
+       # additional attributes to hide from profile
+    hideProfile = list(set(hide + hideProfile_add))
+    node_attr_df['visibleInProfile'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hideProfile else 'TRUE')
+    
+       # additional attributes to hide from search
+    hideSearch = list(set(hide + hideSearch_add))
+    node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'FALSE' if str(x['id']) in hideSearch else x['searchable'], axis=1)
+
+       # add default alias title and node metadata description columns
+    node_attr_df['title'] = node_attr_df['id']
+    node_attr_df[['descr', 'maxLabel', 'minLabel', 'overlayAnchor']] = ''   
     node_attr_df[['descr', 'maxLabel', 'minLabel', 'overlayAnchor']] = ''
+
+       # re-order final columns and write template file
     meta_cols = ['id', 'visible', 'visibleInProfile', 'searchable', 'title', 'attrType', 'renderType', 'descr', 'maxLabel', 'minLabel', 'overlayAnchor']
     node_attr_df = node_attr_df[meta_cols]
+    node_attr_df.to_csv(datapath/"node_attrs.csv", index=False)
 
-    node_attr_df.to_csv(datapath/"node_attrs_template.csv", index=False)  
 
 
 def build_network(df, attr, blacklist=[], idf=True, linksPer=3, minTags=1): 
