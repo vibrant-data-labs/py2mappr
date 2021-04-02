@@ -16,9 +16,11 @@ network analysis functions to
 
 import sys
 import pandas as pd
-sys.path.append("../../Github/Tag2Network/tag2network/")  # add Tag2Network directory
+sys.path.append("../../Tag2Network/tag2network/")  # add Tag2Network directory
 import Network.BuildNetwork as bn
 import Network.DrawNetwork as dn
+from Network.BuildNetwork import addLouvainClusters
+from Network.ClusteringProperties import basicClusteringProperties
 import networkx as nx
 from pandas.api.types import is_string_dtype
 import pathlib as pl  # path library
@@ -36,6 +38,7 @@ def buildNetworkX(linksdf, id1='Source', id2='Target', directed=False):
 
 def tsne_layout(ndf, ldf):   
     ## add tsne-layout coordinates and draw
+    # dependency: https://github.com/foodwebster/Tag2Network
     bn.add_layout(ndf, linksdf=ldf, nw=None)
     ndf.rename(columns={"x": "x_tsne", "y": "y_tsne"}, inplace=True)
     return ndf
@@ -66,10 +69,53 @@ def plot_network(ndf, edf, plot_name, x='x_tsne', y='y_tsne', colorBy='Cluster',
     # ndf = nodes dataframe
     # ldf = links dataframe 
     # plotname = name of file to save image (pdf)
+    # dependency: https://github.com/foodwebster/Tag2Network
     nw = bn.buildNetworkX(edf) # build networkX graph object
     node_sizes = ndf.loc[:,sizeBy]*sizeScale
     node_sizes_array = node_sizes.values # convert sizeBy col to array for sizing
     dn.draw_network_categorical(nw, ndf, node_attr=colorBy, plotfile=plot_name, x=x, y=y, node_size=node_sizes_array)
+
+def min_max_normalize_column (df, col):
+    return (df[col] - df[col].min()) / (df[col].max() - df[col].min())  
+
+
+def keystone_index(df, reach='2_Degree_Reach', leverage='2_Degree_Leverage'):
+    '''
+    Description: scale leverage and reach from 0 to 1, then multiply
+    Returns: series
+    '''
+    reach_normalized = min_max_normalize_column(df,reach)
+    leverage_normalized = min_max_normalize_column(df, leverage)
+    keystone = reach_normalized * leverage_normalized
+    return keystone # series
+
+
+def outoutdegree(nw):
+    # compute number of second degree outgoing neighbors
+    outout = {n:set() for n in nw.nodes()}
+    for n in nw.nodes():
+        for n2 in nw.successors(n):
+            outout[n].update(nw.successors(n2))
+    return {n:len(outout[n]) for n in nw.nodes()}
+
+def inindegree(nw):
+    # compute number of second degree incoming neighbors
+    inin = {n:set() for n in nw.nodes()}
+    for n in nw.nodes():
+        for n2 in nw.predecessors(n):
+            inin[n].update(nw.predecessors(n2))
+    return {n:len(inin[n]) for n in nw.nodes()}
+
+def add_cluster_metrics(nodesdf, nw, groupVars):
+   # add bridging, cluster centrality etc. for one or more grouping variables
+   # dependency: tag2network repository https://github.com/foodwebster/Tag2Network 
+   for groupVar in groupVars:
+       if len(nx.get_node_attributes(nw, groupVar)) == 0:
+           vals = {k: v for k, v in dict(zip(nodesdf['id'], nodesdf[groupVar])).items() if k in nw}
+           nx.set_node_attributes(nw, vals, groupVar)
+       grpprop = basicClusteringProperties(nw, groupVar)
+       for prop, vals in grpprop.items():
+           nodesdf[prop] = nodesdf['id'].map(vals)
 
 
 def write_network_to_excel (ndf, ldf, outname):
@@ -110,7 +156,8 @@ def write_openmappr_files(ndf, ldf, datapath, labelCol='Name',
                     liststring_add = [], # list attributes to treat as liststring 
                     tags_add = [],  # list of custom attrubtes to render as tag-cloud
                     wide_tags_add = [], # list of custom attribs to render wide tag-cloud
-                    text_str_add = []  # list of custom attribs to render as long text in profile
+                    text_str_add = [],  # list of custom attribs to render as long text in profile
+                    showSearch_add = [] # list of custom attribs to show in search
                     ):  
     '''
     Write files for py2mappr: 
@@ -151,6 +198,7 @@ def write_openmappr_files(ndf, ldf, datapath, labelCol='Name',
 
         # custom string renderType settings for string attributes
     node_attr_df['attrType'] = node_attr_df.apply(lambda x: 'liststring' if str(x['id']) in liststring_add
+                                                               else 'string' if str(x['id']) in text_str_add 
                                                                else x['attrType'], axis=1)
 
     node_attr_df['renderType'] = node_attr_df.apply(lambda x: 'wide-tag-cloud' if str(x['id']) in wide_tags_add 
@@ -168,6 +216,9 @@ def write_openmappr_files(ndf, ldf, datapath, labelCol='Name',
        # additional attributes to hide from search
     hideSearch = list(set(hide + hideSearch_add))
     node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'FALSE' if str(x['id']) in hideSearch else x['searchable'], axis=1)
+    node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'TRUE' if str(x['id']) in text_str_add else x['searchable'], axis=1)
+    
+
 
        # add default alias title and node metadata description columns
     node_attr_df['title'] = node_attr_df['id']
@@ -178,7 +229,6 @@ def write_openmappr_files(ndf, ldf, datapath, labelCol='Name',
     meta_cols = ['id', 'visible', 'visibleInProfile', 'searchable', 'title', 'attrType', 'renderType', 'descr', 'maxLabel', 'minLabel', 'overlayAnchor']
     node_attr_df = node_attr_df[meta_cols]
     node_attr_df.to_csv(datapath/"node_attrs.csv", index=False)
-
 
 
 def build_network(df, attr, blacklist=[], idf=True, linksPer=3, minTags=1): 
@@ -193,6 +243,7 @@ def build_network(df, attr, blacklist=[], idf=True, linksPer=3, minTags=1):
     minTags = exclude any nodes with fewer than min Tags
     
     Returns: nodes and links dataframes
+    Dependency: https://github.com/foodwebster/Tag2Network
     '''
     print("\nBuild Network")       
     df[attr]=df[attr].fillna("")
