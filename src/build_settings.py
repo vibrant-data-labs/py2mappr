@@ -1,6 +1,7 @@
 import pandas as pd
 from typing import Any, List, Dict
-from src.utils import load_templates, merge
+from utils import load_templates, merge
+#from src.utils import load_templates, merge
 
 
 def build_settings(snapshots: List[Dict] = [], playerSettings: Dict[str, Any] = {}) -> Dict[str, Any]:

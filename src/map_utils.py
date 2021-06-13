@@ -3,11 +3,18 @@ from pathlib import Path
 import shutil
 import json
 import uuid
+
+
+from build_dataset import build_attrDescriptors, build_datapoints
+from build_network import build_nodes, build_links, build_nodeAttrDescriptors, build_linkAttrDescriptors
+from build_settings import build_settings
+from utils import load_templates, merge
+'''
 from src.build_dataset import build_attrDescriptors, build_datapoints
 from src.build_network import build_nodes, build_links, build_nodeAttrDescriptors, build_linkAttrDescriptors
 from src.build_settings import build_settings
 from src.utils import load_templates, merge
-
+'''
 
 def __write_dataset_file(datapointsPath: Union[Path, str], datapointAttrPath: Union[Path, str], out_data_dir: Path):
     # collect datapoint attributes
