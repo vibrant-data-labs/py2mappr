@@ -16,15 +16,16 @@ network analysis functions to
 
 import sys
 import pandas as pd
-sys.path.append("../../Tag2Network/tag2network/")  # add Tag2Network directory
-import Network.BuildNetwork as bn
-import Network.DrawNetwork as dn
-from Network.BuildNetwork import addLouvainClusters
-from Network.ClusteringProperties import basicClusteringProperties
+sys.path.append("../../../Github/Tag2Network/tag2network/Network/")  # add Tag2Network directory
+sys.path.append("../../Github/Tag2Network/tag2network/Network")  # add Tag2Network directory
+import numpy as np
+import BuildNetwork as bn
+import DrawNetwork as dn
 import networkx as nx
+from collections import Counter
 from pandas.api.types import is_string_dtype
-import pathlib as pl  # path library
 #from pandas.api.types import is_numeric_dtype
+
 
 
 def buildNetworkX(linksdf, id1='Source', id2='Target', directed=False):
@@ -38,14 +39,13 @@ def buildNetworkX(linksdf, id1='Source', id2='Target', directed=False):
 
 def tsne_layout(ndf, ldf):   
     ## add tsne-layout coordinates and draw
-    # dependency: https://github.com/foodwebster/Tag2Network
     bn.add_layout(ndf, linksdf=ldf, nw=None)
     ndf.rename(columns={"x": "x_tsne", "y": "y_tsne"}, inplace=True)
     return ndf
    
 def spring_layout(ndf, ldf, iterations=1000):
     print("Running spring Layout")
-    nw = bn.buildNetworkX(ldf)
+    nw = buildNetworkX(ldf)
     # remove isolated nodes and clusters for layout
     giant_component_nodes  = max(nx.connected_components(nw), key = len)
     giant_component = nw.subgraph(giant_component_nodes)
@@ -55,8 +55,8 @@ def spring_layout(ndf, ldf, iterations=1000):
     ndf['x_spring'] = ndf['id'].map(x)
     ndf['y_spring'] = ndf['id'].map(y)
     # place all disconnected nodes at 0,0
-    ndf['x_spring'].fillna(0)
-    ndf['y_spring'].fillna(0)
+    ndf['x_spring'].fillna(0, inplace=True)
+    ndf['y_spring'].fillna(0, inplace=True)
     return ndf
 
 def force_directed(ndf, ldf, iterations=1000):
@@ -69,169 +69,23 @@ def plot_network(ndf, edf, plot_name, x='x_tsne', y='y_tsne', colorBy='Cluster',
     # ndf = nodes dataframe
     # ldf = links dataframe 
     # plotname = name of file to save image (pdf)
-    # dependency: https://github.com/foodwebster/Tag2Network
-    nw = bn.buildNetworkX(edf) # build networkX graph object
+    nw = buildNetworkX(edf) # build networkX graph object
     node_sizes = ndf.loc[:,sizeBy]*sizeScale
     node_sizes_array = node_sizes.values # convert sizeBy col to array for sizing
     dn.draw_network_categorical(nw, ndf, node_attr=colorBy, plotfile=plot_name, x=x, y=y, node_size=node_sizes_array)
 
-def min_max_normalize_column (df, col):
-    return (df[col] - df[col].min()) / (df[col].max() - df[col].min())  
-
-
-def keystone_index(df, reach='2_Degree_Reach', leverage='2_Degree_Leverage'):
-    '''
-    Description: scale leverage and reach from 0 to 1, then multiply
-    Returns: series
-    '''
-    reach_normalized = min_max_normalize_column(df,reach)
-    leverage_normalized = min_max_normalize_column(df, leverage)
-    keystone = reach_normalized * leverage_normalized
-    return keystone # series
-
-
-def outoutdegree(nw):
-    # compute number of second degree outgoing neighbors
-    outout = {n:set() for n in nw.nodes()}
-    for n in nw.nodes():
-        for n2 in nw.successors(n):
-            outout[n].update(nw.successors(n2))
-    return {n:len(outout[n]) for n in nw.nodes()}
-
-def inindegree(nw):
-    # compute number of second degree incoming neighbors
-    inin = {n:set() for n in nw.nodes()}
-    for n in nw.nodes():
-        for n2 in nw.predecessors(n):
-            inin[n].update(nw.predecessors(n2))
-    return {n:len(inin[n]) for n in nw.nodes()}
-
-def add_cluster_metrics(nodesdf, nw, groupVars):
-   # add bridging, cluster centrality etc. for one or more grouping variables
-   # dependency: tag2network repository https://github.com/foodwebster/Tag2Network 
-   for groupVar in groupVars:
-       if len(nx.get_node_attributes(nw, groupVar)) == 0:
-           vals = {k: v for k, v in dict(zip(nodesdf['id'], nodesdf[groupVar])).items() if k in nw}
-           nx.set_node_attributes(nw, vals, groupVar)
-       grpprop = basicClusteringProperties(nw, groupVar)
-       for prop, vals in grpprop.items():
-           nodesdf[prop] = nodesdf['id'].map(vals)
-
 
 def write_network_to_excel (ndf, ldf, outname):
-    writer = pd.ExcelWriter(outname)
-    ndf.to_excel(writer,'Nodes', index=False)
-    ldf.to_excel(writer,'Links', index=False)
+    writer = pd.ExcelWriter(outname,
+                          engine='xlsxwriter', 
+                          options={'strings_to_urls': False})
+    ndf.to_excel(writer,'Nodes', index=False, encoding = 'utf-8-sig')
+    ldf.to_excel(writer,'Links', index=False, encoding = 'utf-8-sig')
     writer.save()  
 
-def get_default_column_types_openmappr(ndf):
-    typeDict = {} # dictionary of column name: (attrType, renderType, searchable) 
-    countThresh = 0.02*len(ndf) # number of records to evaluate type (e.g. 2% of total)
-    for col in ndf.columns.tolist():
-        if is_string_dtype(ndf[col]):
-            typeDict[col] = ("string", "wide-tag-cloud", "TRUE")  # fill all strings, then below modify specific ones
-        if sum(ndf[col].apply(lambda x: len(str(x)) > 100)) > countThresh: # long text
-            typeDict[col] = ("string", "text", "TRUE")
-        if sum(ndf[col].apply(lambda x:"http" in str(x))) > countThresh: # urls
-            typeDict[col] = ("url", "default", "FALSE")
-        if sum(ndf[col].apply(lambda x:"|" in str(x))) > countThresh:  # tags
-            typeDict[col] = ("liststring", "tag-cloud", "TRUE")
-        if sum(ndf[col].apply(lambda x:"png" in str(x))) > countThresh: # images
-            typeDict[col] = ("picture", "default", "FALSE")                
-        if ndf[col].dtype == 'float64':           # float
-            typeDict[col] = ("float", "histogram", "FALSE")
-        if ndf[col].dtype == 'int64':             # integer
-            typeDict[col] = ("integer", "histogram", "FALSE")
-        if ndf[col].dtype == 'bool':             # integer
-            typeDict[col] = ("string", "tag-cloud", "FALSE")
-        
-        #TODO:  need to add timestamp, year, video
-    return typeDict
-        
-    
-def write_openmappr_files(ndf, ldf, datapath, labelCol='Name', 
-                    hide_add = [],  # list custom attributes to hide from filters
-                    hideProfile_add =[], # list custom attributes to hide from right profile
-                    hideSearch_add = [], # list custom attributes to hide from search
-                    liststring_add = [], # list attributes to treat as liststring 
-                    tags_add = [],  # list of custom attrubtes to render as tag-cloud
-                    wide_tags_add = [], # list of custom attribs to render wide tag-cloud
-                    text_str_add = [],  # list of custom attribs to render as long text in profile
-                    showSearch_add = [] # list of custom attribs to show in search
-                    ):  
-    '''
-    Write files for py2mappr: 
-        nodes.csv
-        links.csv
-        node_attrs_template.csv (template for specifying attribute rendering settings in openmappr)
-        line_att
-    '''
-    print('\nWriting openMappr files')
-    ## generate csv's for py2mappr
-
-    # prepare and write nodes.csv
-    ndf['label'] = ndf[labelCol] 
-    ndf['OriginalLabel'] = ndf['label']
-    ndf['OriginalX'] = ndf['x_tsne']
-    ndf['OriginalY'] = ndf['y_tsne']
-    ndf['OriginalSize'] = 10
-
-    ndf.to_csv(datapath/"nodes.csv", index=False)
-
-    # prepare and write links.csv
-    ldf['isDirectional'] = True
-    ldf.to_csv(datapath/"links.csv", index=False)
-
-    # prepare and write note attribute settings template (node_attrs_template.csv)
-        
-       # create node attribute metadata template:
-    node_attr_df = ndf.dtypes.reset_index()
-    node_attr_df.columns = ['id', 'dtype']
 
 
-        # map automatic default attrType, renderType, searchable based on column types
-        # get dictionary of default mapping of column to to attrType, renderType, searchable
-    typeDict =  get_default_column_types_openmappr(ndf)  
-    node_attr_df['attrType'] = node_attr_df['id'].apply(lambda x: typeDict[x][0])
-    node_attr_df['renderType'] = node_attr_df['id'].apply(lambda x: typeDict[x][1])
-    node_attr_df['searchable'] = node_attr_df['id'].apply(lambda x: typeDict[x][2])
-
-        # custom string renderType settings for string attributes
-    node_attr_df['attrType'] = node_attr_df.apply(lambda x: 'liststring' if str(x['id']) in liststring_add
-                                                               else 'string' if str(x['id']) in text_str_add 
-                                                               else x['attrType'], axis=1)
-
-    node_attr_df['renderType'] = node_attr_df.apply(lambda x: 'wide-tag-cloud' if str(x['id']) in wide_tags_add 
-                                                               else 'tag-cloud' if str(x['id']) in tags_add
-                                                               else 'text' if str(x['id']) in text_str_add
-                                                               else x['renderType'], axis=1)
-       # additional attributes to hide from filters
-    hide = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id'] + hide_add))
-    node_attr_df['visible'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hide else 'TRUE')
- 
-       # additional attributes to hide from profile
-    hideProfile = list(set(hide + hideProfile_add))
-    node_attr_df['visibleInProfile'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hideProfile else 'TRUE')
-    
-       # additional attributes to hide from search
-    hideSearch = list(set(hide + hideSearch_add))
-    node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'FALSE' if str(x['id']) in hideSearch else x['searchable'], axis=1)
-    node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'TRUE' if str(x['id']) in text_str_add else x['searchable'], axis=1)
-    
-
-
-       # add default alias title and node metadata description columns
-    node_attr_df['title'] = node_attr_df['id']
-    node_attr_df[['descr', 'maxLabel', 'minLabel', 'overlayAnchor']] = ''   
-    node_attr_df[['descr', 'maxLabel', 'minLabel', 'overlayAnchor']] = ''
-
-       # re-order final columns and write template file
-    meta_cols = ['id', 'visible', 'visibleInProfile', 'searchable', 'title', 'attrType', 'renderType', 'descr', 'maxLabel', 'minLabel', 'overlayAnchor']
-    node_attr_df = node_attr_df[meta_cols]
-    node_attr_df.to_csv(datapath/"node_attrs.csv", index=False)
-
-
-def build_network(df, attr, blacklist=[], idf=True, linksPer=3, minTags=1): 
+def build_network(df, attr, blacklist=[], idf=False, linksPer=3, minTags=1): 
     '''
     Run basic 'build tag network' without any plotting or layouts or file outputs.
     Resulting network can then be enriched and decorated before writing final files. 
@@ -243,7 +97,6 @@ def build_network(df, attr, blacklist=[], idf=True, linksPer=3, minTags=1):
     minTags = exclude any nodes with fewer than min Tags
     
     Returns: nodes and links dataframes
-    Dependency: https://github.com/foodwebster/Tag2Network
     '''
     print("\nBuild Network")       
     df[attr]=df[attr].fillna("")
@@ -258,5 +111,120 @@ def build_network(df, attr, blacklist=[], idf=True, linksPer=3, minTags=1):
                             idf=idf, toFile=False, doLayout=False, linksPer=linksPer, minTags=1)
     
     return ndf,ldf
+
+
+def decorate_network(df, ldf, tag_attr, 
+                     network_renameDict, # column renaming
+                     finalNodeAttrs, # ginal columns to keep
+                     outname, # final network file name
+                     labelcol,# column to be used for node label
+                     writeFile=True, 
+                     removeSingletons=True): 
+    '''
+    Decorate network from 'build_network'
+    df = node dataframe (ndf) from build_network
+    ldf = links dataframe
+    tag_attr = name of tag column used for linking
+    outname = name of final network file (excel file)
+    writeFile = write final excel file with nodes and links sheets 
+    removeSinteltons = trim final keyword tag list to only inlcudes ones that occur at least twice
+
+    Returns: cleaned/decorated nodes datframe plus original links dataframe
+    '''
+    print("\nDecorating Newtork")
+    # tag_attr is the tag attribute used for linking
+    
+     # Add Cluster Counts, and additional Cluster Labels
+    print("Adding Cluster Counts and short Cluser labels")  
+    df['Cluster_count'] = df.groupby(['Cluster'])['id'].transform('count') 
+    df['Keyword_Theme'] = df['top_tags'].apply(lambda x: ','.join(x[0:3]))# use top 3 wtd tags as short name
+    df.drop(['Cluster'], axis=1, inplace=True)
+
+    df['label'] = df[labelcol]
+    
+    ## add layouts
+        ## add tsne layout coordinates
+    df = tsne_layout(df, ldf)
+        # add force directed layout coordinates
+    #df = spring_layout(df, ldf, iterations=500)
+
+    # add outdegree
+    nw = buildNetworkX(ldf, directed=True)
+    df['n_Neighbors'] = df['id'].map(dict(nw.out_degree()))
+    
+    if removeSingletons:
+        print("Removing singleton keywords")
+        #remove singleton tags
+        # across entire dataset, count tag hist and remove singleton tags
+        taglist_attr = tag_attr+"_list"
+        df[taglist_attr].fillna('', inplace=True)
+        # build master histogram of tags that occur at least twice 
+        tagHist = dict([item for item in Counter([k for kwList in df[taglist_attr] for k in kwList]).most_common() if item[1] > 1])
+        # filter tags to only include 'active' tags - tags which occur twice or more in the entire dataset
+        df[taglist_attr] = df[taglist_attr].apply(lambda x: [k for k in x if k in tagHist])
+        # double check to remove spaces and empty elements
+        df[taglist_attr] = df[taglist_attr].apply(lambda x: [s.strip() for s in x if len(s)>0] )
+        # join list back into string of unique pipe-sepparated tags
+        df[tag_attr] = df[taglist_attr].apply(lambda x: "|".join(list(set(x)))) 
+        df['nTags'] = df[tag_attr].apply(lambda x: len(x.split("|")))  
         
     
+    
+    ## Clean final columns
+    print("Cleaning final columns")
+                
+    df.rename(columns=network_renameDict, inplace=True)
+    #df.rename(columns={tag_attr: 'Keywords'}, inplace=True)
+ 
+                # stillneed: 'Geographic_Focus', 'email',         
+    df = df[finalNodeAttrs]
+
+    if writeFile:
+        print("Writing Cleaned Network File")
+        # Write back out to excel with 2 sheets. 
+        df = df.reset_index(drop=True)
+        write_network_to_excel (df, ldf, outname)
+        
+    return df, ldf
+
+
+### MAIN FUNCTION TO BUILD AND DECORATE LINKEDIN AFFINITY NETWORK ###
+def build_decorate_plot_network(df, 
+                                tag_attr, # tag col for linking
+                                linksPer,# links per node
+                                blacklist, # tags to blacklist for linjking
+                                nw_name, # final filename for network
+                                network_renameDict, # rename final node attribs
+                                finalNodeAttrs,  # final columns to keep
+                                tagcols_nodata, # tag columns to replace empty with 'no data'
+                                labelcol='profile_name', 
+                                add_nodata = True,
+                                plot=True):
+    '''
+    build and decorate linkedin affinity network
+    tagcols: columns to replace empty tags with 'no data' if add_nodata
+    Returns:  ndf, ldf and plots/writes pdf of network viz 
+    '''
+    # Build Network
+    ndf, ldf = build_network(df, tag_attr , idf=False, linksPer=linksPer, blacklist= blacklist)
+    # Decorate network
+    ndf, ldf =  decorate_network(ndf, ldf, tag_attr, 
+                                 network_renameDict, # column renaming
+                                 finalNodeAttrs, # ginal columns to keep
+                                 nw_name, # final network file name
+                                 labelcol, 
+                                 writeFile=True, 
+                                 removeSingletons=True)
+    if add_nodata:
+        # add 'no data' to empty tags
+        for col in tagcols_nodata:
+            ndf[col].fillna('no data', inplace=True)
+            ndf[col] = ndf[col].apply(lambda x: 'no data' if x == "" else x)
+    if plot:
+        # Plot Network
+        plot_network(ndf, ldf, "Network_plot.pdf", 
+                     colorBy = 'Keyword Theme', 
+                     sizeBy='ClusterCentrality', 
+                     x='x_tsne', y='y_tsne')
+    return ndf, ldf
+
