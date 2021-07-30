@@ -9,7 +9,6 @@ import boto3
 import os
 import configparser
 import pathlib as pl
-import reference as ref
 import http.server
 import socketserver
 import webbrowser
@@ -84,7 +83,6 @@ if __name__ == "__main__":
     
     playerpath = wd/"player" # openmappr files
     player_s3_bucket = "test-openmappr-player"
-    #run_local(str(ref.playerpath))
     upload_to_s3(str(playerpath), player_s3_bucket)
     
     
