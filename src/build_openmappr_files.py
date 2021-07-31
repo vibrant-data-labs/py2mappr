@@ -67,7 +67,6 @@ def write_openmappr_files(ndf, ldf, datapath, labelCol='Name',
         nodes.csv
         links.csv
         node_attrs_template.csv (template for specifying attribute rendering settings in openmappr)
-        line_att
     '''
     print('\nWriting openMappr files')
     ## generate csv's for py2mappr

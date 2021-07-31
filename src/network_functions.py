@@ -188,7 +188,7 @@ def decorate_network(df, ldf, tag_attr,
     return df, ldf
 
 
-### MAIN FUNCTION TO BUILD AND DECORATE LINKEDIN AFFINITY NETWORK ###
+### MAIN FUNCTION TO BUILD AND DECORATE AFFINITY NETWORK ###
 def build_decorate_plot_network(df, 
                                 tag_attr, # tag col for linking
                                 linksPer,# links per node
@@ -210,7 +210,7 @@ def build_decorate_plot_network(df,
     # Decorate network
     ndf, ldf =  decorate_network(ndf, ldf, tag_attr, 
                                  network_renameDict, # column renaming
-                                 finalNodeAttrs, # ginal columns to keep
+                                 finalNodeAttrs, # final columns to keep
                                  nw_name, # final network file name
                                  labelcol, 
                                  writeFile=True, 
