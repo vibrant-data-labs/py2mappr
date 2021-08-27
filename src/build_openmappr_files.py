@@ -10,6 +10,7 @@ import sys
 import pandas as pd
 import numpy as np
 from pandas.api.types import is_string_dtype
+import pathlib as pl
 #from pandas.api.types import is_numeric_dtype
 
 
@@ -51,7 +52,7 @@ def get_default_column_types_openmappr(ndf):
     return typeDict
         
     
-def write_openmappr_files(ndf, ldf, datapath, labelCol='Name', 
+def write_openmappr_files(ndf, ldf, playerpath, labelCol='Name', 
                     hide_add = [],  # list custom attributes to hide from filters
                     hideProfile_add =[], # list custom attributes to hide from right profile
                     hideSearch_add = [], # list custom attributes to hide from search
@@ -77,7 +78,10 @@ def write_openmappr_files(ndf, ldf, datapath, labelCol='Name',
     ndf['OriginalX'] = ndf['x_tsne']
     ndf['OriginalY'] = ndf['y_tsne']
     ndf['OriginalSize'] = 10
-
+    
+    playerpath.mkdir(exist_ok=True) # create directory  for results if it doesn't exist
+    datapath = playerpath/"data_in"
+    datapath.mkdir(exist_ok=True) # create directory  for results if it doesn't exist
     ndf.to_csv(datapath/"nodes.csv", index=False)
 
     # prepare and write links.csv
