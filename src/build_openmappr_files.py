@@ -38,6 +38,7 @@ def get_default_column_types_openmappr(ndf):
             typeDict[col] = ("liststring", "tag-cloud", "TRUE")
         if sum(ndf[col].apply(lambda x:"png" in str(x))) > countThresh: # images
             typeDict[col] = ("picture", "default", "FALSE") 
+        if sum(ndf[col].apply(lambda x:"jpg" in str(x))) > countThresh: # images
             typeDict[col] = ("picture", "default", "FALSE")                 
         if ndf[col].dtype == 'float64':           # float
             typeDict[col] = ("float", "histogram", "FALSE")
@@ -75,8 +76,8 @@ def write_openmappr_files(ndf, ldf, playerpath, labelCol='Name',
     # prepare and write nodes.csv
     ndf['label'] = ndf[labelCol] 
     ndf['OriginalLabel'] = ndf['label']
-    ndf['OriginalX'] = ndf['x_tsne']
-    ndf['OriginalY'] = ndf['y_tsne']
+    ndf['OriginalX'] = ndf['x']
+    ndf['OriginalY'] = ndf['y']
     ndf['OriginalSize'] = 10
     
     playerpath.mkdir(exist_ok=True) # create directory  for results if it doesn't exist

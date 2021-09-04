@@ -17,13 +17,14 @@ network analysis functions to
 import sys
 import pandas as pd
 sys.path.append("../../../Github/Tag2Network/tag2network/Network/")  # add Tag2Network directory
-sys.path.append("../../Github/Tag2Network/tag2network/Network")  # add Tag2Network directory
+#sys.path.append("../../Github/Tag2Network/tag2network/Network")  # add Tag2Network directory
 import numpy as np
-import BuildNetwork as bn
-import DrawNetwork as dn
+import BuildNetwork as bn # tag2network: build network and layout functions
+import DrawNetwork as dn  # tag2network: plot network function
 import networkx as nx
 from collections import Counter
-from pandas.api.types import is_string_dtype
+from pathlib import Path
+#from pandas.api.types import is_string_dtype
 #from pandas.api.types import is_numeric_dtype
 
 
@@ -37,10 +38,16 @@ def buildNetworkX(linksdf, id1='Source', id2='Target', directed=False):
     return g
 
 
-def tsne_layout(ndf, ldf):   
+def tsne_layout(ndf, ldf, clusName="Keyword_Theme"):   
     ## add tsne-layout coordinates and draw
-    bn.add_layout(ndf, linksdf=ldf, nw=None)
+    bn.add_layout(ndf, linksdf=ldf, nw=None, clustered=False, cluster=clusName)
     ndf.rename(columns={"x": "x_tsne", "y": "y_tsne"}, inplace=True)
+    return ndf
+
+def clustered_layout(ndf, ldf, clusName="Keyword_Theme"):   
+    ## add tsne-layout coordinates and draw
+    bn.add_layout(ndf, linksdf=ldf, nw=None, clustered=True, cluster=clusName)
+    ndf.rename(columns={"x": "x_clustered", "y": "y_clustered"}, inplace=True)
     return ndf
    
 def spring_layout(ndf, ldf, iterations=1000):
@@ -69,10 +76,12 @@ def plot_network(ndf, edf, plot_name, x='x_tsne', y='y_tsne', colorBy='Cluster',
     # ndf = nodes dataframe
     # ldf = links dataframe 
     # plotname = name of file to save image (pdf)
+    ndf['x'] = ndf[x]
+    ndf['y'] = ndf[y]
     nw = buildNetworkX(edf) # build networkX graph object
     node_sizes = ndf.loc[:,sizeBy]*sizeScale
     node_sizes_array = node_sizes.values # convert sizeBy col to array for sizing
-    dn.draw_network_categorical(nw, ndf, node_attr=colorBy, plotfile=plot_name, x=x, y=y, node_size=node_sizes_array)
+    dn.draw_network_categorical(nw, ndf, node_attr=colorBy, plotfile=plot_name, node_size=node_sizes_array)
 
 
 def write_network_to_excel (ndf, ldf, outname):
@@ -118,6 +127,7 @@ def decorate_network(df, ldf, tag_attr,
                      finalNodeAttrs, # ginal columns to keep
                      outname, # final network file name
                      labelcol,# column to be used for node label
+                     clusName, # name of cluster attr
                      writeFile=True, 
                      removeSingletons=True): 
     '''
@@ -137,16 +147,16 @@ def decorate_network(df, ldf, tag_attr,
      # Add Cluster Counts, and additional Cluster Labels
     print("Adding Cluster Counts and short Cluser labels")  
     df['Cluster_count'] = df.groupby(['Cluster'])['id'].transform('count') 
-    df['Keyword_Theme'] = df['top_tags'].apply(lambda x: ','.join(x[0:3]))# use top 3 wtd tags as short name
-    df.drop(['Cluster'], axis=1, inplace=True)
+    df[clusName] = df['top_tags'].apply(lambda x: ','.join(x[0:3]))# use top 3 wtd tags as short name
+    #df.drop(['Cluster'], axis=1, inplace=True)
 
     df['label'] = df[labelcol]
     
     ## add layouts
         ## add tsne layout coordinates
-    df = tsne_layout(df, ldf)
-        # add force directed layout coordinates
-    #df = spring_layout(df, ldf, iterations=500)
+   # df = tsne_layout(df, ldf, clusName=clusName)
+        # add clustered layout coordinates
+    df = clustered_layout(df, ldf, clusName=clusName)
 
     # add outdegree
     nw = buildNetworkX(ldf, directed=True)
@@ -182,6 +192,7 @@ def decorate_network(df, ldf, tag_attr,
     if writeFile:
         print("Writing Cleaned Network File")
         # Write back out to excel with 2 sheets. 
+        Path("results/networks").mkdir(parents=True, exist_ok=True)
         df = df.reset_index(drop=True)
         write_network_to_excel (df, ldf, outname)
         
@@ -197,9 +208,12 @@ def build_decorate_plot_network(df,
                                 network_renameDict, # rename final node attribs
                                 finalNodeAttrs,  # final columns to keep
                                 tagcols_nodata, # tag columns to replace empty with 'no data'
+                                clusName = "Keyword_Theme", # name of cluster attribute
                                 labelcol='profile_name', 
                                 add_nodata = True,
-                                plot=True):
+                                plot=True,
+                                x='x_clustered',
+                                y='y_clustered'):
     '''
     build and decorate linkedin affinity network
     tagcols: columns to replace empty tags with 'no data' if add_nodata
@@ -213,6 +227,7 @@ def build_decorate_plot_network(df,
                                  finalNodeAttrs, # final columns to keep
                                  nw_name, # final network file name
                                  labelcol, 
+                                 clusName, 
                                  writeFile=True, 
                                  removeSingletons=True)
     if add_nodata:
@@ -223,8 +238,9 @@ def build_decorate_plot_network(df,
     if plot:
         # Plot Network
         plot_network(ndf, ldf, "Network_plot.pdf", 
-                     colorBy = 'Keyword Theme', 
+                     colorBy = clusName,  # color by cluster
                      sizeBy='ClusterCentrality', 
-                     x='x_tsne', y='y_tsne')
+                     x=x, 
+                     y=y)
     return ndf, ldf
 
