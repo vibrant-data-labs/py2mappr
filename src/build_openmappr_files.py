@@ -174,8 +174,8 @@ def write_openmappr_files_manual(ndf, ldf, datapath, labelCol='Name',
     # prepare and write nodes.csv
     ndf['label'] = ndf[labelCol] 
     ndf['OriginalLabel'] = ndf['label']
-    ndf['OriginalX'] = ndf['x_tsne']
-    ndf['OriginalY'] = ndf['y_tsne']
+    ndf['OriginalX'] = ndf['x']
+    ndf['OriginalY'] = ndf['y']
     ndf['OriginalSize'] = 10
 
     ndf.to_csv(datapath/"nodes.csv", index=False)
