@@ -38,16 +38,16 @@ def buildNetworkX(linksdf, id1='Source', id2='Target', directed=False):
     return g
 
 
-def tsne_layout(ndf, ldf, clusName="Keyword_Theme"):   
+def tsne_layout(ndf, ldf, clusName="Cluster"):   
     ## add tsne-layout coordinates and draw
     bn.add_layout(ndf, linksdf=ldf, nw=None, clustered=False, cluster=clusName)
     ndf.rename(columns={"x": "x_tsne", "y": "y_tsne"}, inplace=True)
     return ndf
 
-def clustered_layout(ndf, ldf, clusName="Keyword_Theme"):   
+def clustered_layout(ndf, ldf, clusName="Cluster"):   
     ## add tsne-layout coordinates and draw
     bn.add_layout(ndf, linksdf=ldf, nw=None, clustered=True, cluster=clusName)
-    ndf.rename(columns={"x": "x_clustered", "y": "y_clustered"}, inplace=True)
+    ndf.rename(columns={"x": "x_clus", "y": "y_clus"}, inplace=True)
     return ndf
    
 def spring_layout(ndf, ldf, iterations=1000):
@@ -154,7 +154,7 @@ def decorate_network(df, ldf, tag_attr,
     
     ## add layouts
         ## add tsne layout coordinates
-   # df = tsne_layout(df, ldf, clusName=clusName)
+    df = tsne_layout(df, ldf, clusName=clusName)
         # add clustered layout coordinates
     df = clustered_layout(df, ldf, clusName=clusName)
 
@@ -183,10 +183,7 @@ def decorate_network(df, ldf, tag_attr,
     ## Clean final columns
     print("Cleaning final columns")
                 
-    df.rename(columns=network_renameDict, inplace=True)
-    #df.rename(columns={tag_attr: 'Keywords'}, inplace=True)
- 
-                # stillneed: 'Geographic_Focus', 'email',         
+    df.rename(columns=network_renameDict, inplace=True)        
     df = df[finalNodeAttrs]
 
     if writeFile:
@@ -212,8 +209,8 @@ def build_decorate_plot_network(df,
                                 labelcol='profile_name', 
                                 add_nodata = True,
                                 plot=True,
-                                x='x_clustered',
-                                y='y_clustered'):
+                                x='x', # x attrib from add_layout
+                                y='y'): # y attrib from add_layout 
     '''
     build and decorate linkedin affinity network
     tagcols: columns to replace empty tags with 'no data' if add_nodata
