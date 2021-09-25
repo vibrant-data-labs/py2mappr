@@ -3,10 +3,11 @@ import yaml
 import copy
 
 
-def load_templates(fname: str) -> Dict[str, Any]:
+def load_templates(fname: str, pathname: str=None) -> Dict[str, Any]:  #TODO: add path parameter
     try:
+        fullpath = f"src/templates/{fname}.yaml" if pathname is None else f"{pathname}/src/templates/{fname}.yaml"
         templates: List[Dict] = []
-        with open(f"src/templates/{fname}.yaml") as f:
+        with open(fullpath) as f:  #TODO: add path before src/
             for project in yaml.load_all(f, Loader=yaml.FullLoader):
                 templates.append(project)
         return templates[0]
