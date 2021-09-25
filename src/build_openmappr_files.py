@@ -53,7 +53,9 @@ def get_default_column_types_openmappr(ndf):
     return typeDict
         
     
-def write_openmappr_files(ndf, ldf, playerpath, labelCol='Name', 
+def write_openmappr_files(ndf, ldf, playerpath, 
+                    x, y, # attr for clustered layout coordinates
+                    labelCol='Name', 
                     hide_add = [],  # list custom attributes to hide from filters
                     hideProfile_add =[], # list custom attributes to hide from right profile
                     hideSearch_add = [], # list custom attributes to hide from search
@@ -62,7 +64,9 @@ def write_openmappr_files(ndf, ldf, playerpath, labelCol='Name',
                     wide_tags_add = [], # list of custom attribs to render wide tag-cloud
                     text_str_add = [],  # list of custom attribs to render as long text in profile
                     email_str_add = [], # list of custom attribs to render as email link
-                    showSearch_add = [] # list of custom attribs to show in search
+                    showSearch_add = [], # list of custom attribs to show in search
+                    years_add = [], # list of attributes to format as year not integer
+                    low_priority = [] # list of attributes to move to 'additional attributes' in left panel
                     ):  
     '''
     Write files for py2mappr: 
@@ -76,8 +80,8 @@ def write_openmappr_files(ndf, ldf, playerpath, labelCol='Name',
     # prepare and write nodes.csv
     ndf['label'] = ndf[labelCol] 
     ndf['OriginalLabel'] = ndf['label']
-    ndf['OriginalX'] = ndf['x']
-    ndf['OriginalY'] = ndf['y']
+    ndf['OriginalX'] = ndf[x] # clustered layout coordinates
+    ndf['OriginalY'] = ndf[x] # clustered layout coordinates
     ndf['OriginalSize'] = 10
     
     playerpath.mkdir(exist_ok=True) # create directory  for results if it doesn't exist
@@ -106,6 +110,7 @@ def write_openmappr_files(ndf, ldf, playerpath, labelCol='Name',
         # custom string renderType settings for string attributes
     node_attr_df['attrType'] = node_attr_df.apply(lambda x: 'liststring' if str(x['id']) in liststring_add
                                                                else 'string' if str(x['id']) in (text_str_add + email_str_add)
+                                                               else 'year' if str(x['id']) in (years_add)
                                                                else x['attrType'], axis=1)
 
     node_attr_df['renderType'] = node_attr_df.apply(lambda x: 'wide-tag-cloud' if str(x['id']) in wide_tags_add 
@@ -133,8 +138,13 @@ def write_openmappr_files(ndf, ldf, playerpath, labelCol='Name',
     for col in defaultcols: 
         node_attr_df[col] = ''   
 
+       # add attribute priority for display (low priority moves to 'additional attributes')
+    node_attr_df['priority'] = node_attr_df.apply(lambda x: 'low' if str(x['id']) in low_priority 
+                                                               else 'high', axis=1)
+
        # re-order final columns and write template file
-    meta_cols = ['id', 'visible', 'visibleInProfile', 'searchable', 'title', 'attrType', 'renderType', 'descr', 'maxLabel', 'minLabel', 'overlayAnchor']
+    meta_cols = ['id', 'visible', 'visibleInProfile', 'searchable', 'title', 'attrType', 'renderType', 
+    'descr', 'maxLabel', 'minLabel', 'overlayAnchor', 'priority']
     node_attr_df = node_attr_df[meta_cols]
     node_attr_df.to_csv(datapath/"node_attrs.csv", index=False)
 
