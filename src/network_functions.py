@@ -20,6 +20,7 @@ sys.path.append("../../../Github/Tag2Network/tag2network/Network/")  # add Tag2N
 #sys.path.append("../../Github/Tag2Network/tag2network/Network")  # add Tag2Network directory
 import numpy as np
 import BuildNetwork as bn # tag2network: build network and layout functions
+import ClusterLayout as cl
 import DrawNetwork as dn  # tag2network: plot network function
 import networkx as nx
 from collections import Counter
@@ -38,17 +39,28 @@ def buildNetworkX(linksdf, id1='Source', id2='Target', directed=False):
     return g
 
 
-def tsne_layout(ndf, ldf, clusName="Cluster"):   
-    ## add tsne-layout coordinates and draw
-    bn.add_layout(ndf, linksdf=ldf, nw=None, clustered=False, cluster=clusName)
-    ndf.rename(columns={"x": "x_tsne", "y": "y_tsne"}, inplace=True)
+def add_cluster_layout(ndf, ldf, dists=None, maxdist=5, 
+                       cluster_attr='Cluster', # name of cluster attrubute
+                       no_overlap=True,
+                       size_attr=None,
+                       max_expansion=1.5, 
+                       scale_factor=1.0): 
+    print("Running clustered graph layout")
+    nw = buildNetworkX(ldf)
+    layout, _ = cl.run_cluster_layout(nw, ndf, dists=dists, maxdist=maxdist, 
+                       size_attr=size_attr, cluster_attr=cluster_attr,
+                       no_overlap=no_overlap, max_expansion=max_expansion, scale_factor=scale_factor)
+    ndf['x'] = ndf['id'].apply(lambda x: layout[x][0] if x in layout else 0.0)
+    ndf['y'] = ndf['id'].apply(lambda x: layout[x][1] if x in layout else 0.0)
     return ndf
 
-def clustered_layout(ndf, ldf, clusName="Cluster"):   
+def tsne_layout(ndf, ldf, clusName="Cluster", rename_xy=False):   
     ## add tsne-layout coordinates and draw
-    bn.add_layout(ndf, linksdf=ldf, nw=None, clustered=True, cluster=clusName)
-    ndf.rename(columns={"x": "x_clus", "y": "y_clus"}, inplace=True)
+    bn.add_layout(ndf, linksdf=ldf, nw=None, clustered=False, cluster=clusName)
+    if rename_xy:
+        ndf.rename(columns={"x": "x_tsne", "y": "y_tsne"}, inplace=True)
     return ndf
+
    
 def spring_layout(ndf, ldf, iterations=1000):
     print("Running spring Layout")
@@ -59,11 +71,11 @@ def spring_layout(ndf, ldf, iterations=1000):
     layout = nx.spring_layout(giant_component, k=0.2, weight='weight', iterations=iterations) # k is spacing 0-1, default 0.1
     x ={n:layout[n][0] for n in giant_component.nodes()}
     y= {n:layout[n][1] for n in giant_component.nodes()}
-    ndf['x_spring'] = ndf['id'].map(x)
-    ndf['y_spring'] = ndf['id'].map(y)
+    ndf['x'] = ndf['id'].map(x)
+    ndf['y'] = ndf['id'].map(y)
     # place all disconnected nodes at 0,0
-    ndf['x_spring'].fillna(0, inplace=True)
-    ndf['y_spring'].fillna(0, inplace=True)
+    ndf['x'].fillna(0, inplace=True)
+    ndf['y'].fillna(0, inplace=True)
     return ndf
 
 def force_directed(ndf, ldf, iterations=1000):
@@ -71,7 +83,7 @@ def force_directed(ndf, ldf, iterations=1000):
     bn.add_force_directed_layout(ndf, linksdf=ldf, nw=None, iterations=iterations)
     return ndf
 
-def plot_network(ndf, edf, plot_name, x='x_tsne', y='y_tsne', colorBy='Cluster', sizeBy='ClusterCentrality', sizeScale=100):    
+def plot_network(ndf, edf, plot_name, x='x', y='y', colorBy='Cluster', sizeBy='ClusterCentrality', sizeScale=100):    
     # draw network colored by creative style and save image
     # ndf = nodes dataframe
     # ldf = links dataframe 
@@ -93,6 +105,47 @@ def write_network_to_excel (ndf, ldf, outname):
     writer.save()  
 
 
+def add_group_fracs (ndf,  
+                       group_col, # grouping attribute (e.g. 'cluster')
+                       attr,  # column with value compute % (e.g. 'org typ') 
+                       value): # value to tally if present (e.g. 'non-profit')
+    
+    groups = list(ndf[group_col].unique())
+    df = ndf[[group_col, attr]]
+    grp_fracs = {}
+    for group in groups:
+        df_grp = df[df[group_col]==group] # subset cluster
+        nodata = df_grp[attr].apply(lambda x: (x == None or x == ''))
+        df_grp = df_grp[~nodata] # remove missing data
+        grp_size = len(df_grp)
+        n_value = sum(df_grp[attr] == value)  # total cases where value is true
+        frac_value = np.round(n_value/grp_size, 2)
+        grp_fracs[group] = frac_value
+    group_value_fracs = df[group_col].map(grp_fracs)
+    return group_value_fracs # series
+
+def add_group_means (df,  
+                    group_col, # grouping attribute (e.g. 'cluster')
+                    attr):  # column with value summarize % (e.g. 'total funding')   
+    group_means  = df.groupby(group_col)[attr].transform('mean')
+    group_means = np.round(group_means, 2)
+    return group_means #series
+
+def add_group_medians (df,  
+                    group_col, # grouping attribute (e.g. 'cluster')
+                    attr):  # column with value summarize % (e.g. 'total funding')   
+    group_means  = df.groupby(group_col)[attr].transform('median')
+    group_means = np.round(group_means, 2)
+    return group_means #series
+       
+def add_group_sums (df,  
+                    group_col, # grouping attribute (e.g. 'cluster')
+                    attr, # column with value summarize % (e.g. 'total funding')  
+                    sum_type  # 'sum', 'mean', 'median'
+                    ):   
+    group_means  = df.groupby(group_col)[attr].transform(sum_type)
+    group_means = np.round(group_means, 2)
+    return group_means #series
 
 def build_network(df, attr, blacklist=[], idf=False, linksPer=3, minTags=1): 
     '''
@@ -128,6 +181,9 @@ def decorate_network(df, ldf, tag_attr,
                      outname, # final network file name
                      labelcol,# column to be used for node label
                      clusName, # name of cluster attr
+                     addLayout=True,
+                     layout = 'cluster', # other options: 'tsne', 'force-directed'
+                     fd_iterations = 1000, # iterations for force-directed layout
                      writeFile=True, 
                      removeSingletons=True): 
     '''
@@ -153,11 +209,21 @@ def decorate_network(df, ldf, tag_attr,
     df['label'] = df[labelcol]
     
     ## add layouts
-        ## add tsne layout coordinates
-    df = tsne_layout(df, ldf, clusName=clusName)
-        # add clustered layout coordinates
-    df = clustered_layout(df, ldf, clusName=clusName)
-
+    if addLayout==True:
+        if layout =='cluster':
+            # add clustered layout coordinates
+            df = add_cluster_layout(df, ldf,
+                           cluster_attr=clusName,
+                           no_overlap=True, 
+                           max_expansion=1.5, 
+                           scale_factor=1.0)
+        if layout == 'tsne':
+            ## add tsne layout coordinates
+            df = tsne_layout(df, ldf, clusName=clusName)
+        if layout == 'force-directed':
+            ## add force-directed layout coordinates
+            df = spring_layout(df, ldf, iterations=fd_iterations)
+     
     # add outdegree
     nw = buildNetworkX(ldf, directed=True)
     df['n_Neighbors'] = df['id'].map(dict(nw.out_degree()))
@@ -177,8 +243,6 @@ def decorate_network(df, ldf, tag_attr,
         # join list back into string of unique pipe-sepparated tags
         df[tag_attr] = df[taglist_attr].apply(lambda x: "|".join(list(set(x)))) 
         df['nTags'] = df[tag_attr].apply(lambda x: len(x.split("|")))  
-        
-    
     
     ## Clean final columns
     print("Cleaning final columns")
@@ -208,6 +272,8 @@ def build_decorate_plot_network(df,
                                 clusName = "Keyword_Theme", # name of cluster attribute
                                 labelcol='profile_name', 
                                 add_nodata = True,
+                                addLayout=True,
+                                layout='cluster',
                                 plot=True,
                                 x='x', # x attrib from add_layout
                                 y='y'): # y attrib from add_layout 
@@ -225,6 +291,8 @@ def build_decorate_plot_network(df,
                                  nw_name, # final network file name
                                  labelcol, 
                                  clusName, 
+                                 addLayout=addLayout,
+                                 layout=layout,
                                  writeFile=True, 
                                  removeSingletons=True)
     if add_nodata:
