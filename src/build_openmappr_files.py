@@ -47,8 +47,7 @@ def get_default_column_types_openmappr(ndf):
         if ndf[col].dtype == np.int64: #'Int64':             # integer
             typeDict[col] = ("integer", "histogram", "FALSE")
         if ndf[col].dtype == 'bool':             # integer
-            typeDict[col] = ("string", "tag-cloud", "FALSE")
-        
+            typeDict[col] = ("string", "tag-cloud", "FALSE")    
         #TODO:  need to add timestamp, year, video
     return typeDict
         

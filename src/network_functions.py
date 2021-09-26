@@ -109,7 +109,7 @@ def add_group_fracs (ndf,
                        group_col, # grouping attribute (e.g. 'cluster')
                        attr,  # column with value compute % (e.g. 'org typ') 
                        value): # value to tally if present (e.g. 'non-profit')
-    
+    # summarize fraction of nodes each cluster where a value is present
     groups = list(ndf[group_col].unique())
     df = ndf[[group_col, attr]]
     grp_fracs = {}
@@ -124,25 +124,13 @@ def add_group_fracs (ndf,
     group_value_fracs = df[group_col].map(grp_fracs)
     return group_value_fracs # series
 
-def add_group_means (df,  
-                    group_col, # grouping attribute (e.g. 'cluster')
-                    attr):  # column with value summarize % (e.g. 'total funding')   
-    group_means  = df.groupby(group_col)[attr].transform('mean')
-    group_means = np.round(group_means, 2)
-    return group_means #series
-
-def add_group_medians (df,  
-                    group_col, # grouping attribute (e.g. 'cluster')
-                    attr):  # column with value summarize % (e.g. 'total funding')   
-    group_means  = df.groupby(group_col)[attr].transform('median')
-    group_means = np.round(group_means, 2)
-    return group_means #series
        
 def add_group_sums (df,  
                     group_col, # grouping attribute (e.g. 'cluster')
                     attr, # column with value summarize % (e.g. 'total funding')  
                     sum_type  # 'sum', 'mean', 'median'
                     ):   
+    # summarize total, mean, median value for each cluster
     group_means  = df.groupby(group_col)[attr].transform(sum_type)
     group_means = np.round(group_means, 2)
     return group_means #series
@@ -207,7 +195,8 @@ def decorate_network(df, ldf, tag_attr,
     #df.drop(['Cluster'], axis=1, inplace=True)
 
     df['label'] = df[labelcol]
-    
+    df['x'] = np.random.uniform(0,1, df.shape[0]) # add random coordinates if no layout
+    df['y'] = np.random.uniform(0,1, df.shape[0])  # add random coordinates if no layout
     ## add layouts
     if addLayout==True:
         if layout =='cluster':
