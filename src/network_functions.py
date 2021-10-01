@@ -16,11 +16,13 @@ network analysis functions to
 
 import sys
 import pandas as pd
+sys.path.append("../../Github/Tag2Network/tag2network/Network/")  # add Tag2Network directory
+sys.path.append("../../Github/Tag2Network/tag2network")  # add Tag2Network directory
 sys.path.append("../../../Github/Tag2Network/tag2network/Network/")  # add Tag2Network directory
-#sys.path.append("../../Github/Tag2Network/tag2network/Network")  # add Tag2Network directory
+sys.path.append("../../../Github/Tag2Network/tag2network")  # add Tag2Network directory
 import numpy as np
 import BuildNetwork as bn # tag2network: build network and layout functions
-import ClusterLayout as cl
+import ClusterLayout as cl   #tag2network: new cluster layout function
 import DrawNetwork as dn  # tag2network: plot network function
 import networkx as nx
 from collections import Counter
@@ -41,15 +43,18 @@ def buildNetworkX(linksdf, id1='Source', id2='Target', directed=False):
 
 def add_cluster_layout(ndf, ldf, dists=None, maxdist=5, 
                        cluster_attr='Cluster', # name of cluster attrubute
-                       no_overlap=True,
                        size_attr=None,
-                       max_expansion=1.5, 
+                       overlap_frac=0.2,
+                       max_expansion=1.5,
                        scale_factor=1.0): 
     print("Running clustered graph layout")
     nw = buildNetworkX(ldf)
     layout, _ = cl.run_cluster_layout(nw, ndf, dists=dists, maxdist=maxdist, 
-                       size_attr=size_attr, cluster_attr=cluster_attr,
-                       no_overlap=no_overlap, max_expansion=max_expansion, scale_factor=scale_factor)
+                       size_attr=size_attr, 
+                       cluster_attr=cluster_attr,
+                       overlap_frac=overlap_frac, 
+                       max_expansion=max_expansion, 
+                       scale_factor=scale_factor)
     ndf['x'] = ndf['id'].apply(lambda x: layout[x][0] if x in layout else 0.0)
     ndf['y'] = ndf['id'].apply(lambda x: layout[x][1] if x in layout else 0.0)
     return ndf
@@ -104,6 +109,15 @@ def write_network_to_excel (ndf, ldf, outname):
     ldf.to_excel(writer,'Links', index=False, encoding = 'utf-8-sig')
     writer.save()  
 
+def normalized_difference(df, attr):
+    # compute normalizd difference relative to the mean
+    avg_attr = df[attr].mean()
+    normalized_diff = ((df[attr]-avg_attr)/(df[attr]+avg_attr)).round(4)
+    return normalized_diff
+
+def max_min_normalize(df, attr):
+    max_min = (df[attr]-df[attr].min())/(df[attr].max()-df[attr].min())
+    return max_min
 
 def add_group_fracs (ndf,  
                        group_col, # grouping attribute (e.g. 'cluster')
@@ -124,7 +138,48 @@ def add_group_fracs (ndf,
     group_value_fracs = df[group_col].map(grp_fracs)
     return group_value_fracs # series
 
-       
+def add_group_relative_fracs (ndf,  
+                           group_col, # grouping attribute (e.g. 'cluster')
+                           attr,  # column with value compute % (e.g. 'org typ') 
+                           value,# value to tally if present (e.g. 'non-profit')
+                           normalized =True # convert relative fract to normalized difference
+                           ): 
+    # summarize fraction (relative to global frac) 
+    # of nodes each cluster where a value is present
+    total = sum(ndf[attr].apply(lambda x: (x != None) and (x != '')))
+    n_value = sum(ndf[attr]==value)
+    global_frac = n_value/total
+
+    groups = list(ndf[group_col].unique())
+    # subset the dataframe columns
+    df = ndf[['id', group_col, attr]]
+
+    grp_fracs = {} # dict to hold fracs for each group
+    grp_rel_fracs = {} # dict to hold relative fracs for each group
+    grp_ndiff_fracs = {} # dict to hold normalized fracs for each group
+
+    for group in groups:
+        df_grp = df[df[group_col]==group] # subset cluster
+        nodata = df_grp[attr].apply(lambda x: (x == None or x == ''))
+        df_grp = df_grp[~nodata] # remove missing data
+        grp_size = len(df_grp)
+        n_value = sum(df_grp[attr] == value)  # total cases where value is true
+        # compute values for the group
+        frac = np.round(n_value/grp_size, 2) # fraction of cases where value is tru
+        if normalized:
+            rel_frac = np.round((frac - global_frac/(frac + global_frac)),4) # normalized to global
+        else:
+            rel_frac = np.round((frac/global_frac), 2) # frac relative to global
+        # map the values to the group dictionary
+        grp_fracs[group] = frac # dict to hold fracs for each group
+        grp_rel_fracs[group] = rel_frac # relative fracs for each group
+    # map the group values to the dataframe
+    df = df.reset_index(drop=True)
+    df['frac_'+ value] = df[group_col].map(grp_fracs)
+    df['rel_frac_'+ value] = df[group_col].map(grp_rel_fracs)
+    return df # dataframe of just group, attr, and fracs by group
+
+      
 def add_group_sums (df,  
                     group_col, # grouping attribute (e.g. 'cluster')
                     attr, # column with value summarize % (e.g. 'total funding')  
@@ -171,6 +226,8 @@ def decorate_network(df, ldf, tag_attr,
                      clusName, # name of cluster attr
                      addLayout=True,
                      layout = 'cluster', # other options: 'tsne', 'force-directed'
+                     size_attr=None,
+                     overlap_frac=0.2, # cluster overlap
                      fd_iterations = 1000, # iterations for force-directed layout
                      writeFile=True, 
                      removeSingletons=True): 
@@ -203,7 +260,8 @@ def decorate_network(df, ldf, tag_attr,
             # add clustered layout coordinates
             df = add_cluster_layout(df, ldf,
                            cluster_attr=clusName,
-                           no_overlap=True, 
+                           size_attr=size_attr,
+                           overlap_frac=overlap_frac, 
                            max_expansion=1.5, 
                            scale_factor=1.0)
         if layout == 'tsne':
