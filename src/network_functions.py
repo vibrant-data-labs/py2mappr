@@ -16,14 +16,14 @@ network analysis functions to
 
 import sys
 import pandas as pd
-sys.path.append("../../Github/Tag2Network/tag2network/Network/")  # add Tag2Network directory
 sys.path.append("../../Github/Tag2Network/tag2network")  # add Tag2Network directory
-sys.path.append("../../../Github/Tag2Network/tag2network/Network/")  # add Tag2Network directory
-sys.path.append("../../../Github/Tag2Network/tag2network")  # add Tag2Network directory
+sys.path.append("../../../Github/Tag2Network/tag2ntwork")  # add Tag2Network directory
+sys.path.append("../../Github/Tag2Network")  # add Tag2Network directory
+sys.path.append("../../../Github/Tag2Network")  # add Tag2Network directory
 import numpy as np
-import BuildNetwork as bn # tag2network: build network and layout functions
-import ClusterLayout as cl   #tag2network: new cluster layout function
-import DrawNetwork as dn  # tag2network: plot network function
+from tag2network.Network import BuildNetwork as bn # tag2network: build network and layout functions
+from tag2network.Network import ClusterLayout as cl   #tag2network: new cluster layout function
+from tag2network.Network import DrawNetwork as dn  # tag2network: plot network function
 import networkx as nx
 from collections import Counter
 from pathlib import Path
