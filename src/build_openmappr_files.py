@@ -55,16 +55,17 @@ def get_default_column_types_openmappr(ndf):
 def write_openmappr_files(ndf, ldf, playerpath, 
                     x, y, # attr for clustered layout coordinates
                     labelCol='Name', 
-                    hide_add = [],  # list custom attributes to hide from filters
-                    hideProfile_add =[], # list custom attributes to hide from right profile
-                    hideSearch_add = [], # list custom attributes to hide from search
-                    liststring_add = [], # list attributes to treat as liststring 
-                    tags_add = [],  # list of custom attrubtes to render as tag-cloud
-                    wide_tags_add = [], # list of custom attribs to render wide tag-cloud
-                    text_str_add = [],  # list of custom attribs to render as long text in profile
-                    email_str_add = [], # list of custom attribs to render as email link
-                    showSearch_add = [], # list of custom attribs to show in search
-                    years_add = [], # list of attributes to format as year not integer
+                    hide = [],  # list custom attributes to hide from filters
+                    hideProfile =[], # list custom attributes to hide from right profile
+                    hideSearch = [], # list custom attributes to hide from search
+                    liststring = [], # list attributes to treat as liststring 
+                    tag_cloud = [],  # list of custom attrubtes to render as tag-cloud
+                    wide_tags = [], # list of custom attribs to render wide tag-cloud
+                    horizontal_bars = [], # list of string attrs to render as horizontal bar chart
+                    text_str = [],  # list of custom attribs to render as long text in profile
+                    email_str = [], # list of custom attribs to render as email link
+                    showSearch = [], # list of custom attribs to show in search
+                    years = [], # list of attributes to format as year not integer
                     low_priority = [] # list of attributes to move to 'additional attributes' in left panel
                     ):  
     '''
@@ -107,28 +108,29 @@ def write_openmappr_files(ndf, ldf, playerpath,
     node_attr_df['searchable'] = node_attr_df['id'].apply(lambda x: typeDict[x][2])
 
         # custom string renderType settings for string attributes
-    node_attr_df['attrType'] = node_attr_df.apply(lambda x: 'liststring' if str(x['id']) in liststring_add
-                                                               else 'string' if str(x['id']) in (text_str_add + email_str_add)
-                                                               else 'year' if str(x['id']) in (years_add)
+    node_attr_df['attrType'] = node_attr_df.apply(lambda x: 'liststring' if str(x['id']) in liststring
+                                                               else 'string' if str(x['id']) in (text_str + email_str + horizontal_bars)
+                                                               else 'year' if str(x['id']) in (years)
                                                                else x['attrType'], axis=1)
 
-    node_attr_df['renderType'] = node_attr_df.apply(lambda x: 'wide-tag-cloud' if str(x['id']) in wide_tags_add 
-                                                               else 'tag-cloud' if str(x['id']) in tags_add
-                                                               else 'text' if str(x['id']) in text_str_add
-                                                               else 'email' if str(x['id']) in email_str_add
+    node_attr_df['renderType'] = node_attr_df.apply(lambda x: 'wide-tag-cloud' if str(x['id']) in wide_tags 
+                                                               else 'tag-cloud' if str(x['id']) in tag_cloud
+                                                               else 'horizontal-bars' if str(x['id']) in horizontal_bars
+                                                               else 'text' if str(x['id']) in text_str
+                                                               else 'email' if str(x['id']) in email_str
                                                                else x['renderType'], axis=1)
        # additional attributes to hide from filters
-    hide = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id'] + hide_add))
+    hide = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id'] + hide))
     node_attr_df['visible'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hide else 'TRUE')
  
        # additional attributes to hide from profile
-    hideProfile = list(set(hide + hideProfile_add))
+    hideProfile = list(set(hide + hideProfile))
     node_attr_df['visibleInProfile'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hideProfile else 'TRUE')
     
        # additional attributes to hide from search
-    hideSearch = list(set(hide + hideSearch_add))
+    hideSearch = list(set(hide + hideSearch))
     node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'FALSE' if str(x['id']) in hideSearch else x['searchable'], axis=1)
-    node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'TRUE' if str(x['id']) in text_str_add else x['searchable'], axis=1)
+    node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'TRUE' if str(x['id']) in text_str else x['searchable'], axis=1)
     
 
        # add default alias title and node metadata description columns
@@ -147,97 +149,7 @@ def write_openmappr_files(ndf, ldf, playerpath,
     node_attr_df = node_attr_df[meta_cols]
     node_attr_df.to_csv(datapath/"node_attrs.csv", index=False)
 
-#####################################################################################
-####  THIS FUNCTION IS A WORK IN PROGRESS -
-#### MAKE ALL SETTING MANUALLY DEFINED RATHER THAN TRY TO AUTOMATE
 
-def write_openmappr_files_manual(ndf, ldf, datapath, labelCol='Name', 
-                    hideFilters = [],  # list custom attributes to hide from filters
-                    hideProfile =[], # list custom attributes to hide from right profile
-                    hideSearch = [], # list custom attributes to hide from search
-                    ### attr types
-                    strings = [], # list attributes to treat as strings 
-                    liststrings = [],  # list of  attrubtes to treat as tags (list-string)
-                    floats = [], # list of attributes that are float
-                    integers = [], 
-                    years = [],
-                    timestamps = [],
-                    photos = [],
-                    url = [],
-                    videos = [],
-                    ### render types
-                    tag_cloud = [], # list of custom string attribs to render as small tag-cloud
-                    wide_tags_add = [], # list of custom string attribs to render wide tag-cloud
-                    text_str_add = [],  # list of custom attribs to render as long text in profile
-                    email_str = [], # list of string attribs to render as email
-                    histograms = [], # list of attribs to render as histogram. 
-                    default_render = [], 
-                    ):  
-
-    # Write files for py2mappr: 
-        # nodes.csv, links.csv, 
-        #node_attrs_template.csv (template for specifying attribute rendering settings in openmappr)
-
-    print('\nWriting openMappr files')
-    ## generate csv's for py2mappr
-    # prepare and write nodes.csv
-    ndf['label'] = ndf[labelCol] 
-    ndf['OriginalLabel'] = ndf['label']
-    ndf['OriginalX'] = ndf['x']
-    ndf['OriginalY'] = ndf['y']
-    ndf['OriginalSize'] = 10
-
-    ndf.to_csv(datapath/"nodes.csv", index=False)
-
-    # prepare and write links.csv
-    ldf['isDirectional'] = True
-    ldf.to_csv(datapath/"links.csv", index=False)
-
-    # prepare and write note attribute settings template (node_attrs_template.csv)
-        
-       # create node attribute metadata template:
-    node_attr_df = ndf.dtypes.reset_index()
-    node_attr_df.columns = ['id', 'dtype']
-
-
-        # map automatic default attrType, renderType, searchable based on column types
-        # get dictionary of default mapping of column to to attrType, renderType, searchable
-    typeDict =  get_default_column_types_openmappr(ndf)  
-    node_attr_df['attrType'] = node_attr_df['id'].apply(lambda x: typeDict[x][0])
-    node_attr_df['renderType'] = node_attr_df['id'].apply(lambda x: typeDict[x][1])
-    node_attr_df['searchable'] = node_attr_df['id'].apply(lambda x: typeDict[x][2])
-  
-        # custom string renderType settings for string attributes
-    node_attr_df['attrType'] = node_attr_df.apply(lambda x: 'liststring' if str(x['id']) in liststring_add
-                                                               else 'text' if str(x['id']) in text_str_add 
-                                                               else x['attrType'], axis=1)
-
-    node_attr_df['renderType'] = node_attr_df.apply(lambda x: 'wide-tag-cloud' if str(x['id']) in wide_tags_add 
-                                                               else 'tag-cloud' if str(x['id']) in tags_add
-                                                               else 'text' if str(x['id']) in text_str_add
-                                                               else x['renderType'], axis=1)
-       # additional attributes to hide from filters
-    hide = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id'] + hide_add))
-    node_attr_df['visible'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hide else 'TRUE')
- 
-       # additional attributes to hide from profile
-    hideProfile = list(set(hide + hideProfile_add))
-    node_attr_df['visibleInProfile'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hideProfile else 'TRUE')
-    
-       # additional attributes to hide from search
-    hideSearch = list(set(hide + hideSearch_add))
-    node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'FALSE' if str(x['id']) in hideSearch else x['searchable'], axis=1)
-    node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'TRUE' if str(x['id']) in text_str_add else x['searchable'], axis=1)
-
-       # add default alias title and node metadata description columns
-    node_attr_df['title'] = node_attr_df['id']
-    node_attr_df[['descr', 'maxLabel', 'minLabel', 'overlayAnchor']] = ''   
-    node_attr_df[['descr', 'maxLabel', 'minLabel', 'overlayAnchor']] = ''
-
-       # re-order final columns and write template file
-    meta_cols = ['id', 'visible', 'visibleInProfile', 'searchable', 'title', 'attrType', 'renderType', 'descr', 'maxLabel', 'minLabel', 'overlayAnchor']
-    node_attr_df = node_attr_df[meta_cols]
-    node_attr_df.to_csv(datapath/"node_attrs.csv", index=False)
 #####################################################################################
 
 
