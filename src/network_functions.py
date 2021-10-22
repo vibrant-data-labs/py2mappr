@@ -316,6 +316,7 @@ def build_decorate_plot_network(df,
                                 network_renameDict, # rename final node attribs
                                 finalNodeAttrs,  # final columns to keep
                                 tagcols_nodata, # tag columns to replace empty with 'no data'
+                                minTags=1, 
                                 clusName = "Keyword_Theme", # name of cluster attribute
                                 labelcol='profile_name', 
                                 add_nodata = True,
@@ -330,7 +331,7 @@ def build_decorate_plot_network(df,
     Returns:  ndf, ldf and plots/writes pdf of network viz 
     '''
     # Build Network
-    ndf, ldf = build_network(df, tag_attr , idf=False, linksPer=linksPer, blacklist= blacklist)
+    ndf, ldf = build_network(df, tag_attr , idf=False, linksPer=linksPer, blacklist= blacklist, minTags=minTags)
     # Decorate network
     ndf, ldf =  decorate_network(ndf, ldf, tag_attr, 
                                  network_renameDict, # column renaming
