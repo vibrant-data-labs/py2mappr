@@ -39,6 +39,7 @@ num_palette=[# default numeric color palette endpoints
 
 
 def build_clustered_snapshot(node_color = 'Cluster',
+                             cluster = None, # cluster by attr
                              node_size = "ClusterCentrality",                              
                              node_size_scaling = (5,15,.8), #min size, max size, multiplier
                              cat_palette = cat_palette, # List of dictionaries: [{"col": HEXCODE}]
@@ -64,7 +65,10 @@ def build_clustered_snapshot(node_color = 'Cluster',
                 Use the left panel to browse and select nodes by one or more keywords, tags, or other attributes. \
                 If you click <i>Summarize</i>, the left <b>Summary</b> panel will summarize the attributes for the selected group.\
                 </span></p>"
-                
+    if cluster == None:
+        nodeClusterAttr = node_color
+    else:
+        nodeClusterAttr = cluster            
     snap = create_snapshot(
         name=title,
         subtitle=subtitle,
@@ -75,6 +79,7 @@ def build_clustered_snapshot(node_color = 'Cluster',
             "settings": {
                 # node color and images
                 "nodeColorAttr": node_color,
+                "nodeClusterAttr": nodeClusterAttr,
                 "nodeColorPaletteOrdinal": cat_palette,
                 "nodeColorPaletteNumeric": num_palette,
                 "nodeColorNumericScalerType": "RGB", # "HCL", "HCL Long", "LAB", "HSL"
@@ -117,6 +122,7 @@ def build_scatterplot_snapshot(
                              aspect_ratio = 0.7, # 0.5 is square, >0.5 spreads out the scatterplot horizontally
                              node_color = "Cluster",
                              node_size = "ClusterCentrality",
+                             cluster = None, # cluster by attr
                              clusterCircles = False,                            
                              node_size_scaling = (5,15,.8), #min size, max size, multiplier
                              cat_palette = cat_palette, # List of dictionaries: [{"col": HEXCODE}]
@@ -136,11 +142,14 @@ def build_scatterplot_snapshot(
                              ):   
 
     default_description = "<p><span>\
-                Nodes are sorted horizontally by " + x + " and vertically by " + y + ".</span></p>\
-                <p><span>\
-                Use the left panel to browse and select nodes by one or more keywords, tags, or other attributes. \
-                If you click <i>Summarize</i>, the left <b>Summary</b> panel will summarize the attributes for the selected group.\
+                Use the <b>Summary</b> tab to browse and select points by one or more keywords, tags, or other attributes. \
+                If you click <i>Summarize</i>, the left panel will summarize the attributes for the selected group.\
+                Use the <b>List</b> tab to see any selected points as a sortable list.\
                 </span></p>"
+    if cluster == None:
+        nodeClusterAttr = node_color
+    else:
+        nodeClusterAttr = cluster            
 
     snap = create_snapshot(
         name=title,
@@ -221,8 +230,8 @@ def build_geo_snapshot(
 
     # snapshot - scatterplot
     snap = create_snapshot(
-        name="Geographic Map",
-        subtitle="Company and Organization Locationw",
+        name= title,
+        subtitle= subtitle,
         summaryImg="https://www.dl.dropboxusercontent.com/s/lfa3a2w44k0t2kw/Screen%20Shot%202021-03-31%20at%207.01.37%20AM.png?dl=0",
         description= descr_intro + default_description,
         layout_params={

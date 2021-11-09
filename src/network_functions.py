@@ -167,7 +167,7 @@ def add_group_relative_fracs (ndf,
         # compute values for the group
         frac = np.round(n_value/grp_size, 2) # fraction of cases where value is tru
         if normalized:
-            rel_frac = np.round((frac - global_frac/(frac + global_frac)),4) # normalized to global
+            rel_frac = np.round(((frac - global_frac)/(frac + global_frac)),4) # normalized to global
         else:
             rel_frac = np.round((frac/global_frac), 2) # frac relative to global
         # map the values to the group dictionary
@@ -315,7 +315,7 @@ def build_decorate_plot_network(df,
                                 nw_name, # final filename for network
                                 network_renameDict, # rename final node attribs
                                 finalNodeAttrs,  # final columns to keep
-                                tagcols_nodata, # tag columns to replace empty with 'no data'
+                                tagcols_nodata=[], # tag columns to replace empty with 'no data'
                                 minTags=1, 
                                 clusName = "Keyword_Theme", # name of cluster attribute
                                 labelcol='profile_name', 
