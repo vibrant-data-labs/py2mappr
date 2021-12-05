@@ -220,7 +220,7 @@ def build_network(df, attr, blacklist=[], idf=False, linksPer=3, minTags=1):
 
 def decorate_network(df, ldf, tag_attr, 
                      network_renameDict, # column renaming
-                     finalNodeAttrs, # ginal columns to keep
+                     finalNodeAttrs, # final columns to keep
                      outname, # final network file name
                      labelcol,# column to be used for node label
                      clusName, # name of cluster attr
@@ -293,9 +293,10 @@ def decorate_network(df, ldf, tag_attr,
     
     ## Clean final columns
     print("Cleaning final columns")
-                
+    if finalNodeAttrs: # if custom list ot None, trim  columns
+        df = df[finalNodeAttrs]                
+    
     df.rename(columns=network_renameDict, inplace=True)        
-    df = df[finalNodeAttrs]
 
     if writeFile:
         print("Writing Cleaned Network File")
@@ -314,7 +315,7 @@ def build_decorate_plot_network(df,
                                 blacklist, # tags to blacklist for linjking
                                 nw_name, # final filename for network
                                 network_renameDict, # rename final node attribs
-                                finalNodeAttrs,  # final columns to keep
+                                finalNodeAttrs = None,  # custom list of final columns, if None keep all
                                 tagcols_nodata=[], # tag columns to replace empty with 'no data'
                                 minTags=1, 
                                 clusName = "Keyword_Theme", # name of cluster attribute
