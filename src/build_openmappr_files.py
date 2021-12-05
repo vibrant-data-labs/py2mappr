@@ -58,9 +58,12 @@ def write_openmappr_files(ndf, ldf, playerpath,
                     hide = [],  # list custom attributes to hide from filters
                     hideProfile =[], # list custom attributes to hide from right profile
                     hideSearch = [], # list custom attributes to hide from search
+                    keepSearch = None, # list to keep for global search (over-ride 'hideSearch')
                     liststring = [], # list attributes to treat as liststring 
-                    tag_cloud = [],  # list of custom attrubtes to render as tag-cloud
-                    wide_tags = [], # list of custom attribs to render wide tag-cloud
+                    tag_cloud = [],  # list of custom attrubtes to render as tag-cloud (4 tags per row)
+                    tag_cloud_3 = [],  # list of custom attrubtes to render as tag-cloud (3 tags per row)
+                    tag_cloud_2 = [],  # list of custom attrubtes to render as tag-cloud (2 tags per row)
+                    wide_tags = [], # list of custom attribs to render wide tag-cloud (1 tag per row)
                     horizontal_bars = [], # list of string attrs to render as horizontal bar chart
                     text_str = [],  # list of custom attribs to render as long text in profile
                     email_str = [], # list of custom attribs to render as email link
@@ -113,14 +116,20 @@ def write_openmappr_files(ndf, ldf, playerpath,
                                                                else 'year' if str(x['id']) in (years)
                                                                else x['attrType'], axis=1)
 
-    node_attr_df['renderType'] = node_attr_df.apply(lambda x: 'wide-tag-cloud' if str(x['id']) in wide_tags 
-                                                               else 'tag-cloud' if str(x['id']) in tag_cloud
+    node_attr_df['renderType'] = node_attr_df.apply(lambda x: 'wide-tag-cloud' if str(x['id']) in wide_tags  # 1 tag per row
+                                                               else 'tag-cloud_2' if str(x['id']) in tag_cloud_2 # 2 tags per row
+                                                               else 'tag-cloud_3' if str(x['id']) in tag_cloud_3 # 3 tags per row                                                                                                                         else 'tag-cloud' if str(x['id']) in tag_cloud
+                                                               else 'tag-cloud' if str(x['id']) in tag_cloud # 4 tags per row
                                                                else 'horizontal-bars' if str(x['id']) in horizontal_bars
                                                                else 'text' if str(x['id']) in text_str
                                                                else 'email' if str(x['id']) in email_str
                                                                else x['renderType'], axis=1)
        # additional attributes to hide from filters
-    hide = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id'] + hide))
+    if hide != None:
+        hide = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id'] + hide))
+    else:
+         hide = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id']))
+         
     node_attr_df['visible'] = node_attr_df['id'].apply(lambda x: 'FALSE' if str(x) in hide else 'TRUE')
  
        # additional attributes to hide from profile
@@ -132,6 +141,9 @@ def write_openmappr_files(ndf, ldf, playerpath,
     node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'FALSE' if str(x['id']) in hideSearch else x['searchable'], axis=1)
     node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'TRUE' if str(x['id']) in text_str else x['searchable'], axis=1)
     
+    if keepSearch:
+        node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'TRUE' if str(x['id']) in keepSearch else 'FALSE', axis=1)
+
 
        # add default alias title and node metadata description columns
     node_attr_df['title'] = node_attr_df['id']

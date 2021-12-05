@@ -330,8 +330,11 @@ def build_player(ndf, ldf, # nodes and links dataframes
                  hide = [],  # list custom attributes to hide from filters
                  hideProfile =[], # list custom attributes to hide from right profile
                  hideSearch = [], # list custom attribs to hide from search
+                 keepSearch = None, # simpler list of attribs to keep in search (override 'hideSearch')
                  liststring = [], # string attribs to force as liststring
                  tag_cloud = [],  # custom string attribs to render as tag-cloud
+                 tag_cloud_3 = [],  # list of custom attrubtes to render as tag-cloud (3 tags per row)
+                 tag_cloud_2 = [],  # list of custom attrubtes to render as tag-cloud (2 tags per row)
                  wide_tags = []  , # custom string attribs to render as wide tag-cloud
                  horizontal_bars = [], # custom string attribs to render as horizontal bar chart
                  text_str = [],   # custom string attribs to render as long text in profile
@@ -352,8 +355,11 @@ def build_player(ndf, ldf, # nodes and links dataframes
                     hide = hide,  # list custom attributes to hide from filters
                     hideProfile =hideProfile, # list custom attributes to hide from right profile
                     hideSearch = hideSearch, # list custom attribs to hide from search
+                    keepSearch = keepSearch, # simpler list of attribs to keep in search (override 'hideSearch')
                     liststring = liststring, # string attribs to force as liststring
                     tag_cloud = tag_cloud,  # custom string attribs to render as tag-cloud
+                    tag_cloud_3 = tag_cloud_3,  # list of custom attrubtes to render as tag-cloud (3 tags per row)
+                    tag_cloud_2 = tag_cloud_2,  # list of custom attrubtes to render as tag-cloud (2 tags per row)
                     wide_tags = wide_tags  , # custom string attribs to render as wide tag-cloud
                     horizontal_bars = horizontal_bars, # custom string attribs to render as horizontal bar chart
                     text_str = text_str,   # custom string attribs to render as long text in profile
