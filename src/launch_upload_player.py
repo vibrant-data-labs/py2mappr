@@ -25,7 +25,7 @@ SECRET_KEY = config['aws']['secret_access_key']
 
 
 # launch local server and open browser to display map
-def run_local(project_directory, PORT=5000):
+def run_local(project_directory, PORT=8080):
     """
     launches a new tab in active browswer with the map
     project_directory : string, the directory with the project data (index.html and 'data' folder)

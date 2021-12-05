@@ -397,7 +397,7 @@ def build_player(ndf, ldf, # nodes and links dataframes
         launch_upload_player.upload_to_s3(str(outFolder), player_s3_bucket)
 
     if launch_local:
-        launch_upload_player.run_local(str(outFolder), PORT=5000)
+        launch_upload_player.run_local(str(outFolder), PORT=8080)
 
 
 ############################
