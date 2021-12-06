@@ -293,10 +293,11 @@ def decorate_network(df, ldf, tag_attr,
     
     ## Clean final columns
     print("Cleaning final columns")
+    df.rename(columns=network_renameDict, inplace=True)        
+
     if finalNodeAttrs: # if custom list ot None, trim  columns
         df = df[finalNodeAttrs]                
     
-    df.rename(columns=network_renameDict, inplace=True)        
 
     if writeFile:
         print("Writing Cleaned Network File")
