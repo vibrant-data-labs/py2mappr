@@ -104,6 +104,9 @@ def build_clustered_snapshot(node_color = 'Cluster',
                 "edgeColorAttr": "OriginalColor",
                 # neighbor rendering
                 "nodeSelectionDegree": neighbors,
+                "isShowSelectedNodeTab": True, # right profile selected neighbors
+                "neighbourListHoverDegree": 0,  # degree to show when hover on node in list              
+
                 # labels
                 "drawGroupLabels": group_labels, # show/hide group labels 
                 "drawClustersCircle": clusterCircles, # show/hide cluster circles
@@ -166,6 +169,7 @@ def build_scatterplot_snapshot(
                 "yAxShow": axes_show,
                 "invertX": x_invert,
                 "invertY": y_invert,
+                "axis": "all", # "all", "none", "x", "y"  show dropdown selector
                 "scatterAspect": aspect_ratio,  # higher than 0.5 spreads out the scatterplot horizontally
                 # node color and images
                 "nodeColorAttr": node_color,
@@ -193,6 +197,8 @@ def build_scatterplot_snapshot(
                 "edgeColorAttr": "OriginalColor",
                 # neighbor rendering
                 "nodeSelectionDegree": neighbors,
+                "isShowSelectedNodeTab": True, # right profile selected neighbors
+                "neighbourListHoverDegree": 0,  # degree to show when hover on node in list              
                 # labels
                 "drawGroupLabels": group_labels,
                 "drawClustersCircle": clusterCircles,
@@ -268,6 +274,8 @@ def build_geo_snapshot(
                 "edgeColorAttr": "OriginalColor",
                 # neighbor rendering
                 "nodeSelectionDegree": neighbors,
+                "isShowSelectedNodeTab": True, # right profile selected neighbors
+                "neighbourListHoverDegree": 0,  # degree to show when hover on node in list              
                 # labels
                 "drawGroupLabels": False,  # cluster labels
                 # node right panel
@@ -401,112 +409,4 @@ def build_player(ndf, ldf, # nodes and links dataframes
 
 
 ############################
-if __name__ == '__main__':
-    # data paths
-    wd = pl.Path.cwd()  # current working directory
-    playerpath = wd/"player"
-    nw_name = wd/"results"/"network.xlsx" 
-    player_s3_bucket = "my-s3-bucket"
-
-    #  read nodes file
-    ndf = pd.read_excel(nw_name, engine='openpyxl', sheet_name='Nodes') # recipients with metadata including tags
-    ldf = pd.read_excel(nw_name, engine='openpyxl', sheet_name='Links') # recipients with metadata including tags
-    
-    def build_climate_player(ndf,ldf,
-                         playerpath = playerpath,
-                         nw_name = nw_name,
-                         player_bucket = player_s3_bucket,
-                         launch_local=True,
-                         upload_s3=False):   
-
-        # clustered snapshot
-        snap_clustered = build_clustered_snapshot(
-                                 node_color = 'Climate Theme',
-                                 node_size = "ClusterCentrality",                              
-                                 node_size_scaling = (5,15,.6), #min size, max size, multiplier
-                                 image_show = False, # show image in node
-                                 image_attr = "Photo",  # image attr name
-                                 links_show = False, # display links
-                                 neighbors = 0, # number of neighbors on hover/select
-                                 title = "Thematic Clusters",
-                                 subtitle = "Nodes clustered into themes",
-                                 description_intro = "This is a landscape map of ...",
-                                 )
-        # scatterplot snapshot
-        snap_scatter = build_scatterplot_snapshot(
-                                  "Stage",  # x axis attribute name
-                                  "log Total Funding", # y axis attribute name
-                                 axes_show = True,
-                                 axes_invert = False,
-                                 aspect_ratio = 0.7, # 0.5 is square, >0.5 spreads out the scatterplot horizontally
-                                 node_color = "Climate Theme",
-                                 node_size = "Relative Funding",                              
-                                 node_size_scaling = (5,15,.8), #min size, max size, multiplier
-                                 cat_palette = cat_palette, # List of dictionaries: [{"col": HEXCODE}]
-                                 num_palette = num_palette, # List of dictionaries: [{"col": HEXCODE}]
-                                 image_show = False, # show image in node
-                                 links_show = False, # display links
-                                 title = "Scatterplot", 
-                                 subtitle = "",
-                                 description_intro = "<p>This view shows.... Each node is a .... ",
-                                 thumbnail = "https://www.dl.dropboxusercontent.com/s/0y9ccfw3ps91oy4/scatterplot.png?dl=0",                                    
-                                )
-        
-        # geo snapshot    
-        snap_geo = build_geo_snapshot(
-                        node_color = 'Climate Theme',
-                        node_size = "ClusterCentrality",                              
-                        node_size_scaling = (5,15,.8), #min size, max size, multiplier
-                        image_show = False, # show image in node
-                        links_show = False, # display links
-                        neighbors = 0, # degree of neighbors on hover/select
-                        title = "Geographic View", 
-                        subtitle = "",
-                        descr_intro = "This is a geographic view of the office locations of each company and organization",        
-                        )
-        
-
-        # geo snapshot    
-        snapshots_list = [snap_clustered, snap_scatter, snap_geo]
-        # add project title and description
-        player_settings = build_player_settings(
-                           #project_title = "Climate Solutions Landscape",
-                           #project_description = "PROJECT DESCRIPTION"
-                           )
-
-
-        build_player(ndf, ldf, # nodes and links dataframes
-                     playerpath, # pathlib object - directory to store player data
-                     player_settings, # player-level settings
-                     snapshots_list, # list of snapshots
-                     x = 'x', # layout attribute for clustered 'original layout' 
-                     y = 'y', # layout attribute for clustered 'original layout'
-                     ### node attribute style settings ###
-                     labelCol='label', 
-                     hide = ref.hide,  # list custom attributes to hide from filters
-                     hideProfile = ref.hideProfile, # list custom attributes to hide from right profile
-                     hideSearch = ref.hideSearch, # list custom attribs to hide from search
-                     liststring = ref.liststring, # string attribs to force as liststring
-                     tag_cloud = ref.tag_cloud,  # custom string attribs to render as tag-cloud
-                     wide_tags = ref.wide_tags  , # custom string attribs to render as wide tag-cloud
-                     text_str = ref.text_str,   # custom string attribs to render as long text in profile
-                     email_str = ref.email_str, # custom string attribs to render as email link  in profile
-                     years = ref.years, # format as year not integer
-                     low_priority = ref.low_priority, # attributes to move to 'additional attributes' 
-                     ### launch / upload settings
-                     launch_local=True, 
-                     upload_s3=False,
-                     player_s3_bucket = "my-s3-bucket-name"
-                     )
-
-
-    ########################    
-    ## call to run and build snapshots and player
-    build_climate_player(ndf,ldf,
-                         playerpath = playerpath,
-                         nw_name = nw_name,
-                         player_bucket = player_s3_bucket,
-                         launch_local=True,
-                         upload_s3=False)
-
 

@@ -229,6 +229,9 @@ def decorate_network(df, ldf, tag_attr,
                      size_attr=None,
                      overlap_frac=0.2, # cluster overlap
                      fd_iterations = 1000, # iterations for force-directed layout
+                     plot=False, # option to plot network
+                     x='x',
+                     y='y',
                      writeFile=True, 
                      removeSingletons=True): 
     '''
@@ -290,6 +293,14 @@ def decorate_network(df, ldf, tag_attr,
         # join list back into string of unique pipe-sepparated tags
         df[tag_attr] = df[taglist_attr].apply(lambda x: "|".join(list(set(x)))) 
         df['nTags'] = df[tag_attr].apply(lambda x: len(x.split("|")))  
+
+    if plot:
+        # Plot Network
+        plot_network(df, ldf, "Network_plot.pdf", 
+                     colorBy = clusName,  # color by cluster
+                     sizeBy='ClusterCentrality', 
+                     x=x, 
+                     y=y)
     
     ## Clean final columns
     print("Cleaning final columns")
@@ -323,8 +334,8 @@ def build_decorate_plot_network(df,
                                 labelcol='profile_name', 
                                 add_nodata = True,
                                 addLayout=True,
-                                layout='cluster',
-                                plot=True,
+                                layout='cluster', 
+                                plot=False,
                                 x='x', # x attrib from add_layout
                                 y='y'): # y attrib from add_layout 
     '''
@@ -343,6 +354,9 @@ def build_decorate_plot_network(df,
                                  clusName, 
                                  addLayout=addLayout,
                                  layout=layout,
+                                 plot=plot, 
+                                 x=x,
+                                 y=y,
                                  writeFile=True, 
                                  removeSingletons=True)
     if add_nodata:
@@ -350,12 +364,6 @@ def build_decorate_plot_network(df,
         for col in tagcols_nodata:
             ndf[col].fillna('no data', inplace=True)
             ndf[col] = ndf[col].apply(lambda x: 'no data' if x == "" else x)
-    if plot:
-        # Plot Network
-        plot_network(ndf, ldf, "Network_plot.pdf", 
-                     colorBy = clusName,  # color by cluster
-                     sizeBy='ClusterCentrality', 
-                     x=x, 
-                     y=y)
+
     return ndf, ldf
 
