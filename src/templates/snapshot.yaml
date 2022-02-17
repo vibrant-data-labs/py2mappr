@@ -28,6 +28,11 @@ layout:
     nodeSelectionBorderOffset: 0 #
     nodeSelectionBorderWidth: 3 #
     nodeSelectionDegree: 1 # number - degree of hover nodes
+    isShowSelectedNodeTab: true # show list of neighbors in right profile
+    selectedNodeCommonTitle: 'Neighbors' # default title of neighbors list if only incoming or outgoing
+    selectedNodeIncomingTitle: 'Incoming' # default title of incoming neighbors both incoming and outgoing
+    selectedNodeOutgoingTitle: 'Outgoing' # default title of outgoing neighbors list if both incoming and outgoing
+    neighbourListHoverDegree: 0 # when hover on neighbor in list, don't show it's neighbors
     nodePopSize: 10
     nodePopImageShow: true
     nodePopImageAttr: "Photo"

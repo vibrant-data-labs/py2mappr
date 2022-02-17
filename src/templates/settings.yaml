@@ -12,6 +12,7 @@ settings:
     selections: []
   lastViewedSnap: "reqd-snap-id"
   layouts: {}
+  displayExportButton: false
 
 player:
   settings:
@@ -52,6 +53,7 @@ player:
     modalTitle: "document network"
     modalIntroHtml: "<h1>document_network_test</h1><div>Each of the 1000 nodes in this mapp represents ...</div><div>They are linked with each other if they are similar across the following attributes</div><div>a) Attribute 1</div><div>b) Attribute 2</div><h1></h1>"
     allowJoin: false
+    displayTooltipCard: true #display tooltip profile card when hover on list
 
 snapshots:
   -
