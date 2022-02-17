@@ -69,7 +69,8 @@ def write_openmappr_files(ndf, ldf, playerpath,
                     email_str = [], # list of custom attribs to render as email link
                     showSearch = [], # list of custom attribs to show in search
                     years = [], # list of attributes to format as year not integer
-                    low_priority = [] # list of attributes to move to 'additional attributes' in left panel
+                    low_priority = [], # list of attributes to move to 'additional attributes' in left panel
+                    axis_select = None, # custom list of numeric attributes to show in scatterplot axis dropdown (if none all visible numeric will show)
                     ):  
     '''
     Write files for py2mappr: 
@@ -143,6 +144,12 @@ def write_openmappr_files(ndf, ldf, playerpath,
     
     if keepSearch:
         node_attr_df['searchable'] = node_attr_df.apply(lambda x: 'TRUE' if str(x['id']) in keepSearch else 'FALSE', axis=1)
+        
+        # attributes to show in scatterplot axis selection menu
+    if axis_select == None: # default show all numeric attributes in the axis dropdowns 
+        node_attr_df['axis'] = node_attr_df.apply(lambda x: 'all' if str(x['renderType']) == 'histogram' else 'none', axis=1)
+    else: # otherwise only show selected attributes in axis selector dropdown menus
+        node_attr_df['axis'] = node_attr_df.apply(lambda x: 'all' if str(x['id']) in axis_select else 'none', axis=1)
 
 
        # add default alias title and node metadata description columns
@@ -157,7 +164,7 @@ def write_openmappr_files(ndf, ldf, playerpath,
 
        # re-order final columns and write template file
     meta_cols = ['id', 'visible', 'visibleInProfile', 'searchable', 'title', 'attrType', 'renderType', 
-    'descr', 'maxLabel', 'minLabel', 'overlayAnchor', 'priority']
+    'descr', 'maxLabel', 'minLabel', 'overlayAnchor', 'priority', 'axis']
     node_attr_df = node_attr_df[meta_cols]
     node_attr_df.to_csv(datapath/"node_attrs.csv", index=False)
 
