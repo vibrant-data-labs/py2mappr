@@ -106,7 +106,7 @@ def build_clustered_snapshot(node_color = 'Cluster',
                 "nodeSelectionDegree": neighbors,
                 "isShowSelectedNodeTab": True, # right profile selected neighbors
                 "neighbourListHoverDegree": 0,  # degree to show when hover on node in list              
-
+                "selectedNodeCommonTitle": 'Neighbors', # tab title for neighbors list
                 # labels
                 "drawGroupLabels": group_labels, # show/hide group labels 
                 "drawClustersCircle": clusterCircles, # show/hide cluster circles
@@ -198,7 +198,8 @@ def build_scatterplot_snapshot(
                 # neighbor rendering
                 "nodeSelectionDegree": neighbors,
                 "isShowSelectedNodeTab": True, # right profile selected neighbors
-                "neighbourListHoverDegree": 0,  # degree to show when hover on node in list              
+                "neighbourListHoverDegree": 0,  # degree to show when hover on node in list 
+
                 # labels
                 "drawGroupLabels": group_labels,
                 "drawClustersCircle": clusterCircles,
@@ -291,7 +292,6 @@ def build_player_settings(
                     project_title = "Landscape Map",
                     project_description = "<p>Project summary description goes here... </p><p>can use <i>HTML</i> to format</p>"                    
                     ):
-        
         playerSettings={
             "startPage": start_page,
             "headerTitle": project_title,
