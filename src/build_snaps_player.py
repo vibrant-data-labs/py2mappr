@@ -52,6 +52,7 @@ def build_clustered_snapshot(node_color = 'Cluster',
                              link_direction = 'outgoing', # "outgoing", "incoming", "all"
                              neighbors = 1, # number of neighbors on hover/select
                              group_labels = True, # True = show group labels
+                             node_labels = True, # True = show node labels
                              clusterCircles = False, # draw circles around clusters
                              title = "Thematic Clusters",
                              subtitle = "Nodes clustered into themes",
@@ -108,6 +109,7 @@ def build_clustered_snapshot(node_color = 'Cluster',
                 "neighbourListHoverDegree": 0,  # degree to show when hover on node in list              
                 "selectedNodeCommonTitle": 'Neighbors', # tab title for neighbors list
                 # labels
+                "drawLabels": node_labels, # show/hide node labels
                 "drawGroupLabels": group_labels, # show/hide group labels 
                 "drawClustersCircle": clusterCircles, # show/hide cluster circles
                 },
