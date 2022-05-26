@@ -41,6 +41,15 @@ def buildNetworkX(linksdf, id1='Source', id2='Target', directed=False):
     return g
 
 
+def add_random_layout(df): 
+    # random circle packed 
+    # returns 2 series of x and y coordinates
+    rho = np.sqrt(np.random.uniform(0, 1, len(df)))
+    phi = np.random.uniform(0, 2*np.pi, len(df))
+    x = rho * np.cos(phi)
+    y = rho * np.sin(phi)
+    return x, y
+
 def add_cluster_layout(ndf, ldf, dists=None, maxdist=5, 
                        cluster_attr='Cluster', # name of cluster attrubute
                        size_attr=None,
@@ -146,7 +155,7 @@ def add_group_relative_fracs (ndf,
                            ): 
     # summarize fraction (relative to global frac) 
     # of nodes each cluster where a value is present
-    total = sum(ndf[attr].apply(lambda x: (x != None) and (x != '')))
+    total = sum(ndf[attr].apply(lambda x: (x != None) and (x != '') and pd.notnull(x)))
     n_value = sum(ndf[attr]==value)
     global_frac = n_value/total
 
@@ -156,16 +165,18 @@ def add_group_relative_fracs (ndf,
 
     grp_fracs = {} # dict to hold fracs for each group
     grp_rel_fracs = {} # dict to hold relative fracs for each group
-    grp_ndiff_fracs = {} # dict to hold normalized fracs for each group
 
     for group in groups:
         df_grp = df[df[group_col]==group] # subset cluster
-        nodata = df_grp[attr].apply(lambda x: (x == None or x == ''))
-        df_grp = df_grp[~nodata] # remove missing data
+        w_data = df_grp[attr].apply(lambda x: (x != None) and (x != '') and pd.notnull(x))
+        df_grp = df_grp[w_data] # remove missing data
         grp_size = len(df_grp)
         n_value = sum(df_grp[attr] == value)  # total cases where value is true
         # compute values for the group
-        frac = np.round(n_value/grp_size, 2) # fraction of cases where value is tru
+        if grp_size == 0:
+            frac = 0
+        else:
+            frac = np.round(n_value/grp_size, 2) # fraction of cases where value is tru
         if normalized:
             rel_frac = np.round(((frac - global_frac)/(frac + global_frac)),4) # normalized to global
         else:
@@ -189,6 +200,31 @@ def add_group_sums (df,
     group_means  = df.groupby(group_col)[attr].transform(sum_type)
     group_means = np.round(group_means, 2)
     return group_means #series
+
+
+
+def add_group_frac_sums (ndf,  
+                       group_col, # grouping attribute (e.g. 'cluster')
+                       cat_col, # col with categorical attr to summarize by (e.g. 'funding type')
+                       cat_value, # category value to compute frac of total for (e.g. 'venture')
+                       num_attr,  # column with numberic value compute frac of total (e.g. total funding)
+                       ): 
+    # summarize fraction of total value for a group in each cluster
+    # for example, for each cluster, what is the fraction of total funding that is funding type = venture
+    groups = list(ndf[group_col].unique())
+    df = ndf[[group_col, cat_col, num_attr]]
+    grp_fracs = {}
+    for group in groups:
+        df_grp = df[df[group_col]==group] # subset cluster
+        nodata = df_grp[cat_col].apply(lambda x: (x == None or x == ''))
+        df_grp = df_grp[~nodata] # remove missing data
+        grp_tot = df_grp[num_attr].sum() # sum of numeric attribute
+        df_cat = df_grp[df_grp[cat_col]==cat_value] # subset those whith category value
+        n_value = df_cat[num_attr].sum()  # sum of numeric attribute for subset within category
+        frac_value = np.round(n_value/grp_tot, 2)
+        grp_fracs[group] = frac_value
+    group_value_fracs = df[group_col].map(grp_fracs)
+    return group_value_fracs # series
 
 def build_network(df, attr, blacklist=[], idf=False, linksPer=3, minTags=1): 
     '''
@@ -330,6 +366,7 @@ def build_decorate_plot_network(df,
                                 finalNodeAttrs = None,  # custom list of final columns, if None keep all
                                 tagcols_nodata=[], # tag columns to replace empty with 'no data'
                                 minTags=1, 
+                                removeSingletons=True,
                                 clusName = "Keyword_Theme", # name of cluster attribute
                                 labelcol='profile_name', 
                                 add_nodata = True,
