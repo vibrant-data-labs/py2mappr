@@ -140,6 +140,7 @@ def build_scatterplot_snapshot(
                              link_direction = 'outgoing', # "outgoing" | "incoming" | "all"
                              neighbors = 1, # degree of neighbors on hover/select
                              group_labels = False, # True = show group labels
+                             node_labels = True, # True = show node labels                             
                              title = "Scatterplot", 
                              subtitle = "",
                              description_intro = "<p>This view shows.... Each node is a .... ",
@@ -205,6 +206,7 @@ def build_scatterplot_snapshot(
                 # labels
                 "drawGroupLabels": group_labels,
                 "drawClustersCircle": clusterCircles,
+                "drawLabels": node_labels, # show/hide node labels
            },
         },
     )
@@ -228,7 +230,8 @@ def build_geo_snapshot(
                     title = "Geographic View", 
                     subtitle = "",
                     descr_intro = "This is a geographic view of each....  ",
-                    thumbnail = "https://www.dl.dropboxusercontent.com/s/0y9ccfw3ps91oy4/scatterplot.png?dl=0",                             
+                    thumbnail = "https://www.dl.dropboxusercontent.com/s/0y9ccfw3ps91oy4/scatterplot.png?dl=0",  
+                    node_labels = True                           
                     ):   
 
     default_description = "<p><span>\
@@ -281,6 +284,7 @@ def build_geo_snapshot(
                 "neighbourListHoverDegree": 0,  # degree to show when hover on node in list              
                 # labels
                 "drawGroupLabels": False,  # cluster labels
+                "drawLabels": node_labels, # show/hide node labels
                 # node right panel
                 "nodeFocusShow": True,
             },
@@ -351,6 +355,7 @@ def build_player(ndf, ldf, # nodes and links dataframes
                  email_str = [], # custom string attribs to render as email link  in profile
                  years = [], # format as year not integer
                  low_priority = [], # attributes to move to 'additional attributes' 
+                 axis_select = None, # custom list of numeric attributes to show in scatterplot axis dropdown (if none all visible numeric will show)
                  ### launch / upload settings
                  launch_local=True, 
                  upload_s3=False,
@@ -375,9 +380,10 @@ def build_player(ndf, ldf, # nodes and links dataframes
                     text_str = text_str,   # custom string attribs to render as long text in profile
                     email_str = email_str, # custom string attribs to render as email link  in profile
                     years = years, # format as year not integer
-                    low_priority = low_priority # attributes to move to 'additional attributes' 
+                    low_priority = low_priority, # attributes to move to 'additional attributes' 
+                    axis_select = axis_select, # custom list of numeric attributes to show in scatterplot axis dropdown (if none all visible numeric will show)
                     )
-    
+    playerpath = pl.Path(playerpath) # convert from string to path object
     # configure the files and folders  
     inDataPath = playerpath / "data_in"
     nodesFile = inDataPath / "nodes.csv"
