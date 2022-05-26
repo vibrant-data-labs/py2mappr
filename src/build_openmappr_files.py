@@ -88,7 +88,8 @@ def write_openmappr_files(ndf, ldf, playerpath,
     ndf['OriginalY'] = ndf[x] # clustered layout coordinates
     ndf['OriginalSize'] = 10
     
-    playerpath.mkdir(exist_ok=True) # create directory  for results if it doesn't exist
+    playerpath = pl.Path(playerpath)
+    playerpath.mkdir(parents=True, exist_ok=True) # create directory  for results if it doesn't exist
     datapath = playerpath/"data_in"
     datapath.mkdir(exist_ok=True) # create directory  for results if it doesn't exist
     ndf.to_csv(datapath/"nodes.csv", index=False)
@@ -181,6 +182,6 @@ if __name__ == '__main__':
     ndf = pd.read_excel(nw_name, engine='openpyxl', sheet_name = 'Nodes') # projects funding
     ldf = pd.read_excel(nw_name, engine='openpyxl', sheet_name = 'Links') # projects funding
     
-    write_openmappr_files(ndf, ldf, ref.openMappr_path)
+    # write_openmappr_files(ndf, ldf, ref.openMappr_path)
     
     
