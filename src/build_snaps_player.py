@@ -296,13 +296,15 @@ def build_geo_snapshot(
 def build_player_settings(
                     start_page = "filter",  # filter // snapshots // list // legend 
                     project_title = "Landscape Map",
-                    project_description = "<p>Project summary description goes here... </p><p>can use <i>HTML</i> to format</p>"                    
+                    project_description = "<p>Project summary description goes here... </p><p>can use <i>HTML</i> to format</p>", 
+                    displayTooltip = False                   
                     ):
         playerSettings={
             "startPage": start_page,
             "headerTitle": project_title,
             "modalTitle": project_title,
             "headerImageUrl": "",
+            "displayTooltipCard": displayTooltip,
             "modalSubtitle": project_description + "<p>Note: \
                                                     <i>This visualization is designed for desktop viewing and has not been optimized for mobile. \
                                                     It works best in Chrome or Safari.</i></p>",
