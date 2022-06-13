@@ -36,6 +36,25 @@ num_palette=[# default numeric color palette endpoints
                 {"col": "#750031"} # max dark red 
                # {"col": "#BC2020"} # max bright red
                 ]
+default_cluster_description = "<p><span>\
+            Colored clusters are groups of nodes that 'huddle' together into themes based on similarity in their keywords.\
+            Each theme is auto-labeled by the three most commonly shared keywords in the cluster. \
+            While the clusters reflect combinations of keywords that tend to go together, any one keyword can occur in multiple themes.\
+            Use the left panel to browse and select nodes by one or more keywords, tags, or other attributes. \
+            If you click <i>Summarize</i>, the left <b>Summary</b> panel will summarize the attributes for the selected group.\
+            </span></p>"
+
+default_snap_howto = "<p><span>\
+                Use the <b>Summary</b> tab to browse and select points by one or more keywords, tags, or other attributes. \
+                If you click <i>Summarize</i>, the left panel will summarize the attributes for the selected group.\
+                Use the <b>List</b> tab to see any selected points as a sortable list.\
+                </span></p>"
+
+default_geo_howto = "<p><span>\
+            You can select a group of points on the map by holding 'shift' while you drag the cursor. \
+            If you click <i>Summarize Selectin</i>, the left <b>Summary</b> panel will summarize the attributes for the selected group.\
+            In the <b>Summary</b> panel, if you hover over a keyword or tag you can see it's geographic dispersion. \
+            </span></p>"
 
 
 def build_clustered_snapshot(node_color = 'Cluster',
@@ -48,7 +67,7 @@ def build_clustered_snapshot(node_color = 'Cluster',
                              image_attr = "Photo",  # image attr name
                              links_show = True, # display links
                              link_curve = 0.6, # link curvature 0-1
-                             link_weight = 0.8, # link thickness 
+                             link_weight = 1, # link thickness 
                              link_direction = 'outgoing', # "outgoing", "incoming", "all"
                              neighbors = 1, # number of neighbors on hover/select
                              group_labels = True, # True = show group labels
@@ -57,15 +76,10 @@ def build_clustered_snapshot(node_color = 'Cluster',
                              title = "Thematic Clusters",
                              subtitle = "Nodes clustered into themes",
                              description_intro = "<p>This is a map of ...... Each node is a .... ",
+                             cluster_description = default_cluster_description,
+                             snap_howto = default_snap_howto,
                              thumbnail = "https://www.dl.dropboxusercontent.com/s/1jdc4hvp5zw6as9/Screen%20Shot%202021-03-31%20at%206.59.23%20AM.png?dl=0",                             
                              ):   
-    default_description = "<p><span>\
-                Colored clusters are groups of nodes that 'huddle' together into themes based on similarity in their keywords.\
-                Each theme is auto-labeled by the three most commonly shared keywords in the cluster. \
-                While the clusters reflect combinations of keywords that tend to go together, any one keyword can occur in multiple themes.\
-                Use the left panel to browse and select nodes by one or more keywords, tags, or other attributes. \
-                If you click <i>Summarize</i>, the left <b>Summary</b> panel will summarize the attributes for the selected group.\
-                </span></p>"
     if cluster == None:
         nodeClusterAttr = node_color
     else:
@@ -74,7 +88,7 @@ def build_clustered_snapshot(node_color = 'Cluster',
         name=title,
         subtitle=subtitle,
         summaryImg= thumbnail,
-        description= description_intro + default_description, 
+        description= description_intro + cluster_description + snap_howto, 
         layout_params={
             "plotType": "original",  # "scatterplot",
             "settings": {
@@ -144,14 +158,9 @@ def build_scatterplot_snapshot(
                              title = "Scatterplot", 
                              subtitle = "",
                              description_intro = "<p>This view shows.... Each node is a .... ",
-                             thumbnail = "https://www.dl.dropboxusercontent.com/s/0y9ccfw3ps91oy4/scatterplot.png?dl=0",                             
+                             snap_howto = default_snap_howto,                             
                              ):   
 
-    default_description = "<p><span>\
-                Use the <b>Summary</b> tab to browse and select points by one or more keywords, tags, or other attributes. \
-                If you click <i>Summarize</i>, the left panel will summarize the attributes for the selected group.\
-                Use the <b>List</b> tab to see any selected points as a sortable list.\
-                </span></p>"
     if cluster == None:
         nodeClusterAttr = node_color
     else:
@@ -160,12 +169,107 @@ def build_scatterplot_snapshot(
     snap = create_snapshot(
         name=title,
         subtitle=subtitle,
-        summaryImg= thumbnail,
-        description= description_intro + default_description, 
+        summaryImg= "",
+        description= description_intro + snap_howto, 
         layout_params={
             "plotType": "scatterplot",
             "xaxis": x,
             "yaxis": y,
+            "settings": {
+                # layout rendering
+                "xAxShow": axes_show,
+                "yAxShow": axes_show,
+                "invertX": x_invert,
+                "invertY": y_invert,
+                "axis": "all", # "all", "none", "x", "y"  show dropdown selector
+                "scatterAspect": aspect_ratio,  # higher than 0.5 spreads out the scatterplot horizontally
+                # node color and images
+                "nodeColorAttr": node_color,
+                "nodeColorPaletteOrdinal": cat_palette,
+                "nodeColorPaletteNumeric": num_palette,
+                "nodeColorNumericScalerType": "RGB", # "HCL", "HCL Long", "LAB", "HSL"
+                # node size
+                "nodeSizeAttr":  node_size, 
+                "nodeSizeScaleStrategy": "linear",  # "linear" or "log"
+                "nodeSizeMin": node_size_scaling[0],
+                "nodeSizeMax": node_size_scaling[1],
+                "nodeSizeMultiplier": node_size_scaling[2],
+                "bigOnTop": False,
+                # image rendering
+                "nodeImageShow": image_show,
+                "nodeImageAttr": image_attr,
+                # link rendering
+                "drawEdges": links_show,
+                "edgeCurvature": link_curve,
+                "edgeDirectionalRender": link_direction,  # "outgoing", "incoming", "all"
+                "edgeSizeStrat": "fixed",  #  "attr" // "fixed"
+                "edgeSizeAttr": "weight",  # size by
+                "edgeSizeMultiplier": link_weight,
+                "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
+                "edgeColorAttr": "OriginalColor",
+                # neighbor rendering
+                "nodeSelectionDegree": neighbors,
+                "isShowSelectedNodeTab": True, # right profile selected neighbors
+                "neighbourListHoverDegree": 0,  # degree to show when hover on node in list 
+
+                # labels
+                "drawGroupLabels": group_labels,
+                "drawClustersCircle": clusterCircles,
+                "drawLabels": node_labels, # show/hide node labels
+           },
+        },
+    )
+    return snap
+
+
+def build_clustered_scatterplot_snapshot(
+                               cluster_x,  # x axis cluster center attribute name
+                               cluster_y, # y axis cluster center attribute name
+                               x = 'OriginalX', # node position in cluster 
+                               y = 'OriginalY', # node position in cluster 
+                             axes_show = True,
+                             x_invert = False,
+                             y_invert = True,
+                             aspect_ratio = 0.7, # 0.5 is square, >0.5 spreads out the scatterplot horizontally
+                             node_color = "Cluster",
+                             node_size = "ClusterCentrality",
+                             cluster = None, # cluster by attr if diff from color by
+                             clusterCircles = True, # draw circles around clusters                           
+                             node_size_scaling = (5,15,.8), #min size, max size, multiplier
+                             cat_palette = cat_palette, # List of dictionaries: [{"col": HEXCODE}]
+                             num_palette = num_palette, # List of dictionaries: [{"col": HEXCODE}]
+                             image_show = False, # show image in node
+                             image_attr = "Photo",  # image attr name
+                             links_show = False, # display links
+                             link_curve = 0.6, # link curvature 0-1
+                             link_weight = 0.8, # link thickness 
+                             link_direction = 'outgoing', # "outgoing" | "incoming" | "all"
+                             neighbors = 1, # degree of neighbors on hover/select
+                             group_labels = True, # True = show group labels
+                             node_labels = True, # True = show node labels                             
+                             title = "Clustered Scatterplot", 
+                             subtitle = "",
+                             description_intro = "<p>This view shows.... Each node is a .... ",
+                             cluster_description = default_cluster_description,
+                             snap_howto = default_snap_howto,                              
+                             ):   
+
+    if cluster == None:
+        nodeClusterAttr = node_color
+    else:
+        nodeClusterAttr = cluster            
+
+    snap = create_snapshot(
+        name=title,
+        subtitle=subtitle,
+        summaryImg= "",
+        description= description_intro + cluster_description + snap_howto, 
+        layout_params={
+            "plotType": "clustered-scatterplot",
+            "clusterXAttr": cluster_x,
+            "clusterYAttr": cluster_y,
+            "nodeXAttr": x,
+            "nodeYAttr": y,
             "settings": {
                 # layout rendering
                 "xAxShow": axes_show,
@@ -230,22 +334,18 @@ def build_geo_snapshot(
                     title = "Geographic View", 
                     subtitle = "",
                     descr_intro = "This is a geographic view of each....  ",
+                    snap_howto = default_geo_howto,
                     thumbnail = "https://www.dl.dropboxusercontent.com/s/0y9ccfw3ps91oy4/scatterplot.png?dl=0",  
                     node_labels = True                           
                     ):   
 
-    default_description = "<p><span>\
-                You can select a group of points on the map by holding 'shift' while you drag the cursor. \
-                If you click <i>Summarize Selectin</i>, the left <b>Summary</b> panel will summarize the attributes for the selected group.\
-                In the <b>Summary</b> panel, if you hover over a keyword or tag you can see it's geographic dispersion. \
-                </span></p>"
 
     # snapshot - scatterplot
     snap = create_snapshot(
         name= title,
         subtitle= subtitle,
         summaryImg="https://www.dl.dropboxusercontent.com/s/lfa3a2w44k0t2kw/Screen%20Shot%202021-03-31%20at%207.01.37%20AM.png?dl=0",
-        description= descr_intro + default_description,
+        description= descr_intro + snap_howto,
         layout_params={
             "plotType": "geo",
             "xaxis": "Latitude",
@@ -293,22 +393,13 @@ def build_geo_snapshot(
     return snap
     
 
-def build_player_settings(
-                    start_page = "filter",  # filter // snapshots // list // legend 
-                    project_title = "Landscape Map",
-                    project_description = "<p>Project summary description goes here... </p><p>can use <i>HTML</i> to format</p>", 
-                    displayTooltip = False                   
-                    ):
-        playerSettings={
-            "startPage": start_page,
-            "headerTitle": project_title,
-            "modalTitle": project_title,
-            "headerImageUrl": "",
-            "displayTooltipCard": displayTooltip,
-            "modalSubtitle": project_description + "<p>Note: \
-                                                    <i>This visualization is designed for desktop viewing and has not been optimized for mobile. \
-                                                    It works best in Chrome or Safari.</i></p>",
-            "modalDescription": "<p>HOW TO NAVIGATE THIS MAP:</p>\
+
+## default project description templates
+default_mobile_caveat = "<p>Note: \
+                <i>This visualization is designed for desktop viewing and has not been optimized for mobile. \
+                It works best in Chrome or Safari.</i></p>"
+
+default_project_how_to = "<p>HOW TO NAVIGATE THIS MAP:</p>\
                             <ul>\
                             <li>Click on any data point to to see more details about it. Click the white space to deselect.\
                                 </li>\
@@ -330,6 +421,26 @@ def build_player_settings(
                             <li>If there are multiple snapshots - you can select other views from the pink <b>snapshot title</b> in the lower left.\
                                 </li>\
                             </ul>"
+
+
+def build_player_settings(
+                    start_page = "filter",  # filter // snapshots // list // legend 
+                    show_start_info = True, # display main info panel on launch
+                    project_title = "Landscape Map",
+                    project_description = "<p>Project summary description goes here... </p><p>can use <i>HTML</i> to format</p>", 
+                    mobile_caveat = default_mobile_caveat,
+                    how_to = default_project_how_to,
+                    displayTooltip = False                   
+                    ):
+        playerSettings={
+            "startPage": start_page,
+            "showStartInfo": show_start_info,
+            "headerTitle": project_title,
+            "modalTitle": project_title,
+            "headerImageUrl": "",
+            "displayTooltipCard": displayTooltip,
+            "modalSubtitle": project_description + mobile_caveat,
+            "modalDescription": how_to
             }
         return playerSettings
     
