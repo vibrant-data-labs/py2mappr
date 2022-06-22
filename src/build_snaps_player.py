@@ -280,6 +280,7 @@ def build_clustered_scatterplot_snapshot(
                 "scatterAspect": aspect_ratio,  # higher than 0.5 spreads out the scatterplot horizontally
                 # node color and images
                 "nodeColorAttr": node_color,
+                "nodeClusterAttr": nodeClusterAttr,
                 "nodeColorPaletteOrdinal": cat_palette,
                 "nodeColorPaletteNumeric": num_palette,
                 "nodeColorNumericScalerType": "RGB", # "HCL", "HCL Long", "LAB", "HSL"
