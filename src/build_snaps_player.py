@@ -69,6 +69,8 @@ def build_clustered_snapshot(node_color = 'Cluster',
                              link_curve = 0.6, # link curvature 0-1
                              link_weight = 1, # link thickness 
                              link_direction = 'outgoing', # "outgoing", "incoming", "all"
+                             link_color_strategy = "gradient", # source / target / gradient / attr / select
+                             link_color_attr = "OriginalColor", # or other categorical link attribute
                              neighbors = 1, # number of neighbors on hover/select
                              group_labels = True, # True = show group labels
                              node_labels = True, # True = show node labels
@@ -113,10 +115,13 @@ def build_clustered_snapshot(node_color = 'Cluster',
                 "edgeCurvature": link_curve,
                 "edgeDirectionalRender": link_direction,  # "outgoing", "incoming", "all"
                 "edgeSizeStrat": "fixed",  #  "attr" // "fixed"
-                "edgeSizeAttr": "weight",  # size by
-                "edgeSizeMultiplier": link_weight,
-                "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
-                "edgeColorAttr": "OriginalColor",
+                "edgeSizeAttr": "OriginalSize", #"weight",  # size by
+                "edgeSizeDefaultValue": link_weight, #0.2
+                "edgeSizeMultiplier": 1, 
+                "edgeColorStrat": link_color_strategy,  # gradient / source / target / gradient / attr / select
+                "edgeColorAttr": link_color_attr, #"OriginalColor",
+                "edgeColorPaletteNumeric":num_palette,
+                "edgeColorPaletteOrdinal":cat_palette,
                 # neighbor rendering
                 "nodeSelectionDegree": neighbors,
                 "isShowSelectedNodeTab": True, # right profile selected neighbors
@@ -152,6 +157,8 @@ def build_scatterplot_snapshot(
                              link_curve = 0.6, # link curvature 0-1
                              link_weight = 0.8, # link thickness 
                              link_direction = 'outgoing', # "outgoing" | "incoming" | "all"
+                             link_color_strategy = "select", # source / target / gradient / attr / select
+                             link_color_attr = "OriginalColor", # or other categorical link attribute
                              neighbors = 1, # degree of neighbors on hover/select
                              group_labels = False, # True = show group labels
                              node_labels = True, # True = show node labels                             
@@ -203,10 +210,14 @@ def build_scatterplot_snapshot(
                 "edgeCurvature": link_curve,
                 "edgeDirectionalRender": link_direction,  # "outgoing", "incoming", "all"
                 "edgeSizeStrat": "fixed",  #  "attr" // "fixed"
-                "edgeSizeAttr": "weight",  # size by
-                "edgeSizeMultiplier": link_weight,
-                "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
-                "edgeColorAttr": "OriginalColor",
+                "edgeSizeAttr": "OriginalSize", #"weight",  # size by
+                "edgeSizeDefaultValue": link_weight, #0.2
+                "edgeSizeMultiplier": 1, 
+                "edgeColorStrat": link_color_strategy,  # gradient / source / target / gradient / attr / select
+                "edgeColorAttr": link_color_attr, #"OriginalColor",
+                "edgeColorPaletteNumeric":num_palette,
+                "edgeColorPaletteOrdinal":cat_palette,
+                "edgeColorDefaultValue": "rgb(145,145,145)",
                 # neighbor rendering
                 "nodeSelectionDegree": neighbors,
                 "isShowSelectedNodeTab": True, # right profile selected neighbors
@@ -244,6 +255,8 @@ def build_clustered_scatterplot_snapshot(
                              link_curve = 0.6, # link curvature 0-1
                              link_weight = 0.8, # link thickness 
                              link_direction = 'outgoing', # "outgoing" | "incoming" | "all"
+                             link_color_strategy = "gradient", # source / target / gradient / attr / select
+                             link_color_attr = "OriginalColor", # or other categorical link attribute
                              neighbors = 1, # degree of neighbors on hover/select
                              group_labels = True, # True = show group labels
                              node_labels = True, # True = show node labels                             
@@ -299,11 +312,14 @@ def build_clustered_scatterplot_snapshot(
                 "edgeCurvature": link_curve,
                 "edgeDirectionalRender": link_direction,  # "outgoing", "incoming", "all"
                 "edgeSizeStrat": "fixed",  #  "attr" // "fixed"
-                "edgeSizeAttr": "weight",  # size by
-                "edgeSizeMultiplier": link_weight,
-                "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
-                "edgeColorAttr": "OriginalColor",
-                # neighbor rendering
+                "edgeSizeAttr": "OriginalSize", #"weight",  # size by
+                "edgeSizeDefaultValue": link_weight, #0.2
+                "edgeSizeMultiplier": 1, 
+                "edgeColorStrat": link_color_strategy,  # gradient / source / target / gradient / attr / select
+                "edgeColorAttr": link_color_attr, #"OriginalColor",
+                "edgeColorPaletteNumeric":num_palette,
+                "edgeColorPaletteOrdinal":cat_palette,
+                 # neighbor rendering
                 "nodeSelectionDegree": neighbors,
                 "isShowSelectedNodeTab": True, # right profile selected neighbors
                 "neighbourListHoverDegree": 0,  # degree to show when hover on node in list 
@@ -331,6 +347,8 @@ def build_geo_snapshot(
                     link_curve = 0.6, # link curvature 0-1                         
                     link_weight = 0.8, # link thickness 
                     link_direction = 'outgoing', # "outgoing" | "incoming" | "all"
+                    link_color_strategy = "gradient", # source / target / gradient / attr / select
+                    link_color_attr = "OriginalColor", # or other categorical link attribute
                     neighbors = 1, # degree of neighbors on hover/select
                     title = "Geographic View", 
                     subtitle = "",
@@ -375,11 +393,14 @@ def build_geo_snapshot(
                 "edgeCurvature": link_curve,
                 "edgeDirectionalRender": link_direction,  # "outgoing", "incoming", "all"
                 "edgeSizeStrat": "fixed",  #  "attr" // "fixed"
-                "edgeSizeAttr": "weight",  # size by
-                "edgeSizeMultiplier": link_weight,
-                "edgeColorStrat": "gradient",  # source / target / gradient / attr / select
-                "edgeColorAttr": "OriginalColor",
-                # neighbor rendering
+                "edgeSizeAttr": "OriginalSize", #"weight",  # size by
+                "edgeSizeDefaultValue": link_weight, #0.2
+                "edgeSizeMultiplier": 1, 
+                "edgeColorStrat": link_color_strategy,  # gradient / source / target / gradient / attr / select
+                "edgeColorAttr": link_color_attr, #"OriginalColor",
+                "edgeColorPaletteNumeric":num_palette,
+                "edgeColorPaletteOrdinal":cat_palette,
+                 # neighbor rendering
                 "nodeSelectionDegree": neighbors,
                 "isShowSelectedNodeTab": True, # right profile selected neighbors
                 "neighbourListHoverDegree": 0,  # degree to show when hover on node in list              
