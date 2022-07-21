@@ -14,10 +14,10 @@ basic templates for building player including:
 """
 
 import pandas as pd
-from build_openmappr_files import write_openmappr_files # from py2mappr - create openmappr files
-from map_utils import create_map, create_snapshot # from py2mappr
+from .build_openmappr_files import write_openmappr_files # from py2mappr - create openmappr files
+from .map_utils import create_map, create_snapshot # from py2mappr
 import pathlib as pl
-import launch_upload_player # from py2mappr
+from . import launch_upload_player # from py2mappr
 
 
 # default colors
