@@ -46,7 +46,7 @@ def trophic_level_normalized (ndf, nw):
     Then normalized the values from 0-1
     Returns: series
     '''
-    ndf['Trophic_Level_rooted'] = ndf['id'].map(tl.rootedTL(nw)) #rooted trophic level (root node added to base to deal with looping
+    ndf['Trophic_Level_rooted'] = ndf['id'].map(rootedTL(nw)) #rooted trophic level (root node added to base to deal with looping
     ndf['Trophic_Level_rooted'] = min_max_normalize_column (ndf, 'Trophic_Level') # normalize 0-1
     return ndf['Trophic_Level_rooted'] 
 

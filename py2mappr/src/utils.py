@@ -1,13 +1,18 @@
 from typing import Any, List, Dict
 import yaml
 import copy
+import os
 
 
-def load_templates(fname: str, pathname: str=None) -> Dict[str, Any]:  #TODO: add path parameter
+def load_templates(fname: str, pathname: str = None) -> Dict[str, Any]:
+    if pathname is None:
+        _dir, _filename = os.path.split(__file__)
+        pathname = _dir
     try:
-        fullpath = f"src/templates/{fname}.yaml" if pathname is None else f"{pathname}/src/templates/{fname}.yaml"
+#        fullpath = f"src/templates/{fname}.yaml" if pathname is None else f"{pathname}/src/templates/{fname}.yaml"
+        fullpath = f"{pathname}/src/templates/{fname}.yaml"
         templates: List[Dict] = []
-        with open(fullpath) as f:  #TODO: add path before src/
+        with open(fullpath) as f:
             for project in yaml.load_all(f, Loader=yaml.FullLoader):
                 templates.append(project)
         return templates[0]
