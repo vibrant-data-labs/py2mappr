@@ -10,7 +10,7 @@ def load_templates(fname: str, pathname: str = None) -> Dict[str, Any]:
         pathname = _dir
     try:
 #        fullpath = f"src/templates/{fname}.yaml" if pathname is None else f"{pathname}/src/templates/{fname}.yaml"
-        fullpath = f"{pathname}/src/templates/{fname}.yaml"
+        fullpath = f"{pathname}/templates/{fname}.yaml"
         templates: List[Dict] = []
         with open(fullpath) as f:
             for project in yaml.load_all(f, Loader=yaml.FullLoader):
