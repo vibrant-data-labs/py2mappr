@@ -42,7 +42,7 @@ def invalidate_cache(distribution):
 
 def purge_cache(bucket_name):
   all_distributions = CLOUDFRONT_CLIENT.list_distributions()
-  allowed_origin = bucket_name + '.s3-website-' + REGION + '.amazonaws.com'
+  allowed_origin = '%s.s3-website-%s.amazonaws.com'%(bucket_name, REGION)
   filter_condition = lambda distr: allowed_origin in map(lambda x: x.get('DomainName'),distr.get('Origins').get('Items')) or PLAYER_DISTRIBUTION in distr.get('Aliases').get('Items')
   distributions = list(filter(filter_condition,all_distributions.get('DistributionList').get('Items')))
   print('Found %s distributions'%str(len(distributions)))
