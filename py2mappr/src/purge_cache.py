@@ -45,13 +45,13 @@ def purge_cache(bucket_name):
   allowed_origin = bucket_name + '.s3-website-' + REGION + '.amazonaws.com'
   filter_condition = lambda distr: allowed_origin in map(lambda x: x.get('DomainName'),distr.get('Origins').get('Items')) or PLAYER_DISTRIBUTION in distr.get('Aliases').get('Items')
   distributions = list(filter(filter_condition,all_distributions.get('DistributionList').get('Items')))
-  print('Found ' + str(len(distributions)) + ' distributions')
+  print('Found %s distributions'%str(len(distributions)))
   print(','.join(map(lambda d: ''.join(d.get('Aliases').get('Items')), distributions)))
   
   for distr in distributions:
     invalidate_cache(distr)
     alias = ''.join(distr.get('Aliases').get('Items'))
-    print(alias + ' invalidated')
+    print('%s invalidated'%alias)
     purge_cloudflare_cache(alias)
 
 def purge_cloudflare_cache(url: str):
@@ -59,7 +59,7 @@ def purge_cloudflare_cache(url: str):
     return
   
   auth_header = {
-    'Authorization': ' '.join(['Bearer', CF_API_KEY])
+    'Authorization': 'Bearer %s'%CF_API_KEY
   }
   cf_zone = requests.get('https://api.cloudflare.com/client/v4/zones', headers = auth_header)
 
@@ -72,8 +72,8 @@ def purge_cloudflare_cache(url: str):
   purge_data = {
     'files': [url]
   }
-  requests.post('https://api.cloudflare.com/client/v4/zones/' + domain_item.get('id') + '/purge_cache', headers = auth_header, json =purge_data)
-  print('CloudFlare: ' + url + ' cache is cleaned')
+  requests.post('https://api.cloudflare.com/client/v4/zones/%s/purge_cache'%domain_item.get('id'), headers = auth_header, json =purge_data)
+  print('CloudFlare: %s cache is cleaned'%url)
 
 
 if __name__ == "__main__":
