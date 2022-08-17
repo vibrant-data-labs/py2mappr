@@ -37,11 +37,9 @@ num_palette=[# default numeric color palette endpoints
                # {"col": "#BC2020"} # max bright red
                 ]
 default_cluster_description = "<p><span>\
-            Colored clusters are groups of nodes that 'huddle' together into themes based on similarity in their keywords.\
+            Colored clusters are groups of points that 'huddle' together into themes based on similarity in their keywords.\
             Each theme is auto-labeled by the three most commonly shared keywords in the cluster. \
             While the clusters reflect combinations of keywords that tend to go together, any one keyword can occur in multiple themes.\
-            Use the left panel to browse and select nodes by one or more keywords, tags, or other attributes. \
-            If you click <i>Summarize</i>, the left <b>Summary</b> panel will summarize the attributes for the selected group.\
             </span></p>"
 
 default_snap_howto = "<p><span>\
@@ -423,7 +421,7 @@ default_mobile_caveat = "<p>Note: \
 
 default_project_how_to = "<p>HOW TO NAVIGATE THIS MAP:</p>\
                             <ul>\
-                            <li>Click on any data point to to see more details about it. Click the white space to deselect.\
+                            <li>Click on any point to to see more details about it. Click the white space to deselect.\
                                 </li>\
                             <li>Use the left panel tags and charts to select points by any combination of attributes. \
                                 Selecting multiple tags within in attribute will highlight points with <i>any</i> of them (i.e. with either tag a <i>or</i> tag b). \
@@ -432,7 +430,7 @@ default_project_how_to = "<p>HOW TO NAVIGATE THIS MAP:</p>\
                             <li>If you click <i>Summarize Selection</i>, the left <b>Summary</b> panel will summarize the tags and charts for the selected group.\
                                 Any subsequent searching or selecting tags will then act only on the subsetted points. \
                                 </li>\
-                            <li>Click <i>Clear Selection</i> to reset/clear all selections.\
+                            <li>Click <i>Clear All</i> to reset/clear all selections. (or click <i>Undo</i> to undo the selection step.)\
                                 </li>\
                             <li>Use the <b>List</b> tab to see a sortable list of any points selected. \
                                 You can can browse the details of each point by selecting them from the list.\
@@ -440,7 +438,7 @@ default_project_how_to = "<p>HOW TO NAVIGATE THIS MAP:</p>\
                             <li>The <b>Legend</b> tab shows information about the current view including: \
                                 the coloring and sizing of the points, as well as a brief description. \
                                 </li>\
-                            <li>If there are multiple snapshots - you can select other views from the pink <b>snapshot title</b> in the lower left.\
+                            <li>If there are multiple snapshots - you can select other views from the pink <b>snapshot title</b>.\
                                 </li>\
                             </ul>"
 
