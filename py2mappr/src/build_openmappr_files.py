@@ -14,8 +14,6 @@ import pathlib as pl
 #from pandas.api.types import is_numeric_dtype
 
 
-
-
 def write_network_to_excel (ndf, ldf, outname):
     writer = pd.ExcelWriter(outname,
                           engine='xlsxwriter', 

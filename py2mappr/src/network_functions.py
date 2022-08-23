@@ -16,10 +16,6 @@ network analysis functions to
 
 import sys
 import pandas as pd
-sys.path.append("../../Github/Tag2Network/tag2network")  # add Tag2Network directory
-sys.path.append("../../../Github/Tag2Network/tag2ntwork")  # add Tag2Network directory
-sys.path.append("../../Github/Tag2Network")  # add Tag2Network directory
-sys.path.append("../../../Github/Tag2Network")  # add Tag2Network directory
 import numpy as np
 from tag2network.Network import BuildNetwork as bn # tag2network: build network and layout functions
 from tag2network.Network import ClusterLayout as cl   #tag2network: new cluster layout function
@@ -30,7 +26,7 @@ from pathlib import Path
 #from pandas.api.types import is_string_dtype
 #from pandas.api.types import is_numeric_dtype
 
-
+# %%
 
 def buildNetworkX(linksdf, id1='Source', id2='Target', directed=False):
     # build networkX graph object from links dataframe with 'Source' and 'Target' ids
@@ -236,60 +232,57 @@ def build_network(df, attr, blacklist=[], idf=False, linksPer=3, minTags=1):
     blacklist = tags to blacklist from linking
     linksPer = avg links per node
     minTags = exclude any nodes with fewer than min Tags
-    
+
     Returns: nodes and links dataframes
     '''
-    print("\nBuild Network")       
-    df[attr]=df[attr].fillna("")
-    df = df[df[attr]!='']  # remove any recipients which have no tags for linking
+    print("\nBuild Network")
+    df[attr] = df[attr].fillna("")
+    df = df[df[attr] != '']  # remove any recipients which have no tags for linking
     df = df.reset_index(drop=True)
-    taglist = attr+"_list" # name new column of tag attribute converted into list
-    df[taglist] = df[attr].apply(lambda x: x.split('|')) # convert tag string to list
+    taglist = attr+"_list"  # name new column of tag attribute converted into list
+    df[taglist] = df[attr].apply(lambda x: x.split('|'))  # convert tag string to list
     df[taglist] = df[taglist].apply(lambda x: [s for s in x if s not in blacklist])   # only keep keywords not in blacklist
     df[attr] = df[taglist].apply(lambda x: "|".join(x)) # re-join tags into string with blacklist removed
-    ndf,ldf = bn.buildTagNetwork(df, tagAttr=taglist, dropCols=[], outname=None,
-                            nodesname=None, edgesname=None, plotfile=None, #str(networkpath/'RecipientNetwork.pdf'), 
-                            idf=idf, toFile=False, doLayout=False, linksPer=linksPer, minTags=1)
-    
-    return ndf,ldf
+    ndf, ldf = bn.buildTagNetwork(df, tagAttr=taglist, dropCols=[], outname=None,
+                                  nodesname=None, edgesname=None, plotfile=None,  # str(networkpath/'RecipientNetwork.pdf'), 
+                                  idf=idf, toFile=False, doLayout=False, linksPer=linksPer, minTags=1)
+    return ndf, ldf
 
 
-def decorate_network(df, ldf, tag_attr, 
-                     network_renameDict, # column renaming
-                     finalNodeAttrs, # final columns to keep
-                     outname, # final network file name
-                     labelcol,# column to be used for node label
-                     clusName, # name of cluster attr
+def decorate_network(df, ldf, tag_attr,
+                     network_renameDict,  # column renaming
+                     finalNodeAttrs,  # final columns to keep
+                     outname,  # final network file name
+                     labelcol,  # column to be used for node label
+                     clusName,  # name of cluster attr
                      addLayout=True,
-                     layout = 'cluster', # other options: 'tsne', 'force-directed'
+                     layout = 'cluster',  # other options: 'tsne', 'force-directed'
                      size_attr=None,
-                     overlap_frac=0.2, # cluster overlap
-                     fd_iterations = 1000, # iterations for force-directed layout
-                     plot=False, # option to plot network
+                     overlap_frac=0.2,  # cluster overlap
+                     fd_iterations = 1000,  # iterations for force-directed layout
+                     plot=False,  # option to plot network
                      x='x',
                      y='y',
-                     writeFile=True, 
-                     removeSingletons=True): 
+                     writeFile=True,
+                     removeSingletons=True):
     '''
     Decorate network from 'build_network'
     df = node dataframe (ndf) from build_network
     ldf = links dataframe
     tag_attr = name of tag column used for linking
     outname = name of final network file (excel file)
-    writeFile = write final excel file with nodes and links sheets 
+    writeFile = write final excel file with nodes and links sheets
     removeSinteltons = trim final keyword tag list to only inlcudes ones that occur at least twice
 
     Returns: cleaned/decorated nodes datframe plus original links dataframe
     '''
     print("\nDecorating Newtork")
     # tag_attr is the tag attribute used for linking
-    
-     # Add Cluster Counts, and additional Cluster Labels
-    print("Adding Cluster Counts and short Cluser labels")  
-    df['Cluster_count'] = df.groupby(['Cluster'])['id'].transform('count') 
-    df[clusName] = df['top_tags'].apply(lambda x: ','.join(x[0:3]))# use top 3 wtd tags as short name
-    #df.drop(['Cluster'], axis=1, inplace=True)
 
+    # Add Cluster Counts, and additional Cluster Labels
+    print("Adding Cluster Counts and short Cluster labels")
+    df['Cluster_count'] = df.groupby(['Cluster'])['id'].transform('count')
+    df[clusName] = df.cluster_name.str.split(', ').apply(lambda x: ', '.join(x[:3]))  # use top 3 tags as short name
     df['label'] = df[labelcol]
     df['x'] = np.random.uniform(0,1, df.shape[0]) # add random coordinates if no layout
     df['y'] = np.random.uniform(0,1, df.shape[0])  # add random coordinates if no layout
@@ -383,18 +376,18 @@ def build_decorate_plot_network(df,
     # Build Network
     ndf, ldf = build_network(df, tag_attr , idf=False, linksPer=linksPer, blacklist= blacklist, minTags=minTags)
     # Decorate network
-    ndf, ldf =  decorate_network(ndf, ldf, tag_attr, 
-                                 network_renameDict, # column renaming
-                                 finalNodeAttrs, # final columns to keep
-                                 nw_name, # final network file name
-                                 labelcol, 
-                                 clusName, 
+    ndf, ldf =  decorate_network(ndf, ldf, tag_attr,
+                                 network_renameDict,  # column renaming
+                                 finalNodeAttrs,  # final columns to keep
+                                 nw_name,  # final network file name
+                                 labelcol,
+                                 clusName,
                                  addLayout=addLayout,
                                  layout=layout,
-                                 plot=plot, 
+                                 plot=plot,
                                  x=x,
                                  y=y,
-                                 writeFile=True, 
+                                 writeFile=True,
                                  removeSingletons=True)
     if add_nodata:
         # add 'no data' to empty tags

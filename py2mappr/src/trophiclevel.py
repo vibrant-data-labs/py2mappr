@@ -27,6 +27,7 @@ def computeTL(network):
     except:
         return None
 
+
 def rootedTL(nw):
     revnw = nw.reverse()
     rootNode = "rootNode"
@@ -35,10 +36,12 @@ def rootedTL(nw):
     tls = computeTL(revnw)
     del tls[rootNode]
     mn = min(tls.values()) - 1.0
-    return {n:(tls[n]-mn) for n in nw.nodes()} if tls is not None else {}
+    return {n: (tls[n]-mn) for n in nw.nodes()} if tls is not None else {}
+
 
 def min_max_normalize_column (df, col):
-    return (df[col] - df[col].min()) / (df[col].max() - df[col].min())  
+    return (df[col] - df[col].min()) / (df[col].max() - df[col].min())
+
 
 def trophic_level_normalized (ndf, nw):
     '''
@@ -46,7 +49,7 @@ def trophic_level_normalized (ndf, nw):
     Then normalized the values from 0-1
     Returns: series
     '''
-    ndf['Trophic_Level_rooted'] = ndf['id'].map(rootedTL(nw)) #rooted trophic level (root node added to base to deal with looping
-    ndf['Trophic_Level_rooted'] = min_max_normalize_column (ndf, 'Trophic_Level') # normalize 0-1
-    return ndf['Trophic_Level_rooted'] 
-
+    # rooted trophic level (root node added to base to deal with looping)
+    ndf['Trophic_Level_rooted'] = ndf['id'].map(rootedTL(nw))
+    ndf['Trophic_Level_rooted'] = min_max_normalize_column(ndf, 'Trophic_Level')  # normalize 0-1
+    return ndf['Trophic_Level_rooted']
