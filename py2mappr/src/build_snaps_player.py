@@ -444,7 +444,7 @@ default_project_how_to = "<p>HOW TO NAVIGATE THIS MAP:</p>\
 
 
 def build_player_settings(
-                    start_page = "filter",  # filter // snapshots // list // legend 
+                    start_page = "filter",  # filter // legend // list
                     show_start_info = True, # display main info panel on launch
                     project_title = "Landscape Map",
                     project_description = "<p>Project summary description goes here... </p><p>can use <i>HTML</i> to format</p>", 
