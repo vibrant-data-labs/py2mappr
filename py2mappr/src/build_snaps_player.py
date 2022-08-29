@@ -443,6 +443,23 @@ default_project_how_to = "<p>HOW TO NAVIGATE THIS MAP:</p>\
                             </ul>"
 
 
+def create_sponsor(icon_url, link_url, link_title):
+    sponsor_details = {
+        "iconUrl": icon_url,
+        "linkUrl": link_url,
+        "linkTitle": link_title
+    }
+    return sponsor_details
+
+def create_footer(is_shown = False, studio_name = "Studio", studio_url = "Studio Url", studio_logo = "Logo Url"):
+    footer_details = {
+        "isShown": is_shown,
+        "studioName": studio_name,
+        "studioUrl": studio_url,
+        "studioLogo": studio_logo
+    }
+    return footer_details
+
 def build_player_settings(
                     start_page = "filter",  # filter // legend // list
                     show_start_info = True, # display main info panel on launch
@@ -450,7 +467,18 @@ def build_player_settings(
                     project_description = "<p>Project summary description goes here... </p><p>can use <i>HTML</i> to format</p>", 
                     mobile_caveat = default_mobile_caveat,
                     how_to = default_project_how_to,
-                    displayTooltip = False                   
+                    displayTooltip = False,
+                    display_export_button = False,
+                    beta = False, # displays a 'beta' ribbon
+                    feedback_type = "email", # email // link - to send an email or to navigate user to the link
+                    feedback_link = "support@openmappr.org", # either an email address or a link to navigate
+                    feedback_text = "Questions, Suggestions, Feedback? Send us your thoughts!", # arbitrary text
+                    project_logo_title = "Project title goes here",
+                    project_logo_url = "https://website", # url where the image logo leads
+                    project_logo_image_url = "https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", # or None
+                    project_info_panel_title = "Map information", # or None
+                    sponsors = [create_sponsor("https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", "https://openmappr.org", "OpenMappr" )],
+                    footer = create_footer()
                     ):
         playerSettings={
             "startPage": start_page,
@@ -460,7 +488,20 @@ def build_player_settings(
             "headerImageUrl": "",
             "displayTooltipCard": displayTooltip,
             "modalSubtitle": project_description + mobile_caveat,
-            "modalDescription": how_to
+            "modalDescription": how_to,
+            "projectLogoTitle": project_logo_title,
+            "projectLogoUrl": project_logo_url,
+            "projectLogoImageUrl": project_logo_image_url,
+            "displayExportButton": display_export_button,
+            "beta": beta,
+            "defaultPanel": project_info_panel_title,
+            "sponsors": sponsors,
+            "feedback": {
+                "type": feedback_type,
+                "link": feedback_link,
+                "text": feedback_text,
+              },
+            "footer": footer
             }
         return playerSettings
     
