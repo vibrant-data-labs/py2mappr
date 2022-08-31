@@ -478,6 +478,7 @@ def build_player_settings(
                     project_logo_image_url = "https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", # or None
                     project_info_panel_title = "Map information", # or None
                     sponsors = [create_sponsor("https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", "https://openmappr.org", "OpenMappr" )],
+                    sponsors_txt = 'Powered by',
                     footer = create_footer()
                     ):
         playerSettings={
@@ -496,6 +497,7 @@ def build_player_settings(
             "beta": beta,
             "defaultPanel": project_info_panel_title,
             "sponsors": sponsors,
+            "sponsorsTxt": sponsors_txt,
             "feedback": {
                 "type": feedback_type,
                 "link": feedback_link,
