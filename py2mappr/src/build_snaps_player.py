@@ -442,7 +442,6 @@ default_project_how_to = "<p>HOW TO NAVIGATE THIS MAP:</p>\
                                 </li>\
                             </ul>"
 
-
 def create_sponsor(icon_url, link_url, link_title):
     sponsor_details = {
         "iconUrl": icon_url,
@@ -451,34 +450,51 @@ def create_sponsor(icon_url, link_url, link_title):
     }
     return sponsor_details
 
-def create_footer(is_shown = False, studio_name = "Studio", studio_url = "Studio Url", studio_logo = "Logo Url"):
+def sponsor_list(sponsor_tuples): 
+    # create list of dictionaries from list of tuples from multiple sponsors - 
+    # [(icon_url, link_url, link_title), (icon_url, link_url, link_title)]
+    sponsorlist = []
+    for sponsor in sponsor_tuples:
+        sponsor_details = create_sponsor(sponsor[0],
+                                        sponsor[1],
+                                        sponsor[2])
+        sponsorlist.append(sponsor_details)
+    return sponsorlist
+
+def create_footer(is_shown = False, 
+                  studio_name = "Vibrant Data Labs", 
+                  studio_url = "https://vibrantdatalabs.org", 
+                  studio_logo = "https://dl.dropbox.com/s/gdwr8xfn12uihuh/VDL_LOGO.jpg"
+                  ):
     footer_details = {
         "isShown": is_shown,
         "studioName": studio_name,
         "studioUrl": studio_url,
         "studioLogo": studio_logo
-    }
+        }
     return footer_details
 
 def build_player_settings(
                     start_page = "filter",  # filter // legend // list
                     show_start_info = True, # display main info panel on launch
-                    project_title = "Landscape Map",
+                    project_title = "Landscape Map", # main title next to logo
+                    project_logo_url = "https://vibrantdatalabs.org", # url where the main image logo leads
+                    project_logo_image_url = "https://dl.dropbox.com/s/067rmutsbz9bnf1/VDL_LOGO_clear.png", # or None // main logo
+                    project_info_panel_title = "Map Information", # or None //# title of right main info drawer
+                    # project description pieces
                     project_description = "<p>Project summary description goes here... </p><p>can use <i>HTML</i> to format</p>", 
                     mobile_caveat = default_mobile_caveat,
                     how_to = default_project_how_to,
+                    # button settings
                     displayTooltip = False,
                     display_export_button = False,
-                    beta = False, # displays a 'beta' ribbon
                     feedback_type = "email", # email // link - to send an email or to navigate user to the link
                     feedback_link = "support@openmappr.org", # either an email address or a link to navigate
                     feedback_text = "Questions, Suggestions, Feedback? Send us your thoughts!", # arbitrary text
-                    project_logo_title = "Project title goes here",
-                    project_logo_url = "https://website", # url where the image logo leads
-                    project_logo_image_url = "https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", # or None
-                    project_info_panel_title = "Map information", # or None
+                    beta = False, # displays a 'beta' ribbon
+                    # attribution logos 
                     sponsors = [create_sponsor("https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", "https://openmappr.org", "OpenMappr" )],
-                    sponsors_txt = 'Powered by',
+                    sponsors_txt = 'Partners: ', # prefix before sponsor logos
                     footer = create_footer()
                     ):
         playerSettings={
@@ -486,16 +502,17 @@ def build_player_settings(
             "showStartInfo": show_start_info,
             "headerTitle": project_title,
             "modalTitle": project_title,
+            "defaultPanel": project_info_panel_title,  # title of right drawer info panel
+            "sponsors": sponsors, # list of sponsor icons, links, and title: dicts of [{"iconUrl: "", "linkUrl: "", "linkTitle": ""}]
             "headerImageUrl": "",
             "displayTooltipCard": displayTooltip,
             "modalSubtitle": project_description + mobile_caveat,
             "modalDescription": how_to,
-            "projectLogoTitle": project_logo_title,
+            "projectLogoTitle": project_title,
             "projectLogoUrl": project_logo_url,
             "projectLogoImageUrl": project_logo_image_url,
             "displayExportButton": display_export_button,
             "beta": beta,
-            "defaultPanel": project_info_panel_title,
             "sponsors": sponsors,
             "sponsorsTxt": sponsors_txt,
             "feedback": {
@@ -532,6 +549,7 @@ def build_player(ndf, ldf, # nodes and links dataframes
                  years = [], # format as year not integer
                  low_priority = [], # attributes to move to 'additional attributes' 
                  axis_select = None, # custom list of numeric attributes to show in scatterplot axis dropdown (if none all visible numeric will show)
+                 color_select = [], # custom list of attributes to show in color-by dropdown
                  ### launch / upload settings
                  launch_local=True, 
                  upload_s3=False,
@@ -558,6 +576,7 @@ def build_player(ndf, ldf, # nodes and links dataframes
                     years = years, # format as year not integer
                     low_priority = low_priority, # attributes to move to 'additional attributes' 
                     axis_select = axis_select, # custom list of numeric attributes to show in scatterplot axis dropdown (if none all visible numeric will show)
+                    color_select = color_select #None, # custom list of attributes to show in color-by dropdown
                     )
     playerpath = pl.Path(playerpath) # convert from string to path object
     # configure the files and folders  

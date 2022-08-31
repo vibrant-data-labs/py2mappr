@@ -89,6 +89,6 @@ if __name__ == "__main__":
 
   bucket_name = args[1]
   url = args[2]
-  distribution = create_distribution(bucket_name, url)
-  add_cloudflare_cname(distribution.get('DomainName'), url)
+  distribution = create_distribution(bucket_name, url) # e.g. "mymap.openmappr.org" (no https://)
+  add_cloudflare_cname(distribution.get('DomainName'), url) # note 'DomainName' is fixed
 
