@@ -28,7 +28,7 @@ def get_default_column_types_openmappr(ndf):
     for col in ndf.columns.tolist():
         if is_string_dtype(ndf[col]):
             typeDict[col] = ("string", "wide-tag-cloud", "TRUE")  # fill all strings, then below modify specific ones
-        if sum(ndf[col].apply(lambda x: len(str(x)) > 100)) > countThresh: # long text
+        if sum(ndf[col].apply(lambda x: len(str(x)) > 200)) > countThresh: # long text
             typeDict[col] = ("string", "text", "TRUE")
         if sum(ndf[col].apply(lambda x:"http" in str(x))) > countThresh: # urls
             typeDict[col] = ("url", "default", "FALSE")

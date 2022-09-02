@@ -490,12 +490,12 @@ def build_player_settings(
                     display_export_button = False,
                     feedback_type = "email", # email // link - to send an email or to navigate user to the link
                     feedback_link = "support@openmappr.org", # either an email address or a link to navigate
-                    feedback_text = "Questions, Suggestions, Feedback? Send us your thoughts!", # arbitrary text
+                    feedback_text = "contact us", # arbitrary text
                     beta = False, # displays a 'beta' ribbon
                     # attribution logos 
-                    sponsors = [create_sponsor("https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", "https://openmappr.org", "OpenMappr" )],
-                    sponsors_txt = 'Partners: ', # prefix before sponsor logos
-                    footer = create_footer()
+                    sponsors = [], #[create_sponsor("https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", "https://openmappr.org", "OpenMappr" )],
+                    sponsors_txt = '', #'Partners: ', # prefix before sponsor logos
+                    footer = None, #create_footer()
                     ):
         playerSettings={
             "startPage": start_page,
