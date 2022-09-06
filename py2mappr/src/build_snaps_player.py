@@ -190,6 +190,7 @@ def build_scatterplot_snapshot(
                 "scatterAspect": aspect_ratio,  # higher than 0.5 spreads out the scatterplot horizontally
                 # node color and images
                 "nodeColorAttr": node_color,
+                "nodeClusterAttr": cluster,
                 "nodeColorPaletteOrdinal": cat_palette,
                 "nodeColorPaletteNumeric": num_palette,
                 "nodeColorNumericScalerType": "RGB", # "HCL", "HCL Long", "LAB", "HSL"
@@ -335,7 +336,8 @@ def build_clustered_scatterplot_snapshot(
 summaryImg="https://www.dl.dropboxusercontent.com/s/lfa3a2w44k0t2kw/Screen%20Shot%202021-03-31%20at%207.01.37%20AM.png?dl=0",
 def build_geo_snapshot(
                     node_color = "Cluster",
-                    node_size = "ClusterCentrality",                              
+                    node_size = "ClusterCentrality", 
+                    cluster = None, # cluster by attr if diff from color by                             
                     node_size_scaling = (5,15,.8), #min size, max size, multiplier
                     cat_palette = cat_palette, # List of dictionaries: [{"col": HEXCODE}]
                     num_palette = num_palette, # List of dictionaries: [{"col": HEXCODE}]
@@ -373,6 +375,7 @@ def build_geo_snapshot(
                 "isGeo": True,  # geographic layout
                 # node color and images
                 "nodeColorAttr": node_color,
+                "nodeClusterAttr": cluster,
                 "nodeColorPaletteOrdinal": cat_palette,
                 "nodeColorPaletteNumeric": num_palette,
                 "nodeColorNumericScalerType": "RGB", # "HCL", "HCL Long", "LAB", "HSL"

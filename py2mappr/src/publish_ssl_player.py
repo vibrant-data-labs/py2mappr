@@ -18,7 +18,7 @@ SECRET_KEY = config['aws']['secret_access_key']
 ACM_CERTIFICATE = config['aws']['acm_certificate']
 # load Cloudflare settings from config file
 CF_API_KEY=config['cloudflare']['api_key']
-CF_ID=config['cloudflare']['id']
+#CF_ID=config['cloudflare']['id']
 
 CLOUDFRONT_CLIENT = boto3.client(
                         'cloudfront',
