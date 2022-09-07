@@ -453,14 +453,14 @@ def create_sponsor(icon_url, link_url, link_title):
     }
     return sponsor_details
 
-def sponsor_list(sponsor_tuples): 
+def create_sponsor_list(sponsor_tuples): 
     # create list of dictionaries from list of tuples from multiple sponsors - 
-    # [(icon_url, link_url, link_title), (icon_url, link_url, link_title)]
+    # [(link_title, icon_url, link_url), (link_title, icon_url, link_url)]
     sponsorlist = []
     for sponsor in sponsor_tuples:
-        sponsor_details = create_sponsor(sponsor[0],
-                                        sponsor[1],
-                                        sponsor[2])
+        sponsor_details = create_sponsor(sponsor[1], #icon_url
+                                        sponsor[2], #link_url
+                                        sponsor[0]) #link_title
         sponsorlist.append(sponsor_details)
     return sponsorlist
 
