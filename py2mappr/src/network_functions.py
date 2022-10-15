@@ -339,7 +339,7 @@ def decorate_network(df, ldf, tag_attr,
         df = df[finalNodeAttrs]                
     
 
-    if writeFile:
+    if writeFile and outname is not None:
         print("Writing Cleaned Network File")
         # Write back out to excel with 2 sheets. 
         Path("results/networks").mkdir(parents=True, exist_ok=True)
