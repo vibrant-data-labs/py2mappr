@@ -81,5 +81,7 @@ if __name__ == "__main__":
   if len(args) == 1:
     print('Pass a valid bucket name: purge_cache.py my-bucket')
     sys.exit(1)
-
   purge_cache(args[1:][0])
+  # or just:
+  purge_cache("my-bucket")
+

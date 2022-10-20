@@ -39,19 +39,19 @@ num_palette=[# default numeric color palette endpoints
 default_cluster_description = "<p><span>\
             Colored clusters are groups of points that 'huddle' together into themes based on similarity in their keywords.\
             Each theme is auto-labeled by the three most commonly shared keywords in the cluster. \
-            While the clusters reflect combinations of keywords that tend to go together, any one keyword can occur in multiple themes.\
+            While the clusters reflect combinations of keywords that tend to go together, any given keyword alone can occur in multiple clusters.\
             </span></p>"
 
 default_snap_howto = "<p><span>\
                 Use the <b>Summary</b> tab to browse and select points by one or more keywords, tags, or other attributes. \
-                If you click <i>Summarize</i>, the left panel will summarize the attributes for the selected group.\
+                If you click <i>Summarize Selection</i>, the left panel will summarize the attributes for the selected group.\
                 Use the <b>List</b> tab to see any selected points as a sortable list.\
                 </span></p>"
 
 default_geo_howto = "<p><span>\
             You can select a group of points on the map by holding 'shift' while you drag the cursor. \
-            If you click <i>Summarize Selectin</i>, the left <b>Summary</b> panel will summarize the attributes for the selected group.\
-            In the <b>Summary</b> panel, if you hover over a keyword or tag you can see it's geographic dispersion. \
+            If you click <i>Summarize Selection</i>, the left <b>Summary</b> panel will summarize the attributes for the selected group.\
+            In the <b>Summary</b> panel, if you hover over a keyword or tag you can see its geographic dispersion. \
             </span></p>"
 
 
@@ -333,7 +333,7 @@ def build_clustered_scatterplot_snapshot(
     return snap
 
 
-summaryImg="https://www.dl.dropboxusercontent.com/s/lfa3a2w44k0t2kw/Screen%20Shot%202021-03-31%20at%207.01.37%20AM.png?dl=0",
+summaryImg="",
 def build_geo_snapshot(
                     node_color = "Cluster",
                     node_size = "ClusterCentrality", 
@@ -363,7 +363,7 @@ def build_geo_snapshot(
     snap = create_snapshot(
         name= title,
         subtitle= subtitle,
-        summaryImg="https://www.dl.dropboxusercontent.com/s/lfa3a2w44k0t2kw/Screen%20Shot%202021-03-31%20at%207.01.37%20AM.png?dl=0",
+        summaryImg="",
         description= descr_intro + snap_howto,
         layout_params={
             "plotType": "geo",
@@ -467,7 +467,7 @@ def create_sponsor_list(sponsor_tuples):
 def create_footer(is_shown = False, 
                   studio_name = "Vibrant Data Labs", 
                   studio_url = "https://vibrantdatalabs.org", 
-                  studio_logo = "https://dl.dropbox.com/s/gdwr8xfn12uihuh/VDL_LOGO.jpg"
+                  studio_logo = "https://vdl-sponsor-logos.s3.amazonaws.com/vibrabnt-data-labs.png"
                   ):
     footer_details = {
         "isShown": is_shown,
@@ -481,8 +481,8 @@ def build_player_settings(
                     start_page = "filter",  # filter // legend // list
                     show_start_info = True, # display main info panel on launch
                     project_title = "Landscape Map", # main title next to logo
-                    project_logo_url = "https://vibrantdatalabs.org", # url where the main image logo leads
-                    project_logo_image_url = "https://dl.dropbox.com/s/067rmutsbz9bnf1/VDL_LOGO_clear.png", # or None // main logo
+                    project_logo_url = "", #"https://vibrantdatalabs.org", # url where the main image logo leads
+                    project_logo_image_url = None, #"https://vdl-sponsor-logos.s3.amazonaws.com/vibrabnt-data-labs.png", # or None // main logo
                     project_info_panel_title = "Map Information", # or None //# title of right main info drawer
                     # project description pieces
                     project_description = "<p>Project summary description goes here... </p><p>can use <i>HTML</i> to format</p>", 
@@ -493,7 +493,7 @@ def build_player_settings(
                     display_export_button = False,
                     feedback_type = "email", # email // link - to send an email or to navigate user to the link
                     feedback_link = "support@openmappr.org", # either an email address or a link to navigate
-                    feedback_text = "contact us", # arbitrary text
+                    feedback_text = "contact", # arbitrary text
                     beta = False, # displays a 'beta' ribbon
                     # attribution logos 
                     sponsors = [], #[create_sponsor("https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", "https://openmappr.org", "OpenMappr" )],
@@ -553,8 +553,10 @@ def build_player(ndf, ldf, # nodes and links dataframes
                  low_priority = [], # attributes to move to 'additional attributes' 
                  axis_select = None, # custom list of numeric attributes to show in scatterplot axis dropdown (if none all visible numeric will show)
                  color_select = [], # custom list of attributes to show in color-by dropdown
+                 size_select = [], # custom list of attributes to show in size-by dropdown
                  ### launch / upload settings
                  launch_local=True, 
+                 port=8080, 
                  upload_s3=False,
                  player_s3_bucket = "my-s3-bucket-name"
                  ):
@@ -579,7 +581,8 @@ def build_player(ndf, ldf, # nodes and links dataframes
                     years = years, # format as year not integer
                     low_priority = low_priority, # attributes to move to 'additional attributes' 
                     axis_select = axis_select, # custom list of numeric attributes to show in scatterplot axis dropdown (if none all visible numeric will show)
-                    color_select = color_select #None, # custom list of attributes to show in color-by dropdown
+                    color_select = color_select, #None, # custom list of attributes to show in color-by dropdown
+                    size_select = size_select, # custom list of attributes to show in size-by dropdown
                     )
     playerpath = pl.Path(playerpath) # convert from string to path object
     # configure the files and folders  
@@ -611,7 +614,7 @@ def build_player(ndf, ldf, # nodes and links dataframes
         launch_upload_player.upload_to_s3(str(outFolder), player_s3_bucket)
 
     if launch_local:
-        launch_upload_player.run_local(str(outFolder), PORT=8080)
+        launch_upload_player.run_local(str(outFolder), PORT=port)
 
 
 ############################

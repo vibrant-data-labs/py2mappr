@@ -69,7 +69,8 @@ def write_openmappr_files(ndf, ldf, playerpath,
                     years = [], # list of attributes to format as year not integer
                     low_priority = [], # list of attributes to move to 'additional attributes' in left panel
                     axis_select = None, # custom list of numeric attributes to show in scatterplot axis dropdown (if none all visible numeric will show)
-                    color_select = [], # custom list of attributes for color_by selection dropdown (default here is show none)
+                    color_select = [], # attributes for color_by selection dropdown - must include colorby attr (or show none)
+                    size_select = [], # attributes for size_by selection dropdown that are not already hidden (default here is show none)
                     ):  
     '''
     Write files for py2mappr: 
@@ -151,9 +152,12 @@ def write_openmappr_files(ndf, ldf, playerpath,
     else: # otherwise only show selected attributes in axis selector dropdown menus
         node_attr_df['axis'] = node_attr_df.apply(lambda x: 'all' if str(x['id']) in axis_select else 'none', axis=1)
 
-       # attributes to show in color_by dropdown menu
-    node_attr_df['selectable'] = node_attr_df.apply(lambda x: True if str(x['id']) in color_select else False, axis=1) 
+    # attributes to show in color_by dropdown menu
+    node_attr_df['colorSelectable'] = node_attr_df.apply(lambda x: True if str(x['id']) in color_select else False, axis=1) 
 
+    # attributes to show in size_by dropdown menu
+    node_attr_df['sizeSelectable'] = node_attr_df.apply(lambda x: True if str(x['id']) in size_select else False, axis=1) 
+    
        # add default alias title and node metadata description columns
     node_attr_df['title'] = node_attr_df['id']
     defaultcols = ['descr', 'maxLabel', 'minLabel', 'overlayAnchor']
@@ -166,7 +170,7 @@ def write_openmappr_files(ndf, ldf, playerpath,
 
        # re-order final columns and write template file
     meta_cols = ['id', 'visible', 'visibleInProfile', 'searchable', 'title', 'attrType', 'renderType', 
-    'descr', 'maxLabel', 'minLabel', 'overlayAnchor', 'priority', 'axis', 'selectable']
+    'descr', 'maxLabel', 'minLabel', 'overlayAnchor', 'priority', 'axis', 'colorSelectable', 'sizeSelectable']
     node_attr_df = node_attr_df[meta_cols]
     node_attr_df.to_csv(datapath/"node_attrs.csv", index=False)
 
