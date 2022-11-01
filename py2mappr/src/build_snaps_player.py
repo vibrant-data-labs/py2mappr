@@ -154,8 +154,11 @@ def build_scatterplot_snapshot(
                              links_show = False, # display links
                              link_curve = 0.6, # link curvature 0-1
                              link_weight = 0.8, # link thickness 
+                             link_size_strategy = "fixed",  #  "attr" // "fixed"
+                             link_size_attr = "OriginalSize", #"weight",  # size by attribute  
+                             linke_size_multiplier = 1,              
                              link_direction = 'outgoing', # "outgoing" | "incoming" | "all"
-                             link_color_strategy = "select", # source / target / gradient / attr / select
+                             link_color_strategy = "gradient", # source / target / gradient / attr / select
                              link_color_attr = "OriginalColor", # or other categorical link attribute
                              neighbors = 1, # degree of neighbors on hover/select
                              group_labels = False, # True = show group labels
@@ -208,8 +211,8 @@ def build_scatterplot_snapshot(
                 "drawEdges": links_show,
                 "edgeCurvature": link_curve,
                 "edgeDirectionalRender": link_direction,  # "outgoing", "incoming", "all"
-                "edgeSizeStrat": "fixed",  #  "attr" // "fixed"
-                "edgeSizeAttr": "OriginalSize", #"weight",  # size by
+                "edgeSizeStrat": link_size_strategy,  #  "attr" // "fixed"
+                "edgeSizeAttr": link_size_attr, #"OriginalSize", #"weight",  # size by
                 "edgeSizeDefaultValue": link_weight, #0.2
                 "edgeSizeMultiplier": 1, 
                 "edgeColorStrat": link_color_strategy,  # gradient / source / target / gradient / attr / select
