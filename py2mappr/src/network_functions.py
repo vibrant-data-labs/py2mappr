@@ -51,7 +51,10 @@ def add_cluster_layout(ndf, ldf, dists=None, maxdist=5,
                        size_attr=None,
                        overlap_frac=0.2,
                        max_expansion=1.5,
-                       scale_factor=1.0): 
+                       scale_factor=1.0,
+                       x='x', # name of x coord col
+                       y='y' # name of y coord col
+                       ): 
     print("Running clustered graph layout")
     nw = buildNetworkX(ldf)
     layout, _ = cl.run_cluster_layout(nw, ndf, dists=dists, maxdist=maxdist, 
@@ -60,8 +63,8 @@ def add_cluster_layout(ndf, ldf, dists=None, maxdist=5,
                        overlap_frac=overlap_frac, 
                        max_expansion=max_expansion, 
                        scale_factor=scale_factor)
-    ndf['x'] = ndf['id'].apply(lambda x: layout[x][0] if x in layout else 0.0)
-    ndf['y'] = ndf['id'].apply(lambda x: layout[x][1] if x in layout else 0.0)
+    ndf[x] = ndf['id'].apply(lambda x: layout[x][0] if x in layout else 0.0)
+    ndf[y] = ndf['id'].apply(lambda x: layout[x][1] if x in layout else 0.0)
     return ndf
 
 def tsne_layout(ndf, ldf, clusName="Cluster", rename_xy=False):   
@@ -110,6 +113,12 @@ def write_network_to_excel (ndf, ldf, outname):
     writer = pd.ExcelWriter(outname,
                           engine='xlsxwriter', 
                           options={'strings_to_urls': False})
+    ndf.to_excel(writer,'Nodes', index=False, encoding = 'utf-8-sig')
+    ldf.to_excel(writer,'Links', index=False, encoding = 'utf-8-sig')
+    writer.save()  
+
+def write_network_to_excel_simple (ndf, ldf, outname):
+    writer = pd.ExcelWriter(outname)
     ndf.to_excel(writer,'Nodes', index=False, encoding = 'utf-8-sig')
     ldf.to_excel(writer,'Links', index=False, encoding = 'utf-8-sig')
     writer.save()  
