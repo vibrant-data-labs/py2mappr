@@ -86,6 +86,7 @@ def create_map(
     snapshots: List[Dict] = [],
     playerSettings: Dict[str, Any] = {},
     outFolder: Union[Path, str] = "data_out",
+    gtag_id: str = None
 ):
     """Creates a map renderable in a browser.
        Outputs a folder with formatted data folder, index.html and run utility
@@ -114,6 +115,21 @@ def create_map(
     # copy the index and run scripts to out directory
     shutil.copy("src/index.html", out_dir)
     print(f"\t- copied {out_dir}/index.html")
+
+    ga_template = ''
+    if gtag_id:
+        with open('src/ga_template.html', 'r') as f:
+            ga_template = f.read()
+            ga_template = ga_template.replace('#{gtag_id}', gtag_id)
+
+        index_tmpl = ''
+        with open(out_dir / 'index.html', 'r') as f:
+            index_tmpl = f.read()
+        with open(out_dir / 'index.html', 'w') as f:
+            index_tmpl = index_tmpl.replace('<!-- #{gtag} -->', ga_template)
+            f.write(index_tmpl)
+        
+        print(f"\t- gtag added")
 
     shutil.copy("src/run_local.sh", out_dir)
     print(f"\t- copied {out_dir}/run_local.sh\n")
