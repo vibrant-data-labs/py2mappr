@@ -111,8 +111,9 @@ def plot_network(ndf, edf, plot_name, x='x', y='y', colorBy='Cluster', sizeBy='C
 
 def write_network_to_excel (ndf, ldf, outname):
     writer = pd.ExcelWriter(outname,
-                          engine='xlsxwriter', 
-                          options={'strings_to_urls': False})
+                          engine='openpyxl')
+    # Don't convert url-like strings to urls.
+    writer.book.strings_to_urls = False
     ndf.to_excel(writer,'Nodes', index=False, encoding = 'utf-8-sig')
     ldf.to_excel(writer,'Links', index=False, encoding = 'utf-8-sig')
     writer.save()  

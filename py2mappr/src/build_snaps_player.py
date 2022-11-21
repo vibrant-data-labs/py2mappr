@@ -501,6 +501,7 @@ def build_player_settings(
                     # attribution logos 
                     sponsors = [], #[create_sponsor("https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", "https://openmappr.org", "OpenMappr" )],
                     sponsors_txt = '', #'Partners: ', # prefix before sponsor logos
+                    socials = ["linkedin", "twitter"], #["facebook", "linkedin", "twitter"]
                     footer = None, #create_footer()
                     ):
         playerSettings={
@@ -526,6 +527,7 @@ def build_player_settings(
                 "link": feedback_link,
                 "text": feedback_text,
               },
+            "socials": socials,
             "footer": footer
             }
         return playerSettings
