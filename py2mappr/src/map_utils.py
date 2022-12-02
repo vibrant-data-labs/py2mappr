@@ -3,6 +3,7 @@ from pathlib import Path
 import shutil
 import json
 import uuid
+import re
 
 
 from .build_dataset import build_attrDescriptors, build_datapoints
@@ -76,6 +77,55 @@ def __write_settings_file(snapshots: List[Dict], playerSettings: Dict[str, Any],
         json.dump(data, f, indent=4)
     return data
 
+def __add_analytics(index_path: str, gtag_id: str = ''):
+    if not gtag_id:
+        return
+    ga_template = ''
+    with open('src/ga_template.html', 'r') as f:
+        ga_template = f.read()
+        ga_template = ga_template.replace('#{gtag_id}', gtag_id)
+
+    index_tmpl = ''
+    with open(index_path, 'r') as f:
+        index_tmpl = f.read()
+    with open(index_path, 'w') as f:
+        index_tmpl = index_tmpl.replace('<!-- #{gtag} -->', ga_template)
+        f.write(index_tmpl)
+    
+    print(f"\t- gtag added")
+
+def __extract_sentence(text: str):
+    if not text: 
+        return ''
+    # clean text from html tags
+    clean = re.compile('<.*?>')
+    clear_text = re.sub(clean, '', text)
+    sentences = clear_text.split('.')
+    if len(sentences) > 1:
+        return sentences[0] + '.'
+    return clear_text
+
+def __set_opengraph_tags(index_path: str, player_settings: Dict[str, Any]):
+    title = player_settings.get('projectLogoTitle') or \
+                player_settings.get('headerTitle')  or \
+                'openmappr | network exploration tool'
+    description = __extract_sentence(player_settings.get('headerSubtitle'))
+    image_url = player_settings.get('projectLogoImageUrl') or 'https://mappr-player.openmappr.org/img/openmappr_socialmedia.png'
+    og_template = ''
+    with open('src/og_template.html', 'r') as f:
+        og_template = f.read()
+        og_template = og_template.replace('#{title}', title)
+        og_template = og_template.replace('#{description}', description)
+        og_template = og_template.replace('#{image}', image_url)
+
+    index_tmpl = ''
+    with open(index_path, 'r') as f:
+        index_tmpl = f.read()
+    with open(index_path, 'w') as f:
+        index_tmpl = index_tmpl.replace('<!-- #{opengraph} -->', og_template)
+        f.write(index_tmpl)
+    
+    print(f"\t- opengraph tags modified")
 
 def create_map(
     datapointsPath: Union[Path, str],
@@ -116,21 +166,6 @@ def create_map(
     shutil.copy("src/index.html", out_dir)
     print(f"\t- copied {out_dir}/index.html")
 
-    ga_template = ''
-    if gtag_id:
-        with open('src/ga_template.html', 'r') as f:
-            ga_template = f.read()
-            ga_template = ga_template.replace('#{gtag_id}', gtag_id)
-
-        index_tmpl = ''
-        with open(out_dir / 'index.html', 'r') as f:
-            index_tmpl = f.read()
-        with open(out_dir / 'index.html', 'w') as f:
-            index_tmpl = index_tmpl.replace('<!-- #{gtag} -->', ga_template)
-            f.write(index_tmpl)
-        
-        print(f"\t- gtag added")
-
     shutil.copy("src/run_local.sh", out_dir)
     print(f"\t- copied {out_dir}/run_local.sh\n")
 
@@ -147,6 +182,9 @@ def create_map(
     __write_settings_file(snapshots, playerSettings, out_data_path)
     print(f"\t- new settings file written to {out_data_path / 'settings.json'}.\n")
 
+    __add_analytics(out_dir / 'index.html', gtag_id)
+    print(playerSettings)
+    __set_opengraph_tags(out_dir / 'index.html', playerSettings)
 
 def create_snapshot(name: str, subtitle: str, summaryImg: str = "", description: str = "", layout_params: Dict = {}):
     """creates a snapshot object
