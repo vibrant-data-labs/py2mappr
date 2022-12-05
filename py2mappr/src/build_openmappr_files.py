@@ -65,6 +65,7 @@ def write_openmappr_files(ndf, ldf, playerpath,
                     horizontal_bars = [], # list of string attrs to render as horizontal bar chart
                     text_str = [],  # list of custom attribs to render as long text in profile
                     email_str = [], # list of custom attribs to render as email link
+                    url_str = [], # list of custom attribs to render as url link
                     showSearch = [], # list of custom attribs to show in search
                     years = [], # list of attributes to format as year not integer
                     low_priority = [], # list of attributes to move to 'additional attributes' in left panel
@@ -125,6 +126,7 @@ def write_openmappr_files(ndf, ldf, playerpath,
                                                                else 'horizontal-bars' if str(x['id']) in horizontal_bars
                                                                else 'text' if str(x['id']) in text_str
                                                                else 'email' if str(x['id']) in email_str
+                                                               else 'url' if str(x['id'] in url_str)
                                                                else x['renderType'], axis=1)
        # additional attributes to hide from filters
     if hide != None:

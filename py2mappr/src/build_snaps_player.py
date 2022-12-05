@@ -502,7 +502,7 @@ def build_player_settings(
                     sponsors = [], #[create_sponsor("https://mappr-player.openmappr.org/img/openmappr_socialmedia.png", "https://openmappr.org", "OpenMappr" )],
                     sponsors_txt = '', #'Partners: ', # prefix before sponsor logos
                     socials = ["linkedin", "twitter"], #["facebook", "linkedin", "twitter"]
-                    footer = None, #create_footer()
+                    footer = None, #create_footer() - default is 'powerd by VDL'
                     ):
         playerSettings={
             "startPage": start_page,
@@ -554,6 +554,7 @@ def build_player(ndf, ldf, # nodes and links dataframes
                  horizontal_bars = [], # custom string attribs to render as horizontal bar chart
                  text_str = [],   # custom string attribs to render as long text in profile
                  email_str = [], # custom string attribs to render as email link  in profile
+                 url_str = [], # custom string attribs to render as url link  in profile
                  years = [], # format as year not integer
                  low_priority = [], # attributes to move to 'additional attributes' 
                  axis_select = None, # custom list of numeric attributes to show in scatterplot axis dropdown (if none all visible numeric will show)
@@ -583,6 +584,7 @@ def build_player(ndf, ldf, # nodes and links dataframes
                     horizontal_bars = horizontal_bars, # custom string attribs to render as horizontal bar chart
                     text_str = text_str,   # custom string attribs to render as long text in profile
                     email_str = email_str, # custom string attribs to render as email link  in profile
+                    url_str = url_str, # custom string attribs to render as url link  in profile
                     years = years, # format as year not integer
                     low_priority = low_priority, # attributes to move to 'additional attributes' 
                     axis_select = axis_select, # custom list of numeric attributes to show in scatterplot axis dropdown (if none all visible numeric will show)
