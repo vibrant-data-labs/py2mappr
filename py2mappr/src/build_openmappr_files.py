@@ -117,6 +117,7 @@ def write_openmappr_files(ndf, ldf, playerpath,
     node_attr_df['attrType'] = node_attr_df.apply(lambda x: 'liststring' if str(x['id']) in liststring
                                                                else 'string' if str(x['id']) in (text_str + email_str + horizontal_bars)
                                                                else 'year' if str(x['id']) in (years)
+                                                               else 'url' if x['id'] in url_str   
                                                                else x['attrType'], axis=1)
 
     node_attr_df['renderType'] = node_attr_df.apply(lambda x: 'wide-tag-cloud' if str(x['id']) in wide_tags  # 1 tag per row
@@ -126,8 +127,10 @@ def write_openmappr_files(ndf, ldf, playerpath,
                                                                else 'horizontal-bars' if str(x['id']) in horizontal_bars
                                                                else 'text' if str(x['id']) in text_str
                                                                else 'email' if str(x['id']) in email_str
-                                                               else 'url' if str(x['id'] in url_str)
+                                                               else 'default' if str(x['id']) in url_str    
                                                                else x['renderType'], axis=1)
+
+
        # additional attributes to hide from filters
     if hide != None:
         hide = list(set(['label', 'OriginalLabel', 'OriginalSize', 'OriginalY', 'OriginalX', 'id'] + hide))
