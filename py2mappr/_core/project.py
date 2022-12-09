@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Union
 from .config import AttributeConfig, ProjectConfig, Config, base_config, default_attr_config
 from py2mappr._attributes.calculate import calculate_attr_types, calculate_render_type
 from py2mappr._layout import Layout, LayoutSettings
@@ -6,6 +6,7 @@ from pandas import DataFrame
 
 class OpenmapprProject:
     dataFrame: DataFrame
+    network: Union[DataFrame, None] = None
     attributes: Dict[str, AttributeConfig]
     configuration: ProjectConfig
     snapshots: List[Layout] = []
@@ -35,9 +36,10 @@ class OpenmapprProject:
 
     def set_debug(self, debug: bool):
         self.debug = debug
-    
-    def show(self):
-        print(self.attributes)
-        pass
-        # create folders and copy the index file
-        # self._debug_print(f">> creating folders")
+
+    def set_data(self, dataFrame: DataFrame):
+        self.dataFrame = dataFrame
+
+    def set_network(self, network: DataFrame):
+        self.network = network
+

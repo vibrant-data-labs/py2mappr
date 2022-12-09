@@ -1,8 +1,10 @@
 from typing import Union
 from ._project_manager import get_project
 from ._layout import OriginalLayout, PLOT_TYPE
+from ._builder import build_map
 from pandas import DataFrame
 from pathlib import Path
+import os
 
 def create_map(data_frame: DataFrame):
     project = get_project(data_frame)
@@ -12,14 +14,22 @@ def create_map(data_frame: DataFrame):
 def create_layout(data_frame: DataFrame, layout_type: PLOT_TYPE = "original"):
     project = get_project(data_frame)
 
+    result_layout = OriginalLayout(project)
     if layout_type == "original":
-        project.snapshots.append(OriginalLayout(project))
+        project.snapshots.append(result_layout)
     else:
         raise ValueError("Unknown layout type: " + layout_type)
 
+    return result_layout
+
+def set_network(network_df: DataFrame):
+    project = get_project()
+    project.set_network(network_df)
+
 def show():
     project = get_project()
-    project.show()
+    build_map(project)
+    # project.show()
 
 def export_attributes(data_frame: DataFrame, out_path: Union[Path, str]):
     project = get_project(data_frame)

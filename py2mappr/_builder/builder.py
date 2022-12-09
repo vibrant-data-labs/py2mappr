@@ -4,40 +4,45 @@ from pathlib import Path
 import shutil
 import json
 import os
+import pandas as pd
+from py2mappr._core.config import AttributeConfig
 from py2mappr._core.project import OpenmapprProject
-from build_dataset import build_attrDescriptors, build_datapoints
-from build_network import build_nodes, build_links, build_nodeAttrDescriptors, build_linkAttrDescriptors
-from build_settings import build_settings
+from .build_dataset import build_attrDescriptors, build_datapoints
+from .build_network import build_nodes, build_links, build_nodeAttrDescriptors, build_linkAttrDescriptors
+from .build_settings import build_settings
 
 '''
 from .utils import load_templates, merge
 '''
+
+def __noop_printer(*args, **kwargs):
+    pass
+
 def _printer(project: OpenmapprProject):
-    if project.debug:
-        pass
+    if not project.debug:
+        return __noop_printer
     return print
 
 _debug_print = None
-template_path = os.path.join(os.path.dirname(__file__), '..', '_templates')
+template_path = Path(os.path.join(os.path.dirname(__file__), '..', '_templates'))
 
-def __write_dataset_file(datapointsPath: Union[Path, str], datapointAttrPath: Union[Path, str], out_data_dir: Path):
+def __write_dataset_file(df_datapoints: pd.DataFrame, datapointAttrs: Dict[str, AttributeConfig], out_data_dir: Path):
     # collect datapoint attributes
-    datapointAttribs = build_attrDescriptors(str(datapointAttrPath))
+    datapointAttribs = build_attrDescriptors(df_datapoints, datapointAttrs)
     datapointAttrTypes = {row["id"]: row["attrType"] for row in datapointAttribs}
-    # print(f"\t- processed {len(datapointAttribs)} datapoint attributes {[at['id'] for at in datapointAttribs]}")
 
     # collect datapoints
-    datapoints = build_datapoints(str(datapointsPath), datapointAttrTypes)
+    datapoints = build_datapoints(df_datapoints, datapointAttrTypes)
+    
     _debug_print(
         f"\t- processed {len(datapoints)} datapoints with {datapoints[0].keys()} where attr={list(datapoints[0]['attr'].keys())}"
     )
 
     # merge into dataset
-    datasetTpl = load_templates("dataset")
-    data = {**datasetTpl, **{"attrDescriptors": datapointAttribs, "datapoints": datapoints}}
-    with open(out_data_dir / "nodes.json", mode="w") as f:
-        json.dump(data, f, indent=4)
+    data = {"attrDescriptors": datapointAttribs, "datapoints": datapoints}
 
+    with open(Path(out_data_dir) / "nodes.json", mode="w+") as f:
+        json.dump(data, f, indent=4)
 
 def __write_network_file(
     datapointsPath: Union[Path, str],
@@ -63,15 +68,15 @@ def __write_network_file(
     _debug_print(f"\t- processed {len(linkAttribs)} link attributes {[at['id'] for at in linkAttribs]}")
 
     # write network file
-    networkTpl = load_templates("network")
-    data = {
-        **networkTpl,
-        **{"nodes": nodes, "links": links, "nodeAttrDescriptors": nodeAttribs, "linkAttrDescriptors": linkAttribs},
-    }
+    # networkTpl = load_templates("network")
+    # data = {
+    #     **networkTpl,
+    #     **{"nodes": nodes, "links": links, "nodeAttrDescriptors": nodeAttribs, "linkAttrDescriptors": linkAttribs},
+    # }
     # pprint.pprint(data)
 
-    with open(out_data_dir / "links.json", mode="w") as f:
-        json.dump([data], f, indent=4)
+    # with open(out_data_dir / "links.json", mode="w") as f:
+    #     json.dump([data], f, indent=4)
 
 
 def __write_settings_file(snapshots: List[Dict], playerSettings: Dict[str, Any], out_data_dir: Path):
@@ -130,7 +135,40 @@ def __set_opengraph_tags(index_path: str, player_settings: Dict[str, Any]):
     
     _debug_print(f"\t- opengraph tags modified")
 
-def create_map(
+def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out"):
+    global _debug_print
+    if not _debug_print:
+        _debug_print = _printer(project)
+     # create folders and copy the index file
+    _debug_print(f">> creating folders")
+    
+    out_dir = Path(os.getcwd()) / outFolder
+    out_data_dir = out_dir / "data"
+
+    if not os.path.exists(Path(out_data_dir)):
+        os.makedirs(Path(out_data_dir))
+
+    # copy the index and run scripts to out directory
+    shutil.copy(template_path /"index.html", out_dir)
+    _debug_print(f"\t- copied {out_dir}/index.html")
+
+    shutil.copy(template_path/"run_local.sh", out_dir)
+    _debug_print(f"\t- copied {out_dir}/run_local.sh\n")
+
+    # write the files
+    _debug_print(f">> building dataset")
+    __write_dataset_file(project.dataFrame, project.attributes, out_data_dir)
+    _debug_print(f"\t- new dataset file written to {out_data_dir / 'nodes.json'}.\n")
+
+    # _debug_print(f">> building network")
+    # __write_network_file(project.network, project)
+    # _debug_print(f"\t- new network file written to {out_data_path / 'links.json'}.\n")
+
+    # _debug_print(f">> building settings")
+    # __write_settings_file(snapshots, playerSettings, out_data_path)
+    # _debug_print(f"\t- new settings file written to {out_data_path / 'settings.json'}.\n")
+
+def build_map_old(
     project: OpenmapprProject,
     datapointsPath: Union[Path, str],
     linksPath: Union[Path, str],
