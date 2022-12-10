@@ -1,23 +1,126 @@
-from typing import Dict, Literal, TypedDict
+from typing import Any, Dict, List, Literal, TypedDict
 
 from py2mappr._attributes.attr_types import ATTR_TYPE, RENDER_TYPE
 
-class Config(TypedDict):
-    name: str
-base_config: Config = {
+class SponsorInfo(TypedDict):
+    iconUrl: str
+    linkUrl: str
+    linkTitle: str
+
+class FeedbackInfo(TypedDict):
+    type: Literal['email', 'link']
+    link: str
+    text: str
+
+class ProjectConfig(TypedDict):
+    fontClass: str
+    showModal: bool
+    simpleSplash: bool
+    showHeader: bool
+    headerType: str
+    shareTitle: str
+    shareTitleCompare: str
+    shareTitleSelect: str
+    shareEnableSelect: bool
+    showExportBtn: bool
+    facebookShare: bool
+    twitterShare: bool
+    colorTheme: str
+    showPanels: bool
+    showSearch: bool
+    showTimeline: bool
+    showSnapDescrs: bool
+    infoClickToParent: bool
+    showSnapTooltips: bool
+    panelLayoutType: str
+    autoPlay: bool
+    snapTransition: str
+    snapDuration: int
+    timelineType: str
+    totalDuration: int
+    headerTitle: str
+    headerImageUrl: str
+    headerHtml: str
+    highlightColor: str
+    modalDescription: str
+    modalBackground: str
+    modalLogo: str
+    modalSubtitle: str
+    searchAlg: str
+    modalTitle: str
+    modalIntroHtml: str
+    allowJoin: bool
+    displayTooltipCard: bool
+    startPage: Literal['legend']
+    showStartInfo: bool
+    defaultPanel: str
+    sponsors: List[SponsorInfo]
+    projectLogoTitle: str
+    projectLogoUrl: str
+    displayExportButton: bool
+    beta: bool
+    sponsorsTxt: str
+    feedback: FeedbackInfo
+    socials: List[Literal['twitter', 'linkedin', 'facebook']]
+    footer: Any
+
+base_config: ProjectConfig = {
     'name': 'openmappr | network exploration tool',
+    'fontClass': 'Roboto',
+    'showModal': True,
+    'simpleSplash': True,
+    'showHeader': True,
+    'headerType': 'simple',
+    'shareTitle': 'Check out this map',
+    'shareTitleCompare': 'Check out my node',
+    'shareTitleSelect': 'Check out these nodes',
+    'shareEnableSelect': False,
+    'showExportBtn': True,
+    'facebookShare': False,
+    'twitterShare': False,
+    'colorTheme': 'light',
+    'showPanels': True,
+    'showSearch': True,
+    'showTimeline': True,
+    'showSnapDescrs': True,
+    'infoClickToParent': False,
+    'showSnapTooltips': False,
+    'panelLayoutType': 'interactive',
+    'autoPlay': False,
+    'snapTransition': 'tween',
+    'snapDuration': 10,
+    'timelineType': 'bottom',
+    'totalDuration': 1000,
+    'headerTitle': 'map title',
+    'headerImageUrl': '',
+    'headerHtml': '<h1>map header</h1>',
+    'highlightColor': '#e21186',
+    'modalDescription': '<p>map description</p>',
+    'modalBackground': '',
+    'modalLogo': '',
+    'modalSubtitle': '<p>map subtitle</p>',
+    'searchAlg': 'matchSorter',
+    'modalTitle': 'document network',
+    'modalIntroHtml': '<h1>document_network_test</h1><div>Each of the 1000 nodes in this mapp represents ...</div><div>They are linked with each other if they are similar across the following attributes</div><div>a) Attribute 1</div><div>b) Attribute 2</div><h1></h1>',
+    'allowJoin': False,
+    'displayTooltipCard': False,
+    'startPage': 'legend',
+    'showStartInfo': True,
+    'defaultPanel': 'Map Information',
+    'sponsors': [],
+    'projectLogoTitle': 'openmappr | network exploration tool',
+    'projectLogoUrl': None,
+    'displayExportButton': True,
+    'beta': False,
+    'sponsorsTxt': 'Sponsored by',
+    'feedback': {
+        'type': 'email',
+        'link': 'mailto:',
+        'text': 'Feedback'
+    },
+    'footer': None,
+    'socials': []
 }
-
-class ProjectConfig:
-    _config: Config
-    def __init__(self, config: Config) -> None:
-        self._config = config
-
-    def get(self, field: str):
-        return self._config[field]
-
-    def set(self, field: str, value: str):
-        self._config[field] = value
     
 class AttributeConfig(TypedDict):
     id: str

@@ -1,36 +1,37 @@
 import pandas as pd
 from typing import Any, List, Dict
-# from .utils import load_templates, merge
-#from src.utils import load_templates, merge
+from py2mappr._layout import Layout
 
+from py2mappr._core.config import ProjectConfig
 
-def build_settings(snapshots: List[Dict] = [], playerSettings: Dict[str, Any] = {}) -> Dict[str, Any]:
-    # load template - settings.yaml
-    settings = load_templates("settings")
+def build_settings(snapshots: List[Layout] = [], playerSettings: ProjectConfig = {}) -> Dict[str, Any]:
+    if len(snapshots) == 0:
+        raise ValueError("No snapshots found. Please add at least one snapshot to the project.")
 
-    # inject the snapshots
-    if len(snapshots) > 0:
-        print(f"\t- {len(snapshots)} snapshot found. adding to map.")
-        settings = merge(settings, {"snapshots": snapshots})
-    else:
-        # if no snapshot defined load the default template and fix the size by and color by
-        print(f"\t- no snapshot found. injecting default")
-        default_snap = load_templates("snapshot")
-        default_snap = merge(
-            default_snap,
-            {
-                "layout": {
-                    "plotType": "network",
-                    "settings": {"nodeSizeStrat": "fixed", "nodeColorStrat": "fixed"},
-                }
+    settings = {
+        'dataset': {
+            'ref': 'id=dataset_ref_id'
+        },
+        'settings': {
+            'theme': 'light',
+            'backgroundColor': '#ffffff',
+            'labelColor': '#000000',
+            'labelOutlineColor': '#ffffff',
+            'selectionData': {
+                'genCount': 0,
+                'selections': []
             },
-        )
-        settings = merge(settings, {"snapshots": [default_snap]})
-
-    settings = merge(settings, {"player": {"settings": playerSettings}})
+            'lastViewedSnap': 'snal-id',
+            'layouts': {},
+            'displayExportButton': False #todo: add to config
+        },
+        'player': {
+            'settings': playerSettings,
+        },
+        'snapshots': [snapshot.settings for snapshot in snapshots],
+    }
 
     return settings
-
 
 if __name__ == "__main__":
     x = build_settings()

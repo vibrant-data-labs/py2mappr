@@ -1,76 +1,64 @@
 from pathlib import Path
 import pandas as pd
 from typing import Any, List, Dict, Union
+
+from py2mappr._core.config import AttributeConfig
 # from .utils import load_templates, merge
 #from src.utils import load_templates, merge
 
-
-def build_nodes(dpPath: Union[Path, str], attr_map: Dict[str, str]) -> List[Dict[str, Any]]:
-    df_datapoints: pd.DataFrame = pd.read_csv(str(dpPath))
-
-    # load the template - node.yaml
-    nodeTpl = load_templates("node")
-
-    nodes = []
-    for _, dp in df_datapoints.iterrows():
-
-        # form the final datapoint with template
-        nd = merge(
-            nodeTpl,
-            {
-                "dataPointId": f'{dp["id"]}',
-                "id": f'{dp["id"]}',
-                "attr": {
-                    "OriginalLabel": dp.get(attr_map.get("OriginalLabel", ""), "Node"),
-                    "OriginalX": dp.get(attr_map.get("OriginalX", ""), 0),
-                    "OriginalY": dp.get(attr_map.get("OriginalY", ""), 0),
-                },
+def __build_node(node: pd.Series, attr_map: Dict[str, AttributeConfig]) -> Dict[str, Any]:
+    # form the final datapoint with template
+    nd = {
+            "dataPointId": f'{node["id"]}',
+            "id": f'{node["id"]}',
+            "attr": {
+                "OriginalLabel": node.get(attr_map.get("OriginalLabel", ""), "Node"),
+                "OriginalX": node.get(attr_map.get("OriginalX", ""), 0),
+                "OriginalY": node.get(attr_map.get("OriginalY", ""), 0),
             },
-        )
-        # collect corresponding node for the datapoint
-        nodes.append(nd)
+        }
+    return nd
+
+def build_nodes(df_datapoints: pd.DataFrame, attr_map: Dict[str, AttributeConfig]) -> List[Dict[str, Any]]:
+    nodes = [__build_node(dp, attr_map) for _, dp in df_datapoints.iterrows()]
+
     return nodes
 
-
-def build_links(linksPath: Union[Path, str], attr_map: Dict[str, str]) -> List[Dict[str, Any]]:
-    df_links: pd.DataFrame = pd.read_csv(linksPath)
-
-    # load the template - link.yaml
-    linkTpl = load_templates("link")
-
-    links = []
-    for idx, link in df_links.iterrows():
-        # extract the link data (each row) as a dict
-        edgeAttrs: Dict[str, Any] = dict(link)
-
-        # required main params
-        link = merge(
-            linkTpl,
-            {
+def __build_link(idx, link: pd.Series, attr_map: Dict[str, str]):
+    edgeAttrs: Dict[str, Any] = dict(link)
+    otherAttrs = {
+        at: val for at, val in edgeAttrs.items() if at.lower() not in ["id", "source", "target", "isdirectional"]
+    }
+    result_link = {
                 "id": f"{idx}",
                 "source": f"{int(edgeAttrs[attr_map['source']])}",
                 "target": f"{int(edgeAttrs[attr_map['target']])}",
                 "isDirectional": edgeAttrs.get(attr_map.get("isDirectional", ""), False),
-                "attr": {"OriginalLabel": f"{idx}"},
-            },
-        )
+                "attr": {
+                    "OriginalLabel": f"{idx}",
+                    **otherAttrs,
+                    },
+            }
 
-        # params other than ["id", "source", "target", "isdirectional"] in the datasheet
-        # row gets pooled inside the 'attr' key. see template at link.yaml
-        otherAttrs = {
-            at: val for at, val in edgeAttrs.items() if at.lower() not in ["id", "source", "target", "isdirectional"]
-        }
-        linkMerged = merge(linkTpl, {"attr": otherAttrs})
+    return result_link
 
-        # collect link
-        links.append(dict(linkMerged))
-
+def build_links(df_links: pd.DataFrame, attr_map: Dict[str, str]) -> List[Dict[str, Any]]:
+    links = [__build_link(idx, link, attr_map) for idx, link in df_links.iterrows()]
     return links
 
 
 def build_nodeAttrDescriptors() -> List[Dict[str, Any]]:
+    attrDescriptorTpl ={
+            "id": "attrib id",
+            "title": "attrib title",
+            "visible": True,
+            "visibleInProfile": False,
+            "searchable": True,
+            "attrType": "string",
+            "renderType": "text",
+            "metadata": {},
+        }
 
-    attrDescriptorTpl = load_templates("nodeAttribs")
     required_attrs = [
         {
             "id": "OriginalLabel",
@@ -130,7 +118,11 @@ def build_nodeAttrDescriptors() -> List[Dict[str, Any]]:
         attrs: Dict[str, Any] = {**row}
 
         # metadata
-        meta_tpl = attrDescriptorTpl["metadata"]
+        meta_tpl = {
+            "descr": "",
+            "maxLabel": "",
+            "ZminLabel": "",
+        }
         meta_attrs = dict((k, attrs[k]) for k in meta_tpl if k in attrs)
         other_attrs = dict((k, attrs[k]) for k in attrs if k not in meta_attrs)
         attrs = {**other_attrs, **{"metadata": {**meta_tpl, **meta_attrs}}}
@@ -148,7 +140,14 @@ def build_nodeAttrDescriptors() -> List[Dict[str, Any]]:
 
 
 def build_linkAttrDescriptors() -> List[Dict[str, Any]]:
-    linkAttrbTpl = load_templates("linkAttribs")
+    linkAttrbTpl = {
+        "id": "attrib id",
+        "title": "attrib title",
+        "visible": True,
+        "searchable": True,
+        "attrType": "string",
+        "renderType": "text",
+    }
     required_attrs = [
         {
             "id": "OriginalLabel",

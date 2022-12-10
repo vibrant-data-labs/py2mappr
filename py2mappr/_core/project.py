@@ -1,5 +1,5 @@
 from typing import Dict, List, Union
-from .config import AttributeConfig, ProjectConfig, Config, base_config, default_attr_config
+from .config import AttributeConfig, ProjectConfig, base_config, default_attr_config
 from py2mappr._attributes.calculate import calculate_attr_types, calculate_render_type
 from py2mappr._layout import Layout, LayoutSettings
 from pandas import DataFrame
@@ -13,9 +13,9 @@ class OpenmapprProject:
 
     debug: bool = False
 
-    def __init__(self, dataFrame: DataFrame, config: Config = base_config):
+    def __init__(self, dataFrame: DataFrame, config: ProjectConfig = base_config):
         self.dataFrame = dataFrame
-        self.configuration = ProjectConfig(config)
+        self.configuration = config
         self.attributes = self._set_attributes()
 
     def _set_attributes(self) -> Dict[str, AttributeConfig]:

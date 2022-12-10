@@ -45,18 +45,18 @@ def __write_dataset_file(df_datapoints: pd.DataFrame, datapointAttrs: Dict[str, 
         json.dump(data, f, indent=4)
 
 def __write_network_file(
-    datapointsPath: Union[Path, str],
-    linksPath: Union[Path, str],
-    node_attr_map: Dict[str, str],
-    link_attr_map: Dict[str, str],
+    df_datapoints: pd.DataFrame,
+    datapointAttrs: Dict[str, AttributeConfig],
+    df_links: pd.DataFrame,
+    linkAttrs: Dict[str, Any],
     out_data_dir: Path,
 ):
     # collect nodes
-    nodes = build_nodes(dpPath=datapointsPath, attr_map=node_attr_map)
+    nodes = build_nodes(df_datapoints, datapointAttrs)
     _debug_print(f"\t- processed {len(nodes)} nodes with {nodes[0].keys()} where attr={list(nodes[0]['attr'].keys())}")
 
     # collect links
-    links = build_links(linksPath=linksPath, attr_map=link_attr_map)
+    links = build_links(df_links, linkAttrs)
     _debug_print(f"\t- processed {len(links)} links with {links[0].keys()} where attr={list(links[0]['attr'].keys())}")
 
     # collect node attributes
@@ -68,15 +68,12 @@ def __write_network_file(
     _debug_print(f"\t- processed {len(linkAttribs)} link attributes {[at['id'] for at in linkAttribs]}")
 
     # write network file
-    # networkTpl = load_templates("network")
-    # data = {
-    #     **networkTpl,
-    #     **{"nodes": nodes, "links": links, "nodeAttrDescriptors": nodeAttribs, "linkAttrDescriptors": linkAttribs},
-    # }
-    # pprint.pprint(data)
+    data = {
+        **{"nodes": nodes, "links": links, "nodeAttrDescriptors": nodeAttribs, "linkAttrDescriptors": linkAttribs},
+    }
 
-    # with open(out_data_dir / "links.json", mode="w") as f:
-    #     json.dump([data], f, indent=4)
+    with open(out_data_dir / "links.json", mode="w") as f:
+        json.dump([data], f, indent=4)
 
 
 def __write_settings_file(snapshots: List[Dict], playerSettings: Dict[str, Any], out_data_dir: Path):
@@ -160,13 +157,13 @@ def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out
     __write_dataset_file(project.dataFrame, project.attributes, out_data_dir)
     _debug_print(f"\t- new dataset file written to {out_data_dir / 'nodes.json'}.\n")
 
-    # _debug_print(f">> building network")
-    # __write_network_file(project.network, project)
-    # _debug_print(f"\t- new network file written to {out_data_path / 'links.json'}.\n")
+    _debug_print(f">> building network")
+    __write_network_file(project.dataFrame, project.attributes, project.network, project.net_attributes)
+    _debug_print(f"\t- new network file written to {out_data_dir / 'links.json'}.\n")
 
-    # _debug_print(f">> building settings")
-    # __write_settings_file(snapshots, playerSettings, out_data_path)
-    # _debug_print(f"\t- new settings file written to {out_data_path / 'settings.json'}.\n")
+    _debug_print(f">> building settings")
+    __write_settings_file(project.snapshots, project.configuration, out_data_dir)
+    _debug_print(f"\t- new settings file written to {out_data_dir / 'settings.json'}.\n")
 
 def build_map_old(
     project: OpenmapprProject,
