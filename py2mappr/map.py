@@ -1,4 +1,8 @@
 from typing import Union
+from py2mappr._layout.clustered import ClusteredScatterplotLayout
+from py2mappr._layout.geo import GeoLayout
+
+from py2mappr._layout.scatterplot import ScatterplotLayout
 from ._project_manager import get_project
 from ._layout import OriginalLayout, PLOT_TYPE
 from ._builder import build_map
@@ -7,18 +11,27 @@ from pathlib import Path
 
 def create_map(data_frame: DataFrame):
     project = get_project(data_frame)
-    project.snapshots.append(OriginalLayout(project))
-    return project
+    layout = OriginalLayout(project)
+    project.snapshots.append(layout)
+    return project, layout
 
 def create_layout(data_frame: DataFrame, layout_type: PLOT_TYPE = "original"):
     project = get_project(data_frame)
 
-    result_layout = OriginalLayout(project)
+    result_layout = None
     if layout_type == "original":
-        project.snapshots.append(result_layout)
+        result_layout = OriginalLayout(project)
+        pass
+    elif layout_type == "scatterplot":
+        result_layout = ScatterplotLayout(project)
+    elif layout_type == "clustered-scatterplot":
+        result_layout = ClusteredScatterplotLayout(project)
+    elif layout_type == "geo":
+        result_layout = GeoLayout(project)
     else:
         raise ValueError("Unknown layout type: " + layout_type)
 
+    project.snapshots.append(result_layout)
     return result_layout
 
 def set_network(network_df: DataFrame):
@@ -32,7 +45,3 @@ def show():
 def build():
     project = get_project()
     build_map(project, start=False)
-
-def export_attributes(data_frame: DataFrame, out_path: Union[Path, str]):
-    project = get_project(data_frame)
-    # project.export_attributes(out_path)

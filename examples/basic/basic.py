@@ -8,8 +8,21 @@ edges_path = os.path.join(os.path.dirname(__file__), '.', 'edges.csv')
 datapoints = pd.read_csv(datapoints_path)
 edges = pd.read_csv(edges_path)
 
-project = mappr.create_map(datapoints)
+project, original = mappr.create_map(datapoints)
 mappr.set_network(edges)
-project.set_debug(True)
+
+original.settings.update({
+    'nodeColorAttr': 'Journal'
+})
+
+scatterplot = mappr.create_layout(datapoints, layout_type="scatterplot")
+scatterplot.name = "Scatterplot"
+scatterplot.settings.update({
+    'nodeColorAttr': 'Journal',
+})
+for attr in project.attributes:
+    project.attributes[attr]['axis'] = 'all'
+
+project.set_debug(False)
 
 mappr.show()

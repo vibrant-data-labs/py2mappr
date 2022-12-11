@@ -1,7 +1,7 @@
 from ._layout import Layout, LayoutSettings
 from .._attributes import utils as attrutils
 
-original_base_settings: LayoutSettings = LayoutSettings(
+scatterplot_base_settings: LayoutSettings = LayoutSettings(
     drawNodes=True,
     borderRatio=0.15,
     bigOnTop=False,
@@ -59,10 +59,10 @@ original_base_settings: LayoutSettings = LayoutSettings(
     zoomingRatio=1.7,
     mouseZoomDuration=500,
     # valid for scatterplot only
-    xAxShow=False,
-    yAxShow=False,
-    xAxTickShow=False,
-    yAxTickShow=False,
+    xAxShow=True,
+    yAxShow=True,
+    xAxTickShow=True,
+    yAxTickShow=True,
     xAxLabel="",
     yAxLabel="",
     xAxTooltip="",
@@ -149,9 +149,9 @@ original_base_settings: LayoutSettings = LayoutSettings(
     isGeo=False
     )
 
-class OriginalLayout(Layout):
-    def __init__(self, project, settings = original_base_settings, x_axis = "X", y_axis = "Y", name=None, descr=None, subtitle=None, image=None):
-        super().__init__(settings, "original", x_axis, y_axis, name, descr, subtitle, image)
+class ScatterplotLayout(Layout):
+    def __init__(self, project, settings = scatterplot_base_settings, x_axis = "X", y_axis = "Y", name=None, descr=None, subtitle=None, image=None):
+        super().__init__(settings, "scatterplot", x_axis, y_axis, name, descr, subtitle, image)
         self.calculate_layout(project)
 
     def calculate_layout(self, project):
@@ -183,7 +183,7 @@ class OriginalLayout(Layout):
               "y": 0
           },
           "layout": {
-            "plotType": "original",
+            "plotType": "scatterplot",
             "xaxis": self.x_axis,
             "yaxis": self.y_axis,
             "settings": self.settings

@@ -1,7 +1,7 @@
 from ._layout import Layout, LayoutSettings
 from .._attributes import utils as attrutils
 
-original_base_settings: LayoutSettings = LayoutSettings(
+clustered_scatterplot_base_settings: LayoutSettings = LayoutSettings(
     drawNodes=True,
     borderRatio=0.15,
     bigOnTop=False,
@@ -59,10 +59,10 @@ original_base_settings: LayoutSettings = LayoutSettings(
     zoomingRatio=1.7,
     mouseZoomDuration=500,
     # valid for scatterplot only
-    xAxShow=False,
-    yAxShow=False,
-    xAxTickShow=False,
-    yAxTickShow=False,
+    xAxShow=True,
+    yAxShow=True,
+    xAxTickShow=True,
+    yAxTickShow=True,
     xAxLabel="",
     yAxLabel="",
     xAxTooltip="",
@@ -149,16 +149,22 @@ original_base_settings: LayoutSettings = LayoutSettings(
     isGeo=False
     )
 
-class OriginalLayout(Layout):
-    def __init__(self, project, settings = original_base_settings, x_axis = "X", y_axis = "Y", name=None, descr=None, subtitle=None, image=None):
-        super().__init__(settings, "original", x_axis, y_axis, name, descr, subtitle, image)
+class ClusteredScatterplotLayout(Layout):
+    clusterXAttr: str
+    clusterYAttr: str
+    def __init__(self, project, settings = clustered_scatterplot_base_settings, x_axis = "X", y_axis = "Y", cluster_x = "X", cluster_y = "y", name=None, descr=None, subtitle=None, image=None):
+        super().__init__(settings, "scatterplot", x_axis, y_axis, name, descr, subtitle, image)
+        self.clusterXAttr = cluster_x
+        self.clusterYAttr = cluster_y
         self.calculate_layout(project)
 
     def calculate_layout(self, project):
         self.x_axis, self.y_axis = attrutils.find_node_xy_attr(project.dataFrame)
+        self.clusterXAttr, self.clusterYAttr = attrutils.find_node_xy_attr(project.dataFrame)
         self.settings["nodeImageAttr"] = attrutils.find_node_image_attr(project.dataFrame)
         self.settings["nodePopImageAttr"] = attrutils.find_node_image_attr(project.dataFrame)
         self.settings["labelAttr"] = attrutils.find_node_label_attr(project.dataFrame)
+        self.settings["nodeClusterAttr"] = attrutils.find_node_label_attr(project.dataFrame)
         self.settings["labelHoverAttr"] = attrutils.find_node_label_attr(project.dataFrame)
         self.settings["nodeColorAttr"] = attrutils.find_node_color_attr(project.dataFrame)
         self.settings["nodeSizeAttr"] = attrutils.find_node_size_attr(project.dataFrame)
@@ -183,9 +189,11 @@ class OriginalLayout(Layout):
               "y": 0
           },
           "layout": {
-            "plotType": "original",
-            "xaxis": self.x_axis,
-            "yaxis": self.y_axis,
+            "plotType": "scatterplot",
+            "nodeXAttr": self.x_axis,
+            "nodeYAttr": self.y_axis,
+            "clusterXAttr": self.clusterXAttr,
+            "clusterYAttr": self.clusterYAttr,
             "settings": self.settings
           }
         }

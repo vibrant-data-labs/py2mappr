@@ -1,7 +1,7 @@
 from ._layout import Layout, LayoutSettings
 from .._attributes import utils as attrutils
 
-original_base_settings: LayoutSettings = LayoutSettings(
+geo_base_settings: LayoutSettings = LayoutSettings(
     drawNodes=True,
     borderRatio=0.15,
     bigOnTop=False,
@@ -72,7 +72,7 @@ original_base_settings: LayoutSettings = LayoutSettings(
     invertY=True,
     scatterAspect=0.5,
     # valid for geo only
-    mapboxMapID="",
+    mapboxMapID="mapbox/light-v10",
     nodeSizeStrat="attr",
     nodeSizeAttr="", # to calculate
     nodeSizeScaleStrategy="log",
@@ -146,16 +146,16 @@ original_base_settings: LayoutSettings = LayoutSettings(
         { "col": "#732673" }
     ],
     nodeClusterAttr="",
-    isGeo=False
+    isGeo=True
     )
 
-class OriginalLayout(Layout):
-    def __init__(self, project, settings = original_base_settings, x_axis = "X", y_axis = "Y", name=None, descr=None, subtitle=None, image=None):
+class GeoLayout(Layout):
+    def __init__(self, project, settings = geo_base_settings, x_axis = "Latitude", y_axis = "Longitude", name=None, descr=None, subtitle=None, image=None):
         super().__init__(settings, "original", x_axis, y_axis, name, descr, subtitle, image)
         self.calculate_layout(project)
 
     def calculate_layout(self, project):
-        self.x_axis, self.y_axis = attrutils.find_node_xy_attr(project.dataFrame)
+        self.x_axis, self.y_axis = attrutils.find_node_xy_attr(project.dataFrame, 'lat', 'long')
         self.settings["nodeImageAttr"] = attrutils.find_node_image_attr(project.dataFrame)
         self.settings["nodePopImageAttr"] = attrutils.find_node_image_attr(project.dataFrame)
         self.settings["labelAttr"] = attrutils.find_node_label_attr(project.dataFrame)

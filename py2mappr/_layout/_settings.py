@@ -110,4 +110,5 @@ class LayoutSettings(TypedDict):
     edgeColorCycleCategoryColors: bool
     edgeColorPaletteNumeric: List[PaletteColor]
     edgeColorPaletteOrdinal: List[PaletteColor]
+    nodeClusterAttr: str
     isGeo: bool
