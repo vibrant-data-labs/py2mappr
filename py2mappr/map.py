@@ -4,7 +4,6 @@ from ._layout import OriginalLayout, PLOT_TYPE
 from ._builder import build_map
 from pandas import DataFrame
 from pathlib import Path
-import os
 
 def create_map(data_frame: DataFrame):
     project = get_project(data_frame)
@@ -28,8 +27,11 @@ def set_network(network_df: DataFrame):
 
 def show():
     project = get_project()
-    build_map(project)
-    # project.show()
+    build_map(project, start=True)
+
+def build():
+    project = get_project()
+    build_map(project, start=False)
 
 def export_attributes(data_frame: DataFrame, out_path: Union[Path, str]):
     project = get_project(data_frame)

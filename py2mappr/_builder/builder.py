@@ -1,9 +1,12 @@
+import http.server
 import re
+import socketserver
 from typing import Any, Dict, List, Union
 from pathlib import Path
 import shutil
 import json
 import os
+import webbrowser
 import pandas as pd
 from py2mappr._core.config import AttributeConfig
 from py2mappr._core.project import OpenmapprProject
@@ -138,7 +141,17 @@ def __set_opengraph_tags(index_path: str, player_settings: Dict[str, Any]):
     
     _debug_print(f"\t- opengraph tags modified")
 
-def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out"):
+def run_local(web_dir: Path, PORT = 8080):
+    os.chdir(web_dir)  # change to project directory where index.html and data folder are
+
+    webbrowser.open_new_tab("http://localhost:" + str(PORT))  # open new tab in browswer
+
+    Handler = http.server.SimpleHTTPRequestHandler
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+        print("\nServing locally at port", PORT, "go to http://localhost:%s \nCTL_C to quit\n" % str(PORT))
+        httpd.serve_forever()
+
+def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out", start = False):
     global _debug_print
     if not _debug_print:
         _debug_print = _printer(project)
@@ -171,55 +184,11 @@ def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out
     __write_settings_file(project.snapshots, project.configuration, out_data_dir)
     _debug_print(f"\t- new settings file written to {out_data_dir / 'settings.json'}.\n")
 
-def build_map_old(
-    project: OpenmapprProject,
-    datapointsPath: Union[Path, str],
-    linksPath: Union[Path, str],
-    datapointAttrPath: Union[Path, str],
-    node_attr_map: Dict[str, str],
-    link_attr_map: Dict[str, str],
-    snapshots: List[Dict] = [],
-    playerSettings: Dict[str, Any] = {},
-    outFolder: Union[Path, str] = "data_out",
-    gtag_id: str = None
-):
-    global _debug_print
-    if not _debug_print:
-        _debug_print = _printer(project)
-    
-    # create folders and copy the index file
-    _debug_print(f">> creating folders")
-    out_dir = Path(outFolder)
-    out_data_path = out_dir / "data"
-    if not out_data_path.exists():
-        _debug_print(f"\t- new folder - {out_data_path}")
-        out_data_path.mkdir(parents=True, exist_ok=True)
-    else:
-        _debug_print(f"\t- found existing. overwriting - {out_data_path}")
+    if (project.publish_settings.get('gtag_id')):
+        gtag_id = project.publish_settings.get('gtag_id')
+        __add_analytics(out_dir / 'index.html', gtag_id)
 
-    # copy the index and run scripts to out directory
-    shutil.copy(template_path /"index.html", out_dir)
-    _debug_print(f"\t- copied {out_dir}/index.html")
+    __set_opengraph_tags(out_dir / 'index.html', project.configuration)
 
-    shutil.copy(template_path/"run_local.sh", out_dir)
-    _debug_print(f"\t- copied {out_dir}/run_local.sh\n")
-
-    # write the files
-    _debug_print(f">> building dataset")
-    __write_dataset_file(datapointsPath, datapointAttrPath, out_data_path)
-    _debug_print(f"\t- new dataset file written to {out_data_path / 'nodes.json'}.\n")
-
-    _debug_print(f">> building network")
-    __write_network_file(datapointsPath, linksPath, node_attr_map, link_attr_map, out_data_path)
-    _debug_print(f"\t- new network file written to {out_data_path / 'links.json'}.\n")
-
-    _debug_print(f">> building settings")
-    __write_settings_file(snapshots, playerSettings, out_data_path)
-    _debug_print(f"\t- new settings file written to {out_data_path / 'settings.json'}.\n")
-
-    __add_analytics(out_dir / 'index.html', gtag_id)
-
-    __set_opengraph_tags(out_dir / 'index.html', playerSettings)
-
-    _debug_print = None
-
+    if start:
+        run_local(out_dir)

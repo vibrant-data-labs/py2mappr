@@ -1,8 +1,11 @@
-from typing import Dict, List, Union
+from typing import Dict, List, TypedDict, Union
 from .config import AttributeConfig, ProjectConfig, base_config, default_attr_config, default_net_attr_config
 from py2mappr._attributes.calculate import calculate_attr_types, calculate_render_type
 from py2mappr._layout import Layout, LayoutSettings
 from pandas import DataFrame
+
+class PublishConfig(TypedDict):
+    gtag_id: str
 
 class OpenmapprProject:
     dataFrame: DataFrame
@@ -10,6 +13,7 @@ class OpenmapprProject:
     network_attributes: Dict[str, AttributeConfig]
     attributes: Dict[str, AttributeConfig]
     configuration: ProjectConfig
+    publish_settings: PublishConfig = {}
     snapshots: List[Layout] = []
 
     debug: bool = False
