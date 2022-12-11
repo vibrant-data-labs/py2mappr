@@ -20,6 +20,9 @@ import numpy as np
 from tag2network.Network import BuildNetwork as bn # tag2network: build network and layout functions
 from tag2network.Network import ClusterLayout as cl   #tag2network: new cluster layout function
 from tag2network.Network import DrawNetwork as dn  # tag2network: plot network function
+from tag2network.Network.ClusteringProperties import basicClusteringProperties
+from tag2network.Network.BuildNetwork import addLouvainClusters # tag2network: directed louvain
+
 import networkx as nx
 from collections import Counter
 from pathlib import Path
@@ -45,6 +48,17 @@ def add_random_layout(df):
     x = rho * np.cos(phi)
     y = rho * np.sin(phi)
     return x, y
+
+def add_cluster_metrics(nodesdf, nw, groupVars):
+   # add bridging, cluster centrality etc. for one or more grouping variables
+   for groupVar in groupVars:
+       if len(nx.get_node_attributes(nw, groupVar)) == 0:
+           vals = {k: v for k, v in dict(zip(nodesdf['id'], nodesdf[groupVar])).items() if k in nw}
+           nx.set_node_attributes(nw, vals, groupVar)
+       grpprop = basicClusteringProperties(nw, groupVar)
+       for prop, vals in grpprop.items():
+           nodesdf[prop] = nodesdf['id'].map(vals)
+
 
 def add_cluster_layout(ndf, ldf, dists=None, maxdist=5, 
                        cluster_attr='Cluster', # name of cluster attrubute
