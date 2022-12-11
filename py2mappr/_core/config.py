@@ -51,7 +51,7 @@ class ProjectConfig(TypedDict):
     modalIntroHtml: str
     allowJoin: bool
     displayTooltipCard: bool
-    startPage: Literal['legend']
+    startPage: Literal['filter', 'legend', 'list']
     showStartInfo: bool
     defaultPanel: str
     sponsors: List[SponsorInfo]
