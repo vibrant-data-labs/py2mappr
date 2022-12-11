@@ -7,15 +7,13 @@ from ._project_manager import get_project
 from ._layout import OriginalLayout, PLOT_TYPE
 from ._builder import build_map
 from pandas import DataFrame
-from pathlib import Path
 
-def create_map(data_frame: DataFrame):
-    project = get_project(data_frame)
-    layout = OriginalLayout(project)
-    project.snapshots.append(layout)
+def create_map(data_frame: DataFrame, network_df: DataFrame = None, layout_type: PLOT_TYPE = "original"):
+    project = get_project(data_frame, network_df)
+    layout = create_layout(data_frame, layout_type)
     return project, layout
 
-def create_layout(data_frame: DataFrame, layout_type: PLOT_TYPE = "original"):
+def create_layout(data_frame: DataFrame = None, layout_type: PLOT_TYPE = "original"):
     project = get_project(data_frame)
 
     result_layout = None
@@ -45,3 +43,6 @@ def show():
 def build():
     project = get_project()
     build_map(project, start=False)
+
+def publish(s3_bucket: str):
+    pass

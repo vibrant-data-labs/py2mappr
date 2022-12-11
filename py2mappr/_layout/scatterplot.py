@@ -169,19 +169,7 @@ class ScatterplotLayout(Layout):
 
     def toDict(self):
         return {
-          "id": self.id,
-          "descr": self.descr,
-          "snapName": self.name,
-          "subtitle": self.subtitle,
-          "summaryImg": self.image,
-          "isEnabled": True,
-          "isDeleted": False,
-          "camera": {
-              "normalizeCoords": True,
-              "r": 1.3347904373327948,
-              "x": 0,
-              "y": 0
-          },
+          **super().toDict(),
           "layout": {
             "plotType": "scatterplot",
             "xaxis": self.x_axis,

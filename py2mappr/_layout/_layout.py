@@ -1,5 +1,5 @@
 
-from typing import Any, Dict, Literal
+from typing import Any, Dict, Literal, Tuple
 from ._settings import LayoutSettings
 import uuid
 
@@ -15,6 +15,8 @@ class Layout:
     plot_type: PLOT_TYPE
     x_axis: str
     y_axis: str
+    drawClustersCircle: bool = False
+    nodeClusterAttr: str = ""
     settings: LayoutSettings
 
     def __init__(
@@ -37,8 +39,60 @@ class Layout:
         self.subtitle = subtitle or ""
         self.image = image
 
+    def set_display_data(self, title: str, subtitle: str, description: str):
+        self.name = title
+        self.subtitle = subtitle
+        self.descr = description
+
+    def set_clusters(self, cluster_attr: str):
+        self.drawClustersCircle = True
+        self.nodeClusterAttr = cluster_attr
+
+    def set_links(self, link_curve = 0, link_weight = 1, neighbors = 1, direction = "outgoing"):
+        self.settings.update({
+            "drawEdges": True,
+            "edgeCurvature": link_curve,
+            "edgeDirectionalRender": direction,
+            "edgeSizeDefaultValue": link_weight,
+            "nodeSelectionDegree": neighbors,
+        })
+
+    def set_nodes(self, node_color = '', node_size = '', node_size_scaling: Tuple[float, float, float] = None):
+        if node_color:
+            self.settings.update({
+                "nodeColorAttr": node_color,
+            })
+        
+        if node_size:
+            self.settings.update({
+                "nodeSizeAttr": node_size,
+            })
+
+        if node_size_scaling:
+            self.settings.update({
+                "nodeSizeMin": node_size_scaling[0],
+                "nodeSizeMax": node_size_scaling[1],
+                "nodeSizeMultiplier": node_size_scaling[2],
+            })
+
     def calculate_layout(self, project):
         pass
 
     def toDict(self) -> Dict[str, Any]:
-        pass
+        return {
+          "id": self.id,
+          "descr": self.descr,
+          "snapName": self.name,
+          "subtitle": self.subtitle,
+          "summaryImg": self.image,
+          "isEnabled": True,
+          "isDeleted": False,
+          "camera": {
+              "normalizeCoords": True,
+              "r": 1.3347904373327948,
+              "x": 0,
+              "y": 0
+          },
+          "drawClustersCircle": self.drawClustersCircle,
+          "nodeClusterAttr": self.nodeClusterAttr,
+        }

@@ -1,5 +1,5 @@
-from typing import Dict, List, TypedDict, Union
-from .config import AttributeConfig, ProjectConfig, base_config, default_attr_config, default_net_attr_config
+from typing import Dict, List, Literal, TypedDict, Union
+from .config import AttributeConfig, FeedbackInfo, ProjectConfig, base_config, default_attr_config, default_net_attr_config
 from py2mappr._attributes.calculate import calculate_attr_types, calculate_render_type
 from py2mappr._layout import Layout, LayoutSettings
 from pandas import DataFrame
@@ -18,10 +18,13 @@ class OpenmapprProject:
 
     debug: bool = False
 
-    def __init__(self, dataFrame: DataFrame, config: ProjectConfig = base_config):
+    def __init__(self, dataFrame: DataFrame, networkDataFrame: DataFrame = None, config: ProjectConfig = base_config):
         self.dataFrame = dataFrame
+        self.network = networkDataFrame
         self.configuration = config
         self.attributes = self._set_attributes()
+        if (networkDataFrame is not None):
+            self.network_attributes = self._set_network_attributes()
 
     def set_debug(self, debug: bool):
         self.debug = debug
@@ -37,6 +40,31 @@ class OpenmapprProject:
         self.network_attributes = self._set_network_attributes()
         for layout in self.snapshots:
             layout.calculate_layout(self)
+
+    def set_display_data(self, title: str, description: str, logo_image_url: str = None, logo_url = None):
+        self.configuration.update({
+            "headerTitle": title,
+            "modalTitle": title,
+            "projectLogoTitle": title,
+            "modalSubtitle": description,
+            "projectLogoImageUrl": logo_image_url,
+            "projectLogoUrl": logo_url,
+        })
+
+    def set_feedback(self, feedback: FeedbackInfo):
+        self.configuration.update({
+            "feedback": feedback,
+        })
+
+    def set_export_button(self, display: bool):
+        self.configuration.update({
+            "displayExportButton": display,
+        })
+
+    def set_socials(self, socials: List[Literal["twitter", "facebook", "linkedin"]]):
+        self.configuration.update({
+            "socials": socials,
+        })
 
     def _set_attributes(self) -> Dict[str, AttributeConfig]:
         attributes = dict()
