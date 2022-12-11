@@ -6,6 +6,9 @@ from py2mappr._core.config import AttributeConfig
 # from .utils import load_templates, merge
 #from src.utils import load_templates, merge
 
+_from_keys = ["source", "Source", "from", "From"]
+_to_keys = ["target", "Target", "to", "To"]
+
 def __build_node(node: pd.Series, attr_map: Dict[str, AttributeConfig]) -> Dict[str, Any]:
     # form the final datapoint with template
     nd = {
@@ -29,10 +32,17 @@ def __build_link(idx, link: pd.Series, attr_map: Dict[str, str]):
     otherAttrs = {
         at: val for at, val in edgeAttrs.items() if at.lower() not in ["id", "source", "target", "isdirectional"]
     }
+
+    source_key = next((k for k in _from_keys if k in edgeAttrs), None)
+    target_key = next((k for k in _to_keys if k in edgeAttrs), None)    
+
+    if source_key is None or target_key is None:
+        raise ValueError(f"Source or Target key not found in edge attributes. Keys found: {edgeAttrs.keys()}")
+
     result_link = {
                 "id": f"{idx}",
-                "source": f"{int(edgeAttrs[attr_map['source']])}",
-                "target": f"{int(edgeAttrs[attr_map['target']])}",
+                "source": f"{int(edgeAttrs[source_key])}",
+                "target": f"{int(edgeAttrs[target_key])}",
                 "isDirectional": edgeAttrs.get(attr_map.get("isDirectional", ""), False),
                 "attr": {
                     "OriginalLabel": f"{idx}",

@@ -1,5 +1,5 @@
 from typing import Dict, List, Union
-from .config import AttributeConfig, ProjectConfig, base_config, default_attr_config
+from .config import AttributeConfig, ProjectConfig, base_config, default_attr_config, default_net_attr_config
 from py2mappr._attributes.calculate import calculate_attr_types, calculate_render_type
 from py2mappr._layout import Layout, LayoutSettings
 from pandas import DataFrame
@@ -7,6 +7,7 @@ from pandas import DataFrame
 class OpenmapprProject:
     dataFrame: DataFrame
     network: Union[DataFrame, None] = None
+    network_attributes: Dict[str, AttributeConfig]
     attributes: Dict[str, AttributeConfig]
     configuration: ProjectConfig
     snapshots: List[Layout] = []
@@ -17,6 +18,21 @@ class OpenmapprProject:
         self.dataFrame = dataFrame
         self.configuration = config
         self.attributes = self._set_attributes()
+
+    def set_debug(self, debug: bool):
+        self.debug = debug
+
+    def set_data(self, dataFrame: DataFrame):
+        self.dataFrame = dataFrame
+        self.attributes = self._set_attributes()
+        for layout in self.snapshots:
+            layout.calculate_layout(self)
+
+    def set_network(self, network: DataFrame):
+        self.network = network
+        self.network_attributes = self._set_network_attributes()
+        for layout in self.snapshots:
+            layout.calculate_layout(self)
 
     def _set_attributes(self) -> Dict[str, AttributeConfig]:
         attributes = dict()
@@ -34,12 +50,18 @@ class OpenmapprProject:
 
         return attributes
 
-    def set_debug(self, debug: bool):
-        self.debug = debug
+    def _set_network_attributes(self) -> Dict[str, AttributeConfig]:
+        attributes = dict()
+        attr_types = calculate_attr_types(self.network)
+        render_types = calculate_render_type(self.network, attr_types)
 
-    def set_data(self, dataFrame: DataFrame):
-        self.dataFrame = dataFrame
+        for column in self.network.columns:
+            attributes[column] = {
+                **default_net_attr_config,
+                'id': column,
+                'title': column,
+                'attrType': attr_types[column],
+                'renderType': render_types[column],
+            }
 
-    def set_network(self, network: DataFrame):
-        self.network = network
-
+        return attributes    

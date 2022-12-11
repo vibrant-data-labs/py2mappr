@@ -69,8 +69,14 @@ def __write_network_file(
 
     # write network file
     data = {
-        **{"nodes": nodes, "links": links, "nodeAttrDescriptors": nodeAttribs, "linkAttrDescriptors": linkAttribs},
-    }
+            "id": "",
+            "networkInfo": {},
+            "clusterInfo": {},
+            "nodes": nodes,
+            "links": links,
+            "nodeAttrDescriptors": nodeAttribs,
+            "linkAttrDescriptors": linkAttribs,
+        }
 
     with open(out_data_dir / "links.json", mode="w") as f:
         json.dump([data], f, indent=4)
@@ -158,7 +164,7 @@ def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out
     _debug_print(f"\t- new dataset file written to {out_data_dir / 'nodes.json'}.\n")
 
     _debug_print(f">> building network")
-    __write_network_file(project.dataFrame, project.attributes, project.network, project.net_attributes)
+    __write_network_file(project.dataFrame, project.attributes, project.network, project.network_attributes, out_data_dir)
     _debug_print(f"\t- new network file written to {out_data_dir / 'links.json'}.\n")
 
     _debug_print(f">> building settings")

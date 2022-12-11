@@ -28,7 +28,7 @@ def build_settings(snapshots: List[Layout] = [], playerSettings: ProjectConfig =
         'player': {
             'settings': playerSettings,
         },
-        'snapshots': [snapshot.settings for snapshot in snapshots],
+        'snapshots': [snapshot.toDict() for snapshot in snapshots],
     }
 
     return settings

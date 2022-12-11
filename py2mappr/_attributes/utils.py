@@ -1,6 +1,7 @@
 from typing import List
 import pandas as pd
 import numpy as np
+import warnings
 
 images=['image', 'picture', 'photo', 'img', 'img_url', 'imgurl']
 labels = ['name', 'title', 'label']
@@ -45,3 +46,19 @@ def find_node_color_attr(df: pd.DataFrame) -> str:
     lowest_distinct_columns = unique_counts[unique_counts == lowest_distinct].index.tolist()
 
     return _find_most_filled_column(df, lowest_distinct_columns)
+
+def find_node_xy_attr(df: pd.DataFrame) -> str:
+    columns = df.select_dtypes(include=np.number).columns.tolist()
+    xcolumns = [col for col in columns if 'x' in col.lower()]
+    
+    if len(xcolumns) == 0:
+        warnings.warn("No columns found with 'x' in the name. X,Y coordinates must be specified explicitly")
+        return None
+    
+    ycolumns = []
+    for col in xcolumns:
+        ycol = col.replace('x', 'y')
+        if ycol in columns:
+            ycolumns.append(ycol)
+
+    return _find_most_filled_column(df, xcolumns), _find_most_filled_column(df, ycolumns)

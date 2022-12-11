@@ -137,6 +137,16 @@ class AttributeConfig(TypedDict):
     colorSelectable: bool
     sizeSelectable: bool
 
+class NetworkAttributeConfig(TypedDict):
+    id: str
+    title: str
+    visible: bool
+    searchable: bool
+    attrType: ATTR_TYPE
+    renderType: RENDER_TYPE
+    visibleInProfile: bool
+    metadata: Dict[str, str]
+
 default_attr_config: AttributeConfig = {
     'id': '',
     'title': '',
@@ -155,4 +165,15 @@ default_attr_config: AttributeConfig = {
     'axis': 'none',
     'colorSelectable': True,
     'sizeSelectable': True,
+}
+
+default_net_attr_config: NetworkAttributeConfig = {
+    "id": "OriginalLabel",
+    "title": "OriginalLabel",
+    "visible": True,
+    "searchable": True,
+    "attrType": "liststring",
+    "renderType": "tag-cloud",
+    "visibleInProfile": False,
+    "metadata": {}
 }
