@@ -66,6 +66,8 @@ def build_clustered_snapshot(node_color = 'Cluster',
                              links_show = True, # display links
                              link_curve = 0.6, # link curvature 0-1
                              link_weight = 1, # link thickness 
+                             link_size_by_attr = 'OriginalSize', # attribute to size by 
+                             link_size_multiplier = 0.2, # multiplier if sized by attribute
                              link_direction = 'outgoing', # "outgoing", "incoming", "all"
                              link_color_strategy = "gradient", # source / target / gradient / attr / select
                              link_color_attr = "OriginalColor", # or other categorical link attribute
@@ -83,7 +85,11 @@ def build_clustered_snapshot(node_color = 'Cluster',
     if cluster == None:
         nodeClusterAttr = node_color
     else:
-        nodeClusterAttr = cluster            
+        nodeClusterAttr = cluster  
+    if link_size_by_attr == 'OriginalSize':
+        edgeSizeStrat = "fixed"  
+    else:
+        edgeSizeStrat = "attr"        
     snap = create_snapshot(
         name=title,
         subtitle=subtitle,
@@ -112,10 +118,10 @@ def build_clustered_snapshot(node_color = 'Cluster',
                 "drawEdges": links_show,
                 "edgeCurvature": link_curve,
                 "edgeDirectionalRender": link_direction,  # "outgoing", "incoming", "all"
-                "edgeSizeStrat": "fixed",  #  "attr" // "fixed"
-                "edgeSizeAttr": "OriginalSize", #"weight",  # size by
+                "edgeSizeStrat": edgeSizeStrat, #  "attr" // "fixed"
+                "edgeSizeAttr": "OriginalSize", #"weight",  # size by attribute - 
                 "edgeSizeDefaultValue": link_weight, #0.2
-                "edgeSizeMultiplier": 1, 
+                "edgeSizeMultiplier": link_size_multiplier, 
                 "edgeColorStrat": link_color_strategy,  # gradient / source / target / gradient / attr / select
                 "edgeColorAttr": link_color_attr, #"OriginalColor",
                 "edgeColorPaletteNumeric":num_palette,
