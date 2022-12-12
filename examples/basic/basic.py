@@ -11,18 +11,15 @@ edges = pd.read_csv(edges_path)
 project, original = mappr.create_map(datapoints)
 mappr.set_network(edges)
 
-original.settings.update({
-    'nodeColorAttr': 'Journal'
-})
+original.set_nodes(node_color="Journal")
+original.set_links()
 
 scatterplot = mappr.create_layout(datapoints, layout_type="scatterplot")
-scatterplot.name = "Scatterplot"
-scatterplot.settings.update({
-    'nodeColorAttr': 'Journal',
-})
+scatterplot.name = "My Custom Scatterplot"
+scatterplot.set_nodes(node_color="Journal")
 for attr in project.attributes:
     project.attributes[attr]['axis'] = 'all'
 
-project.set_debug(False)
+mappr.set_debug(False)
 
-mappr.build()
+mappr.show()
