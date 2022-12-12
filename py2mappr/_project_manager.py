@@ -3,6 +3,10 @@ from pandas import DataFrame
 
 _current_project: core.OpenmapprProject = None
 
+def has_project():
+    global _current_project
+    return _current_project is not None
+
 def get_project(data_frame: DataFrame = None, network_data_frame: DataFrame = None):
     global _current_project
     if _current_project is not None:

@@ -38,7 +38,7 @@ def __write_dataset_file(df_datapoints: pd.DataFrame, datapointAttrs: Dict[str, 
     datapoints = build_datapoints(df_datapoints, datapointAttrTypes)
     
     _debug_print(
-        f"\t- processed {len(datapoints)} datapoints with {datapoints[0].keys()} where attr={list(datapoints[0]['attr'].keys())}"
+        f"\t- processed {len(datapoints)} datapoints with {datapoints[0].keys()} where attr={list(datapointAttrs.keys())}"
     )
 
     # merge into dataset
