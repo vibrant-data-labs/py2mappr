@@ -19,7 +19,7 @@ def create_map(data_frame: DataFrame, network_df: DataFrame = None, layout_type:
 def create_layout(data_frame: DataFrame = None, layout_type: PLOT_TYPE = "original"):
     project = get_project(data_frame)
     project.set_debug(_debug)
-    
+
     result_layout = None
     if layout_type == "original":
         result_layout = OriginalLayout(project)
@@ -41,6 +41,7 @@ def set_network(network_df: DataFrame):
     project.set_network(network_df)
 
 def show():
+    #todo: specify port
     project = get_project()
     build_map(project, start=True)
 

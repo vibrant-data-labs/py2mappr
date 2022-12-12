@@ -9,6 +9,7 @@ original_base_settings: LayoutSettings = {
     )
 }
 
+#todo: rename to clustered
 class OriginalLayout(Layout):
     def __init__(self, project, settings = original_base_settings, x_axis = "X", y_axis = "Y", name=None, descr=None, subtitle=None, image=None):
         super().__init__(settings, "original", x_axis, y_axis, name, descr, subtitle, image)

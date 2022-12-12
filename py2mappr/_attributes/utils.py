@@ -48,6 +48,7 @@ def find_node_color_attr(df: pd.DataFrame) -> str:
     return _find_most_filled_column(df, lowest_distinct_columns)
 
 def find_node_xy_attr(df: pd.DataFrame, pattern_x = "x", pattern_y = "y") -> str:
+    #todo: look for x,y first
     columns = df.columns.tolist()
     xcolumns = [col for col in columns if pattern_x in col.lower()]
     
