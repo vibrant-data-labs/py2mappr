@@ -9,7 +9,7 @@ def calculate_attr_types(df: pd.DataFrame) -> Dict[str, ATTR_TYPE]:
     for column in df.columns.values:
         if df[column].dtype == np.number or df[column].dtype == np.int64:
             attr_types[column] = _detect_number_column(df, column)
-        elif df[column].apply(lambda x: '|' in x).any():
+        elif df[column].apply(lambda x: '|' in str(x)).any():
             attr_types[column] = "liststring"
         else:
             attr_types[column] = "string"
@@ -42,7 +42,7 @@ def calculate_render_type(df: pd.DataFrame, attr_types: Dict[str, ATTR_TYPE]) ->
 
 def _detect_string_render_type(df: pd.DataFrame, column: str) -> RENDER_TYPE:
     str_set = set()
-    df[column].apply(lambda x: str_set.update(x.split("|")))
+    df[column].apply(lambda x: str_set.update(str(x).split("|")))
 
     if len(str_set) > 100:
         return "tag-cloud"

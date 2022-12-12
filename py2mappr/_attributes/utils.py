@@ -32,8 +32,8 @@ def find_node_label_attr(df: pd.DataFrame) -> str:
 
     return _find_most_filled_column(df, match_columns)
 
-def find_node_size_attr(df: pd.DataFrame) -> str:
-    columns = df.select_dtypes(include=np.number).columns.tolist()
+def find_node_size_attr(df: pd.DataFrame, exclude: List[str] = []) -> str:
+    columns = [col for col in df.select_dtypes(include=np.number).columns.tolist() if col.lower() not in exclude]
 
     if len(columns) == 0:
         return None
@@ -56,8 +56,9 @@ def find_node_xy_attr(df: pd.DataFrame, pattern_x = "x", pattern_y = "y") -> str
         return None
     
     for col in xcolumns:
-        ycol = col.replace(pattern_x, pattern_y)
-        if ycol in columns:
-            return col, ycol
+        ycol_name = col.lower().replace(pattern_x, pattern_y)
+        for ycol in columns:
+            if ycol.lower() == ycol_name:
+                return col, ycol
 
     return None

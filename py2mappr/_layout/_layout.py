@@ -15,8 +15,6 @@ class Layout:
     plot_type: PLOT_TYPE
     x_axis: str
     y_axis: str
-    drawClustersCircle: bool = False
-    nodeClusterAttr: str = ""
     settings: LayoutSettings
 
     def __init__(
@@ -45,8 +43,10 @@ class Layout:
         self.descr = description
 
     def set_clusters(self, cluster_attr: str):
-        self.drawClustersCircle = True
-        self.nodeClusterAttr = cluster_attr
+        self.settings.update({
+            "drawClustersCircle": True,
+            "nodeClusterAttr": cluster_attr,
+        })
 
     def set_links(self, link_curve = 0, link_weight = 1, neighbors = 1, direction = "outgoing"):
         self.settings.update({
@@ -93,6 +93,4 @@ class Layout:
               "x": 0,
               "y": 0
           },
-          "drawClustersCircle": self.drawClustersCircle,
-          "nodeClusterAttr": self.nodeClusterAttr,
         }

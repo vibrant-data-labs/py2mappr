@@ -65,7 +65,6 @@ class ProjectConfig(TypedDict):
     footer: Any
 
 base_config: ProjectConfig = {
-    'name': 'openmappr | network exploration tool',
     'fontClass': 'Roboto',
     'showModal': True,
     'simpleSplash': True,
@@ -159,12 +158,12 @@ default_attr_config: AttributeConfig = {
                 "descr": "",
                 "maxLabel": "",
                 "minLabel": ""
-            },
+    },
     'overlayAnchor': '',
     'priority': 'medium',
     'axis': 'none',
-    'colorSelectable': True,
-    'sizeSelectable': True,
+    'colorSelectable': False,
+    'sizeSelectable': False,
 }
 
 default_net_attr_config: NetworkAttributeConfig = {
