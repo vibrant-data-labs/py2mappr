@@ -1,9 +1,9 @@
 from pathlib import Path
 import pandas as pd
-from typing import Any, List, Dict, TypedDict, Union
+from typing import Any, List, Dict, TypedDict
 
-from py2mappr._attributes.attr_types import ATTR_TYPE, RENDER_TYPE
 from py2mappr._core.config import AttributeConfig, default_attr_config
+import copy
 
 class Datapoint(TypedDict):
     id: str
@@ -14,7 +14,7 @@ class Dataset(TypedDict):
     datapoints: List[Datapoint]
 
 def build_attr_descriptor(column: str, override: pd.Series) -> AttributeConfig:
-    attrs: AttributeConfig = dict(default_attr_config)
+    attrs: AttributeConfig = dict(copy.deepcopy(default_attr_config))
 
     # if title doesnt exist. copy from id.
     attrs["id"] = column

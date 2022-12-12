@@ -13,7 +13,8 @@ scatterplot_base_settings: LayoutSettings = {
         # valid for scatterplot only
         invertX=False,
         invertY=True,
-        scatterAspect=0.5
+        scatterAspect=0.5,
+        drawGroupLabels=False
     )
 }
 

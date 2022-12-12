@@ -11,11 +11,17 @@ _to_keys = ["target", "Target", "to", "To"]
 
 def __build_node(node: pd.Series, attr_map: Dict[str, AttributeConfig]) -> Dict[str, Any]:
     # form the final datapoint with template
+
+    title = node.get('label') or \
+                node.get('id')  or \
+                node.get('OriginalLabel') or \
+                'Node'
+
     nd = {
             "dataPointId": f'{node["id"]}',
             "id": f'{node["id"]}',
             "attr": {
-                "OriginalLabel": node.get(attr_map.get("OriginalLabel", ""), "Node"),
+                "OriginalLabel": title,
                 "OriginalX": node.get(attr_map.get("OriginalX", ""), 0),
                 "OriginalY": node.get(attr_map.get("OriginalY", ""), 0),
             },
@@ -73,9 +79,9 @@ def build_nodeAttrDescriptors() -> List[Dict[str, Any]]:
         {
             "id": "OriginalLabel",
             "title": "OriginalLabel",
-            "visible": True,
+            "visible": False,
             "visibleInProfile": False,
-            "searchable": True,
+            "searchable": False,
             "attrType": "liststring",
             "renderType": "tag-cloud",
             "metadata": {},
@@ -83,7 +89,7 @@ def build_nodeAttrDescriptors() -> List[Dict[str, Any]]:
         {
             "id": "OriginalSize",
             "title": "OriginalSize",
-            "visible": True,
+            "visible": False,
             "visibleInProfile": False,
             "searchable": False,
             "attrType": "integer",
@@ -93,7 +99,7 @@ def build_nodeAttrDescriptors() -> List[Dict[str, Any]]:
         {
             "id": "OriginalX",
             "title": "OriginalX",
-            "visible": True,
+            "visible": False,
             "visibleInProfile": False,
             "searchable": False,
             "attrType": "float",
@@ -103,7 +109,7 @@ def build_nodeAttrDescriptors() -> List[Dict[str, Any]]:
         {
             "id": "OriginalY",
             "title": "OriginalY",
-            "visible": True,
+            "visible": False,
             "visibleInProfile": False,
             "searchable": False,
             "attrType": "float",
@@ -113,7 +119,7 @@ def build_nodeAttrDescriptors() -> List[Dict[str, Any]]:
         {
             "id": "OriginalColor",
             "title": "OriginalColor",
-            "visible": True,
+            "visible": False,
             "visibleInProfile": False,
             "searchable": False,
             "attrType": "color",

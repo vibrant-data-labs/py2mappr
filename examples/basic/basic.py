@@ -25,4 +25,4 @@ for attr in project.attributes:
 
 project.set_debug(False)
 
-mappr.show()
+mappr.build()

@@ -19,6 +19,7 @@ clustered_scatterplot_base_settings: LayoutSettings = {
         invertX=False,
         invertY=True,
         scatterAspect=0.5,
+        drawGroupLabels=False
     )
 }
 

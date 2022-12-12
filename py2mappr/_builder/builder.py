@@ -124,7 +124,7 @@ def __set_opengraph_tags(index_path: str, player_settings: Dict[str, Any]):
                 player_settings.get('headerTitle')  or \
                 'openmappr | network exploration tool'
     description = __extract_sentence(player_settings.get('headerSubtitle'))
-    image_url = player_settings.get('projectLogoImageUrl') or 'https://mappr-player.openmappr.org/img/openmappr_socialmedia.png'
+    image_url = player_settings.get('projectLogoImageUrl') or 'https://mappr-player.openmappr.org/img/logos/vdl-logo.svg'
     og_template = ''
     with open(template_path/'og_template.html', 'r') as f:
         og_template = f.read()

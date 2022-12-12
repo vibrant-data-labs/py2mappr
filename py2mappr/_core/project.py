@@ -3,6 +3,7 @@ from .config import AttributeConfig, FeedbackInfo, ProjectConfig, base_config, d
 from py2mappr._attributes.calculate import calculate_attr_types, calculate_render_type
 from py2mappr._layout import Layout, LayoutSettings
 from pandas import DataFrame
+import copy
 
 class PublishConfig(TypedDict):
     gtag_id: str
@@ -73,7 +74,7 @@ class OpenmapprProject:
 
         for column in self.dataFrame.columns:
             attributes[column] = {
-                **default_attr_config,
+                **copy.deepcopy(default_attr_config),
                 'id': column,
                 'title': column,
                 'attrType': attr_types[column],

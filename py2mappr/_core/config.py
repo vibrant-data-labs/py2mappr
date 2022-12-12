@@ -169,8 +169,8 @@ default_attr_config: AttributeConfig = {
 default_net_attr_config: NetworkAttributeConfig = {
     "id": "OriginalLabel",
     "title": "OriginalLabel",
-    "visible": True,
-    "searchable": True,
+    "visible": False,
+    "searchable": False,
     "attrType": "liststring",
     "renderType": "tag-cloud",
     "visibleInProfile": False,
