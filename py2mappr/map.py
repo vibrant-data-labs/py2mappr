@@ -5,6 +5,7 @@ from py2mappr._layout.scatterplot import ScatterplotLayout
 from ._project_manager import get_project, has_project
 from ._layout import ClusteredLayout, PLOT_TYPE
 from ._builder import build_map
+from .publish import upload_to_s3
 from pandas import DataFrame
 
 _debug = False
@@ -53,5 +54,7 @@ def set_debug(debug: bool = True):
         project = get_project()
         project.set_debug(debug)
 
-def publish(s3_bucket: str):
-    pass
+def publish(s3_bucket: str, show=False):
+    project = get_project()
+    path = build_map(project, start=False)
+    upload_to_s3(path, s3_bucket, show)

@@ -192,3 +192,5 @@ def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out
 
     if start:
         run_local(out_dir, PORT)
+
+    return out_dir
