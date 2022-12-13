@@ -24,7 +24,9 @@ setup(name='py2mappr',
       license='MIT',
       packages=find_packages(),
       install_requires=[
-          'numpy', 'pandas', 'pyyaml'
+          'numpy',
+          'pandas',
+          'tag2network @ git+https://github.com/vibrant-data-labs/Tag2Network'
       ],
       include_package_data=True,
       zip_safe=False)

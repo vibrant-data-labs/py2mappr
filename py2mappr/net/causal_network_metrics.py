@@ -3,7 +3,7 @@
 
 import pandas as pd
 import networkx as nx
-from py2mappr.src.trophiclevel import rootedTL
+from .trophiclevel import rootedTL
 import random
 from collections import defaultdict
 
@@ -120,15 +120,17 @@ def add_cluster_metrics(nodesdf, nw, groupVars):
     
 
 def compute_node_pair_similarities(nw, id2labelDict, deleteIdentical=False):
+    # todo: implement/delete this function
+    pass
     # calcualte similarity between all pairs of nodes in their incomign and outgoing links
     # returns dataframe sorty by most similar node pairs
-    sims = jaccardianSim(nw, deleteIdentical = False)
-    simdf = pd.DataFrame(sims, columns=['id_1', 'id_2', 'jaccard_similarity'])
-    simdf['label_1'] = simdf['id_1'].map(id2labelDict)
-    simdf['label_2'] = simdf['id_2'].map(id2labelDict)
-    simdf['avg_frac_overlap'] = simdf['jaccard_similarity'].apply(lambda x: (2*x)/(1+x))
-    simdf.sort_values('jaccard_similarity', ascending=False, inplace=True)
-    return simdf
+    # sims = jaccardianSim(nw, deleteIdentical = False)
+    # simdf = pd.DataFrame(sims, columns=['id_1', 'id_2', 'jaccard_similarity'])
+    # simdf['label_1'] = simdf['id_1'].map(id2labelDict)
+    # simdf['label_2'] = simdf['id_2'].map(id2labelDict)
+    # simdf['avg_frac_overlap'] = simdf['jaccard_similarity'].apply(lambda x: (2*x)/(1+x))
+    # simdf.sort_values('jaccard_similarity', ascending=False, inplace=True)
+    # return simdf
 
 def add_percentile(df, col):
     #returns a series
