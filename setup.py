@@ -15,15 +15,18 @@ from setuptools import setup
 from setuptools import find_packages
 
 setup(name='py2mappr',
-      version='0.0.1',
+      version='0.1.0',
       description='py2mappr',
       long_description="py2mappr",
-      url='https://github.com/ericberlow/py2mappr',
+      url='https://github.com/vibrant-data-labs/py2mappr',
       author='ericberlow',
       author_email='ericberlow@gmail.com',
       license='MIT',
       packages=find_packages(),
       install_requires=[
-          'numpy', 'pandas', 'pyyaml'
+          'numpy',
+          'pandas',
+          'tag2network @ git+https://github.com/vibrant-data-labs/Tag2Network'
       ],
+      include_package_data=True,
       zip_safe=False)

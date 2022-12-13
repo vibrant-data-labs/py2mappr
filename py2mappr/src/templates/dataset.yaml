@@ -1,8 +1,0 @@
-# dataset template:
----
-_id: "id=woot_reqd_for_search"
-
-attrDescriptors:
-  -
-datapoints:
-  -
