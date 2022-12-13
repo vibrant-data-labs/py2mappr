@@ -151,7 +151,7 @@ def run_local(web_dir: Path, PORT = 8080):
         print("\nServing locally at port", PORT, "go to http://localhost:%s \nCTL_C to quit\n" % str(PORT))
         httpd.serve_forever()
 
-def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out", start = False):
+def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out", start = False, PORT=8080):
     global _debug_print
     if not _debug_print:
         _debug_print = _printer(project)
@@ -191,4 +191,4 @@ def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out
     __set_opengraph_tags(out_dir / 'index.html', project.configuration)
 
     if start:
-        run_local(out_dir)
+        run_local(out_dir, PORT)

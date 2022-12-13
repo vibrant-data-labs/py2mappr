@@ -15,7 +15,7 @@ geo_base_settings: LayoutSettings = {
 
 class GeoLayout(Layout):
     def __init__(self, project, settings = geo_base_settings, x_axis = "Latitude", y_axis = "Longitude", name=None, descr=None, subtitle=None, image=None):
-        super().__init__(settings, "original", x_axis, y_axis, name, descr, subtitle, image)
+        super().__init__(settings, "geo", x_axis, y_axis, name, descr, subtitle, image)
         self.calculate_layout(project)
 
     def calculate_layout(self, project):

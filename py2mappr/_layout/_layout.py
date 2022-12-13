@@ -3,7 +3,7 @@ from typing import Any, Dict, Literal, Tuple
 from ._settings import LayoutSettings
 import uuid
 
-PLOT_TYPE = Literal["original", "scatterplot", "clustered-scatterplot", "geo"]
+PLOT_TYPE = Literal["clustered", "scatterplot", "clustered-scatterplot", "geo"]
 
 class Layout:
     id: str
