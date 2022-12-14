@@ -4,7 +4,7 @@ import shutil
 import json
 import uuid
 import re
-
+import os
 
 from .build_dataset import build_attrDescriptors, build_datapoints
 from .build_network import build_nodes, build_links, build_nodeAttrDescriptors, build_linkAttrDescriptors
@@ -81,7 +81,8 @@ def __add_analytics(index_path: str, gtag_id: str = ''):
     if not gtag_id:
         return
     ga_template = ''
-    with open('src/ga_template.html', 'r') as f:
+    src_folder = os.path.dirname(__file__)
+    with open(os.path.join(src_folder, 'ga_template.html'), 'r') as f:
         ga_template = f.read()
         ga_template = ga_template.replace('#{gtag_id}', gtag_id)
 
@@ -112,7 +113,8 @@ def __set_opengraph_tags(index_path: str, player_settings: Dict[str, Any]):
     description = __extract_sentence(player_settings.get('headerSubtitle'))
     image_url = player_settings.get('projectLogoImageUrl') or 'https://mappr-player.openmappr.org/img/openmappr_socialmedia.png'
     og_template = ''
-    with open('src/og_template.html', 'r') as f:
+    src_folder = os.path.dirname(__file__)
+    with open(os.path.join(src_folder, 'og_template.html'), 'r') as f:
         og_template = f.read()
         og_template = og_template.replace('#{title}', title)
         og_template = og_template.replace('#{description}', description)
@@ -162,11 +164,12 @@ def create_map(
     else:
         print(f"\t- found existing. overwriting - {out_data_path}")
 
+    src_folder = os.path.dirname(__file__)
     # copy the index and run scripts to out directory
-    shutil.copy("src/index.html", out_dir)
+    shutil.copy(os.path.join(src_folder, "index.html"), out_dir)
     print(f"\t- copied {out_dir}/index.html")
 
-    shutil.copy("src/run_local.sh", out_dir)
+    shutil.copy(os.path.join(src_folder, "run_local.sh"), out_dir)
     print(f"\t- copied {out_dir}/run_local.sh\n")
 
     # write the files
