@@ -43,7 +43,7 @@ def set_network(network_df: DataFrame):
 
 def show(PORT=8080, out_folder: Path = "data_out", detach: List[Layout] = []):
     project = get_project()
-    build_map(project, outFolder=out_folder, start=True, PORT=PORT, detach=detach)
+    build_map(project, out_folder=out_folder, start=True, PORT=PORT, detach=detach)
 
 def build(out_folder: Path = "data_out", detach: List[Layout] = []):
     project = get_project()
