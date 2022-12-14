@@ -106,8 +106,13 @@ class OpenmapprProject:
 
         return attributes
 
-    def create_sponsors_list(self, sponsor_tuples: Tuple[str, str, str]) -> List[SponsorInfo]:
+    def create_sponsor_list(self, sponsor_tuples: Tuple[str, str, str]) -> List[SponsorInfo]:
         sponsors = [create_sponsor(st[1], st[2], st[0]) for st in sponsor_tuples]
         self.configuration.update({
             "sponsors": sponsors
+        })
+
+    def set_beta(self):
+        self.configuration.update({
+            "beta": True
         })
