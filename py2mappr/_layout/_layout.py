@@ -42,11 +42,19 @@ class Layout:
         self.subtitle = subtitle
         self.descr = description
 
-    def set_clusters(self, cluster_attr: str):
+    def set_clusters(self, cluster_attr: str = None):
         self.settings.update({
             "drawClustersCircle": True,
-            "nodeClusterAttr": cluster_attr,
         })
+
+        if cluster_attr:
+            self.settings.update({
+                "clusterAttr": cluster_attr,
+            })
+        else:
+            self.settings.update({
+                "clusterAttr": self.settings.get("nodeColorAttr", "Cluster"),
+            })
 
     def set_links(self, link_curve = 0, link_weight = 1, neighbors = 1, direction = "outgoing"):
         self.settings.update({
