@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple, Union
 import pandas as pd
 import numpy as np
 import warnings
@@ -47,7 +47,7 @@ def find_node_color_attr(df: pd.DataFrame) -> str:
 
     return _find_most_filled_column(df, lowest_distinct_columns)
 
-def find_node_xy_attr(df: pd.DataFrame, pattern_x = "x", pattern_y = "y") -> str:
+def find_node_xy_attr(df: pd.DataFrame, pattern_x = "x", pattern_y = "y") -> Union[Tuple[str, str],Tuple[None, None]]:
     columns = df.columns.tolist()
     basic_x = [col for col in columns if col.lower() in pattern_x]
     basic_y = [col for col in columns if col.lower() in pattern_y]
@@ -58,7 +58,7 @@ def find_node_xy_attr(df: pd.DataFrame, pattern_x = "x", pattern_y = "y") -> str
     
     if len(xcolumns) == 0:
         warnings.warn(f"No columns found with {pattern_x} in the name. X,Y coordinates must be specified explicitly")
-        return None
+        return None, None
     
     for col in xcolumns:
         ycol_name = col.lower().replace(pattern_x, pattern_y)
@@ -66,4 +66,4 @@ def find_node_xy_attr(df: pd.DataFrame, pattern_x = "x", pattern_y = "y") -> str
             if ycol.lower() == ycol_name:
                 return col, ycol
 
-    return None
+    return None, None
