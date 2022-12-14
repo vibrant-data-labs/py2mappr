@@ -23,7 +23,6 @@ def build_settings(snapshots: List[Layout] = [], playerSettings: ProjectConfig =
             },
             'lastViewedSnap': 'snal-id',
             'layouts': {},
-            'displayExportButton': False
         },
         'player': {
             'settings': playerSettings,

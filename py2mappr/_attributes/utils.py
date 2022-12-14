@@ -4,7 +4,7 @@ import numpy as np
 import warnings
 
 images=['image', 'picture', 'photo', 'img', 'img_url', 'imgurl']
-labels = ['name', 'title', 'label']
+labels = ['originallabel', 'name', 'title', 'label']
 
 def _find_most_filled_column(df: pd.DataFrame, column_names: List[str]) -> str:
     non_empty = df[column_names]

@@ -109,7 +109,7 @@ base_config: ProjectConfig = {
     'sponsors': [],
     'projectLogoTitle': 'openmappr | network exploration tool',
     'projectLogoUrl': None,
-    'displayExportButton': True,
+    'displayExportButton': False,
     'beta': False,
     'sponsorsTxt': 'Sponsored by',
     'feedback': {

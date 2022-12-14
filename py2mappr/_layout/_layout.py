@@ -2,6 +2,7 @@
 from typing import Any, Dict, List, Literal, Tuple
 from ._settings import LayoutSettings, PaletteColor
 import uuid
+import copy
 
 PLOT_TYPE = Literal["clustered", "scatterplot", "clustered-scatterplot", "geo"]
 
@@ -28,7 +29,7 @@ class Layout:
         subtitle: str = None,
         image: str = None):
         self.id = str(uuid.uuid4())
-        self.settings = settings
+        self.settings = copy.deepcopy(settings)
         self.plot_type = plot_type
         self.x_axis = x_axis
         self.y_axis = y_axis
@@ -37,10 +38,11 @@ class Layout:
         self.subtitle = subtitle or ""
         self.image = image
 
-    def set_display_data(self, title: str, subtitle: str, description: str):
+    def set_display_data(self, title: str, subtitle: str, description: str, image = None):
         self.name = title
         self.subtitle = subtitle
         self.descr = description
+        self.image = image
 
     def set_clusters(self, cluster_attr: str = None):
         self.settings.update({

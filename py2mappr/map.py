@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import List
 from py2mappr._layout.clustered_scatterplot import ClusteredScatterplotLayout
 from py2mappr._layout.geo import GeoLayout
@@ -40,13 +41,13 @@ def set_network(network_df: DataFrame):
     project = get_project()
     project.set_network(network_df)
 
-def show(PORT=8080, detach: List[Layout] = []):
+def show(PORT=8080, out_folder: Path = "data_out", detach: List[Layout] = []):
     project = get_project()
-    build_map(project, start=True, PORT=PORT, detach=detach)
+    build_map(project, outFolder=out_folder, start=True, PORT=PORT, detach=detach)
 
-def build(detach: List[Layout] = []):
+def build(out_folder: Path = "data_out", detach: List[Layout] = []):
     project = get_project()
-    build_map(project, start=False, detach=detach)
+    build_map(project, out_folder=out_folder, start=False, detach=detach)
 
 def set_debug(debug: bool = True):
     global _debug

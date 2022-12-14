@@ -49,7 +49,7 @@ class OpenmapprProject:
         for layout in self.snapshots:
             layout.calculate_layout(self)
 
-    def set_display_data(self, title: str, description: str, logo_image_url: str = None, logo_url = None):
+    def set_display_data(self, title: str, description: str, logo_image_url: str = None, logo_url = None, sponsors_txt: str = None, how_to: str = None):
         self.configuration.update({
             "headerTitle": title,
             "modalTitle": title,
@@ -57,6 +57,8 @@ class OpenmapprProject:
             "modalSubtitle": description,
             "projectLogoImageUrl": logo_image_url,
             "projectLogoUrl": logo_url,
+            "sponsorsTxt": sponsors_txt or self.configuration.get("sponsorTxt"),
+            "modalDescription": how_to if how_to != None else self.configuration.get("modalDescription"),
         })
 
     def set_feedback(self, feedback: FeedbackInfo):

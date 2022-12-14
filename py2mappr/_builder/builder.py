@@ -159,14 +159,14 @@ def run_local(web_dir: Path, PORT = 8080):
         print("\nServing locally at port", PORT, "go to http://localhost:%s \nCTL_C to quit\n" % str(PORT))
         httpd.serve_forever()
 
-def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out", start = False, PORT=8080, detach: List[Layout] = []):
+def build_map(project: OpenmapprProject, out_folder: Union[Path, str] = "data_out", start = False, PORT=8080, detach: List[Layout] = []):
     global _debug_print
     if not _debug_print:
         _debug_print = _printer(project)
      # create folders and copy the index file
     _debug_print(f">> creating folders")
     
-    out_dir = Path(os.getcwd()) / outFolder
+    out_dir = Path(os.getcwd()) / out_folder
     out_data_dir = out_dir / "data"
 
     if not os.path.exists(Path(out_data_dir)):
