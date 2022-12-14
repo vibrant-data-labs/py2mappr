@@ -26,4 +26,5 @@ setup(name='py2mappr',
       install_requires=[
           'numpy', 'pandas', 'pyyaml'
       ],
+      include_package_data=True,
       zip_safe=False)
