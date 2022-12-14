@@ -1,6 +1,6 @@
 
-from typing import Any, Dict, Literal, Tuple
-from ._settings import LayoutSettings
+from typing import Any, Dict, List, Literal, Tuple
+from ._settings import LayoutSettings, PaletteColor
 import uuid
 
 PLOT_TYPE = Literal["clustered", "scatterplot", "clustered-scatterplot", "geo"]
@@ -74,6 +74,26 @@ class Layout:
                 "nodeSizeMax": node_size_scaling[1],
                 "nodeSizeMultiplier": node_size_scaling[2],
             })
+
+    def set_palette(
+            self,
+            node_ordinal_palette: List[PaletteColor] = None,
+            node_numeric_palette: List[PaletteColor] = None,
+            edge_ordinal_palette: List[PaletteColor] = None,
+            edge_numeric_palette: List[PaletteColor] = None):
+
+        def _set_palette(palette: List[PaletteColor], palette_type: str):
+            if palette:
+                self.settings.update({
+                    f"{palette_type}": palette,
+                })
+            else:
+                return None
+        
+        _set_palette(node_ordinal_palette, "nodeColorPaletteOrdinal")
+        _set_palette(node_numeric_palette, "nodeColorPaletteNumeric")
+        _set_palette(edge_ordinal_palette, "edgeColorPaletteOrdinal")
+        _set_palette(edge_numeric_palette, "edgeColorPaletteNumeric")
 
     def calculate_layout(self, project):
         pass
