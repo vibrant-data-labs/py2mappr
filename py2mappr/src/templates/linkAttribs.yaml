@@ -1,8 +1,0 @@
-# link attr descriptor template
----
-id: "attrib id" # used for reference
-title: ""
-visible: true
-searchable: true
-attrType: "string"
-renderType: "text"
