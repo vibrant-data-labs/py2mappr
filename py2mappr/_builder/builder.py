@@ -45,13 +45,22 @@ def __write_dataset_file(df_datapoints: pd.DataFrame, datapointAttrs: Dict[str, 
     with open(Path(out_data_dir) / "nodes.json", mode="w+") as f:
         json.dump(data, f, indent=4)
 
+def _convert_data_types(df: pd.DataFrame):
+    # convert int64 to int and float64 to float
+    for col in df.columns:
+        if df[col].dtype == "int64":
+            df[col] = df[col].astype("int")
+        elif df[col].dtype == "float64":
+            df[col] = df[col].astype("float")
+    return df
+
 def __write_network_file(
     df_datapoints: pd.DataFrame,
     datapointAttrs: Dict[str, AttributeConfig],
     df_links: pd.DataFrame,
     linkAttrs: Dict[str, Any],
     out_data_dir: Path,
-):
+):  
     # collect nodes
     nodes = build_nodes(df_datapoints, datapointAttrs)
     _debug_print(f"\t- processed {len(nodes)} nodes with {nodes[0].keys()} where attr={list(nodes[0]['attr'].keys())}")
@@ -162,6 +171,9 @@ def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out
     if not os.path.exists(Path(out_data_dir)):
         os.makedirs(Path(out_data_dir))
 
+    nodes_df = _convert_data_types(project.dataFrame)
+    links_df = _convert_data_types(project.network)
+
     # copy the index and run scripts to out directory
     shutil.copy(template_path /"index.html", out_dir)
     _debug_print(f"\t- copied {out_dir}/index.html")
@@ -171,11 +183,11 @@ def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out
 
     # write the files
     _debug_print(f">> building dataset")
-    __write_dataset_file(project.dataFrame, project.attributes, out_data_dir)
+    __write_dataset_file(nodes_df, project.attributes, out_data_dir)
     _debug_print(f"\t- new dataset file written to {out_data_dir / 'nodes.json'}.\n")
 
     _debug_print(f">> building network")
-    __write_network_file(project.dataFrame, project.attributes, project.network, project.network_attributes, out_data_dir)
+    __write_network_file(nodes_df, project.attributes, links_df, project.network_attributes, out_data_dir)
     _debug_print(f"\t- new network file written to {out_data_dir / 'links.json'}.\n")
 
     _debug_print(f">> building settings")
