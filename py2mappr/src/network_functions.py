@@ -109,7 +109,7 @@ def plot_network(ndf, edf, plot_name, x='x', y='y', colorBy='Cluster', sizeBy='C
     dn.draw_network_categorical(nw, ndf, node_attr=colorBy, plotfile=plot_name, node_size=node_sizes_array)
 
 
-def write_network_to_excel (ndf, ldf, outname):
+def write_network_to_excel(ndf, ldf, outname):
     writer = pd.ExcelWriter(outname,
                           engine='openpyxl')
     # Don't convert url-like strings to urls.
@@ -349,12 +349,12 @@ def decorate_network(df, ldf, tag_attr,
         df = df[finalNodeAttrs]                
     
 
-    if writeFile:
+    if writeFile and outname is not None:
         print("Writing Cleaned Network File")
         # Write back out to excel with 2 sheets. 
         Path("results/networks").mkdir(parents=True, exist_ok=True)
         df = df.reset_index(drop=True)
-        write_network_to_excel (df, ldf, outname)
+        write_network_to_excel(df, ldf, outname)
         
     return df, ldf
 
@@ -386,7 +386,7 @@ def build_decorate_plot_network(df,
     # Build Network
     ndf, ldf = build_network(df, tag_attr , idf=False, linksPer=linksPer, blacklist= blacklist, minTags=minTags)
     # Decorate network
-    ndf, ldf =  decorate_network(ndf, ldf, tag_attr,
+    ndf, ldf = decorate_network(ndf, ldf, tag_attr,
                                  network_renameDict,  # column renaming
                                  finalNodeAttrs,  # final columns to keep
                                  nw_name,  # final network file name
