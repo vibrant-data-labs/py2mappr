@@ -49,11 +49,11 @@ class Layout:
 
         if cluster_attr:
             self.settings.update({
-                "clusterAttr": cluster_attr,
+                "nodeClusterAttr": cluster_attr,
             })
         else:
             self.settings.update({
-                "clusterAttr": self.settings.get("nodeColorAttr", "Cluster"),
+                "nodeClusterAttr": self.settings.get("nodeColorAttr", "Cluster"),
             })
 
     def set_links(self, link_curve = 0, link_weight = 1, neighbors = 1, direction = "outgoing"):
@@ -65,10 +65,20 @@ class Layout:
             "nodeSelectionDegree": neighbors,
         })
 
-    def set_nodes(self, node_color = '', node_size = '', node_size_scaling: Tuple[float, float, float] = None):
+    def set_nodes(
+        self,
+        node_color = '',
+        node_cluster= '',
+        node_size = '',
+        node_size_scaling: Tuple[float, float, float] = None,):
         if node_color:
             self.settings.update({
                 "nodeColorAttr": node_color,
+            })
+
+        if node_cluster:
+            self.settings.update({
+                'nodeClusterAttr': node_cluster,
             })
         
         if node_size:
