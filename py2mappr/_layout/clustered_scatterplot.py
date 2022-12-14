@@ -26,7 +26,7 @@ clustered_scatterplot_base_settings: LayoutSettings = {
 class ClusteredScatterplotLayout(Layout):
     clusterXAttr: str
     clusterYAttr: str
-    def __init__(self, project, settings = clustered_scatterplot_base_settings, x_axis = "X", y_axis = "Y", cluster_x = "X", cluster_y = "y", name=None, descr=None, subtitle=None, image=None):
+    def __init__(self, project, settings = copy.deepcopy(clustered_scatterplot_base_settings), x_axis = "X", y_axis = "Y", cluster_x = "X", cluster_y = "y", name=None, descr=None, subtitle=None, image=None):
         super().__init__(settings, "scatterplot", x_axis, y_axis, name, descr, subtitle, image)
         self.clusterXAttr = cluster_x
         self.clusterYAttr = cluster_y

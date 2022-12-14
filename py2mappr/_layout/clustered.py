@@ -10,7 +10,7 @@ clustered_base_settings: LayoutSettings = {
 }
 
 class ClusteredLayout(Layout):
-    def __init__(self, project, settings = clustered_base_settings, x_axis = "X", y_axis = "Y", name=None, descr=None, subtitle=None, image=None):
+    def __init__(self, project, settings = copy.deepcopy(clustered_base_settings), x_axis = "X", y_axis = "Y", name=None, descr=None, subtitle=None, image=None):
         super().__init__(settings, "clustered", x_axis, y_axis, name, descr, subtitle, image)
         self.calculate_layout(project)
 

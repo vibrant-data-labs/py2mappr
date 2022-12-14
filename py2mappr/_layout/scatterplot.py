@@ -19,7 +19,7 @@ scatterplot_base_settings: LayoutSettings = {
 }
 
 class ScatterplotLayout(Layout):
-    def __init__(self, project, settings = scatterplot_base_settings, x_axis = "X", y_axis = "Y", name=None, descr=None, subtitle=None, image=None):
+    def __init__(self, project, settings = copy.deepcopy(scatterplot_base_settings), x_axis = "X", y_axis = "Y", name=None, descr=None, subtitle=None, image=None):
         super().__init__(settings, "scatterplot", x_axis, y_axis, name, descr, subtitle, image)
         self.calculate_layout(project)
 

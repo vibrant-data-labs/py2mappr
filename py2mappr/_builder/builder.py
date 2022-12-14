@@ -8,6 +8,7 @@ import json
 import os
 import webbrowser
 import pandas as pd
+import numpy as np
 from py2mappr._core.config import AttributeConfig
 from py2mappr._core.project import OpenmapprProject
 from .._layout import Layout
@@ -15,6 +16,15 @@ from .build_dataset import build_attrDescriptors, build_datapoints
 from .build_network import build_nodes, build_links, build_nodeAttrDescriptors, build_linkAttrDescriptors
 from .build_settings import build_settings
 
+class NpEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NpEncoder, self).default(obj)
 
 def __noop_printer(*args, **kwargs):
     pass
@@ -43,16 +53,7 @@ def __write_dataset_file(df_datapoints: pd.DataFrame, datapointAttrs: Dict[str, 
     data = {"attrDescriptors": datapointAttribs, "datapoints": datapoints}
 
     with open(Path(out_data_dir) / "nodes.json", mode="w+") as f:
-        json.dump(data, f, indent=4)
-
-def _convert_data_types(df: pd.DataFrame):
-    # convert int64 to int and float64 to float
-    for col in df.columns:
-        if df[col].dtype == "int64":
-            df[col] = df[col].astype(int)
-        elif df[col].dtype == "float64":
-            df[col] = df[col].astype(float)
-    return df
+        json.dump(data, f, indent=4, cls=NpEncoder)
 
 def __write_network_file(
     df_datapoints: pd.DataFrame,
@@ -89,13 +90,13 @@ def __write_network_file(
         }
 
     with open(out_data_dir / "links.json", mode="w") as f:
-        json.dump([data], f, indent=4)
+        json.dump([data], f, indent=4, cls=NpEncoder)
 
 
 def __write_settings_file(snapshots: List[Dict], playerSettings: Dict[str, Any], out_data_dir: Path):
     data = build_settings(snapshots, playerSettings)
     with open(out_data_dir / "settings.json", mode="w") as f:
-        json.dump(data, f, indent=4)
+        json.dump(data, f, indent=4, cls=NpEncoder)
     return data
 
 def __add_analytics(index_path: str, gtag_id: str = ''):
@@ -171,9 +172,6 @@ def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out
     if not os.path.exists(Path(out_data_dir)):
         os.makedirs(Path(out_data_dir))
 
-    nodes_df = _convert_data_types(project.dataFrame)
-    links_df = _convert_data_types(project.network)
-
     # copy the index and run scripts to out directory
     shutil.copy(template_path /"index.html", out_dir)
     _debug_print(f"\t- copied {out_dir}/index.html")
@@ -183,11 +181,11 @@ def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out
 
     # write the files
     _debug_print(f">> building dataset")
-    __write_dataset_file(nodes_df, project.attributes, out_data_dir)
+    __write_dataset_file(project.dataFrame, project.attributes, out_data_dir)
     _debug_print(f"\t- new dataset file written to {out_data_dir / 'nodes.json'}.\n")
 
     _debug_print(f">> building network")
-    __write_network_file(nodes_df, project.attributes, links_df, project.network_attributes, out_data_dir)
+    __write_network_file(project.dataFrame, project.attributes, project.network, project.network_attributes, out_data_dir)
     _debug_print(f"\t- new network file written to {out_data_dir / 'links.json'}.\n")
 
     _debug_print(f">> building settings")
