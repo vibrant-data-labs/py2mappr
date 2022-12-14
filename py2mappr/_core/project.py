@@ -1,5 +1,5 @@
-from typing import Dict, List, Literal, TypedDict, Union
-from .config import AttributeConfig, FeedbackInfo, ProjectConfig, base_config, default_attr_config, default_net_attr_config
+from typing import Dict, List, Literal, Tuple, TypedDict, Union
+from .config import AttributeConfig, FeedbackInfo, ProjectConfig, SponsorInfo, base_config, default_attr_config, default_net_attr_config
 from py2mappr._attributes.calculate import calculate_attr_types, calculate_render_type
 from py2mappr._layout import Layout, LayoutSettings
 from pandas import DataFrame
@@ -7,6 +7,13 @@ import copy
 
 class PublishConfig(TypedDict):
     gtag_id: str
+
+def create_sponsor(icon_url: str, link_url: str, link_title: str) -> SponsorInfo:
+    return {
+        "iconUrl": icon_url,
+        "linkUrl": link_url,
+        "linkTitle": link_title
+    }
 
 class OpenmapprProject:
     dataFrame: DataFrame
@@ -97,4 +104,10 @@ class OpenmapprProject:
                 'renderType': render_types[column],
             }
 
-        return attributes    
+        return attributes
+
+    def create_sponsors_list(self, sponsor_tuples: Tuple[str, str, str]) -> List[SponsorInfo]:
+        sponsors = [create_sponsor(st[1], st[2], st[0]) for st in sponsor_tuples]
+        self.configuration.update({
+            "sponsors": sponsors
+        })
