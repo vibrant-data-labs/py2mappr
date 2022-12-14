@@ -40,9 +40,9 @@ def set_network(network_df: DataFrame):
     project = get_project()
     project.set_network(network_df)
 
-def show(PORT=8080):
+def show(PORT=8080, detach: List[Layout] = []):
     project = get_project()
-    build_map(project, start=True, PORT=PORT)
+    build_map(project, start=True, PORT=PORT, detach=detach)
 
 def build(detach: List[Layout] = []):
     project = get_project()
