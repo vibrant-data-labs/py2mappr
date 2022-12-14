@@ -83,13 +83,7 @@ class Layout:
                 "nodeSizeMultiplier": node_size_scaling[2],
             })
 
-    def set_palette(
-            self,
-            node_ordinal_palette: List[PaletteColor] = None,
-            node_numeric_palette: List[PaletteColor] = None,
-            edge_ordinal_palette: List[PaletteColor] = None,
-            edge_numeric_palette: List[PaletteColor] = None):
-
+    def set_palette(self, ordinal_palette: List[PaletteColor]=None, numeric_palette: List[PaletteColor]=None):
         def _set_palette(palette: List[PaletteColor], palette_type: str):
             if palette:
                 self.settings.update({
@@ -98,10 +92,10 @@ class Layout:
             else:
                 return None
         
-        _set_palette(node_ordinal_palette, "nodeColorPaletteOrdinal")
-        _set_palette(node_numeric_palette, "nodeColorPaletteNumeric")
-        _set_palette(edge_ordinal_palette, "edgeColorPaletteOrdinal")
-        _set_palette(edge_numeric_palette, "edgeColorPaletteNumeric")
+        _set_palette(ordinal_palette, "nodeColorPaletteOrdinal")
+        _set_palette(numeric_palette, "nodeColorPaletteNumeric")
+        _set_palette(ordinal_palette, "edgeColorPaletteOrdinal")
+        _set_palette(numeric_palette, "edgeColorPaletteNumeric")
 
     def calculate_layout(self, project):
         pass

@@ -1,9 +1,10 @@
+from typing import List
 from py2mappr._layout.clustered_scatterplot import ClusteredScatterplotLayout
 from py2mappr._layout.geo import GeoLayout
 
 from py2mappr._layout.scatterplot import ScatterplotLayout
 from ._project_manager import get_project, has_project
-from ._layout import ClusteredLayout, PLOT_TYPE
+from ._layout import ClusteredLayout, PLOT_TYPE, Layout
 from ._builder import build_map
 from .publish import upload_to_s3
 from pandas import DataFrame
@@ -43,9 +44,9 @@ def show(PORT=8080):
     project = get_project()
     build_map(project, start=True, PORT=PORT)
 
-def build():
+def build(detach: List[Layout] = []):
     project = get_project()
-    build_map(project, start=False)
+    build_map(project, start=False, detach=detach)
 
 def set_debug(debug: bool = True):
     global _debug

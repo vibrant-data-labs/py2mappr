@@ -10,13 +10,11 @@ import webbrowser
 import pandas as pd
 from py2mappr._core.config import AttributeConfig
 from py2mappr._core.project import OpenmapprProject
+from .._layout import Layout
 from .build_dataset import build_attrDescriptors, build_datapoints
 from .build_network import build_nodes, build_links, build_nodeAttrDescriptors, build_linkAttrDescriptors
 from .build_settings import build_settings
 
-'''
-from .utils import load_templates, merge
-'''
 
 def __noop_printer(*args, **kwargs):
     pass
@@ -151,7 +149,7 @@ def run_local(web_dir: Path, PORT = 8080):
         print("\nServing locally at port", PORT, "go to http://localhost:%s \nCTL_C to quit\n" % str(PORT))
         httpd.serve_forever()
 
-def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out", start = False, PORT=8080):
+def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out", start = False, PORT=8080, detach: List[Layout] = []):
     global _debug_print
     if not _debug_print:
         _debug_print = _printer(project)
@@ -181,7 +179,8 @@ def build_map(project: OpenmapprProject, outFolder: Union[Path, str] = "data_out
     _debug_print(f"\t- new network file written to {out_data_dir / 'links.json'}.\n")
 
     _debug_print(f">> building settings")
-    __write_settings_file(project.snapshots, project.configuration, out_data_dir)
+    publish_snapshots = [snapshot for snapshot in project.snapshots if snapshot not in detach]
+    __write_settings_file(publish_snapshots, project.configuration, out_data_dir)
     _debug_print(f"\t- new settings file written to {out_data_dir / 'settings.json'}.\n")
 
     if (project.publish_settings.get('gtag_id')):
