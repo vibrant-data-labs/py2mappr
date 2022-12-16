@@ -58,7 +58,7 @@ class Layout:
                 "nodeClusterAttr": self.settings.get("nodeColorAttr", "Cluster"),
             })
 
-    def set_links(self, link_curve = 0, link_weight = 1, neighbors = 1, direction = "outgoing"):
+    def set_links(self, link_curve = 0, link_weight = 1, neighbors = 1, direction = "outgoing", edge_size_scaling: Tuple[float, float, float] = None):
         self.settings.update({
             "drawEdges": True,
             "edgeCurvature": link_curve,
@@ -66,6 +66,13 @@ class Layout:
             "edgeSizeDefaultValue": link_weight,
             "nodeSelectionDegree": neighbors,
         })
+
+        if edge_size_scaling:
+            self.settings.update({
+                "edgeSizeMin": edge_size_scaling[0],
+                "edgeSizeMax": edge_size_scaling[1],
+                "edgeSizeMultiplier": edge_size_scaling[2],
+            })
 
     def set_nodes(
         self,
