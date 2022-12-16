@@ -155,7 +155,7 @@ def build_nodeAttrDescriptors() -> List[Dict[str, Any]]:
     return attrDescriptors
 
 
-def build_linkAttrDescriptors() -> List[Dict[str, Any]]:
+def build_linkAttrDescriptors(linkAttrs: Dict[str, Any]) -> List[Dict[str, Any]]:
     linkAttrbTpl = {
         "id": "attrib id",
         "title": "attrib title",
@@ -208,7 +208,7 @@ def build_linkAttrDescriptors() -> List[Dict[str, Any]]:
     ]
     attrDescriptors = []
 
-    for row in required_attrs:
+    for row in [*required_attrs, *linkAttrs.values()]:
         # extract the attr (each row) data as a dict
         attrs: Dict[str, Any] = dict(row)
 

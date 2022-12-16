@@ -75,7 +75,7 @@ def __write_network_file(
     _debug_print(f"\t- processed {len(nodeAttribs)} node attributes {[at['id'] for at in nodeAttribs]}")
 
     # collect link attribs
-    linkAttribs = build_linkAttrDescriptors()
+    linkAttribs = build_linkAttrDescriptors(linkAttrs)
     _debug_print(f"\t- processed {len(linkAttribs)} link attributes {[at['id'] for at in linkAttribs]}")
 
     # write network file
