@@ -1,12 +1,9 @@
-import http.server
 import re
-import socketserver
 from typing import Any, Dict, List, Union
 from pathlib import Path
 import shutil
 import json
 import os
-import webbrowser
 import pandas as pd
 import numpy as np
 from py2mappr._core.config import AttributeConfig
@@ -149,16 +146,6 @@ def __set_opengraph_tags(index_path: str, player_settings: Dict[str, Any]):
     
     _debug_print(f"\t- opengraph tags modified")
 
-def run_local(web_dir: Path, PORT = 8080):
-    os.chdir(web_dir)  # change to project directory where index.html and data folder are
-
-    webbrowser.open_new_tab("http://localhost:" + str(PORT))  # open new tab in browswer
-
-    Handler = http.server.SimpleHTTPRequestHandler
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
-        print("\nServing locally at port", PORT, "go to http://localhost:%s \nCTL_C to quit\n" % str(PORT))
-        httpd.serve_forever()
-
 def build_map(project: OpenmapprProject, out_folder: Union[Path, str] = "data_out", start = False, PORT=8080, detach: List[Layout] = []):
     global _debug_print
     if not _debug_print:
@@ -198,8 +185,5 @@ def build_map(project: OpenmapprProject, out_folder: Union[Path, str] = "data_ou
         __add_analytics(out_dir / 'index.html', gtag_id)
 
     __set_opengraph_tags(out_dir / 'index.html', project.configuration)
-
-    if start:
-        run_local(out_dir, PORT)
 
     return out_dir
