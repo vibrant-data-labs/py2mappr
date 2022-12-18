@@ -5,6 +5,7 @@ import requests
 
 
 def cloudflare_worker(cdn_url: str, url: str):
+    print(f"Cloudflare worker: {cdn_url} {url}")
     config = configparser.ConfigParser()
     wd = Path.cwd()
     configpath = wd/'config.ini'

@@ -7,7 +7,7 @@ from py2mappr._layout.scatterplot import ScatterplotLayout
 from ._project_manager import get_project, has_project
 from ._layout import ClusteredLayout, PLOT_TYPE, Layout
 from ._builder import build_map
-from .publish import upload_to_s3
+import py2mappr.publish as publisher
 from pandas import DataFrame
 
 _debug = False
@@ -44,10 +44,15 @@ def set_network(network_df: DataFrame):
 def show(PORT=8080, out_folder: Path = "data_out", detach: List[Layout] = []):
     project = get_project()
     build_map(project, out_folder=out_folder, start=True, PORT=PORT, detach=detach)
+    publisher.set_player_directory(out_folder)
+    publisher.run([
+        publisher.local(out_folder, PORT=PORT)
+    ])
 
 def build(out_folder: Path = "data_out", detach: List[Layout] = []):
     project = get_project()
     build_map(project, out_folder=out_folder, start=False, detach=detach)
+    publisher.set_player_directory(out_folder)
 
 def set_debug(debug: bool = True):
     global _debug
@@ -56,7 +61,10 @@ def set_debug(debug: bool = True):
         project = get_project()
         project.set_debug(debug)
 
-def publish(s3_bucket: str, show=False):
+def launch_publish(s3_bucket: str, show=False):
     project = get_project()
     path = build_map(project, start=False)
-    upload_to_s3(path, s3_bucket, show)
+    publisher.set_player_directory(path)
+    publisher.run([
+        publisher.s3(s3_bucket, path)
+    ])

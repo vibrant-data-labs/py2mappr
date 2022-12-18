@@ -1,9 +1,11 @@
-from typing import Dict
+from typing import Any, Callable, Dict, List
 import boto3
 import os
 import configparser
 import pathlib as pl
 import webbrowser
+from .._project_manager import get_project
+from .._builder import build_map
 
 _file_mapping: Dict[str, str] = {
     'html': 'text/html',
@@ -11,61 +13,76 @@ _file_mapping: Dict[str, str] = {
     'sh': 'text/x-shellscript',
 }
 
+__directory: pl.Path = None
 
-def upload_to_s3(path, bucket_name, show=False):
-    ### Config Setup ###
-    config = configparser.ConfigParser()
-    wd = pl.Path.cwd()
-    configpath = wd/'config.ini'
-    config.read(configpath)
-    # load AWS settings from config file
-    REGION = config['aws']['region']
-    ACCESS_KEY = config['aws']['access_key_id']
-    SECRET_KEY = config['aws']['secret_access_key']
-    print("\nUploading map to AWS S3 Bucket, named %s, as static website" % bucket_name)
-    S3_CLIENT = boto3.client(
-        's3',
-        aws_access_key_id=ACCESS_KEY,
-        aws_secret_access_key=SECRET_KEY,
-        region_name=REGION
-    )
-    # create public bucket if it doesn't exist
-    S3_CLIENT.create_bucket(Bucket=bucket_name, ACL='public-read')
 
-    # Create the configuration for the website
-    website_configuration = {
-        'ErrorDocument': {'Key': 'error.html'},
-        'IndexDocument': {'Suffix': 'index.html'},
-    }
-    # Set the new policy on the selected bucket
-    S3_CLIENT.put_bucket_website(
-        Bucket=bucket_name,
-        WebsiteConfiguration=website_configuration
-    )
+def set_player_directory(directory: pl.Path):
+    global __directory
+    __directory = directory
 
-    session = boto3.Session(
-        aws_access_key_id=ACCESS_KEY,
-        aws_secret_access_key=SECRET_KEY,
-        region_name=REGION
-    )
-    s3 = session.resource('s3')
-    bucket = s3.Bucket(bucket_name)
 
-    data_path = str(path)
-    for subdir, _, files in os.walk(path):
-        for file in files:
-            full_path = os.path.join(subdir, file)
-            with open(full_path, 'rb') as data:
-                ext = full_path.split('.')[-1]
-                object_key = full_path[len(data_path)+1:] if subdir == data_path else \
-                    "%s/%s" % (os.path.basename(subdir),
-                               os.path.basename(full_path))
-                bucket.put_object(Key=object_key, Body=data,
-                                  ACL='public-read', ContentType=_file_mapping[ext])
+def local(PORT=8080, web_dir: pl.Path = None) -> Callable[[Callable], None]:
+    from .local_worker import local_worker
 
-    if show:
-        webbrowser.open_new_tab("http://%s.s3-website-%s.amazonaws.com/" %
-                                (bucket_name, REGION))
-    else:
-        print("\nUpload complete. To view your map, go to http://%s.s3-website-%s.amazonaws.com/" %
-              (bucket_name, REGION))
+    def get_web_dir(data: Dict[str, Any]) -> pl.Path:
+        if web_dir is None:
+            return data.get("web_dir")
+        return web_dir
+
+    return lambda data: local_worker(web_dir=get_web_dir(data), PORT=PORT)
+
+
+def s3(bucket_name: str, web_dir: pl.Path = None) -> Callable[[Callable], None]:
+    from .s3_worker import s3_worker
+
+    def get_web_dir(data: Dict[str, Any]) -> pl.Path:
+        if web_dir is None:
+            return data.get("web_dir")
+        return web_dir
+
+    return lambda data: s3_worker(path=get_web_dir(data), bucket_name=bucket_name)
+
+
+def cloudfront(url: str, bucket_name: str = None) -> Callable[[Callable], None]:
+    from .cloudfront_worker import cloudfront_worker
+
+    def get_bucket_name(data: Dict[str, Any]) -> str:
+        if bucket_name is None:
+            return data.get("bucket")
+        return bucket_name
+    return lambda data: cloudfront_worker(bucket=get_bucket_name(data), url=url)
+
+
+def cloudflare(url: str, cdn_url: str = None) -> Callable[[Callable], None]:
+    from .cloudflare_worker import cloudflare_worker
+
+    def get_cdn_url(data: Dict[str, Any]) -> str:
+        if cdn_url is None:
+            return data.get("cdn_url")
+        return cdn_url
+    return lambda data: cloudflare_worker(cdn_url=get_cdn_url(data), url=url)
+
+
+def __build_project():
+    project = get_project()
+    out_folder = build_map(project, start=False)
+    set_player_directory(out_folder)
+
+
+def run(workers: List[Callable]):
+    global __directory
+
+    if __directory is None:
+        __build_project()
+
+    pass_data = dict({
+        "web_dir": __directory,
+    })
+    for worker in workers:
+        res = worker(pass_data)
+        pass_data = {
+            **pass_data,
+            **res
+        } if res is not None else pass_data
+
+    __directory = None

@@ -20,7 +20,6 @@ def s3_worker(path: Path, bucket_name: str):
     REGION = config['aws']['region']
     ACCESS_KEY = config['aws']['access_key_id']
     SECRET_KEY = config['aws']['secret_access_key']
-    print("\nUploading map to AWS S3 Bucket, named %s, as static website" % bucket_name)
     S3_CLIENT = boto3.client(
         's3',
         aws_access_key_id=ACCESS_KEY,
@@ -61,5 +60,7 @@ def s3_worker(path: Path, bucket_name: str):
                 bucket.put_object(Key=object_key, Body=data,
                                   ACL='public-read', ContentType=_file_mapping[ext])
 
-        print("\nUpload complete. To view your map, go to http://%s.s3-website-%s.amazonaws.com/" %
-              (bucket_name, REGION))
+    print("\nUpload complete. To view your map, go to http://%s.s3-website-%s.amazonaws.com/" %
+          (bucket_name, REGION))
+
+    return {"bucket": bucket_name}
