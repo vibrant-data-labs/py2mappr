@@ -195,26 +195,31 @@ Layouts have a set of display settings, which are used to render the layout. The
 #### `name`
 
 Name of the layout, used for rendering the layout in the UI.
+
         layout.name = "My layout"
 
 #### `descr`
 
 HTML Description of the layout, used for rendering the layout in the UI.
+
         layout.descr = "<p>My layout description</p>"
 
 #### `subtitle`
 
 Subtitle of the layout, used for rendering the layout in the UI.
+
         layout.subtitle = "My layout subtitle"
 
 #### `image`
 
 Image of the layout, used for rendering the layout in the UI.
+
         layout.image = "https://myimage.com/image.png"
 
 #### `x_axis`, `y_axis`
 
 X and Y axis attributes for the layout, used for rendering the nodes in the UI.
+
         layout.x_axis = "X_attribute"
         layout.y_axis = "Y_attribute"
 
@@ -230,6 +235,7 @@ if there is a `DataFrame` with the following attributes: `['name', 'x_attr', 'y_
 #### Clustered Scatterplot - `clusterXAttr`, `clusterYAttr`
 
 Clustered Scatterplot has two additional axis attributes, which are used for rendering the clusters in the UI.
+
         layout.clusteredXAttr = "X_attribute"
         layout.clusteredYAttr = "Y_attribute"
 
@@ -240,6 +246,7 @@ This layout requires all 4 axis fields to be set, since it takes `cluster*` fiel
 #### Geo Layout - `x_axis`, `y_axis`
 
 In the case of Geo Layout, these attributes are used to calculate the position of the nodes on the geo map.
+
         layout.x_axis = "Latitude"
         layout.y_axis = "Longitude"
 
