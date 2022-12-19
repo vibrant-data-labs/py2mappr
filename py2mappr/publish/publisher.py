@@ -11,7 +11,7 @@ def set_player_directory(directory: pl.Path):
     __directory = directory
 
 
-def local(PORT=8080, web_dir: pl.Path = None) -> Callable[[Callable], None]:
+def local(web_dir: pl.Path = None, PORT=8080) -> Callable[[Callable], None]:
     """
     Decorator to run a local player.
     """
