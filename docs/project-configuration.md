@@ -32,7 +32,7 @@ The following settings are available:
 | `displayTooltipCard` | Boolean | `False` | Whether to render a card, when hovering attribute in the list panel |
 | `startPage` | str `legend / filter / list` | `legend` | Defines the panel on the left-hand side to be rendered first |
 | `defaultPanel` | str  | `Map Information` | The title of the right panel |
-| `projectLogoTitle` | str  | `openmappr | network exploration tool` | The title of the project in the header |
+| `projectLogoTitle` | str  | `openmappr network exploration tool` | The title of the project in the header |
 | `projectLogoUrl` | str | - | Displays the image of the project |
 | `beta` | Boolean | `False` | Displays the 'beta' ribbon |
 | `sponsorsTxt` | str | `Sponsored by` | Defines the custom text for sponsors block |
