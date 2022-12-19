@@ -14,6 +14,9 @@ def local_worker(web_dir: Path, PORT=8080):
 
     Handler = http.server.SimpleHTTPRequestHandler
     with socketserver.TCPServer(("", PORT), Handler) as httpd:
-        print("\nServing locally at port", PORT,
-              "go to http://localhost:%s \nCTL_C to quit\n" % str(PORT))
+        print(
+            "\nServing locally at port",
+            PORT,
+            "go to http://localhost:%s \nCTL_C to quit\n" % str(PORT),
+        )
         httpd.serve_forever()

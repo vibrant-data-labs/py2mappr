@@ -1,17 +1,7 @@
 from typing import Any, Callable, Dict, List
-import boto3
-import os
-import configparser
 import pathlib as pl
-import webbrowser
 from .._project_manager import get_project
 from .._builder import build_map
-
-_file_mapping: Dict[str, str] = {
-    'html': 'text/html',
-    'json': 'application/json',
-    'sh': 'text/x-shellscript',
-}
 
 __directory: pl.Path = None
 
@@ -22,6 +12,9 @@ def set_player_directory(directory: pl.Path):
 
 
 def local(PORT=8080, web_dir: pl.Path = None) -> Callable[[Callable], None]:
+    """
+    Decorator to run a local player.
+    """
     from .local_worker import local_worker
 
     def get_web_dir(data: Dict[str, Any]) -> pl.Path:
@@ -32,7 +25,13 @@ def local(PORT=8080, web_dir: pl.Path = None) -> Callable[[Callable], None]:
     return lambda data: local_worker(web_dir=get_web_dir(data), PORT=PORT)
 
 
-def s3(bucket_name: str, web_dir: pl.Path = None) -> Callable[[Callable], None]:
+def s3(
+    bucket_name: str, web_dir: pl.Path = None
+) -> Callable[[Callable], None]:
+    """
+    Decorator to upload local player files to the s3. Requires [aws] setting of
+    config.ini to be set.
+    """
     from .s3_worker import s3_worker
 
     def get_web_dir(data: Dict[str, Any]) -> pl.Path:
@@ -40,26 +39,42 @@ def s3(bucket_name: str, web_dir: pl.Path = None) -> Callable[[Callable], None]:
             return data.get("web_dir")
         return web_dir
 
-    return lambda data: s3_worker(path=get_web_dir(data), bucket_name=bucket_name)
+    return lambda data: s3_worker(
+        path=get_web_dir(data), bucket_name=bucket_name
+    )
 
 
-def cloudfront(url: str, bucket_name: str = None) -> Callable[[Callable], None]:
+def cloudfront(
+    url: str, bucket_name: str = None
+) -> Callable[[Callable], None]:
+    """
+    Decorator to set up the cloudfront distribution. Requires [aws] setting of
+    config.ini to be set.
+    """
     from .cloudfront_worker import cloudfront_worker
 
     def get_bucket_name(data: Dict[str, Any]) -> str:
         if bucket_name is None:
             return data.get("bucket")
         return bucket_name
-    return lambda data: cloudfront_worker(bucket=get_bucket_name(data), url=url)
+
+    return lambda data: cloudfront_worker(
+        bucket=get_bucket_name(data), url=url
+    )
 
 
 def cloudflare(url: str, cdn_url: str = None) -> Callable[[Callable], None]:
+    """
+    Decorator to set up the DNS for the player url in the cloudflare. Requires
+    [cloudflare] setting of config.ini to be set.
+    """
     from .cloudflare_worker import cloudflare_worker
 
     def get_cdn_url(data: Dict[str, Any]) -> str:
         if cdn_url is None:
             return data.get("cdn_url")
         return cdn_url
+
     return lambda data: cloudflare_worker(cdn_url=get_cdn_url(data), url=url)
 
 
@@ -70,19 +85,23 @@ def __build_project():
 
 
 def run(workers: List[Callable]):
+    """
+    Runs the workers in the order they are passed. The data from previous
+    workers is collected into the single dictionary and passed to the next
+    worker.
+    """
     global __directory
 
     if __directory is None:
         __build_project()
 
-    pass_data = dict({
-        "web_dir": __directory,
-    })
+    pass_data = dict(
+        {
+            "web_dir": __directory,
+        }
+    )
     for worker in workers:
         res = worker(pass_data)
-        pass_data = {
-            **pass_data,
-            **res
-        } if res is not None else pass_data
+        pass_data = {**pass_data, **res} if res is not None else pass_data
 
     __directory = None

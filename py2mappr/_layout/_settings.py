@@ -2,8 +2,10 @@ from typing import List, Literal, TypedDict
 
 HEX_COLOR = str
 
+
 class PaletteColor(TypedDict):
     col: HEX_COLOR
+
 
 class LayoutSettings(TypedDict):
     drawNodes: bool
@@ -116,12 +118,13 @@ class LayoutSettings(TypedDict):
     drawClustersCircle: bool
     isGeo: bool
 
+
 base_layout_settings: LayoutSettings = LayoutSettings(
     drawNodes=True,
     borderRatio=0.15,
     bigOnTop=False,
     nodeImageShow=False,
-    nodeImageAttr="", # to calculate
+    nodeImageAttr="",  # to calculate
     nodeUnselectedOpacity=0.25,
     nodeHighlightRatio=1.2,
     nodeHighlightBorderOffset=6,
@@ -137,7 +140,7 @@ base_layout_settings: LayoutSettings = LayoutSettings(
     neighbourListHoverDegree=1,
     nodePopSize=10,
     nodePopImageShow=True,
-    nodePopImageAttr="", # to calculate
+    nodePopImageAttr="",  # to calculate
     nodePopShow=False,
     nodePopDelay=1500,
     nodePopRepositionNeighbors=True,
@@ -161,8 +164,8 @@ base_layout_settings: LayoutSettings = LayoutSettings(
     labelThreshold=1,
     labelMaxCount=300,
     labelDefaultShow=True,
-    labelAttr="OriginalLabel", # to calculate
-    labelHoverAttr="OriginalLabel", # to calculate
+    labelAttr="OriginalLabel",  # to calculate
+    labelHoverAttr="OriginalLabel",  # to calculate
     labelDegree=0,
     labelOpacity=1,
     labelUnselectedOpacity=0,
@@ -189,7 +192,7 @@ base_layout_settings: LayoutSettings = LayoutSettings(
     # valid for geo only
     mapboxMapID="",
     nodeSizeStrat="attr",
-    nodeSizeAttr="", # to calculate
+    nodeSizeAttr="",  # to calculate
     nodeSizeScaleStrategy="log",
     nodeSizeScaleInvert=False,
     nodeSizeDefaultValue=10,
@@ -197,36 +200,33 @@ base_layout_settings: LayoutSettings = LayoutSettings(
     nodeSizeMax=20,
     nodeSizeMultiplier=0.5,
     nodeColorStrat="attr",
-    nodeColorAttr="", # to calculate
+    nodeColorAttr="",  # to calculate
     nodeColorScaleStrategy="linear",
     nodeColorScaleInvert=False,
     nodeColorScaleExponent=2.5,
     nodeColorScaleBase=10,
     nodeColorDefaultValue="rgb(200,200,200)",
-    nodeColorNumericScalerType= "RGB",
+    nodeColorNumericScalerType="RGB",
     nodeColorCycleCategoryColors=True,
-    nodeColorPaletteNumeric=[
-      { "col": "#ee4444"},
-      { "col": "#3399ff"}
-    ],
+    nodeColorPaletteNumeric=[{"col": "#ee4444"}, {"col": "#3399ff"}],
     nodeColorPaletteOrdinal=[
-        { "col": "#bd0f0f" },
-        { "col": "#5b41a3" },
-        { "col": "#0099ff" },
-        { "col": "#ffcc00" },
-        { "col": "#66cccc" },
-        { "col": "#99cc00" },
-        { "col": "#993399" },
-        { "col": "#b23333" },
-        { "col": "#077861" },
-        { "col": "#0073bf" },
-        { "col": "#bf9900" },
-        { "col": "#4c9999" },
-        { "col": "#739900" },
-        { "col": "#732673" }
+        {"col": "#bd0f0f"},
+        {"col": "#5b41a3"},
+        {"col": "#0099ff"},
+        {"col": "#ffcc00"},
+        {"col": "#66cccc"},
+        {"col": "#99cc00"},
+        {"col": "#993399"},
+        {"col": "#b23333"},
+        {"col": "#077861"},
+        {"col": "#0073bf"},
+        {"col": "#bf9900"},
+        {"col": "#4c9999"},
+        {"col": "#739900"},
+        {"col": "#732673"},
     ],
     edgeSizeStrat="fixed",
-    edgeSizeAttr="", # to calculate
+    edgeSizeAttr="",  # to calculate
     edgeSizeScaleStrategy="linear",
     edgeSizeScaleInvert=False,
     edgeSizeDefaultValue=0.2,
@@ -234,34 +234,31 @@ base_layout_settings: LayoutSettings = LayoutSettings(
     edgeSizeMax=10,
     edgeSizeMultiplier=0.1,
     edgeColorStrat="gradient",
-    edgeColorAttr="", # to calculate
+    edgeColorAttr="",  # to calculate
     edgeColorScaleStrategy="linear",
     edgeColorScaleInvert=False,
     edgeColorScaleExponent=2.5,
     edgeColorScaleBase=10,
     edgeColorDefaultValue="rgb(200,200,200)",
     edgeColorCycleCategoryColors=True,
-    edgeColorPaletteNumeric=[
-      { "col": "#ee4444"},
-      { "col": "#3399ff"}
-    ],
+    edgeColorPaletteNumeric=[{"col": "#ee4444"}, {"col": "#3399ff"}],
     edgeColorPaletteOrdinal=[
-        { "col": "#bd0f0f" },
-        { "col": "#5b41a3" },
-        { "col": "#0099ff" },
-        { "col": "#ffcc00" },
-        { "col": "#66cccc" },
-        { "col": "#99cc00" },
-        { "col": "#993399" },
-        { "col": "#b23333" },
-        { "col": "#077861" },
-        { "col": "#0073bf" },
-        { "col": "#bf9900" },
-        { "col": "#4c9999" },
-        { "col": "#739900" },
-        { "col": "#732673" }
+        {"col": "#bd0f0f"},
+        {"col": "#5b41a3"},
+        {"col": "#0099ff"},
+        {"col": "#ffcc00"},
+        {"col": "#66cccc"},
+        {"col": "#99cc00"},
+        {"col": "#993399"},
+        {"col": "#b23333"},
+        {"col": "#077861"},
+        {"col": "#0073bf"},
+        {"col": "#bf9900"},
+        {"col": "#4c9999"},
+        {"col": "#739900"},
+        {"col": "#732673"},
     ],
     nodeClusterAttr="",
     drawClustersCircle=False,
-    isGeo=False
+    isGeo=False,
 )
