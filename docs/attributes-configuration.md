@@ -17,7 +17,7 @@ Attributes have the following properties:
 | visibleInProfile| Boolean | `True`|Whether the attribute is rendered in the profile panel.|
 | searchable| Boolean| `True`|Whether the attribute is included in the search panel.|
 |attrType| str `integer / string/ float/ liststring / timestamp / year` | - |The data type of the attribute|
-|renderType| str `text / tag-cloud / tag_cloud_3 / tag-cloud_2 / wide-tag-cloud / histogram / horizontal-bars` | - | The type of the renderer for the attribute|
+|renderType| str `text / tag-cloud / tag_cloud_3 / tag-cloud_2 / wide-tag-cloud / histogram / horizontal-bars / video / picture / url` | - | The type of the renderer for the attribute|
 |priority| str `high / low` | `high` |Important attributes are rendered in the filter panel as 'Data Filters' and the rest are rendered as 'Advanced Filters'. |
 | axis| str `x / y / none / all`| `none` | Determines the axis of scatterplot/clustered-scatterplot where the attribute can be included ot the dropdown.|
 | colorSelectable | Boolean | `False` | Whether the attribute can be included to the dropdown of selecting a color of nodes.|
