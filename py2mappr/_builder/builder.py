@@ -265,9 +265,18 @@ def __set_opengraph_tags(index_path: str, player_settings: Dict[str, Any]):
         or "openmappr | network exploration tool"
     )
     description = __extract_sentence(player_settings.get("headerSubtitle"))
+    
+    # find if there is an image in the project folder
+    images = [
+        *list(Path(index_path).parent.rglob("*.jpg")),
+        *list(Path(index_path).parent.rglob("*.jpeg")),
+        *list(Path(index_path).parent.rglob("*.png")),
+        *list(Path(index_path).parent.rglob("*.gif"))
+    ]
+
     image_url = (
-        player_settings.get("projectLogoImageUrl")
-        or "https://mappr-player.openmappr.org/img/logos/vdl-logo.svg"
+        player_settings.get("sharingLogoUrl")
+        or images[0].name if len(images) > 0 else ""
     )
     og_template = ""
     with open(template_path / "og_template.html", "r") as f:

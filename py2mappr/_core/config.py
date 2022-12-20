@@ -75,6 +75,7 @@ class ProjectConfig(TypedDict):
     sponsors: List[SponsorInfo]
     projectLogoTitle: str
     projectLogoUrl: str
+    sharingLogoUrl: str
     displayExportButton: bool
     beta: bool
     sponsorsTxt: str
@@ -128,6 +129,7 @@ base_config: ProjectConfig = {
     "sponsors": [],
     "projectLogoTitle": "openmappr | network exploration tool",
     "projectLogoUrl": None,
+    "sharingLogoUrl": None,
     "displayExportButton": False,
     "beta": False,
     "sponsorsTxt": "Sponsored by",

@@ -36,6 +36,7 @@ The following settings are available:
 | `projectLogoUrl` | str | - | Displays the image of the project |
 | `beta` | Boolean | `False` | Displays the 'beta' ribbon |
 | `sponsorsTxt` | str | `Sponsored by` | Defines the custom text for sponsors block |
+| `sharingLogoUrl`| str | - | URL of the image to be included in the sharing post |
 | `socials` | array of strings `linkedin / twitter / facebook` | empty array | Defines the social networks, which will be rendered in the 'Share' panel |
 | `sponsors` | array of objects | empty array | See below |
 | `footer` | object | `None` | See below |

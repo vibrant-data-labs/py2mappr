@@ -10,6 +10,11 @@ def s3_worker(path: Path, bucket_name: str):
         "html": "text/html",
         "json": "application/json",
         "sh": "text/x-shellscript",
+        "png": "image/png",
+        "jpg": "image/jpeg",
+        "jpeg": "image/jpeg",
+        "gif": "image/gif",
+        "svg": "image/svg+xml",
     }
     ### Config Setup ###
     config = configparser.ConfigParser()

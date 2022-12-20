@@ -138,6 +138,7 @@ class OpenmapprProject:
         logo_url=None,
         sponsors_txt: str = None,
         how_to: str = None,
+        sharing_image_url: str = None,
     ):
         """
         Set the display data for the project.
@@ -169,6 +170,9 @@ class OpenmapprProject:
                 "modalDescription": how_to
                 if how_to != None
                 else self.configuration.get("modalDescription"),
+                "sharingImageUrl": sharing_image_url
+                if sharing_image_url
+                else self.configuration.get("sharingImageUrl"),
             }
         )
 
