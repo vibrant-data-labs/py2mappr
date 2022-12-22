@@ -78,13 +78,13 @@ def cloudflare(url: str, cdn_url: str = None) -> Callable[[Callable], None]:
     return lambda data: cloudflare_worker(cdn_url=get_cdn_url(data), url=url)
 
 
-def __build_project():
+def __build_project(out_dir: pl.Path = None):
     project = get_project()
-    out_folder = build_map(project, start=False)
+    out_folder = build_map(project, out_folder=out_dir, start=False)
     set_player_directory(out_folder)
 
 
-def run(workers: List[Callable]):
+def run(workers: List[Callable], path: pl.Path = None):
     """
     Runs the workers in the order they are passed. The data from previous
     workers is collected into the single dictionary and passed to the next
@@ -93,7 +93,7 @@ def run(workers: List[Callable]):
     global __directory
 
     if __directory is None:
-        __build_project()
+        __build_project(path)
 
     pass_data = dict(
         {
