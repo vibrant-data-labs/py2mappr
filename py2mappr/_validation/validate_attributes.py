@@ -6,12 +6,8 @@ def __no_attr(path: str, attr: str, datapoint: Dict[str, Any]):
     return attr not in datapoint[path] or datapoint[path][attr] is None
 
 
-def has_no_attr(attr: str, datapoint: Dict[str, Any]):
-    return __no_attr("attr", attr, datapoint)
-
-
 def has_no_attrs(attrs: List[str], datapoint: Dict[str, Any]):
-    return any([has_no_attr(attr, datapoint) for attr in attrs])
+    return any([__no_attr("attr", attr, datapoint) for attr in attrs])
 
 
 def validate_layout_attr(attr: str, layout_dict: Dict[str, Any]):
@@ -56,7 +52,12 @@ def validate_xy_attributes(
         x_attr = layout_dict["layout"]["xaxis"]
         y_attr = layout_dict["layout"]["yaxis"]
 
-        validate_node_attributes(layout_name, [x_attr, y_attr], datapoints)
+        attrs = list(filter(lambda x: x is not None, [x_attr, y_attr]))
+
+        if len(attrs) == 0:
+            return
+
+        validate_node_attributes(layout_name, attrs, datapoints)
     else:  # plot_type == "clustered-scatterplot"
         validate_layout_attr("nodeXAttr", layout_dict)
         validate_layout_attr("nodeYAttr", layout_dict)
@@ -68,11 +69,17 @@ def validate_xy_attributes(
         cluster_x_attr = layout_dict["layout"]["clusterXAttr"]
         cluster_y_attr = layout_dict["layout"]["clusterYAttr"]
 
-        validate_node_attributes(
-            layout_name,
-            [node_x_attr, node_y_attr, cluster_x_attr, cluster_y_attr],
-            datapoints,
+        attrs = list(
+            filter(
+                lambda x: x is not None,
+                [node_x_attr, node_y_attr, cluster_x_attr, cluster_y_attr],
+            )
         )
+
+        if len(attrs) == 0:
+            return
+
+        validate_node_attributes(layout_name, attrs, datapoints)
 
 
 def __validator(
