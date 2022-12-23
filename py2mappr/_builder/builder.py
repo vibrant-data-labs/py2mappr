@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 from py2mappr._core.config import AttributeConfig
 from py2mappr._core.project import OpenmapprProject
+from py2mappr._validation.validate_links import validate_source_target
 from .._layout import Layout
 from .build_dataset import build_attrDescriptors, build_datapoints
 from .build_network import (
@@ -100,6 +101,8 @@ def __write_dataset_file(
     with open(Path(out_data_dir) / "nodes.json", mode="w+") as f:
         json.dump(data, f, indent=4, cls=NpEncoder)
 
+    return datapoints
+
 
 def __write_network_file(
     df_datapoints: pd.DataFrame,
@@ -168,9 +171,17 @@ def __write_network_file(
     with open(out_data_dir / "links.json", mode="w") as f:
         json.dump([data], f, indent=4, cls=NpEncoder)
 
+    validate_source_target(links, nodes)
+
+    return links
+
 
 def __write_settings_file(
-    snapshots: List[Dict], playerSettings: Dict[str, Any], out_data_dir: Path
+    snapshots: List[Dict],
+    playerSettings: Dict[str, Any],
+    datapoints: List[Dict[str, Any]],
+    links: List[Dict[str, Any]],
+    out_data_dir: Path,
 ):
     """
     Writes the settings file `settings.json` to the output directory
@@ -186,7 +197,7 @@ def __write_settings_file(
     out_data_dir : Path
         The output directory to write the file to
     """
-    data = build_settings(snapshots, playerSettings)
+    data = build_settings(snapshots, playerSettings, datapoints, links)
     with open(out_data_dir / "settings.json", mode="w") as f:
         json.dump(data, f, indent=4, cls=NpEncoder)
     return data
@@ -265,18 +276,19 @@ def __set_opengraph_tags(index_path: str, player_settings: Dict[str, Any]):
         or "openmappr | network exploration tool"
     )
     description = __extract_sentence(player_settings.get("headerSubtitle"))
-    
+
     # find if there is an image in the project folder
     images = [
         *list(Path(index_path).parent.rglob("*.jpg")),
         *list(Path(index_path).parent.rglob("*.jpeg")),
         *list(Path(index_path).parent.rglob("*.png")),
-        *list(Path(index_path).parent.rglob("*.gif"))
+        *list(Path(index_path).parent.rglob("*.gif")),
     ]
 
     image_url = (
-        player_settings.get("sharingLogoUrl")
-        or images[0].name if len(images) > 0 else ""
+        player_settings.get("sharingLogoUrl") or images[0].name
+        if len(images) > 0
+        else ""
     )
     og_template = ""
     with open(template_path / "og_template.html", "r") as f:
@@ -349,13 +361,15 @@ def build_map(
 
     # write the files
     _debug_print(f">> building dataset")
-    __write_dataset_file(project.dataFrame, project.attributes, out_data_dir)
+    out_nodes = __write_dataset_file(
+        project.dataFrame, project.attributes, out_data_dir
+    )
     _debug_print(
         f"\t- new dataset file written to {out_data_dir / 'nodes.json'}.\n"
     )
 
     _debug_print(f">> building network")
-    __write_network_file(
+    out_links = __write_network_file(
         project.dataFrame,
         project.attributes,
         project.network,
@@ -371,7 +385,11 @@ def build_map(
         snapshot for snapshot in project.snapshots if snapshot not in detach
     ]
     __write_settings_file(
-        publish_snapshots, project.configuration, out_data_dir
+        publish_snapshots,
+        project.configuration,
+        out_nodes,
+        out_links,
+        out_data_dir,
     )
     _debug_print(
         f"\t- new settings file written to {out_data_dir / 'settings.json'}.\n"

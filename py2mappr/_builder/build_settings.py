@@ -3,10 +3,17 @@ from typing import Any, List, Dict
 from py2mappr._layout import Layout
 
 from py2mappr._core.config import ProjectConfig
+from py2mappr._validation.validate_attributes import (
+    validate_nodes,
+    validate_links,
+)
 
 
 def build_settings(
-    snapshots: List[Layout] = [], playerSettings: ProjectConfig = {}
+    snapshots: List[Layout] = [],
+    playerSettings: ProjectConfig = {},
+    datapoints: List[Dict[str, Any]] = [],
+    links: List[Dict[str, Any]] = [],
 ) -> Dict[str, Any]:
     """
     Builds the settings.json file for the project.
@@ -48,5 +55,9 @@ def build_settings(
         },
         "snapshots": [snapshot.toDict() for snapshot in snapshots],
     }
+
+    for snapshot in settings["snapshots"]:
+        validate_nodes(snapshot, datapoints)
+        validate_links(snapshot, links)
 
     return settings
