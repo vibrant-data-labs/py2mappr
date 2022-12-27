@@ -25,10 +25,10 @@ The following settings are available:
 | `showHeader` | Boolean | `True` | Whether to display the project header |
 | `headerType` | str `simple / html` | `simple` | Defines the type of the header in the project. In the case of `html` requires `headerTitle` and/or `headerHtml` to be set |
 | `headerTitle` | str | `map title` | The title to be used in the project |
-| `headerHtml` | str, html | `<h1>map header</h1>` | The Header content to be used in the project, if `headerType == 'html'` |
+| `headerHtml` | str, html, markdown | `<h1>map header</h1>` | The Header content to be used in the project, if `headerType == 'html'` |
 | `displayExportButton` | Boolean | `False` | Whether to allow SVG export of the layout |
-| `modalDescription` | str, html | `<p>map description</p>` | Defines the HTML with information about the project |
-| `modalSubtitle` | str, html | `<p>map subtitle</p>` | Defines the HTML with project subtitle |
+| `modalDescription` | str, html, markdown | `<p>map description</p>` | Defines the HTML with information about the project |
+| `modalSubtitle` | str, html, markdown | `<p>map subtitle</p>` | Defines the HTML with project subtitle |
 | `displayTooltipCard` | Boolean | `False` | Whether to render a card, when hovering attribute in the list panel |
 | `startPage` | str `legend / filter / list` | `legend` | Defines the panel on the left-hand side to be rendered first |
 | `defaultPanel` | str  | `Map Information` | The title of the right panel |

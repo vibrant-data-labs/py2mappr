@@ -1,4 +1,3 @@
-import pandas as pd
 from typing import Any, List, Dict
 from py2mappr._layout import Layout
 
@@ -7,6 +6,7 @@ from py2mappr._validation.validate_attributes import (
     validate_nodes,
     validate_links,
 )
+from ._utils import md_to_html
 
 
 def build_settings(
@@ -51,9 +51,19 @@ def build_settings(
             "layouts": {},
         },
         "player": {
-            "settings": playerSettings,
+            "settings": {
+                **playerSettings,
+                "headerHtml": md_to_html(playerSettings["headerHtml"]),
+                "modalDescription": md_to_html(
+                    playerSettings["modalDescription"]
+                ),
+                "modalSubtitle": md_to_html(playerSettings["modalSubtitle"]),
+            },
         },
-        "snapshots": [snapshot.toDict() for snapshot in snapshots],
+        "snapshots": [
+            {**snapshot.toDict(), "descr": md_to_html(snapshot.descr)}
+            for snapshot in snapshots
+        ],
     }
 
     for snapshot in settings["snapshots"]:

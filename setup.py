@@ -15,7 +15,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 setup(name='py2mappr',
-      version='0.1.0',
+      version='0.1.1',
       description='py2mappr',
       long_description="py2mappr",
       url='https://github.com/vibrant-data-labs/py2mappr',
@@ -26,7 +26,9 @@ setup(name='py2mappr',
       install_requires=[
           'numpy',
           'pandas',
-          'tag2network @ git+https://github.com/vibrant-data-labs/Tag2Network'
+          'tag2network @ git+https://github.com/vibrant-data-labs/Tag2Network',
+          'markdown',
+          'markdown3-newtab'
       ],
       include_package_data=True,
       zip_safe=False)

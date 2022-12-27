@@ -200,7 +200,7 @@ Name of the layout, used for rendering the layout in the UI.
 
 #### `descr`
 
-HTML Description of the layout, used for rendering the layout in the UI.
+HTML or Markdown Description of the layout, used for rendering the layout in the UI.
 
         layout.descr = "<p>My layout description</p>"
 
