@@ -6,6 +6,7 @@ from py2mappr._validation.validate_attributes import (
     validate_nodes,
     validate_links,
 )
+from py2mappr._validation.validate_settings import validate_settings
 from ._utils import md_to_html
 
 
@@ -69,5 +70,7 @@ def build_settings(
     for snapshot in settings["snapshots"]:
         validate_nodes(snapshot, datapoints)
         validate_links(snapshot, links)
+
+    validate_settings(settings)
 
     return settings
