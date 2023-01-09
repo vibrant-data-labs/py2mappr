@@ -28,7 +28,7 @@ def cloudflare_worker(cdn_url: str, url: str):
 
     domain_item = domain[0]
 
-    data = {"type": "CNAME", "name": url, "content": cdn_url, "ttl": 1}
+    data = {"type": "CNAME", "name": url, "content": cdn_url, "ttl": 1, "proxied": True}
     requests.post(
         "https://api.cloudflare.com/client/v4/zones/%s/dns_records"
         % domain_item.get("id"),
