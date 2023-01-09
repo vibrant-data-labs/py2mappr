@@ -44,6 +44,23 @@ def s3(
     )
 
 
+def ec2(url: str, region: str = None) -> Callable[[Callable], None]:
+    """
+    Decorator to set up the ec2 instance. Requires [deploy_agent] setting of
+    config.ini to be set.
+    """
+    from .ec2_worker import ec2_worker
+
+    def get_region(data: Dict[str, Any]) -> str:
+        if region is None:
+            return data.get("region")
+        return region
+
+    return lambda data: ec2_worker(
+        bucket=data.get("bucket"), url=url, region=get_region(data)
+    )
+
+
 def cloudfront(
     url: str, bucket_name: str = None
 ) -> Callable[[Callable], None]:
@@ -78,13 +95,13 @@ def cloudflare(url: str, cdn_url: str = None) -> Callable[[Callable], None]:
     return lambda data: cloudflare_worker(cdn_url=get_cdn_url(data), url=url)
 
 
-def __build_project(out_dir: pl.Path = None):
+def __build_project(out_dir: pl.Path = "data_out"):
     project = get_project()
     out_folder = build_map(project, out_folder=out_dir, start=False)
     set_player_directory(out_folder)
 
 
-def run(workers: List[Callable], path: pl.Path = None):
+def run(workers: List[Callable], path: pl.Path = "data_out"):
     """
     Runs the workers in the order they are passed. The data from previous
     workers is collected into the single dictionary and passed to the next

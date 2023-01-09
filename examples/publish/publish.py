@@ -13,9 +13,16 @@ project, original = mappr.create_map(datapoints, edges)
 original.set_nodes(node_color="Journal")
 original.set_links()
 
+project.set_socials(["twitter", "linkedin", "facebook"])
+project.create_sponsor_list([
+    ('Sample sponsor', 'snap-out-123.png', 'http://example.com')
+])
+
 publisher.run([
     # publish to S3 as a website
     publisher.s3("p2m-basic-example"),
+    # create proxy from to S3
+    publisher.ec2("py2mappr-sample.openmappr.org")
     # and then start locally
-    publisher.local()
+    # publisher.local()
 ])

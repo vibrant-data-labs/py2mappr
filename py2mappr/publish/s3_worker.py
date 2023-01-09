@@ -76,4 +76,4 @@ def s3_worker(path: Path, bucket_name: str):
         % (bucket_name, REGION)
     )
 
-    return {"bucket": bucket_name}
+    return {"bucket": bucket_name, "region": REGION}
