@@ -125,18 +125,18 @@ def plot_network(ndf, edf, plot_name, x='x', y='y', colorBy='Cluster', sizeBy='C
 
 def write_network_to_excel(ndf, ldf, outname):
     writer = pd.ExcelWriter(outname,
-                          engine='openpyxl')
+                          engine='xlsxwriter')
     # Don't convert url-like strings to urls.
     writer.book.strings_to_urls = False
-    ndf.to_excel(writer,'Nodes', index=False, encoding = 'utf-8-sig')
-    ldf.to_excel(writer,'Links', index=False, encoding = 'utf-8-sig')
-    writer.save()  
+    ndf.to_excel(writer,'Nodes', index=False)
+    ldf.to_excel(writer,'Links', index=False)
+    writer.close()  
 
 def write_network_to_excel_simple (ndf, ldf, outname):
     writer = pd.ExcelWriter(outname)
     ndf.to_excel(writer,'Nodes', index=False, encoding = 'utf-8-sig')
     ldf.to_excel(writer,'Links', index=False, encoding = 'utf-8-sig')
-    writer.save()  
+    writer.close()  
 
 def normalized_difference(df, attr):
     # compute normalizd difference relative to the mean
