@@ -5,6 +5,14 @@ from pathlib import Path
 import boto3
 
 
+def has_google_analytics(data: str) -> bool:
+    return "googletagmanager.com" in data
+
+
+def has_publish_tags(data: str) -> bool:
+    return "<title>openmappr | network exploration tool</title>" not in data
+
+
 def s3_worker(path: Path, bucket_name: str):
     _file_mapping: Dict[str, str] = {
         "html": "text/html",
@@ -52,6 +60,14 @@ def s3_worker(path: Path, bucket_name: str):
     s3 = session.resource("s3")
     bucket = s3.Bucket(bucket_name)
 
+    has_index = False
+    try:
+        S3_CLIENT.head_object(Bucket=bucket_name, Key="index.html")
+        has_index = True
+    except:
+        has_index = False
+        pass
+
     data_path = str(path)
     for subdir, _, files in os.walk(path):
         for file in files:
@@ -64,6 +80,18 @@ def s3_worker(path: Path, bucket_name: str):
                     else "%s/%s"
                     % (os.path.basename(subdir), os.path.basename(full_path))
                 )
+
+                if has_index and ("index.html" in str(full_path)):
+                    print("index.html found")
+                    with open(full_path, "r") as f:
+                        html_text = f.read()
+                    checks = [has_publish_tags, has_google_analytics]
+
+                    if all([check(html_text) for check in checks]):
+                        print("Skipping index.html")
+                        continue
+
+                print(f"Putting {object_key} to {bucket_name}")
                 bucket.put_object(
                     Key=object_key,
                     Body=data,
