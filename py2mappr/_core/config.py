@@ -156,6 +156,7 @@ class AttributeConfig(TypedDict):
     overlayAnchor: str
     priority: Literal["high", "medium", "low"]
     axis: Literal["x", "y", "none"]
+    tooltip: str
     colorSelectable: bool
     sizeSelectable: bool
 
@@ -188,6 +189,7 @@ default_attr_config: AttributeConfig = {
     "overlayAnchor": "",
     "priority": "medium",
     "axis": "none",
+    "tooltip": "",
     "colorSelectable": False,
     "sizeSelectable": False,
 }
