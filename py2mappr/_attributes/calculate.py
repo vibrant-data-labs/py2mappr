@@ -52,7 +52,13 @@ def _detect_number_column(df: pd.DataFrame, column: str) -> ATTR_TYPE:
     if df[column].min() >= 1000000000 and df[column].max() <= 9999999999:
         return "timestamp"
 
-    if df[column].min() % 1 == 0 and df[column].max() % 1 == 0:
+    min = df[column].min()
+    max = df[column].max()
+
+    if max - min == 1:
+        return "float"
+
+    if float(min).is_integer() and float(max).is_integer():
         return "integer"
 
     return "float"
