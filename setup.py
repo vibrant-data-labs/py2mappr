@@ -15,7 +15,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 setup(name='py2mappr',
-      version='0.1.2',
+      version='0.1.3',
       description='py2mappr',
       long_description="py2mappr",
       url='https://github.com/vibrant-data-labs/py2mappr',

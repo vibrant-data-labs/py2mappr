@@ -5,6 +5,8 @@ from typing import Any, List, Dict, TypedDict
 from py2mappr._core.config import AttributeConfig, default_attr_config
 import copy
 
+from py2mappr._validation.validate_attributes import validate_hidden_attribute
+
 
 class Datapoint(TypedDict):
     id: str
@@ -43,6 +45,8 @@ def build_attr_descriptor(column: str, override: pd.Series) -> AttributeConfig:
             if key in attrs:
                 attrs[key] = val
 
+
+    validate_hidden_attribute(attrs)
     return attrs
 
 

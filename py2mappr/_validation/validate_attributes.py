@@ -1,4 +1,6 @@
 from typing import List, Dict, Any
+
+from py2mappr._core.config import AttributeConfig, default_attr_config
 from .warn import warn
 
 
@@ -122,3 +124,24 @@ def validate_links(layout_dict: Dict[str, Any], links: List[Dict[str, Any]]):
     link_validator = __validator(layout_dict, links, "edges")
     link_validator("edgeColorStrat", "attr", "edgeColorAttr")
     link_validator("edgeSizeStrat", "attr", "edgeSizeAttr")
+
+
+def validate_hidden_attribute(config: AttributeConfig):
+    validate_keys = [
+        "searchable",
+        "priority",
+        "axis",
+        "tooltip",
+        "colorSelectable",
+        "sizeSelectable",
+    ]
+
+    if config['visible']:
+        return
+
+    for key, value in config.items():
+        if key not in validate_keys:
+            continue
+
+        if value != default_attr_config[key]:
+            warn(f"Attribute '{config['title']}' is hidden but '{key}' is set to '{value}'")

@@ -280,3 +280,72 @@ class OpenmapprProject:
         Set the project to be in beta mode.
         """
         self.configuration.update({"beta": True})
+
+    def update_attributes(self,
+        attr_descriptions: Dict[str, str] = dict(),
+        hide: List[str] = list(),
+        hide_profile: List[str] = list(),
+        keep_search: List[str] = list(),
+        low_priority: List[str] = list(),
+        color_select: List[str] = list(),
+        size_select: List[str] = list(),
+        list_string: List[str] = list(),
+        tag_cloud: List[str] = list(),
+        tags_3: List[str] = list(),
+        tags_2: List[str] = list(),
+        wide_tags: List[str] = list(),
+        horizontal_bars: List[str] = list(),
+        text_str: List[str] = list(),
+        years: List[str] = list(),
+        axis_select: List[str] = list(),
+        urls: List[str] = list()):
+        """
+        Bulk updates the attributes of the project.
+        """
+        for key, value in attr_descriptions.items():
+            self.attributes[key]['tooltip'] = value
+
+        for attr in hide:
+            self.attributes[attr]["visible"] = False
+
+        for attr in hide_profile:
+            self.attributes[attr]["visibleInProfile"] = False
+
+        for attr in self.attributes:
+            self.attributes[attr]["searchable"] = attr in keep_search
+            self.attributes[attr]["priority"] = "high" if attr not in low_priority else "low"
+            self.attributes[attr]["colorSelectable"] = attr in color_select
+            self.attributes[attr]["sizeSelectable"] = attr in size_select
+
+        for attr in list_string:
+            self.attributes[attr]["attrType"] = "liststring"
+
+        for attr in tag_cloud:
+            self.attributes[attr]["renderType"] = "tag-cloud"
+
+        for attr in tags_3:
+            self.attributes[attr]["renderType"] = "tag-cloud_3"
+        
+        for attr in tags_2:
+            self.attributes[attr]["renderType"] = "tag-cloud_2"
+
+        for attr in wide_tags:
+            self.attributes[attr]["renderType"] = "wide-tag-cloud"
+
+        for attr in horizontal_bars:
+            self.attributes[attr]["renderType"] = "horizontal-bars"
+
+        for attr in text_str:
+            self.attributes[attr]["attrType"] = "string"
+            self.attributes[attr]["renderType"] = "text"
+
+        for attr in years:
+            self.attributes[attr]["attrType"] = "year"
+            self.attributes[attr]["renderType"] = "histogram"
+
+        for attr in axis_select:
+            self.attributes[attr]["axis"] = "all"
+
+        for attr in urls:
+            self.attributes[attr]["attrType"] = "url"
+            self.attributes[attr]["renderType"] = "default"
