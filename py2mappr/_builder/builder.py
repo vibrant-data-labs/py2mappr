@@ -87,9 +87,12 @@ def __write_dataset_file(
     datapointAttrTypes = {
         row["id"]: row["attrType"] for row in datapointAttribs
     }
+    datapointRenderTypes = {
+        row["id"]: row["renderType"] for row in datapointAttribs
+    }
 
     # collect datapoints
-    datapoints = build_datapoints(df_datapoints, datapointAttrTypes)
+    datapoints = build_datapoints(df_datapoints, datapointAttrTypes, datapointRenderTypes)
 
     _debug_print(
         f"\t- processed {len(datapoints)} datapoints with {datapoints[0].keys()} where attr={list(datapointAttrs.keys())}"

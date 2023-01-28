@@ -3,6 +3,7 @@ import pandas as pd
 from typing import Any, List, Dict, TypedDict
 
 from py2mappr._core.config import AttributeConfig, default_attr_config
+from py2mappr._builder._utils import md_to_html
 import copy
 
 
@@ -72,7 +73,9 @@ def build_attrDescriptors(
 
 
 def __build_datapoint(
-    dp: pd.Series, dpAttribTypes: Dict[str, str]
+    dp: pd.Series,
+    dpAttribTypes: Dict[str, str],
+    dpRenderTypes: Dict[str, str]
 ) -> Datapoint:
     attrs: Dict[str, Any] = dict(dp)
 
@@ -98,12 +101,17 @@ def __build_datapoint(
         else:
             attrs[key] = val if not pd.isna(attrs[key]) else ""
 
+        if dpAttribTypes[key] == "string" and dpRenderTypes[key] == "text":
+            attrs[key] = md_to_html(attrs[key])
+
     # merge attrs with template
     return {"id": f'{dp["id"]}', "attr": attrs}
 
 
 def build_datapoints(
-    df_datapoints: pd.DataFrame, dpAttribTypes: Dict[str, str]
+    df_datapoints: pd.DataFrame,
+    dpAttribTypes: Dict[str, str],
+    dpRenderTypes: Dict[str, str]
 ) -> List[Dict[str, Any]]:
     """
     Build the datapoints for the dataset.
@@ -114,12 +122,13 @@ def build_datapoints(
 
     dpAttribTypes : Dict[str, str]. The attribute types for the datapoints.
 
+    dpRenderTypes : Dict[str, str]. The render types for the datapoints.
     Returns
     -------
     List[Dict[str, Any]] The datapoints for the dataset.
     """
     datapoints = [
-        __build_datapoint(dp, dpAttribTypes)
+        __build_datapoint(dp, dpAttribTypes, dpRenderTypes)
         for _, dp in df_datapoints.iterrows()
     ]
 
