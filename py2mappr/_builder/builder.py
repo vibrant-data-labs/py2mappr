@@ -18,6 +18,7 @@ from .build_network import (
     build_linkAttrDescriptors,
 )
 from .build_settings import build_settings
+from ._utils import flatten
 
 
 class NpEncoder(json.JSONEncoder):
@@ -68,6 +69,7 @@ def __write_dataset_file(
     df_datapoints: pd.DataFrame,
     datapointAttrs: Dict[str, AttributeConfig],
     out_data_dir: Path,
+    exclude_md_attrs: List[str] = [],
 ):
     """
     Writes the dataset file `nodes.json` to the output directory
@@ -92,7 +94,12 @@ def __write_dataset_file(
     }
 
     # collect datapoints
-    datapoints = build_datapoints(df_datapoints, datapointAttrTypes, datapointRenderTypes)
+    datapoints = build_datapoints(
+        df_datapoints,
+        datapointAttrTypes,
+        datapointRenderTypes,
+        exclude_md_attrs,
+    )
 
     _debug_print(
         f"\t- processed {len(datapoints)} datapoints with {datapoints[0].keys()} where attr={list(datapointAttrs.keys())}"
@@ -364,8 +371,16 @@ def build_map(
 
     # write the files
     _debug_print(f">> building dataset")
+    exclude_md_attrs = [
+        [snapshot.settings["labelAttr"], snapshot.settings["labelHoverAttr"]]
+        for snapshot in project.snapshots
+    ]
+
     out_nodes = __write_dataset_file(
-        project.dataFrame, project.attributes, out_data_dir
+        project.dataFrame,
+        project.attributes,
+        out_data_dir,
+        flatten(exclude_md_attrs),
     )
     _debug_print(
         f"\t- new dataset file written to {out_data_dir / 'nodes.json'}.\n"

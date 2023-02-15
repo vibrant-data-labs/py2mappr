@@ -75,7 +75,8 @@ def build_attrDescriptors(
 def __build_datapoint(
     dp: pd.Series,
     dpAttribTypes: Dict[str, str],
-    dpRenderTypes: Dict[str, str]
+    dpRenderTypes: Dict[str, str],
+    exclude_md_attrs: List[str] = [],
 ) -> Datapoint:
     attrs: Dict[str, Any] = dict(dp)
 
@@ -101,7 +102,11 @@ def __build_datapoint(
         else:
             attrs[key] = val if not pd.isna(attrs[key]) else ""
 
-        if dpAttribTypes[key] == "string" and dpRenderTypes[key] == "text":
+        if (
+            dpAttribTypes[key] == "string"
+            and dpRenderTypes[key] == "text"
+            and key not in exclude_md_attrs
+        ):
             attrs[key] = md_to_html(attrs[key])
 
     # merge attrs with template
@@ -111,7 +116,8 @@ def __build_datapoint(
 def build_datapoints(
     df_datapoints: pd.DataFrame,
     dpAttribTypes: Dict[str, str],
-    dpRenderTypes: Dict[str, str]
+    dpRenderTypes: Dict[str, str],
+    exclude_md_attrs: List[str] = [],
 ) -> List[Dict[str, Any]]:
     """
     Build the datapoints for the dataset.
@@ -128,7 +134,7 @@ def build_datapoints(
     List[Dict[str, Any]] The datapoints for the dataset.
     """
     datapoints = [
-        __build_datapoint(dp, dpAttribTypes, dpRenderTypes)
+        __build_datapoint(dp, dpAttribTypes, dpRenderTypes, exclude_md_attrs)
         for _, dp in df_datapoints.iterrows()
     ]
 
