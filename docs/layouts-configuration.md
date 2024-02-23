@@ -297,7 +297,7 @@ Nodes are enabled by default, this method allows to modify some specific propert
         layout.set_nodes(
             node_color="Color Attribute",
             node_size="Size Attribute",
-            node_color=(15, 5, 0.1)
+            node_size_scaling=(15, 5, 0.1)
         )
 
 #### `set_palette`
